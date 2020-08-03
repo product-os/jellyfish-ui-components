@@ -1,5 +1,5 @@
 env:
-  browser: false
+  browser: true
   commonjs: true
   es6: true
   node: true
@@ -7,7 +7,19 @@ plugins:
   - lodash
   - jsdoc
 extends:
+  - 'plugin:react/recommended'
   - standard
+settings:
+  react:
+    version: "detect"
+  jsdoc:
+    additionalTagNames:
+      customTags:
+        - fulfil
+parserOptions:
+  ecmaVersion: 9
+  ecmaFeatures:
+    jsx: true
 rules:
 
   # Possible Errors
@@ -407,8 +419,6 @@ rules:
     - error
   jsdoc/check-tag-names:
     - error
-    - definedTags:
-      - fulfil
   jsdoc/newline-after-description:
     - error
   jsdoc/require-example:
@@ -423,3 +433,13 @@ rules:
     - error
   jsdoc/require-returns-type:
     - error
+
+  # JSX
+  react/prop-types:
+    - off
+  react/display-name:
+    - off
+  react/jsx-no-bind:
+    - off
+  react/no-children-prop:
+    - off
