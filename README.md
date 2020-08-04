@@ -7,10 +7,11 @@ This module is a collection of re-usable React component that Jellyfish uses to 
 Below is an example how to use this library:
 
 ```js
-import Icon from '@balena/jellyfish-ui-components/lib/shame/Icon')
+import Link from '@balena/jellyfish-ui-components/lib/Link'
 
-...
-return (
-	<Icon spin name="cog"/>
-)
+const RENDERERS = {
+	name: (name, item) => {
+		return <Link append={item.slug || item.id}>{name}</Link>
+	}
+}
 ```
