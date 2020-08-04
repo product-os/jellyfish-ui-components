@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v0.0.4
+## (2020-08-04)
+
+* Update code to match latest changes on monorepo [Josh Bowling]
+
 # v0.0.3
 ## (2020-08-04)
 
