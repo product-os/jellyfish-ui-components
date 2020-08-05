@@ -37,6 +37,7 @@ const EventWrapper = styled(Flex) `
 		z-index: 1;
 		animation: pulse 0.7s 6;
 		animation-direction: alternate;
+		pointer-events: none;
 	}
 	position: relative;
 
