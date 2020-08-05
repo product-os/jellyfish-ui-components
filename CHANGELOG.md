@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v0.0.7
+## (2020-08-05)
+
+* Add helpers for the new sort by button on views [Lucy-Jane]
+
 # v0.0.6
 ## (2020-08-05)
 
