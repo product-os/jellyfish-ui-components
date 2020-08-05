@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v0.0.5
+## (2020-08-05)
+
+* Ensure links can still be clicked on focused messages [Graham McCulloch]
+
 # v0.0.4
 ## (2020-08-04)
 
