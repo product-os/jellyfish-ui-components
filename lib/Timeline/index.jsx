@@ -4,9 +4,6 @@
  * Proprietary and confidential.
  */
 
-import {
-	circularDeepEqual
-} from 'fast-equals'
 import * as Bluebird from 'bluebird'
 import _ from 'lodash'
 import React from 'react'
@@ -53,14 +50,6 @@ const getSendCommand = (user) => {
 	return _.get(user.data, [ 'profile', 'sendCommand' ], 'shift+enter')
 }
 
-const getWithTimeline = async (sdk, card, queryOptions) => {
-	const results = await sdk.card.getWithTimeline(card.slug, {
-		queryOptions
-	})
-	const newEvents = _.get(results, [ 'links', 'has attached element' ])
-	return _.compact(newEvents)
-}
-
 const getFreshPendingMessages = (tail, pendingMessages) => {
 	return _.filter(pendingMessages, (pending) => {
 		return !_.find(tail, [ 'slug', pending.slug ])
@@ -78,7 +67,6 @@ class Timeline extends React.Component {
 			showNewCardModal: false,
 			uploadingFiles: [],
 			eventSkip: PAGE_SIZE,
-			events: this.props.tail,
 			reachedBeginningOfTimeline: this.props.tail < PAGE_SIZE,
 			loadingMoreEvents: false,
 			ready: false
@@ -97,6 +85,7 @@ class Timeline extends React.Component {
 		this.handleEventToggle = this.handleEventToggle.bind(this)
 		this.handleJumpToTop = this.handleJumpToTop.bind(this)
 		this.handleWhisperToggle = this.handleWhisperToggle.bind(this)
+		this.loadMoreEvents = this.loadMoreEvents.bind(this)
 
 		this.signalTyping = _.throttle(() => {
 			this.props.signalTyping(this.props.card.id)
@@ -131,11 +120,11 @@ class Timeline extends React.Component {
 		const {
 			tail
 		} = this.props
-		const updatedEvents = !circularDeepEqual(prevProps.tail, tail)
+
 		const newMessages = tail.length > prevProps.tail.length
-		if (updatedEvents) {
+
+		if (newMessages) {
 			this.setState({
-				events: tail,
 				pendingMessages: newMessages ? getFreshPendingMessages(tail, pendingMessages) : pendingMessages
 			})
 		}
@@ -143,10 +132,12 @@ class Timeline extends React.Component {
 
 	scrollToEvent (eventId) {
 		const {
-			reachedBeginningOfTimeline,
-			events
+			tail
+		} = this.props
+		const {
+			reachedBeginningOfTimeline
 		} = this.state
-		const existing = _.find(events, {
+		const existing = _.find(tail, {
 			id: eventId
 		})
 		if (existing) {
@@ -170,29 +161,17 @@ class Timeline extends React.Component {
 	handleScrollBeginning () {
 		return new Promise((resolve, reject) => {
 			const {
-				sdk,
-				card
-			} = this.props
-			const {
-				events,
 				eventSkip
 			} = this.state
 			this.setState({
 				loadingMoreEvents: true
 			}, () => {
-				return getWithTimeline(sdk, card, {
-					links: {
-						'has attached element': {
-							sortBy: 'created_at',
-							limit: PAGE_SIZE,
-							skip: eventSkip,
-							sortDir: 'desc'
-						}
-					}
+				return this.loadMoreEvents({
+					limit: PAGE_SIZE,
+					skip: eventSkip
 				}).then((newEvents) => {
 					const receivedNewEvents = newEvents.length > 0
 					this.setState({
-						events: _.concat(events, newEvents),
 						eventSkip: receivedNewEvents ? eventSkip + PAGE_SIZE : eventSkip,
 						loadingMoreEvents: false,
 						reachedBeginningOfTimeline: !receivedNewEvents
@@ -215,23 +194,12 @@ class Timeline extends React.Component {
 	}
 
 	retrieveFullTimeline (callback) {
-		const {
-			sdk,
-			card
-		} = this.props
-		return getWithTimeline(sdk, card, {
-			links: {
-				'has attached element': {
-					sortBy: 'created_at',
-					sortDir: 'desc'
-				}
-			}
-		}).then((newEvents) => {
-			this.setState({
-				reachedBeginningOfTimeline: true,
-				events: _.concat(this.state.events, newEvents)
-			}, callback)
-		})
+		return this.loadMoreEvents()
+			.then(() => {
+				this.setState({
+					reachedBeginningOfTimeline: true
+				}, callback)
+			})
 	}
 
 	handleEventToggle () {
@@ -357,6 +325,38 @@ class Timeline extends React.Component {
 		})
 	}
 
+	loadMoreEvents (options = {}) {
+		const {
+			card,
+			loadMoreChannelData
+		} = this.props
+		return loadMoreChannelData({
+			target: card.slug,
+			query: {
+				type: 'object',
+				properties: {
+					id: {
+						const: card.id
+					}
+				},
+				$$links: {
+					'has attached element': {
+						type: 'object'
+					}
+				}
+			},
+			queryOptions: {
+				links: {
+					'has attached element': {
+						sortBy: 'created_at',
+						sortDir: 'desc',
+						...options
+					}
+				}
+			}
+		})
+	}
+
 	render () {
 		const {
 			user,
@@ -375,21 +375,21 @@ class Timeline extends React.Component {
 			timelineMessage,
 			wide,
 			headerOptions,
-			getActorHref
+			getActorHref,
+			tail
 		} = this.props
 		const {
-			events,
 			messagesOnly,
 			pendingMessages,
 			hideWhispers,
 			loadingMoreEvents,
-			reachedBeginningOfTimeline,
 			ready,
-			uploadingFiles
+			uploadingFiles,
+			reachedBeginningOfTimeline
 		} = this.state
 
 		// Due to a bug in syncing, sometimes there can be duplicate cards in events
-		const sortedEvents = _.uniqBy(_.sortBy(events, 'data.timestamp'), 'id')
+		const sortedEvents = _.uniqBy(_.sortBy(tail, 'data.timestamp'), 'id')
 
 		const sendCommand = getSendCommand(user)
 

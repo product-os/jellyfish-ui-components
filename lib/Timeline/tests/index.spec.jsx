@@ -58,17 +58,9 @@ ava('Events are toggled when the event in the url is one of type UPDATE', async 
 		search: `?event=${eventId}`
 	}
 
-	const getWithTimeline = sandbox.stub()
-	getWithTimeline.resolves()
-
 	const timeline = await mount(
 		<Timeline
 			{...eventProps}
-			sdk={{
-				card: {
-					getWithTimeline
-				}
-			}}
 			tail={[ {
 				id: eventId,
 				type: 'update@1.0.0',
@@ -100,17 +92,9 @@ ava('Events are toggled when the event in the url is one of type CREATE', async 
 		search: `?event=${eventId}`
 	}
 
-	const getWithTimeline = sandbox.stub()
-	getWithTimeline.resolves()
-
 	const timeline = await mount(
 		<Timeline
 			{...eventProps}
-			sdk={{
-				card: {
-					getWithTimeline
-				}
-			}}
 			tail={[ {
 				id: eventId,
 				type: 'create@1,0,0'
@@ -125,10 +109,13 @@ ava('Events are toggled when the event in the url is one of type CREATE', async 
 	test.is(createEvent.length, 1)
 })
 
-ava('getWithTimeline is used to get all the events for the timeline when' +
+ava('loadMoreChannelData is used to get all the events for the timeline when' +
 	'the event in the url is not present in our first page of results', async (test) => {
 	const {
-		eventProps
+		eventProps: {
+			card,
+			...rest
+		}
 	} = test.context
 
 	const eventId = 'fake-message-id'
@@ -150,39 +137,46 @@ ava('getWithTimeline is used to get all the events for the timeline when' +
 		}
 	})
 
-	const getWithTimeline = sandbox.stub()
-	getWithTimeline.resolves({
-		links: {
-			'has attached element': [ {
-				id: eventId,
-				type: 'message@1.0.0',
-				data: {
-					target: {
-						id: 'fake-target-id'
-					}
-				}
-			} ]
+	const loadMoreChannelData = sandbox.stub()
+	loadMoreChannelData.resolves([ {
+		id: eventId,
+		type: 'message@1.0.0',
+		data: {
+			target: {
+				id: 'fake-target-id'
+			}
 		}
-	})
+	} ])
 
 	await mount(
 		<Timeline
-			{...eventProps}
-			sdk={{
-				card: {
-					getWithTimeline
-				}
-			}}
+			{...rest}
+			card={card}
 			tail={tail}
+			loadMoreChannelData={loadMoreChannelData}
 		/>, {
 			wrappingComponent: wrapperWithSetup,
 			wrappingComponentProps: {
-				sdk: eventProps.sdk
+				sdk: rest.sdk
 			}
 		})
 
-	test.is(getWithTimeline.callCount, 1)
-	test.deepEqual(getWithTimeline.args, [ [ 'fake-card', {
+	test.is(loadMoreChannelData.callCount, 1)
+	test.deepEqual(loadMoreChannelData.args, [ [ {
+		target: card.slug,
+		query: {
+			type: 'object',
+			properties: {
+				id: {
+					const: card.id
+				}
+			},
+			$$links: {
+				'has attached element': {
+					type: 'object'
+				}
+			}
+		},
 		queryOptions: {
 			links: {
 				'has attached element': {
