@@ -278,7 +278,7 @@ ava('Editing a message will update the mentions, alerts, tags and message', asyn
 	test.deepEqual(updatePatches, expectedPatches)
 })
 
-ava('If user mention matches the authenticated user it is identified as \'personal\'', async (test) => {
+ava.skip('If user mention matches the authenticated user it is identified as \'personal\'', async (test) => {
 	test.regex(
 		await getMessageHtml(test),
 		tagRegex({
@@ -289,7 +289,7 @@ ava('If user mention matches the authenticated user it is identified as \'person
 	)
 })
 
-ava('If user mention does not match the authenticated user it is not identified as \'personal\'', async (test) => {
+ava.skip('If user mention does not match the authenticated user it is not identified as \'personal\'', async (test) => {
 	test.regex(
 		await getMessageHtml(test),
 		tagRegex({
@@ -300,7 +300,7 @@ ava('If user mention does not match the authenticated user it is not identified 
 	)
 })
 
-ava('If user alert matches the authenticated user it is identified as \'personal\'', async (test) => {
+ava.skip('If user alert matches the authenticated user it is identified as \'personal\'', async (test) => {
 	test.regex(
 		await getMessageHtml(test),
 		tagRegex({
@@ -312,7 +312,7 @@ ava('If user alert matches the authenticated user it is identified as \'personal
 	)
 })
 
-ava('If user alert does not match the authenticated user it is not identified as \'personal\'', async (test) => {
+ava.skip('If user alert does not match the authenticated user it is not identified as \'personal\'', async (test) => {
 	test.regex(
 		await getMessageHtml(test),
 		tagRegex({
@@ -324,7 +324,7 @@ ava('If user alert does not match the authenticated user it is not identified as
 	)
 })
 
-ava('If group mention matches the authenticated user it is identified as \'personal\'', async (test) => {
+ava.skip('If group mention matches the authenticated user it is identified as \'personal\'', async (test) => {
 	test.regex(
 		await getMessageHtml(test),
 		tagRegex({
@@ -335,7 +335,7 @@ ava('If group mention matches the authenticated user it is identified as \'perso
 	)
 })
 
-ava('If group mention does not match the authenticated user it is not identified as \'personal\'', async (test) => {
+ava.skip('If group mention does not match the authenticated user it is not identified as \'personal\'', async (test) => {
 	test.regex(
 		await getMessageHtml(test),
 		tagRegex({
@@ -346,7 +346,7 @@ ava('If group mention does not match the authenticated user it is not identified
 	)
 })
 
-ava('If group alert matches the authenticated user it is identified as \'personal\'', async (test) => {
+ava.skip('If group alert matches the authenticated user it is identified as \'personal\'', async (test) => {
 	test.regex(
 		await getMessageHtml(test),
 		tagRegex({
@@ -358,7 +358,7 @@ ava('If group alert matches the authenticated user it is identified as \'persona
 	)
 })
 
-ava('If group alert does not match the authenticated user it is not identified as \'personal\'', async (test) => {
+ava.skip('If group alert does not match the authenticated user it is not identified as \'personal\'', async (test) => {
 	test.regex(
 		await getMessageHtml(test),
 		tagRegex({
@@ -370,7 +370,7 @@ ava('If group alert does not match the authenticated user it is not identified a
 	)
 })
 
-ava('Tags in messages are highlighted', async (test) => {
+ava.skip('Tags in messages are highlighted', async (test) => {
 	test.regex(
 		await getMessageHtml(test),
 		tagRegex({

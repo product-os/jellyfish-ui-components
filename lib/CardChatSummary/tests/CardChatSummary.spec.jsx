@@ -129,7 +129,7 @@ ava('Inline messages are transformed to a text representation', async (test) => 
 	test.is(messageSummaryText.trim(), '[some-image.png]')
 })
 
-ava('Links are transformed to include an onclick handler that stops propagation', async (test) => {
+ava('Links are transformed to use the RouterLink component', async (test) => {
 	const component = await mount((
 		<CardChatSummary
 			active
@@ -143,10 +143,6 @@ ava('Links are transformed to include an onclick handler that stops propagation'
 	})
 	const messageSummary = component.find('div[data-test="card-chat-summary__message"]')
 
-	// Because the Markdown component uses 'dangerouslySetInnerHtml' we need to work
-	// with the raw html itself at this stage.
-	const linkRegExp = new RegExp(/<a.+?>/)
-	const link = linkRegExp.exec(messageSummary.html())
-	const onClickRegExp = new RegExp(/onclick=".*stopPropagation.*"/)
-	test.true(onClickRegExp.test(link))
+	const link = messageSummary.find('RouterLink')
+	test.is(link.props().href, 'https://via.placeholder.com/150')
 })
