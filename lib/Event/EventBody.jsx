@@ -8,7 +8,7 @@ import React from 'react'
 import _ from 'lodash'
 import styled from 'styled-components'
 import {
-	Button, Txt
+	Button, Txt, Img, Link
 } from 'rendition'
 import {
 	Markdown,
@@ -23,6 +23,9 @@ import {
 	PlainAutocompleteTextarea
 } from '../Timeline/MessageInput'
 import Attachments from './Attachments'
+import {
+	px
+} from '../services/helpers'
 
 const MESSAGE_Y_SPACE = '3px'
 const MAX_IMAGE_SIZE = '500px'
@@ -31,19 +34,28 @@ const EditingAutocompleteTextarea = styled(PlainAutocompleteTextarea) `
 	margin: ${MESSAGE_Y_SPACE} 0;
 `
 
-const StyledMarkdown = styled(Markdown)(({
-	messageOverflows,
-	messageCollapsedHeight,
-	expanded
-}) => {
-	return {
-		fontSize: 'inherit',
-		maxHeight: !expanded && messageOverflows
-			? `${messageCollapsedHeight}px`
-			: 'none',
-		overflow: messageOverflows ? 'hidden' : 'initial'
+const StyledMarkdown = styled(Markdown) `
+	p {
+		margin-top: 0
+		margin-bottom: ${(props) => { px(props.theme.space[2]) }};
 	}
-})
+	p:last-child {
+		margin-bottom: 0;
+	}
+	${({
+		messageOverflows,
+		messageCollapsedHeight,
+		expanded
+	}) => {
+		return {
+			fontSize: 'inherit',
+			maxHeight: !expanded && messageOverflows
+				? `${messageCollapsedHeight}px`
+				: 'none',
+			overflow: messageOverflows ? 'hidden' : 'initial'
+		}
+	}}
+`
 
 const FRONT_MARKDOWN_IMG_RE = /\[\/api\/1\/companies\/resin_io\/attachments\/[a-z0-9]+\?resource_link_id=\d+\]/g
 const FRONT_HTML_IMG_RE = /\/api\/1\/companies\/resin_io\/attachments\/[a-z0-9]+\?resource_link_id=\d+/g
@@ -94,23 +106,28 @@ export const getMessage = (card) => {
 		.join('\n')
 }
 
-const sanitizerOptions = _.defaultsDeep({
-	allowedAttributes: {
-		img: _.get(defaultSanitizerOptions, [ 'allowedAttributes', 'img' ], []).concat('style')
+const IMG_STYLE = {
+	maxWidth: `min(${MAX_IMAGE_SIZE}, 100%)`,
+	maxHeight: MAX_IMAGE_SIZE
+}
+
+const componentOverrides = {
+	img: (attribs) => {
+		return <Img {...attribs} style={IMG_STYLE} />
 	},
-	transformTags: {
-		img: (tagName, attribs) => {
-			return {
-				tagName,
-				attribs: {
-					...attribs,
-					style: `
-					max-width: min(${MAX_IMAGE_SIZE}, 100%);
-					max-height: ${MAX_IMAGE_SIZE};
-					`
-				}
-			}
-		}
+	// eslint-disable-next-line id-length
+	p: (attribs) => {
+		return <p {...attribs} />
+	},
+	// eslint-disable-next-line id-length
+	a: (attribs) => {
+		return <Link blank {...attribs} />
+	}
+}
+
+const sanitizerOptions = _.defaultsDeep({
+	attributes: {
+		img: _.get(defaultSanitizerOptions, [ 'attributes', 'img' ], []).concat('style')
 	}
 }, defaultSanitizerOptions)
 
@@ -202,6 +219,7 @@ export default class EventBody extends React.Component {
 									data-test={card.pending || updating ? 'event-card__message-draft' : 'event-card__message'}
 									flex={0}
 									sanitizerOptions={sanitizerOptions}
+									componentOverrides={componentOverrides}
 								>
 									{updating ? editedMessage : message}
 								</StyledMarkdown>

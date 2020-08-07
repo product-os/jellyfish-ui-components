@@ -12,7 +12,8 @@ import * as React from 'react'
 import {
 	Box,
 	Flex,
-	Txt
+	Txt,
+	Link as RenditionLink
 } from 'rendition'
 import {
 	defaultSanitizerOptions,
@@ -63,10 +64,15 @@ const LatestMessage = styled(Markdown) `
 	padding-left: 10px;
 	flex: 1;
 
-	> p {
+	p {
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
+		margin-top: 0
+		margin-bottom: ${(props) => { helpers.px(props.theme.space[2]) }};
+		&:last-child {
+			margin-bottom: 0;
+		}
 	}
 `
 
@@ -79,7 +85,11 @@ const componentOverrides = {
 		// The whole chat summary is clickable. Prevent navigating to the
 		// chat/thread channel when clicking on a link within the last message
 		// summary.
-		return <Link {...attribs} />
+		const onClick = (event) => {
+			event.stopPropagation()
+			window.open(attribs.href)
+		}
+		return <RenditionLink blank {...attribs} onClick={onClick} />
 	}
 }
 
