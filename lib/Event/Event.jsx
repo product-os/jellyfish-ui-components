@@ -67,6 +67,42 @@ const getTargetId = (card) => {
 	return _.get(card, [ 'data', 'target' ]) || card.id
 }
 
+// Used by mark.js to add attributes to the spans that wrap matched tokens
+// (usernames, groups, hashtags etc) in messages.
+export const highlightTags = (element, readBy, username, groups) => {
+	const text = element.innerText || element.textContent
+	if (text.charAt(0) === '#') {
+		return
+	}
+
+	const trimmed = text.replace(prefixRE, '').toLowerCase()
+	const group = groups[trimmed]
+
+	if (group && group.isMine) {
+		element.className += ' rendition-tag--personal'
+	} else if (trimmed === username) {
+		element.className += ' rendition-tag--personal'
+	}
+
+	if (text.charAt(0) === '!') {
+		element.className += ' rendition-tag--alert'
+	}
+
+	if (!readBy.length) {
+		return
+	}
+
+	if (group) {
+		const readByCount = _.intersection(readBy, group.users).length
+		element.setAttribute('data-read-by-count', readByCount)
+		element.className += ' rendition-tag--read-by'
+	}
+
+	if (_.includes(readBy, `user-${trimmed}`)) {
+		element.className += ' rendition-tag--read'
+	}
+}
+
 const MessageIcon = ({
 	firstInThread,
 	threadColor
@@ -220,38 +256,8 @@ export default class Event extends React.Component {
 			element: 'span',
 			className: 'rendition-tag--hl',
 			ignoreGroups: 1,
-			each (element) {
-				const text = element.innerText || element.textContent
-				if (text.charAt(0) === '#') {
-					return
-				}
-
-				const trimmed = text.replace(prefixRE, '').toLowerCase()
-				const group = groups[trimmed]
-
-				if (group && group.isMine) {
-					element.className += ' rendition-tag--personal'
-				} else if (trimmed === username) {
-					element.className += ' rendition-tag--personal'
-				}
-
-				if (text.charAt(0) === '!') {
-					element.className += ' rendition-tag--alert'
-				}
-
-				if (!readBy.length) {
-					return
-				}
-
-				if (group) {
-					const readByCount = _.intersection(readBy, group.users).length
-					element.setAttribute('data-read-by-count', readByCount)
-					element.className += ' rendition-tag--read-by'
-				}
-
-				if (_.includes(readBy, `user-${trimmed}`)) {
-					element.className += ' rendition-tag--read'
-				}
+			each: (element) => {
+				return highlightTags(element, readBy, username, groups)
 			}
 		})
 	}

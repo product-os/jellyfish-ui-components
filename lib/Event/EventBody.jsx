@@ -8,11 +8,10 @@ import React from 'react'
 import _ from 'lodash'
 import styled from 'styled-components'
 import {
-	Button, Txt
+	Button, Txt, Img, Link
 } from 'rendition'
 import {
-	Markdown,
-	defaultSanitizerOptions
+	Markdown
 } from 'rendition/dist/extra/Markdown'
 import {
 	HIDDEN_ANCHOR
@@ -94,25 +93,22 @@ export const getMessage = (card) => {
 		.join('\n')
 }
 
-const sanitizerOptions = _.defaultsDeep({
-	allowedAttributes: {
-		img: _.get(defaultSanitizerOptions, [ 'allowedAttributes', 'img' ], []).concat('style')
+const IMG_STYLE = {
+	maxWidth: `min(${MAX_IMAGE_SIZE}, 100%)`,
+	maxHeight: MAX_IMAGE_SIZE
+}
+
+const componentOverrides = {
+	img: (attribs) => {
+		return <Img {...attribs} style={IMG_STYLE} />
 	},
-	transformTags: {
-		img: (tagName, attribs) => {
-			return {
-				tagName,
-				attribs: {
-					...attribs,
-					style: `
-					max-width: min(${MAX_IMAGE_SIZE}, 100%);
-					max-height: ${MAX_IMAGE_SIZE};
-					`
-				}
-			}
-		}
+	// eslint-disable-next-line id-length
+	a: (attribs) => {
+		// TODO: Use RouterLink and navigate internally if the href
+		// is on the same domain.
+		return <Link blank {...attribs} />
 	}
-}, defaultSanitizerOptions)
+}
 
 export default class EventBody extends React.Component {
 	constructor (props) {
@@ -201,7 +197,7 @@ export default class EventBody extends React.Component {
 									py={MESSAGE_Y_SPACE}
 									data-test={card.pending || updating ? 'event-card__message-draft' : 'event-card__message'}
 									flex={0}
-									sanitizerOptions={sanitizerOptions}
+									componentOverrides={componentOverrides}
 								>
 									{updating ? editedMessage : message}
 								</StyledMarkdown>
