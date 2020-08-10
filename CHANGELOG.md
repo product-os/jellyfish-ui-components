@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v0.0.8
+## (2020-08-10)
+
+* patch: Update rendition to 16.3.0 [Graham McCulloch]
+
 # v0.0.7
 ## (2020-08-05)
 
