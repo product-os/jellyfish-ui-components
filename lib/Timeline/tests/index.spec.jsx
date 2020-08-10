@@ -228,12 +228,7 @@ ava('A message is not removed from the pendingMessage list until it has been add
 		.childAt(0)
 		.instance()
 
-	await timeline.addMessage({
-		preventDefault: _.noop,
-		target: {
-			value: 'Here is a new message'
-		}
-	})
+	await timeline.addMessage('Here is a new message', false)
 
 	const pendingMessages = timeline.state.pendingMessages
 	test.is(pendingMessages.length, 1)

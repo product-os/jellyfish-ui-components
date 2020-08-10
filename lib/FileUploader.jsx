@@ -37,7 +37,7 @@ export const FileUploader = ({
 		const files = Array.from(event.target.files)
 		event.target.value = ''
 		onChange(files)
-	}, [])
+	}, [ onChange ])
 
 	return (
 		<React.Fragment>
@@ -83,7 +83,7 @@ export const FilesInput = ({
 		onChange(value.filter((item) => {
 			return item !== file
 		}))
-	}, [ value ])
+	}, [ onChange, value ])
 
 	return (
 		<Flex {...rest} alignItems="center">
