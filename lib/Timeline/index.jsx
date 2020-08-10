@@ -19,7 +19,9 @@ import {
 } from 'uuid'
 import * as helpers from '../services/helpers'
 import Column from '../shame/Column'
-import MessageInput from './MessageInput'
+import MessageInput, {
+	messageSymbolRE
+} from './MessageInput'
 import {
 	withSetup
 } from '../SetupProvider'
@@ -39,8 +41,6 @@ import {
 } from '../InfiniteList'
 
 const PAGE_SIZE = 20
-
-const messageSymbolRE = /^\s*%\s*/
 
 /*
  * This message text is used when uploading a file so that syncing can be done
@@ -74,10 +74,8 @@ class Timeline extends React.Component {
 			hideWhispers: false,
 			messageSymbol: false,
 			messagesOnly: true,
-			newMessage: this.props.timelineMessage,
 			pendingMessages: [],
 			showNewCardModal: false,
-			whisper: Boolean(this.props.allowWhispers),
 			uploadingFiles: [],
 			eventSkip: PAGE_SIZE,
 			events: this.props.tail,
@@ -93,13 +91,11 @@ class Timeline extends React.Component {
 		this.scrollToEvent = this.scrollToEvent.bind(this)
 		this.handleScrollBeginning = this.handleScrollBeginning.bind(this)
 		this.retrieveFullTimelime = this.retrieveFullTimeline.bind(this)
+		this.addMessage = this.addMessage.bind(this)
 		this.handleCardVisible = this.handleCardVisible.bind(this)
-		this.toggleWhisper = this.toggleWhisper.bind(this)
 		this.handleFileChange = this.handleFileChange.bind(this)
 		this.handleEventToggle = this.handleEventToggle.bind(this)
 		this.handleJumpToTop = this.handleJumpToTop.bind(this)
-		this.handleNewMessageSubmit = this.handleNewMessageSubmit.bind(this)
-		this.handleNewMessageChange = _.debounce(this.handleNewMessageChange.bind(this), 100)
 		this.handleWhisperToggle = this.handleWhisperToggle.bind(this)
 
 		this.signalTyping = _.throttle(() => {
@@ -238,21 +234,6 @@ class Timeline extends React.Component {
 		})
 	}
 
-	handleNewMessageChange (event) {
-		this.signalTyping()
-		const newMessage = event.target.value
-		const messageSymbol = !this.props.allowWhispers || Boolean(newMessage.match(messageSymbolRE))
-		this.setState({
-			newMessage,
-			messageSymbol
-		})
-		this.preserveMessage(newMessage)
-	}
-
-	handleNewMessageSubmit (event) {
-		this.addMessage(event)
-	}
-
 	handleEventToggle () {
 		this.setState({
 			messagesOnly: !this.state.messagesOnly
@@ -265,14 +246,8 @@ class Timeline extends React.Component {
 		})
 	}
 
-	toggleWhisper () {
-		this.setState({
-			whisper: !this.state.whisper
-		})
-	}
-
-	handleFileChange (files) {
-		const type = this.state.whisper ? 'whisper' : 'message'
+	handleFileChange (files, whisper) {
+		const type = whisper ? 'whisper' : 'message'
 		const file = _.first(files)
 		const message = {
 			target: this.props.card,
@@ -313,24 +288,10 @@ class Timeline extends React.Component {
 			})
 	}
 
-	addMessage (event) {
-		event.preventDefault()
-		const newMessage = event.target.value || this.state.newMessage
-		const {
-			allowWhispers
-		} = this.props
+	addMessage (newMessage, whisper) {
 		if (!newMessage) {
 			return
 		}
-		this.setState({
-			newMessage: '',
-
-			// If the timeline allows whispers, set the "whisper" state back to true,
-			// resetting the message input to whisper mode and helping to prevent
-			// accidental public responses
-			whisper: allowWhispers,
-			messageSymbol: false
-		})
 		this.props.setTimelineMessage(this.props.card.id, '')
 		const {
 			mentionsUser,
@@ -339,7 +300,6 @@ class Timeline extends React.Component {
 			alertsGroup,
 			tags
 		} = helpers.getMessageMetaData(newMessage)
-		const whisper = allowWhispers && this.state.messageSymbol ? false : this.state.whisper
 		const message = {
 			target: this.props.card,
 			type: whisper ? 'whisper' : 'message',
@@ -412,11 +372,11 @@ class Timeline extends React.Component {
 			groups,
 			allowWhispers,
 			usersTyping,
+			timelineMessage,
 			wide,
 			headerOptions,
 			getActorHref
 		} = this.props
-		const whisper = allowWhispers && this.state.messageSymbol ? false : this.state.whisper
 		const {
 			events,
 			messagesOnly,
@@ -508,12 +468,11 @@ class Timeline extends React.Component {
 						borderTop: '1px solid #eee'
 					}}
 					allowWhispers={allowWhispers}
-					whisper={whisper}
-					toggleWhisper={this.toggleWhisper}
 					sendCommand={sendCommand}
-					value={this.state.newMessage}
-					onChange={this.handleNewMessageChange}
-					onSubmit={this.handleNewMessageSubmit}
+					value={timelineMessage}
+					signalTyping={this.signalTyping}
+					preserveMessage={this.preserveMessage}
+					onSubmit={this.addMessage}
 					onFileChange={this.handleFileChange}
 				/>
 			</Column>

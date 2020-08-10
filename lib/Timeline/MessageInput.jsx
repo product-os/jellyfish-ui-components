@@ -12,6 +12,7 @@ import {
 	Txt,
 	useTheme
 } from 'rendition'
+import memoize from 'memoize-one'
 import styled from 'styled-components'
 import AutocompleteTextarea from '../shame/AutocompleteTextarea'
 import {
@@ -23,6 +24,8 @@ import {
 import {
 	FilesInput
 } from '../FileUploader'
+
+export const messageSymbolRE = /^\s*%\s*/
 
 export const PlainAutocompleteTextarea = styled(AutocompleteTextarea) `
 	border: 0 !important;
@@ -74,7 +77,7 @@ const InputWrapper = styled(Box) `
 	}}
 `
 
-const getMessageInputDefaultPlaceholder = (allowWhispers, whisper) => {
+const getMessageInputDefaultPlaceholder = memoize((allowWhispers, whisper) => {
 	if (!allowWhispers) {
 		return 'Type your message...'
 	}
@@ -84,19 +87,17 @@ const getMessageInputDefaultPlaceholder = (allowWhispers, whisper) => {
 	}
 
 	return 'Type your public reply...'
-}
+})
 
-const MessageInput = React.memo(({
+const MessageInput = ({
 	allowWhispers,
-	whisper,
-	placeholder = getMessageInputDefaultPlaceholder(allowWhispers, whisper),
-	toggleWhisper,
 	sendCommand,
 	value,
-	onChange,
 	onSubmit,
 	files,
 	onFileChange,
+	signalTyping,
+	preserveMessage,
 	wide = true,
 	style,
 	enableAutocomplete,
@@ -106,15 +107,64 @@ const MessageInput = React.memo(({
 	...rest
 }) => {
 	const theme = useTheme()
+	const [ whisper, setWhisper ] = React.useState(allowWhispers)
+	const [ messageSymbol, setMessageSymbol ] = React.useState(false)
+	const [ message, setMessage ] = React.useState(value)
+	const [ innerRef, setInnerRef ] = React.useState(null)
+
+	const isWhisper = () => {
+		return allowWhispers && messageSymbol ? false : whisper
+	}
+
+	// Note: for efficiency we want to only preserve the message when
+	// unmounting. However with React hooks it is not possible to access
+	// current 'message' state within a useEffect cleanup method unless 'message'
+	// is in the dependency list for the useEffect call - which would result
+	// in the cleanup method being called each time the message is updated.
+	// The following is a workaround, making use of a ref, to ensure we only
+	// preserve the message when the component is unmounted.
+	React.useEffect(() => {
+		return () => {
+			if (innerRef) {
+				preserveMessage(innerRef.value)
+			}
+		}
+	}, [ innerRef ])
+
+	const toggleWhisper = React.useCallback(() => {
+		setWhisper(!whisper)
+	}, [ whisper ])
+
+	React.useEffect(() => {
+		setMessageSymbol(!allowWhispers || Boolean(message.match(messageSymbolRE)))
+	}, [ allowWhispers, message ])
+
+	const onSubmitInput = React.useCallback((event) => {
+		event.preventDefault()
+		onSubmit(message, isWhisper())
+		setWhisper(allowWhispers)
+		setMessage('')
+	}, [ allowWhispers, messageSymbol, message, whisper, onSubmit ])
+
+	const onChange = React.useCallback((event) => {
+		event.preventDefault()
+		const messageText = event.target.value
+		setMessage(messageText)
+		signalTyping()
+	})
 
 	const handlePaste = React.useCallback((event) => {
 		const copiedFiles = Array.from(event.clipboardData.files)
 
 		if (copiedFiles.length) {
 			event.preventDefault()
-			onFileChange(copiedFiles)
+			onFileChange(copiedFiles, isWhisper())
 		}
-	}, [ onFileChange ])
+	}, [ onFileChange, whisper, allowWhispers, messageSymbol ])
+
+	const handleFileChange = React.useCallback((fileList) => {
+		onFileChange(fileList, isWhisper())
+	}, [ onFileChange, whisper, allowWhispers, messageSymbol ])
 
 	const textInput = (
 		<InputWrapper
@@ -136,17 +186,18 @@ const MessageInput = React.memo(({
 				} : {})
 			})}>
 			<PlainAutocompleteTextarea
+				innerRef={setInnerRef}
 				enableAutocomplete={enableAutocomplete}
 				sdk={sdk}
 				types={types}
 				user={user}
 				sendCommand={sendCommand}
 				className="new-message-input"
-				value={value}
+				value={message}
 				onChange={onChange}
-				onSubmit={onSubmit}
+				onSubmit={onSubmitInput}
 				onPaste={handlePaste}
-				placeholder={placeholder}
+				placeholder={getMessageInputDefaultPlaceholder(allowWhispers, whisper)}
 			/>
 		</InputWrapper>
 	)
@@ -166,13 +217,6 @@ const MessageInput = React.memo(({
 			style={{
 				opacity: whisper ? 1 : 0.6
 			}}
-		/>
-	)
-
-	const fileUploadButton = (
-		<FilesInput
-			value={files}
-			onChange={onFileChange}
 		/>
 	)
 
@@ -203,7 +247,10 @@ const MessageInput = React.memo(({
 					gridRow: 1
 				}}>
 					{toggleWhisperButton}
-					{fileUploadButton}
+					<FilesInput
+						value={files}
+						onChange={handleFileChange}
+					/>
 				</Flex>
 				<Box style={{
 					gridColumn: 1,
@@ -237,7 +284,10 @@ const MessageInput = React.memo(({
 			}}>
 				<Flex alignSelf="flex-start" p={1}>
 					{toggleWhisperButton}
-					{fileUploadButton}
+					<FilesInput
+						value={files}
+						onChange={handleFileChange}
+					/>
 				</Flex>
 				<Box style={{
 					marginLeft: 'auto'
@@ -250,13 +300,13 @@ const MessageInput = React.memo(({
 							tooltip={sendCommand}
 							color={theme.colors.primary.main}
 							icon={<MdSend />}
-							onClick={onSubmit}
+							onClick={onSubmitInput}
 						/>
 					)}
 				</Box>
 			</Flex>
 		</Flex>
 	)
-})
+}
 
 export default MessageInput
