@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v0.0.9
+## (2020-08-10)
+
+* perf: reduce re-renders triggered by message typing [Graham McCulloch]
+
 # v0.0.8
 ## (2020-08-10)
 
