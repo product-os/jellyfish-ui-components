@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v0.0.10
+## (2020-08-11)
+
+* patch: Fix interface to MessageInput [Graham McCulloch]
+
 # v0.0.9
 ## (2020-08-10)
 
