@@ -116,6 +116,12 @@ const MessageInput = ({
 		return allowWhispers && messageSymbol ? false : whisper
 	}, [ allowWhispers, messageSymbol, whisper ])
 
+	const saveMessage = React.useCallback(() => {
+		if (innerRef && preserveMessage) {
+			preserveMessage(innerRef.value)
+		}
+	}, [ innerRef, preserveMessage ])
+
 	// Note: for efficiency we want to only preserve the message when
 	// unmounting. However with React hooks it is not possible to access
 	// current 'message' state within a useEffect cleanup method unless 'message'
@@ -124,10 +130,10 @@ const MessageInput = ({
 	// The following is a workaround, making use of a ref, to ensure we only
 	// preserve the message when the component is unmounted.
 	React.useEffect(() => {
+		window.onbeforeunload = saveMessage
 		return () => {
-			if (innerRef && preserveMessage) {
-				preserveMessage(innerRef.value)
-			}
+			saveMessage()
+			window.onbeforeunload = null
 		}
 	}, [ innerRef ])
 
