@@ -12,7 +12,6 @@ import {
 	Txt,
 	useTheme
 } from 'rendition'
-import memoize from 'memoize-one'
 import styled from 'styled-components'
 import AutocompleteTextarea from '../shame/AutocompleteTextarea'
 import {
@@ -77,22 +76,11 @@ const InputWrapper = styled(Box) `
 	}}
 `
 
-const getMessageInputDefaultPlaceholder = memoize((allowWhispers, whisper) => {
-	if (!allowWhispers) {
-		return 'Type your message...'
-	}
-
-	if (whisper) {
-		return 'Type your private comment...'
-	}
-
-	return 'Type your public reply...'
-})
-
 const MessageInput = ({
 	allowWhispers,
 	sendCommand,
 	value,
+	onChange,
 	onSubmit,
 	files,
 	onFileChange,
@@ -112,9 +100,21 @@ const MessageInput = ({
 	const [ message, setMessage ] = React.useState(value)
 	const [ innerRef, setInnerRef ] = React.useState(null)
 
-	const isWhisper = () => {
+	const getMessageInputDefaultPlaceholder = React.useCallback(() => {
+		if (!allowWhispers) {
+			return 'Type your message...'
+		}
+
+		if (whisper) {
+			return 'Type your private comment...'
+		}
+
+		return 'Type your public reply...'
+	}, [ allowWhispers, whisper ])
+
+	const isWhisper = React.useCallback(() => {
 		return allowWhispers && messageSymbol ? false : whisper
-	}
+	}, [ allowWhispers, messageSymbol, whisper ])
 
 	// Note: for efficiency we want to only preserve the message when
 	// unmounting. However with React hooks it is not possible to access
@@ -125,7 +125,7 @@ const MessageInput = ({
 	// preserve the message when the component is unmounted.
 	React.useEffect(() => {
 		return () => {
-			if (innerRef) {
+			if (innerRef && preserveMessage) {
 				preserveMessage(innerRef.value)
 			}
 		}
@@ -144,14 +144,19 @@ const MessageInput = ({
 		onSubmit(message, isWhisper())
 		setWhisper(allowWhispers)
 		setMessage('')
-	}, [ allowWhispers, messageSymbol, message, whisper, onSubmit ])
+	}, [ allowWhispers, messageSymbol, message, whisper, onSubmit, isWhisper ])
 
-	const onChange = React.useCallback((event) => {
+	const onInputChange = React.useCallback((event) => {
 		event.preventDefault()
 		const messageText = event.target.value
 		setMessage(messageText)
-		signalTyping()
-	})
+		if (onChange) {
+			onChange(event)
+		}
+		if (signalTyping) {
+			signalTyping()
+		}
+	}, [ signalTyping, onChange ])
 
 	const handlePaste = React.useCallback((event) => {
 		const copiedFiles = Array.from(event.clipboardData.files)
@@ -160,11 +165,11 @@ const MessageInput = ({
 			event.preventDefault()
 			onFileChange(copiedFiles, isWhisper())
 		}
-	}, [ onFileChange, whisper, allowWhispers, messageSymbol ])
+	}, [ onFileChange, whisper, allowWhispers, messageSymbol, isWhisper ])
 
 	const handleFileChange = React.useCallback((fileList) => {
 		onFileChange(fileList, isWhisper())
-	}, [ onFileChange, whisper, allowWhispers, messageSymbol ])
+	}, [ onFileChange, whisper, allowWhispers, messageSymbol, isWhisper ])
 
 	const textInput = (
 		<InputWrapper
@@ -194,10 +199,10 @@ const MessageInput = ({
 				sendCommand={sendCommand}
 				className="new-message-input"
 				value={message}
-				onChange={onChange}
+				onChange={onInputChange}
 				onSubmit={onSubmitInput}
 				onPaste={handlePaste}
-				placeholder={getMessageInputDefaultPlaceholder(allowWhispers, whisper)}
+				placeholder={getMessageInputDefaultPlaceholder()}
 			/>
 		</InputWrapper>
 	)
@@ -297,7 +302,10 @@ const MessageInput = ({
 							p={2}
 							plain
 							fontSize={26}
-							tooltip={sendCommand}
+							tooltip={{
+								text: sendCommand,
+								placement: 'left'
+							}}
 							color={theme.colors.primary.main}
 							icon={<MdSend />}
 							onClick={onSubmitInput}
