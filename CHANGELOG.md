@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v0.0.11
+## (2020-08-11)
+
+* Ensure draft saved when navigating away from JF [Graham McCulloch]
+
 # v0.0.10
 ## (2020-08-11)
 
