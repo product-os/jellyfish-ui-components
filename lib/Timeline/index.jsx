@@ -102,9 +102,9 @@ class Timeline extends React.Component {
 			this.props.signalTyping(this.props.card.id)
 		}, 1500)
 
-		this.preserveMessage = _.debounce((newMessage) => {
+		this.preserveMessage = (newMessage) => {
 			this.props.setTimelineMessage(this.props.card.id, newMessage)
-		}, 1500)
+		}
 	}
 
 	async componentDidMount () {
