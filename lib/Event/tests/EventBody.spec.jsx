@@ -40,7 +40,6 @@ ava.beforeEach((test) => {
 		isMessage: true,
 		editedMessage: null,
 		updating: false,
-		addNotification: sandbox.fake(),
 		messageOverflows: false,
 		setMessageElement: sandbox.fake(),
 		messageCollapsedHeight: 400

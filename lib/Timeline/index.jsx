@@ -29,6 +29,9 @@ import EventsList from './EventsList'
 import PendingMessages from './PendingMessages'
 import TypingNotice from './TypingNotice'
 import {
+	addNotification
+} from '../services/notifications'
+import {
 	UPDATE,
 	CREATE
 } from './constants'
@@ -248,7 +251,7 @@ class Timeline extends React.Component {
 				})
 			})
 			.catch((error) => {
-				this.props.addNotification('danger', error.message || error)
+				addNotification('danger', error.message || error)
 			})
 	}
 
@@ -312,7 +315,7 @@ class Timeline extends React.Component {
 				})
 			})
 			.catch((error) => {
-				this.props.addNotification('danger', error.message || error)
+				addNotification('danger', error.message || error)
 			})
 	}
 
@@ -372,7 +375,6 @@ class Timeline extends React.Component {
 			getCard,
 			enableAutocomplete,
 			eventMenuOptions,
-			addNotification,
 			sdk,
 			types,
 			groups,
@@ -410,9 +412,6 @@ class Timeline extends React.Component {
 			user,
 			selectCard,
 			getCard,
-			actions: {
-				addNotification
-			},
 			threadIsMirrored: isMirrored,
 			menuOptions: eventMenuOptions,
 			getActorHref

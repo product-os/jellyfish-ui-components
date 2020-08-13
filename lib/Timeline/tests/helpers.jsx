@@ -85,9 +85,6 @@ const createTestContext = (test, sandbox) => {
 			return sandbox.stub()
 		},
 		getCard: sandbox.stub(),
-		actions: {
-			addNotification: sandbox.stub()
-		},
 		usersTyping: [],
 		user,
 		getActor,
