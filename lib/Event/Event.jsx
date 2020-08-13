@@ -397,7 +397,7 @@ export default class Event extends React.Component {
 							actor={actor}
 							isMessage={isMessage}
 							messageOverflows={messageOverflows}
-							addNoticication={actions.addNotification}
+							addNotification={actions.addNotification}
 							setMessageElement={this.setMessageElement}
 							messageCollapsedHeight={MESSAGE_COLLAPSED_HEIGHT}
 							enableAutocomplete={enableAutocomplete}
