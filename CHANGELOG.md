@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v1.0.0
+## (2020-08-13)
+
+* Update Timeline to use loadMoreChannelData instead of paginating through sdk queries [Lucy-Jane]
+
 # v0.0.12
 ## (2020-08-13)
 
