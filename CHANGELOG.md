@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v0.0.12
+## (2020-08-13)
+
+* Fix a typo on the event body [Graham McCulloch]
+
 # v0.0.11
 ## (2020-08-11)
 
