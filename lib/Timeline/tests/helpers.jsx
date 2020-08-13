@@ -30,8 +30,8 @@ const wrapperWithSetup = ({
 }
 
 const createTestContext = (test, sandbox) => {
-	const getWithTimeline = sandbox.stub()
-	getWithTimeline.resolves([])
+	const loadMoreChannelData = sandbox.stub()
+	loadMoreChannelData.resolves([])
 
 	const createEvent = {
 		id: 'fake-create-id',
@@ -78,6 +78,7 @@ const createTestContext = (test, sandbox) => {
 
 	const eventProps = {
 		card: {
+			id: 'fake-card-id',
 			slug: 'fake-card'
 		},
 		selectCard: () => {
@@ -90,23 +91,18 @@ const createTestContext = (test, sandbox) => {
 		usersTyping: [],
 		user,
 		getActor,
-		getWithTimeline,
 		tail,
-		sdk: {
-			card: {
-				getWithTimeline
-			}
-		}
+		loadMoreChannelData
 	}
 
 	return {
-		getWithTimeline,
 		eventProps,
 		tail,
 		createEvent,
 		whisperEvent,
 		messageEvent,
-		updateEvent
+		updateEvent,
+		loadMoreChannelData
 	}
 }
 
