@@ -5,6 +5,13 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v0.1.0
+## (2020-08-14)
+
+* Update to latest beta rendition version [Graham McCulloch]
+* Update Markdown props [Graham McCulloch]
+* Update Rendition to v17 [Graham McCulloch]
+
 # v0.0.11
 ## (2020-08-11)
 
