@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v1.0.1
+## (2020-08-18)
+
+* ci: Remove dev-major group from Renovate config [Josh Bowling]
+
 # v1.0.0
 ## (2020-08-13)
 
