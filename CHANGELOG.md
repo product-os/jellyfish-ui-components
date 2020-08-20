@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v1.0.2
+## (2020-08-20)
+
+* Fix checkFieldAgainstOmissions to ensure that when a key and value are present, we check for both [Lucy-Jane]
+
 # v1.0.1
 ## (2020-08-18)
 
