@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v1.0.3
+## (2020-08-25)
+
+* Resolve events instead of full head card when paginating data [Lucian Buzzo]
+
 # v1.0.2
 ## (2020-08-20)
 
