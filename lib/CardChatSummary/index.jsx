@@ -12,10 +12,10 @@ import * as React from 'react'
 import {
 	Box,
 	Flex,
-	Txt
+	Txt,
+	Link as RenditionLink
 } from 'rendition'
 import {
-	defaultSanitizerOptions,
 	Markdown
 } from 'rendition/dist/extra/Markdown'
 import styled, {
@@ -28,6 +28,9 @@ import Icon from '../shame/Icon'
 import {
 	TagList
 } from '../Tag'
+import {
+	HIDDEN_ANCHOR
+} from '../Timeline'
 
 const SummaryWrapper = styled(Link) `
 	display: block;
@@ -63,44 +66,30 @@ const LatestMessage = styled(Markdown) `
 	padding-left: 10px;
 	flex: 1;
 
-	> p {
+	p {
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
 `
 
-const sanitizerOptions = _.defaultsDeep({
-	allowedAttributes: {
-		// eslint-disable-next-line id-length
-		a: _.get(defaultSanitizerOptions, [ 'allowedAttributes', 'a' ], []).concat('onclick')
+const componentOverrides = {
+	img: (attribs) => {
+		return <span>[{attribs.title || attribs.alt || 'image'}]</span>
 	},
-
-	transformTags: {
-		img: (tagName, attribs) => {
-			return {
-				tagName: 'span',
-				text: `[${attribs.title || attribs.alt || 'image'}]`
-			}
-		},
-		// eslint-disable-next-line id-length
-		a: (tagName, attribs) => {
-			return {
-				tagName: 'a',
-				attribs: {
-					...attribs,
-
-					// The whole chat summary is clickable. Prevent navigating to the
-					// chat/thread channel when clicking on a link within the last message
-					// summary.
-					// TODO: Improve this logic to use window.location instead of
-					// window.open if the url is within the same app
-					onclick: `event.stopPropagation(); window.open("${attribs.href}");`
-				}
-			}
+	// eslint-disable-next-line id-length
+	a: (attribs) => {
+		// The whole chat summary is clickable. Prevent navigating to the
+		// chat/thread channel when clicking on a link within the last message
+		// summary.
+		const onClick = (event) => {
+			event.stopPropagation()
+			event.preventDefault()
+			window.open(attribs.href)
 		}
+		return <RenditionLink blank {...attribs} onClick={onClick} />
 	}
-}, defaultSanitizerOptions)
+}
 
 export class CardChatSummary extends React.Component {
 	constructor (props) {
@@ -153,6 +142,9 @@ export class CardChatSummary extends React.Component {
 				latestMessageText = _.get(event, [ 'data', 'payload', 'message' ], '')
 					.replace(/```[^`]*```/, '`<code block>`')
 					.split('\n')
+					.filter((line) => {
+						return !line.includes(HIDDEN_ANCHOR)
+					})
 					.shift()
 				break
 			}
@@ -220,7 +212,7 @@ export class CardChatSummary extends React.Component {
 							}}
 						/>
 
-						<LatestMessage data-test="card-chat-summary__message" sanitizerOptions={sanitizerOptions}>
+						<LatestMessage data-test="card-chat-summary__message" componentOverrides={componentOverrides}>
 							{latestMessageText}
 						</LatestMessage>
 					</Flex>

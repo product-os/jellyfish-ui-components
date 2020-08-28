@@ -9,13 +9,14 @@ import {
 } from '../../../test/ui-setup'
 import ava from 'ava'
 import sinon from 'sinon'
-import _ from 'lodash'
 import {
 	shallow,
 	mount
 } from 'enzyme'
 import React from 'react'
-import Event from '../Event'
+import Event, {
+	highlightTags
+} from '../Event'
 import {
 	card
 } from './fixtures'
@@ -26,6 +27,8 @@ import {
 const user = {
 	slug: 'user-johndoe'
 }
+
+const username = user.slug.slice(5)
 
 const otherUser = {
 	slug: 'user-johndoe1'
@@ -40,6 +43,18 @@ const actor = {
 	email: 'johndoe@example.com',
 	proxy: false,
 	card: {}
+}
+
+const groups = {
+	[myGroup]: {
+		users: [ user.slug ],
+		name: myGroup,
+		isMine: true
+	},
+	[otherGroup]: {
+		users: [ otherUser.slug ],
+		name: otherGroup
+	}
 }
 
 const {
@@ -58,71 +73,19 @@ const commonProps = {
 	actor
 }
 
-const tagRegex = ({
-	prefix, token, isPersonal, isAlert
+const testHighlightTags = (test, {
+	text,
+	readBy = [],
+	expectedClassName
 }) => {
-	const hlTag = 'rendition-tag--hl.?'
-	const personalTag = isPersonal ? 'rendition-tag--personal.?' : ''
-	const alertTag = isAlert ? 'rendition-tag--alert.?' : ''
-	return new RegExp(
-		`<span.+?class=".?${hlTag}${personalTag}${alertTag}">${prefix}${token}</span>`
-	)
-}
-
-const getMessageHtml = async (test) => {
-	const author = {
-		...user,
-		id: card.data.actor
+	const element = {
+		innerText: text,
+		className: 'rendition-tag--hl',
+		setAttribute: sandbox.fake()
 	}
-	const groups = {
-		[myGroup]: {
-			users: [ user.slug ],
-			name: myGroup,
-			isMine: true
-		},
-		[otherGroup]: {
-			users: [ otherUser.slug ],
-			name: otherGroup
-		}
-	}
-	const message = [
-		'Test',
-		`@${user.slug.slice(5)}`,
-		`@${otherUser.slug.slice(5)}`,
-		`!${user.slug.slice(5)}`,
-		`!${otherUser.slug.slice(5)}`,
-		`@@${myGroup}`,
-		`@@${otherGroup}`,
-		`!!${myGroup}`,
-		`!!${otherGroup}`,
-		`#${tag}`
-	].join(' ')
-
-	const event = await mount(
-		<Event
-			{...commonProps}
-			user={author}
-			groups={groups}
-			card={_.defaultsDeep({
-				tags: [ tag ],
-				data: {
-					payload: {
-						mentionsUser: [ user.slug, otherUser.slug ],
-						alertsUser: [ user.slug, otherUser.slug ],
-						mentionsGroup: [ myGroup, otherGroup ],
-						alertsGroup: [ myGroup, otherGroup ],
-						message
-					}
-				}
-			}, card)}
-		/>, {
-			wrappingComponent: wrapper
-		}
-	)
-
-	const messageBody = event.find('div[data-test="event-card__message"]')
-	test.is(messageBody.text().trim(), message)
-	return messageBody.html()
+	highlightTags(element, readBy, username, groups)
+	test.is(element.className, expectedClassName)
+	return element
 }
 
 ava.afterEach(() => {
@@ -279,104 +242,92 @@ ava('Editing a message will update the mentions, alerts, tags and message', asyn
 })
 
 ava('If user mention matches the authenticated user it is identified as \'personal\'', async (test) => {
-	test.regex(
-		await getMessageHtml(test),
-		tagRegex({
-			prefix: '@',
-			token: user.slug.slice(5),
-			isPersonal: true
-		})
-	)
+	const element = testHighlightTags(test, {
+		text: `@${username}`,
+		expectedClassName: 'rendition-tag--hl rendition-tag--personal'
+	})
+	test.is(element.setAttribute.callCount, 0)
 })
 
 ava('If user mention does not match the authenticated user it is not identified as \'personal\'', async (test) => {
-	test.regex(
-		await getMessageHtml(test),
-		tagRegex({
-			prefix: '@',
-			token: otherUser.slug.slice(5),
-			isPersonal: false
-		})
-	)
+	const element = testHighlightTags(test, {
+		text: `@${otherUser.slug.slice(5)}`,
+		expectedClassName: 'rendition-tag--hl'
+	})
+	test.is(element.setAttribute.callCount, 0)
 })
 
 ava('If user alert matches the authenticated user it is identified as \'personal\'', async (test) => {
-	test.regex(
-		await getMessageHtml(test),
-		tagRegex({
-			prefix: '!',
-			token: user.slug.slice(5),
-			isPersonal: true,
-			isAlert: true
-		})
-	)
+	const element = testHighlightTags(test, {
+		text: `!${username}`,
+		expectedClassName: 'rendition-tag--hl rendition-tag--personal rendition-tag--alert'
+	})
+	test.is(element.setAttribute.callCount, 0)
 })
 
 ava('If user alert does not match the authenticated user it is not identified as \'personal\'', async (test) => {
-	test.regex(
-		await getMessageHtml(test),
-		tagRegex({
-			prefix: '!',
-			token: otherUser.slug.slice(5),
-			isPersonal: false,
-			isAlert: true
-		})
-	)
+	const element = testHighlightTags(test, {
+		text: `!${otherUser.slug.slice(5)}`,
+		expectedClassName: 'rendition-tag--hl rendition-tag--alert'
+	})
+	test.is(element.setAttribute.callCount, 0)
 })
 
 ava('If group mention matches the authenticated user it is identified as \'personal\'', async (test) => {
-	test.regex(
-		await getMessageHtml(test),
-		tagRegex({
-			prefix: '@@',
-			token: myGroup,
-			isPersonal: true
-		})
-	)
+	const element = testHighlightTags(test, {
+		text: `@@${myGroup}`,
+		expectedClassName: 'rendition-tag--hl rendition-tag--personal'
+	})
+	test.is(element.setAttribute.callCount, 0)
 })
 
 ava('If group mention does not match the authenticated user it is not identified as \'personal\'', async (test) => {
-	test.regex(
-		await getMessageHtml(test),
-		tagRegex({
-			prefix: '@@',
-			token: otherGroup,
-			isPersonal: false
-		})
-	)
+	const element = testHighlightTags(test, {
+		text: `@@${otherGroup}`,
+		expectedClassName: 'rendition-tag--hl'
+	})
+	test.is(element.setAttribute.callCount, 0)
 })
 
 ava('If group alert matches the authenticated user it is identified as \'personal\'', async (test) => {
-	test.regex(
-		await getMessageHtml(test),
-		tagRegex({
-			prefix: '!!',
-			token: myGroup,
-			isPersonal: true,
-			isAlert: true
-		})
-	)
+	const element = testHighlightTags(test, {
+		text: `!!${myGroup}`,
+		expectedClassName: 'rendition-tag--hl rendition-tag--personal rendition-tag--alert'
+	})
+	test.is(element.setAttribute.callCount, 0)
 })
 
 ava('If group alert does not match the authenticated user it is not identified as \'personal\'', async (test) => {
-	test.regex(
-		await getMessageHtml(test),
-		tagRegex({
-			prefix: '!!',
-			token: otherGroup,
-			isPersonal: false,
-			isAlert: true
-		})
-	)
+	const element = testHighlightTags(test, {
+		text: `!!${otherGroup}`,
+		expectedClassName: 'rendition-tag--hl rendition-tag--alert'
+	})
+	test.is(element.setAttribute.callCount, 0)
 })
 
 ava('Tags in messages are highlighted', async (test) => {
-	test.regex(
-		await getMessageHtml(test),
-		tagRegex({
-			prefix: '#',
-			token: tag,
-			isPersonal: false
-		})
-	)
+	const element = testHighlightTags(test, {
+		text: '#tag',
+		expectedClassName: 'rendition-tag--hl'
+	})
+	test.is(element.setAttribute.callCount, 0)
+})
+
+ava('If the message is read by the authenticated user it is identified as \'read\'', async (test) => {
+	const element = testHighlightTags(test, {
+		text: `@${username}`,
+		readBy: [ user.slug ],
+		expectedClassName: 'rendition-tag--hl rendition-tag--personal rendition-tag--read'
+	})
+	test.is(element.setAttribute.callCount, 0)
+})
+
+ava('The readBy count is stored in the \'data-read-by-count\' attribute', async (test) => {
+	const element = testHighlightTags(test, {
+		text: `@${myGroup}`,
+		readBy: [ user.slug ],
+		expectedClassName: 'rendition-tag--hl rendition-tag--personal rendition-tag--read-by'
+	})
+	test.is(element.setAttribute.callCount, 1)
+	test.deepEqual(element.setAttribute.getCall(0).args, [ 'data-read-by-count', 1 ])
 })

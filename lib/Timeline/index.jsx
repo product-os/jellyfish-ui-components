@@ -355,9 +355,9 @@ class Timeline extends React.Component {
 				}
 			}
 		})
-		.then(([ card ]) => {
-			return _.get(card, [ 'links', 'has attached element' ], [])
-		})
+			.then(([ newCard ]) => {
+				return _.get(newCard, [ 'links', 'has attached element' ], [])
+			})
 	}
 
 	render () {

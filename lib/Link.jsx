@@ -46,6 +46,7 @@ class RouterLink extends React.Component {
 		}
 
 		event.preventDefault()
+		event.stopPropagation()
 		const {
 			history
 		} = this.props
