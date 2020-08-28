@@ -5,6 +5,12 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v1.1.0
+## (2020-08-28)
+
+* Fix loading more channel data logic [Graham McCulloch]
+* Update Rendition to v18 [Graham McCulloch]
+
 # v1.0.3
 ## (2020-08-25)
 
