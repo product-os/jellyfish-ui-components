@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v1.1.1
+## (2020-09-01)
+
+* ci: Set commitBody in renovate config [Josh Bowling]
+
 # v1.1.0
 ## (2020-08-28)
 
