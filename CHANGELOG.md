@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v1.1.2
+## (2020-09-01)
+
+* ci: Add lint-staged precommit [Josh Bowling]
+
 # v1.1.1
 ## (2020-09-01)
 
