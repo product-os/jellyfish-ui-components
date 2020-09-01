@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v1.1.3
+## (2020-09-01)
+
+* ci: Replace /scripts with jellycheck [Josh Bowling]
+
 # v1.1.2
 ## (2020-09-01)
 
