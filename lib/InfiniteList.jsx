@@ -42,6 +42,15 @@ export class InfiniteList extends React.Component {
 		}
 	}
 
+	// QueryForMoreIfNecessary runs a query if the component
+	// is not a scrollable container. This is to account
+	// for a situation with the timeline component
+	// where only one or two messages exist alongside
+	// a page of whispers. In this situation, if a user
+	// toggles off the whispers, we need to trigger another
+	// query. If we don't do this, there may be other
+	// messages further up the timeline that the user
+	// cannot load because they cannot scroll
 	queryForMoreIfNecessary () {
 		const {
 			onScrollBeginning,

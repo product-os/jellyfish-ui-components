@@ -5,9 +5,10 @@
  */
 
 import ava from 'ava'
+import Bluebird from 'bluebird'
+import sinon from 'sinon'
 import _ from 'lodash'
 import React from 'react'
-import sinon from 'sinon'
 import {
 	mount
 } from 'enzyme'
@@ -21,6 +22,10 @@ const sandbox = sinon.createSandbox()
 
 ava.before((test) => {
 	test.context = createTestContext(test, sandbox)
+})
+
+ava.afterEach(() => {
+	sandbox.restore()
 })
 
 ava('The TimelineStart component is rendered' +
@@ -49,6 +54,8 @@ ava('Events are toggled when the event in the url is one of type UPDATE', async 
 		eventProps
 	} = test.context
 
+	test.timeout(25001)
+
 	const eventId = 'fake-update-id'
 
 	// eslint-disable-next-line prefer-reflect
@@ -58,7 +65,7 @@ ava('Events are toggled when the event in the url is one of type UPDATE', async 
 		search: `?event=${eventId}`
 	}
 
-	const timeline = await mount(
+	const wrapper = await mount(
 		<Timeline
 			{...eventProps}
 			tail={[ {
@@ -74,8 +81,11 @@ ava('Events are toggled when the event in the url is one of type UPDATE', async 
 				sdk: eventProps.sdk
 			}
 		})
-	const updateEvent = timeline.find(`div[data-test="${eventId}"]`)
-	test.is(updateEvent.length, 1)
+	await Bluebird.delay(2500)
+
+	const timeline = wrapper.childAt(0)
+
+	test.false(timeline.state('messagesOnly'))
 })
 
 ava('Events are toggled when the event in the url is one of type CREATE', async (test) => {
@@ -83,6 +93,7 @@ ava('Events are toggled when the event in the url is one of type CREATE', async 
 		eventProps
 	} = test.context
 
+	test.timeout(25001)
 	const eventId = 'fake-create-id'
 
 	// eslint-disable-next-line prefer-reflect
@@ -92,7 +103,7 @@ ava('Events are toggled when the event in the url is one of type CREATE', async 
 		search: `?event=${eventId}`
 	}
 
-	const timeline = await mount(
+	const wrapper = await mount(
 		<Timeline
 			{...eventProps}
 			tail={[ {
@@ -105,87 +116,11 @@ ava('Events are toggled when the event in the url is one of type CREATE', async 
 				sdk: eventProps.sdk
 			}
 		})
-	const createEvent = timeline.find(`div[data-test="${eventId}"]`)
-	test.is(createEvent.length, 1)
-})
 
-ava('loadMoreChannelData is used to get all the events for the timeline when' +
-	'the event in the url is not present in our first page of results', async (test) => {
-	const {
-		eventProps: {
-			card,
-			...rest
-		}
-	} = test.context
+	await Bluebird.delay(2500)
+	const timeline = wrapper.childAt(0)
 
-	const eventId = 'fake-message-id'
-
-	// eslint-disable-next-line prefer-reflect
-	delete window.location
-
-	global.window.location = {
-		search: `?event=${eventId}`
-	}
-
-	const tail = _.times(20, (index) => {
-		return {
-			id: `fake-event-${index}`,
-			type: 'message@1.0.0',
-			data: {
-				target: 'fake-target-id'
-			}
-		}
-	})
-
-	const loadMoreChannelData = sandbox.stub()
-	loadMoreChannelData.resolves([ {
-		id: eventId,
-		type: 'message@1.0.0',
-		data: {
-			target: {
-				id: 'fake-target-id'
-			}
-		}
-	} ])
-
-	await mount(
-		<Timeline
-			{...rest}
-			card={card}
-			tail={tail}
-			loadMoreChannelData={loadMoreChannelData}
-		/>, {
-			wrappingComponent: wrapperWithSetup,
-			wrappingComponentProps: {
-				sdk: rest.sdk
-			}
-		})
-
-	test.is(loadMoreChannelData.callCount, 1)
-	test.deepEqual(loadMoreChannelData.args, [ [ {
-		target: card.slug,
-		query: {
-			type: 'object',
-			properties: {
-				id: {
-					const: card.id
-				}
-			},
-			$$links: {
-				'has attached element': {
-					type: 'object'
-				}
-			}
-		},
-		queryOptions: {
-			links: {
-				'has attached element': {
-					sortBy: 'created_at',
-					sortDir: 'desc'
-				}
-			}
-		}
-	} ] ])
+	test.false(timeline.state('messagesOnly'))
 })
 
 ava('A message is not removed from the pendingMessage list until it has been added to the tail', async (test) => {
