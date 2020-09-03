@@ -113,7 +113,7 @@
     "eslint-plugin-standard": "^4.0.1",
     "husky": "^4.2.5",
     "jsdoc-to-markdown": "^6.0.1",
-    "lint-staged": "^10.2.13",
+    "lint-staged": "^10.3.0",
     "node-hook": "^1.0.0",
     "react-dnd-html5-backend": "^11.1.3",
     "redux-mock-store": "^1.5.4",
