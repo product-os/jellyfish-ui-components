@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v1.1.10
+## (2020-09-03)
+
+* patch: Update dependency lint-staged to ^10.3.0 [Renovate Bot]
+
 # v1.1.9
 ## (2020-09-03)
 
