@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v1.1.12
+## (2020-09-04)
+
+* Add tests to check loadMoreChannelData is called appropriately on the Timeline. Also fixes bug where we can't load more events when there is an eventId in the url [Lucy-Jane]
+
 # v1.1.11
 ## (2020-09-03)
 
