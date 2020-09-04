@@ -100,17 +100,20 @@ class Timeline extends React.Component {
 		const {
 			event
 		} = queryString.parse(window.location.search)
+
+		// Timeout required to ensure the timeline has loaded before we scroll to the bottom
+		await Bluebird.delay(2000)
 		if (event) {
 			this.scrollToEvent(event)
 		} else {
-			// Timeout required to ensure the timeline has loaded before we scroll to the bottom
-			await Bluebird.delay(2000)
 			this.scrollToBottom()
-			await Bluebird.delay(500)
-			this.setState({
-				ready: true
-			})
 		}
+
+		// Timeout to ensure scroll has finished
+		await Bluebird.delay(500)
+		this.setState({
+			ready: true
+		})
 	}
 
 	componentDidUpdate (prevProps) {
