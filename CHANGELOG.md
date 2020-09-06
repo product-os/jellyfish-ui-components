@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v1.1.18
+## (2020-09-06)
+
+* ci: Remove node 10 tests from balenaCI config [Josh Bowling]
+
 # v1.1.17
 ## (2020-09-06)
 
