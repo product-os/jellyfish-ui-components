@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v1.1.17
+## (2020-09-06)
+
+* ci: Add default FILES glob [Josh Bowling]
+
 # v1.1.16
 ## (2020-09-06)
 
