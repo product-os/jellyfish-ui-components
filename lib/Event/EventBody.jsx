@@ -120,9 +120,16 @@ export default class EventBody extends React.Component {
 
 		this.expand = () => {
 			this.setState({
-				expanded: !this.state.expanded
+				expanded: !this.state.expanded,
+				hasError: false
 			})
 		}
+	}
+
+	componentDidCatch () {
+		this.setState({
+			hasError: true
+		})
 	}
 
 	render () {
@@ -147,8 +154,24 @@ export default class EventBody extends React.Component {
 			messageCollapsedHeight
 		} = this.props
 		const {
-			expanded
+			expanded,
+			hasError
 		} = this.state
+
+		if (hasError) {
+			return (
+				<MessageContainer
+					data-test="eventBody__errorMessage"
+					ref={setMessageElement}
+					card={card}
+					actor={actor}
+					py={2}
+					px={3}
+					mr={1}
+					error={true}
+				>An error occured while attempting to render this message</MessageContainer>
+			)
+		}
 
 		const message = getMessage(card)
 

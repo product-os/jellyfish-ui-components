@@ -30,8 +30,14 @@ const MessageContainer = styled(Box) `
 		background-color: #f6f8fa;
 	}
 	${({
-		card, actor, theme, editing
+		card, actor, theme, editing, error
 	}) => {
+		if (error) {
+			return `
+				color: white;
+				background: red;
+			`
+		}
 		if (editing) {
 			return (card.type === 'whisper' || card.type === 'whisper@1.0.0') ? `
 				border: solid 0.5px ${theme.colors.tertiary.light};

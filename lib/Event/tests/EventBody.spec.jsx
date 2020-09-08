@@ -106,3 +106,21 @@ ava('Edited message is shown in markdown if message is being updated', (test) =>
 	const messageText = eventBody.find('[data-test="event-card__message-draft"]')
 	test.is(messageText.props().children.trim(), editedMessage)
 })
+
+ava('An error is captured by the component and an error message is rendered', (test) => {
+	const {
+		commonProps
+	} = test.context
+
+	const eventBody = shallow(
+		<EventBody
+			{...commonProps}
+		/>
+	)
+
+	const error = new Error()
+	eventBody.simulateError(error)
+
+	const message = eventBody.find('[data-test="eventBody__errorMessage"]')
+	test.is(message.text(), 'An error occured while attempting to render this message')
+})
