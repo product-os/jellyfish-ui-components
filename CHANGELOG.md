@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v1.1.22
+## (2020-09-08)
+
+* Add an error boundary to the EventBody component. Render an error message when an error is captured in the component [Lucy-Jane]
+
 # v1.1.21
 ## (2020-09-07)
 
