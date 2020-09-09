@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v1.1.26
+## (2020-09-09)
+
+* Use rendition decorators to highlight mentions [Kakhaber]
+
 # v1.1.25
 ## (2020-09-09)
 
