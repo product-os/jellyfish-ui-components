@@ -22,6 +22,11 @@ import {
 	PlainAutocompleteTextarea
 } from '../Timeline/MessageInput'
 import Attachments from './Attachments'
+import Mention from './Mention'
+import * as helpers from '../services/helpers'
+import ErrorBoundary from '../shame/ErrorBoundary'
+
+const tagMatchRE = helpers.createPrefixRegExp(helpers.TAG_MATCH_REGEXP_PREFIX)
 
 const MESSAGE_Y_SPACE = '3px'
 const MAX_IMAGE_SIZE = '500px'
@@ -107,145 +112,158 @@ const componentOverrides = {
 		// TODO: Use RouterLink and navigate internally if the href
 		// is on the same domain.
 		return <Link blank {...attribs} />
+	},
+	mention: (attribs) => {
+		return <Mention {...attribs} />
 	}
 }
 
-export default class EventBody extends React.Component {
-	constructor (props) {
-		super(props)
+const EventBody = (props) => {
+	const {
+		squashTop,
+		squashBottom,
+		enableAutocomplete,
+		sendCommand,
+		types,
+		user,
+		groups,
+		sdk,
+		card,
+		actor,
+		isMessage,
+		editedMessage,
+		updating,
+		onUpdateDraft,
+		onSaveEditedMessage,
+		addNotification,
+		messageOverflows,
+		setMessageElement,
+		messageCollapsedHeight
+	} = props
 
-		this.state = {
-			expanded: false
-		}
+	const [ expanded, setExpanded ] = React.useState(false)
 
-		this.expand = () => {
-			this.setState({
-				expanded: !this.state.expanded,
-				hasError: false
-			})
-		}
-	}
+	const expand = React.useCallback(() => {
+		setExpanded(!expanded)
+	}, [ expanded ])
 
-	componentDidCatch () {
-		this.setState({
-			hasError: true
-		})
-	}
+	const message = getMessage(card)
 
-	render () {
-		const {
-			squashTop,
-			squashBottom,
-			enableAutocomplete,
-			sendCommand,
-			types,
-			user,
-			sdk,
-			card,
-			actor,
-			isMessage,
-			editedMessage,
-			updating,
-			onUpdateDraft,
-			onSaveEditedMessage,
-			addNotification,
-			messageOverflows,
-			setMessageElement,
-			messageCollapsedHeight
-		} = this.props
-		const {
-			expanded,
-			hasError
-		} = this.state
+	const decorators = React.useMemo(() => {
+		return [ {
+			match: tagMatchRE,
+			captureGroupIndex: 2,
+			component: 'mention',
+			properties: {
+				readBy: card.data.readBy,
+				slug: user.slug,
+				groups
+			}
+		} ]
+	}, [
+		card.data.readBy,
+		user.slug,
+		groups
+	])
 
-		if (hasError) {
-			return (
-				<MessageContainer
-					data-test="eventBody__errorMessage"
-					ref={setMessageElement}
-					card={card}
-					actor={actor}
-					py={2}
-					px={3}
-					mr={1}
-					error={true}
-				>An error occured while attempting to render this message</MessageContainer>
-			)
-		}
+	return (
+		<React.Fragment>
+			<Attachments
+				card={card}
+				actor={actor}
+				sdk={sdk}
+				addNotification={addNotification}
+				maxImageSize={MAX_IMAGE_SIZE}
+				squashTop={squashTop}
+				squashBottom={squashBottom}
+			/>
+			{
+				isMessage && Boolean(message) && (
+					<MessageContainer
+						ref={setMessageElement}
+						card={card}
+						actor={actor}
+						editing={editedMessage !== null}
+						squashTop={squashTop}
+						squashBottom={squashBottom}
+						py={2}
+						px={3}
+						mr={1}
+					>
+						{editedMessage !== null && !updating ? (
+							<EditingAutocompleteTextarea
+								data-test="event__textarea"
+								enableAutocomplete={enableAutocomplete}
+								sdk={sdk}
+								types={types}
+								user={user}
+								autoFocus
+								sendCommand={sendCommand}
+								value={editedMessage}
+								onChange={onUpdateDraft}
+								onSubmit={onSaveEditedMessage}
+							/>
+						) : (
+							<StyledMarkdown
+								expanded={expanded}
+								messageOverflows={messageOverflows}
+								messageCollapsedHeight={messageCollapsedHeight}
+								py={MESSAGE_Y_SPACE}
+								data-test={card.pending || updating ? 'event-card__message-draft' : 'event-card__message'}
+								flex={0}
+								componentOverrides={componentOverrides}
+								decorators={decorators}
+							>
+								{updating ? editedMessage : message}
+							</StyledMarkdown>
+						)}
+						{messageOverflows && (
+							<OverflowButton
+								className="event-card__expand"
+								plain
+								width="100%"
+								py={1}
+								onClick={expand}
+								expanded={expanded}
+							>
+								<Icon name={`chevron-${expanded ? 'up' : 'down'}`} />
+							</OverflowButton>
+						)}
+					</MessageContainer>
+				)
+			}
+			{
+				!isMessage && Boolean(card.name) && (
+					<Txt>{card.name}</Txt>
+				)
+			}
+		</React.Fragment>
+	)
+}
 
-		const message = getMessage(card)
-
+export default (props) => {
+	const getErrorElement = React.useCallback(() => {
 		return (
-			<React.Fragment>
-				<Attachments
-					card={card}
-					actor={actor}
-					sdk={sdk}
-					addNotification={addNotification}
-					maxImageSize={MAX_IMAGE_SIZE}
-					squashTop={squashTop}
-					squashBottom={squashBottom}
-				/>
-				{
-					isMessage && Boolean(message) && (
-						<MessageContainer
-							ref={setMessageElement}
-							card={card}
-							actor={actor}
-							editing={editedMessage !== null}
-							squashTop={squashTop}
-							squashBottom={squashBottom}
-							py={2}
-							px={3}
-							mr={1}
-						>
-							{editedMessage !== null && !updating ? (
-								<EditingAutocompleteTextarea
-									data-test="event__textarea"
-									enableAutocomplete={enableAutocomplete}
-									sdk={sdk}
-									types={types}
-									user={user}
-									autoFocus
-									sendCommand={sendCommand}
-									value={editedMessage}
-									onChange={onUpdateDraft}
-									onSubmit={onSaveEditedMessage}
-								/>
-							) : (
-								<StyledMarkdown
-									expanded={expanded}
-									messageOverflows={messageOverflows}
-									messageCollapsedHeight={messageCollapsedHeight}
-									py={MESSAGE_Y_SPACE}
-									data-test={card.pending || updating ? 'event-card__message-draft' : 'event-card__message'}
-									flex={0}
-									componentOverrides={componentOverrides}
-								>
-									{updating ? editedMessage : message}
-								</StyledMarkdown>
-							)}
-							{messageOverflows && (
-								<OverflowButton
-									className="event-card__expand"
-									plain
-									width="100%"
-									py={1}
-									onClick={this.expand}
-									expanded={expanded}
-								>
-									<Icon name={`chevron-${expanded ? 'up' : 'down'}`} />
-								</OverflowButton>
-							)}
-						</MessageContainer>
-					)
-				}
-				{
-					!isMessage && Boolean(card.name) && (
-						<Txt>{card.name}</Txt>
-					)
-				}
-			</React.Fragment>
+			<MessageContainer
+				data-test="eventBody__errorMessage"
+				ref={props.setMessageElement}
+				card={props.card}
+				actor={props.actor}
+				py={2}
+				px={3}
+				mr={1}
+				error={true}
+			>An error occured while attempting to render this message</MessageContainer>
 		)
-	}
+	}, [
+		props.setMessageElement,
+		props.card,
+		props.actor
+	])
+
+	return (
+		<ErrorBoundary getErrorElement={getErrorElement}>
+			<EventBody {...props} />
+		</ErrorBoundary>
+	)
 }

@@ -62,12 +62,18 @@ export default class ErrorBoundary extends React.Component {
 	}
 
 	componentDidCatch (error, info) {
+		const {
+			errorReporter
+		} = this.props
+
 		console.error('Caught error in boundary', {
 			info,
 			error
 		})
 
-		this.props.errorReporter.reportException(error, info)
+		if (errorReporter) {
+			errorReporter.reportException(error, info)
+		}
 	}
 
 	getDefaultErrorElement () {

@@ -14,9 +14,10 @@ import {
 	mount
 } from 'enzyme'
 import React from 'react'
-import Event, {
+import Event from '../Event'
+import {
 	highlightTags
-} from '../Event'
+} from '../Mention'
 import {
 	card
 } from './fixtures'
