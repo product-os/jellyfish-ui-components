@@ -65,7 +65,6 @@
     "immutability-helper": "^3.1.1",
     "json-e": "^4.3.0",
     "lodash": "^4.17.20",
-    "mark.js": "^8.11.1",
     "mixpanel-browser": "^2.39.0",
     "moment": "^2.27.0",
     "node-emoji": "^1.10.0",

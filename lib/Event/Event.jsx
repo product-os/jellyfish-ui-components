@@ -11,7 +11,6 @@ import classnames from 'classnames'
 import _ from 'lodash'
 import queryString from 'query-string'
 import * as jsonpatch from 'fast-json-patch'
-import Mark from 'mark.js'
 import React from 'react'
 import VisibilitySensor from 'react-visibility-sensor'
 import {
@@ -28,10 +27,6 @@ import EventBody, {
 } from './EventBody'
 
 const MESSAGE_COLLAPSED_HEIGHT = 400
-
-const prefixOptions = '@{1,2}|#|!{1,2}'
-const prefixRE = new RegExp(`^(${prefixOptions})`)
-const tagMatchRE = helpers.createPrefixRegExp(prefixOptions)
 
 const EventButton = styled.button `
 	cursor: ${(props) => { return props.openChannel ? 'pointer' : 'default' }};
@@ -65,42 +60,6 @@ const MessageIconWrapper = styled(Box) `
 
 const getTargetId = (card) => {
 	return _.get(card, [ 'data', 'target' ]) || card.id
-}
-
-// Used by mark.js to add attributes to the spans that wrap matched tokens
-// (usernames, groups, hashtags etc) in messages.
-export const highlightTags = (element, readBy, username, groups) => {
-	const text = element.innerText || element.textContent
-	if (text.charAt(0) === '#') {
-		return
-	}
-
-	const trimmed = text.replace(prefixRE, '').toLowerCase()
-	const group = groups[trimmed]
-
-	if (group && group.isMine) {
-		element.className += ' rendition-tag--personal'
-	} else if (trimmed === username) {
-		element.className += ' rendition-tag--personal'
-	}
-
-	if (text.charAt(0) === '!') {
-		element.className += ' rendition-tag--alert'
-	}
-
-	if (!readBy.length) {
-		return
-	}
-
-	if (group) {
-		const readByCount = _.intersection(readBy, group.users).length
-		element.setAttribute('data-read-by-count', readByCount)
-		element.className += ' rendition-tag--read-by'
-	}
-
-	if (_.includes(readBy, `user-${trimmed}`)) {
-		element.className += ' rendition-tag--read'
-	}
 }
 
 const MessageIcon = ({
@@ -222,44 +181,10 @@ export default class Event extends React.Component {
 		}
 
 		this.handleVisibilityChange = this.handleVisibilityChange.bind(this)
-		this.processText = this.processText.bind(this)
 	}
 
 	shouldComponentUpdate (nextProps, nextState) {
 		return !circularDeepEqual(nextState, this.state) || !circularDeepEqual(nextProps, this.props)
-	}
-
-	async componentDidMount () {
-		this.processText()
-	}
-
-	componentDidUpdate (prevProps) {
-		if (prevProps.card !== this.props.card) {
-			this.processText()
-		}
-	}
-
-	processText () {
-		if (!this.messageElement) {
-			return
-		}
-
-		const instance = new Mark(this.messageElement)
-		instance.unmark()
-
-		const readBy = this.props.card.data.readBy || []
-		const userSlug = this.props.user.slug
-		const username = userSlug.slice(5)
-		const groups = this.props.groups || []
-
-		instance.markRegExp(tagMatchRE, {
-			element: 'span',
-			className: 'rendition-tag--hl',
-			ignoreGroups: 1,
-			each: (element) => {
-				return highlightTags(element, readBy, username, groups)
-			}
-		})
 	}
 
 	handleVisibilityChange (isVisible) {
@@ -285,6 +210,7 @@ export default class Event extends React.Component {
 			enableAutocomplete,
 			sendCommand,
 			user,
+			groups,
 			card,
 			actor,
 			sdk,
@@ -410,6 +336,7 @@ export default class Event extends React.Component {
 							sendCommand={sendCommand}
 							types={types}
 							user={user}
+							groups={groups}
 							editedMessage={editedMessage}
 							updating={updating}
 							onUpdateDraft={this.updateEditedMessage}

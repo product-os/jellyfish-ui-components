@@ -4,12 +4,14 @@
  * Proprietary and confidential.
  */
 
-import '../../../test/ui-setup'
+import {
+	getWrapper
+} from '../../../test/ui-setup'
 import ava from 'ava'
 import sinon from 'sinon'
 import _ from 'lodash'
 import {
-	shallow
+	mount
 } from 'enzyme'
 import React from 'react'
 import EventBody, {
@@ -19,6 +21,7 @@ import {
 	card
 } from './fixtures'
 
+const wrappingComponent = getWrapper().wrapper
 const sandbox = sinon.createSandbox()
 
 ava.beforeEach((test) => {
@@ -78,14 +81,16 @@ ava('Auto-complete textarea is shown if message is being edited', (test) => {
 	const {
 		commonProps
 	} = test.context
-	const eventBody = shallow(
+	const eventBody = mount(
 		<EventBody
 			{...commonProps}
 			editedMessage="test message"
 			updating={false}
 		/>
-	)
-	const autoCompleteTextarea = eventBody.find('[data-test="event__textarea"]')
+		, {
+			wrappingComponent
+		})
+	const autoCompleteTextarea = eventBody.find('div[data-test="event__textarea"]')
 	test.is(autoCompleteTextarea.length, 1)
 })
 
@@ -94,17 +99,19 @@ ava('Edited message is shown in markdown if message is being updated', (test) =>
 		commonProps
 	} = test.context
 	const editedMessage = 'test message'
-	const eventBody = shallow(
+	const eventBody = mount(
 		<EventBody
 			{...commonProps}
 			editedMessage={editedMessage}
 			updating
 		/>
-	)
-	const autoCompleteTextarea = eventBody.find('[data-test="event__textarea"]')
+		, {
+			wrappingComponent
+		})
+	const autoCompleteTextarea = eventBody.find('div[data-test="event__textarea"]')
 	test.is(autoCompleteTextarea.length, 0)
-	const messageText = eventBody.find('[data-test="event-card__message-draft"]')
-	test.is(messageText.props().children.trim(), editedMessage)
+	const messageText = eventBody.find('div[data-test="event-card__message-draft"]')
+	test.is(messageText.text(), editedMessage)
 })
 
 ava('An error is captured by the component and an error message is rendered', (test) => {
@@ -112,15 +119,17 @@ ava('An error is captured by the component and an error message is rendered', (t
 		commonProps
 	} = test.context
 
-	const eventBody = shallow(
+	const eventBody = mount(
 		<EventBody
 			{...commonProps}
 		/>
-	)
+		, {
+			wrappingComponent
+		})
 
 	const error = new Error()
-	eventBody.simulateError(error)
+	eventBody.childAt(0).childAt(0).simulateError(error)
 
-	const message = eventBody.find('[data-test="eventBody__errorMessage"]')
+	const message = eventBody.first('div[data-test="eventBody__errorMessage"]')
 	test.is(message.text(), 'An error occured while attempting to render this message')
 })
