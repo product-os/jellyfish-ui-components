@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v1.1.28
+## (2020-09-10)
+
+* Use engine-strict flag to check node version [Josh Bowling]
+
 # v1.1.27
 ## (2020-09-10)
 
