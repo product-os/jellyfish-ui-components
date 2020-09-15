@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v1.2.0
+## (2020-09-15)
+
+* Use SmartVisibilitySensor for detecting Event visibility [Graham McCulloch]
+
 # v1.1.38
 ## (2020-09-14)
 
