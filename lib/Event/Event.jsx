@@ -12,11 +12,11 @@ import _ from 'lodash'
 import queryString from 'query-string'
 import * as jsonpatch from 'fast-json-patch'
 import React from 'react'
-import VisibilitySensor from 'react-visibility-sensor'
 import {
 	Box
 }	from 'rendition'
 import styled from 'styled-components'
+import SmartVisibilitySensor from '../SmartVisibilitySensor'
 import * as helpers from '../services/helpers'
 import Avatar from '../shame/Avatar'
 import Icon from '../shame/Icon'
@@ -257,7 +257,7 @@ export default class Event extends React.Component {
 		} = queryString.parse(_.get(location, [ 'search' ], ''))
 
 		return (
-			<VisibilitySensor onChange={this.handleVisibilityChange}>
+			<SmartVisibilitySensor onChange={this.handleVisibilityChange}>
 				<EventWrapper
 					{...rest}
 					squashTop={squashTop}
@@ -344,7 +344,7 @@ export default class Event extends React.Component {
 						/>
 					</Box>
 				</EventWrapper>
-			</VisibilitySensor>
+			</SmartVisibilitySensor>
 		)
 	}
 }
