@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v1.2.1
+## (2020-09-15)
+
+* patch: Update dependency detect-ua to ^1.0.1 [Renovate Bot]
+
 # v1.2.0
 ## (2020-09-15)
 
