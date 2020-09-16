@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v1.2.4
+## (2020-09-16)
+
+* Ignore meta-data tokens inside code blocks in message [Graham McCulloch]
+
 # v1.2.3
 ## (2020-09-16)
 
