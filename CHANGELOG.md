@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v1.2.6
+## (2020-09-17)
+
+* Bump rendition dependency [Graham McCulloch]
+
 # v1.2.5
 ## (2020-09-16)
 
