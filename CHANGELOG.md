@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v1.2.7
+## (2020-09-17)
+
+* Mentions component: Do not assume groups exists [Graham McCulloch]
+
 # v1.2.6
 ## (2020-09-17)
 
