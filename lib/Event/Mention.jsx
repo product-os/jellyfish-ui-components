@@ -19,7 +19,7 @@ export const highlightTags = (element, readBy, username, groups) => {
 	}
 
 	const trimmed = text.replace(prefixRE, '').toLowerCase()
-	const group = groups[trimmed]
+	const group = groups && groups[trimmed]
 
 	if (group && group.isMine) {
 		element.className += ' rendition-tag--personal'
