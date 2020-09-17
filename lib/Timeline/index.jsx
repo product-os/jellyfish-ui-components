@@ -263,7 +263,8 @@ class Timeline extends React.Component {
 	}
 
 	addMessage (newMessage, whisper) {
-		if (!newMessage) {
+		const trimmedMessage = newMessage.trim()
+		if (!trimmedMessage) {
 			return
 		}
 		this.props.setTimelineMessage(this.props.card.id, '')
@@ -273,7 +274,7 @@ class Timeline extends React.Component {
 			mentionsGroup,
 			alertsGroup,
 			tags
-		} = helpers.getMessageMetaData(newMessage)
+		} = helpers.getMessageMetaData(trimmedMessage)
 		const message = {
 			target: this.props.card,
 			type: whisper ? 'whisper' : 'message',
@@ -284,7 +285,7 @@ class Timeline extends React.Component {
 				alertsUser,
 				mentionsGroup,
 				alertsGroup,
-				message: helpers.replaceEmoji(newMessage.replace(messageSymbolRE, ''))
+				message: helpers.replaceEmoji(trimmedMessage.replace(messageSymbolRE, ''))
 			}
 		}
 
