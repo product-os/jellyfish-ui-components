@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v2.0.0
+## (2020-09-21)
+
+* Use rendition notifications [Graham McCulloch]
+
 # v1.2.13
 ## (2020-09-21)
 
