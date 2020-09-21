@@ -35,12 +35,7 @@ const {
 
 const sandbox = sinon.createSandbox()
 
-const actions = {
-	addNotification: sandbox.fake()
-}
-
 const commonProps = {
-	actions,
 	user,
 	actor
 }

@@ -135,7 +135,6 @@ const EventBody = (props) => {
 		updating,
 		onUpdateDraft,
 		onSaveEditedMessage,
-		addNotification,
 		messageOverflows,
 		setMessageElement,
 		messageCollapsedHeight
@@ -172,7 +171,6 @@ const EventBody = (props) => {
 				card={card}
 				actor={actor}
 				sdk={sdk}
-				addNotification={addNotification}
 				maxImageSize={MAX_IMAGE_SIZE}
 				squashTop={squashTop}
 				squashBottom={squashBottom}

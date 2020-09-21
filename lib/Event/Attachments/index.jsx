@@ -9,6 +9,9 @@ import React from 'react'
 import {
 	saveAs
 } from 'file-saver'
+import {
+	addNotification
+} from '../../services/notifications'
 import AttachmentButton from './AttachmentButton'
 import MessageContainer from '../MessageContainer'
 import AuthenticatedImage from '../../AuthenticatedImage'
@@ -55,8 +58,7 @@ export default class Attachments extends React.Component {
 	downloadAttachments (event) {
 		const {
 			card,
-			sdk,
-			addNotification
+			sdk
 		} = this.props
 		const attachments = getAttachments(card)
 		const attachmentSlug = event.currentTarget.dataset.attachmentslug
@@ -76,7 +78,6 @@ export default class Attachments extends React.Component {
 			card,
 			actor,
 			sdk,
-			addNotification,
 			maxImageSize,
 			squashTop,
 			squashBottom
@@ -112,7 +113,6 @@ export default class Attachments extends React.Component {
 							data-test="event-card__image"
 							cardId={card.id}
 							fileName={attachment.slug}
-							addNotification={addNotification}
 							sdk={sdk}
 							mimeType={attachment.mime}
 							maxImageSize={maxImageSize}

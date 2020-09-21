@@ -131,9 +131,6 @@ ava('A message is not removed from the pendingMessage list until it has been add
 	const createMessage = sandbox.stub()
 	createMessage.resolves()
 
-	const addNotification = sandbox.stub()
-	addNotification.resolves()
-
 	const wrapper = await mount(
 		<Timeline
 			{...eventProps}
@@ -145,7 +142,6 @@ ava('A message is not removed from the pendingMessage list until it has been add
 				}
 			}
 			}
-			addNotification={addNotification}
 		/>, {
 			wrappingComponent: wrapperWithSetup,
 			wrappingComponentProps: {
