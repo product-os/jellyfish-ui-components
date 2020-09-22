@@ -10,14 +10,12 @@ import {
 	Box
 } from 'rendition'
 import Icon from '../shame/Icon'
-import Update from '../Update'
 import Event from '../Event'
 import {
 	MESSAGE,
 	WHISPER,
-	UPDATE,
 	SUMMARY
-} from './constants'
+} from '../constants'
 
 const isNotMessage = (type) => {
 	return !_.includes([ MESSAGE, WHISPER, SUMMARY ], type)
@@ -26,11 +24,9 @@ const isNotMessage = (type) => {
 export default class EventsList extends React.Component {
 	render () {
 		const {
-			getActor,
 			hideWhispers,
 			sortedEvents,
 			uploadingFiles,
-			handleCardVisible,
 			messagesOnly,
 			user,
 			eventMenuOptions,
@@ -54,21 +50,6 @@ export default class EventsList extends React.Component {
 				}
 				if (hideWhispers && pureType === WHISPER) {
 					return null
-				}
-
-				if (pureType === UPDATE) {
-					return (
-						<Box
-							data-test={event.id}
-							key={event.id}>
-							<Update
-								onCardVisible={handleCardVisible}
-								card={event}
-								user={user}
-								getActor={getActor}
-							/>
-						</Box>
-					)
 				}
 
 				return (
