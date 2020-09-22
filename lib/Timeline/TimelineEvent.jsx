@@ -7,12 +7,10 @@ import {
 	withSetup
 } from '../SetupProvider'
 import Icon from '../shame/Icon'
-import Update from '../Update'
 import Event from '../Event'
 import {
 	MESSAGE,
 	WHISPER,
-	UPDATE,
 	SUMMARY
 } from './constants'
 
@@ -49,24 +47,6 @@ const TimelineEvent = ({
 	}
 	if (hideWhispers && pureType === WHISPER) {
 		return null
-	}
-
-	if (pureType === UPDATE) {
-		return (
-			<Box
-				data-test={event.id}
-				key={event.id}
-				ref={registerChild}
-			>
-
-				<Update
-					onCardVisible={handleCardVisible}
-					card={event}
-					user={user}
-					getActor={getActor}
-				/>
-			</Box>
-		)
 	}
 
 	return (
