@@ -34,7 +34,7 @@ import {
 import {
 	UPDATE,
 	CREATE
-} from './constants'
+} from '../constants'
 import EventsContainer from '../EventsContainer'
 import {
 	InfiniteList
@@ -415,7 +415,8 @@ class Timeline extends React.Component {
 			getCard,
 			threadIsMirrored: isMirrored,
 			menuOptions: eventMenuOptions,
-			getActorHref
+			getActorHref,
+			getActor
 		}
 
 		return (
@@ -447,7 +448,6 @@ class Timeline extends React.Component {
 						<EventsList
 							{ ...eventProps }
 							user={user}
-							getActor={getActor}
 							hideWhispers={hideWhispers}
 							sortedEvents={sortedEvents}
 							uploadingFiles={uploadingFiles}
