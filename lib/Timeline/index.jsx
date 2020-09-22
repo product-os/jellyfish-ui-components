@@ -414,7 +414,9 @@ class Timeline extends React.Component {
 			threadIsMirrored: isMirrored,
 			menuOptions: eventMenuOptions,
 			getActorHref,
-			getActor
+			getActor,
+			sortedEvents,
+			uploadingFiles
 		}
 
 		return (
@@ -439,7 +441,12 @@ class Timeline extends React.Component {
 						onScrollBeginning={!reachedBeginningOfTimeline && ready && this.handleScrollBeginning}
 						processing={loadingMoreEvents}
 						list={sortedEvents}
-						component={(props) => { return <TimelineEvent {...props} /> }}
+						component={({
+							item,
+							registerChild
+						}) => {
+							return <TimelineEvent {...eventProps} event={item} registerChild={registerChild} />
+						} }
 					/>
 				</EventsContainer>
 

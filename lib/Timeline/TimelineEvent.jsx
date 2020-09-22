@@ -12,7 +12,7 @@ import {
 	MESSAGE,
 	WHISPER,
 	SUMMARY
-} from './constants'
+} from '../constants'
 
 const isNotMessage = (type) => {
 	return !_.includes([ MESSAGE, WHISPER, SUMMARY ], type)
@@ -20,16 +20,12 @@ const isNotMessage = (type) => {
 
 const TimelineEvent = ({
 	event,
-	getActor,
 	hideWhispers,
 	sortedEvents,
 	uploadingFiles,
-	handleCardVisible,
 	messagesOnly,
-	user,
 	index,
 	registerChild,
-	eventMenuOptions,
 	...eventProps
 }) => {
 	if (_.includes(uploadingFiles, event.slug)) {
@@ -61,7 +57,6 @@ const TimelineEvent = ({
 				previousEvent={sortedEvents[index - 1]}
 				nextEvent={sortedEvents[index + 1]}
 				card={event}
-				user={user}
 			/>
 		</Box>
 	)

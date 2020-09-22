@@ -56,10 +56,10 @@ export class InfiniteList extends React.Component {
 		index, key, isScrolling, parent, style
 	}) {
 		const {
-			list, eventProps, component: Component
+			list, component: Component
 		} = this.props
-		console.log(Component)
-		const event = list[index]
+
+		const item = list[index]
 
 		return (
 			<CellMeasurer
@@ -74,9 +74,7 @@ export class InfiniteList extends React.Component {
 				}) => {
 					return (
 						<Component
-							{ ...eventProps }
-							index={index}
-							event={event}
+							item={item}
 							registerChild={registerChild}
 						/>
 					)
