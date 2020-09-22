@@ -24,9 +24,7 @@ import {
 } from '../SetupProvider'
 import Header from './Header'
 import Loading from './Loading'
-import TimelineStart from './TimelineStart'
-import EventsList from './EventsList'
-import PendingMessages from './PendingMessages'
+import TimelineEvent from './TimelineEvent'
 import TypingNotice from './TypingNotice'
 import {
 	addNotification
@@ -425,7 +423,6 @@ class Timeline extends React.Component {
 					headerOptions={headerOptions}
 					hideWhispers={hideWhispers}
 					messagesOnly={messagesOnly}
-					sortedEvents={sortedEvents}
 					handleJumpToTop={this.handleJumpToTop}
 					handleWhisperToggle={this.handleWhisperToggle}
 					handleEventToggle={this.handleEventToggle}
@@ -441,25 +438,9 @@ class Timeline extends React.Component {
 						fillMaxArea
 						onScrollBeginning={!reachedBeginningOfTimeline && ready && this.handleScrollBeginning}
 						processing={loadingMoreEvents}
-					>
-						<div ref={this.timelineStart} />
-						{ reachedBeginningOfTimeline && <TimelineStart />}
-						{ loadingMoreEvents && <Loading />}
-						<EventsList
-							{ ...eventProps }
-							user={user}
-							hideWhispers={hideWhispers}
-							sortedEvents={sortedEvents}
-							uploadingFiles={uploadingFiles}
-							messagesOnly={messagesOnly}
-						/>
-						<PendingMessages
-							{ ...eventProps }
-							pendingMessages={pendingMessages}
-							sortedEvents={sortedEvents}
-						/>
-						<div ref={this.timelineEnd} />
-					</InfiniteList>
+						list={sortedEvents}
+						component={(props) => { return <TimelineEvent {...props} /> }}
+					/>
 				</EventsContainer>
 
 				<TypingNotice usersTyping={usersTyping} />

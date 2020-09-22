@@ -6,22 +6,26 @@
 
 import React from 'react'
 import {
-	Box
-} from 'rendition'
-import styled from 'styled-components'
-
-const ScrollArea = styled(Box) `
-    overflow-y: auto;
-    height: 100%;
-`
+	List,
+	AutoSizer,
+	CellMeasurer,
+	CellMeasurerCache,
+	InfiniteLoader
+} from 'react-virtualized'
 
 export class InfiniteList extends React.Component {
 	constructor (props, context) {
 		super(props, context)
 
-		this.handleRef = this.handleRef.bind(this)
-		this.handleScroll = this.handleScroll.bind(this)
+		this.loadMoreRows = this.loadMoreRows.bind(this)
 		this.queryForMoreIfNecessary = this.queryForMoreIfNecessary.bind(this)
+		this.rowRenderer = this.rowRenderer.bind(this)
+		this.isRowLoaded = this.isRowLoaded.bind(this)
+
+		this.cache = new CellMeasurerCache({
+			defaultHeight: 100,
+			fixedWidth: true
+		})
 	}
 
 	componentDidMount () {
@@ -29,7 +33,7 @@ export class InfiniteList extends React.Component {
 			fillMaxArea
 		} = this.props
 		if (fillMaxArea) {
-			this.queryForMoreIfNecessary()
+			// This.queryForMoreIfNecessary()
 		}
 	}
 
@@ -38,8 +42,47 @@ export class InfiniteList extends React.Component {
 			fillMaxArea
 		} = this.props
 		if (fillMaxArea) {
-			this.queryForMoreIfNecessary()
+			// This.queryForMoreIfNecessary()
 		}
+	}
+
+	isRowLoaded ({
+		index
+	}) {
+		return Boolean(this.props.list[index])
+	}
+
+	rowRenderer ({
+		index, key, isScrolling, parent, style
+	}) {
+		const {
+			list, eventProps, component: Component
+		} = this.props
+		console.log(Component)
+		const event = list[index]
+
+		return (
+			<CellMeasurer
+				key={key}
+				cache={this.cache}
+				columnIndex={0}
+				parent={parent}
+				rowIndex={index}
+			>
+				{({
+					measure, registerChild
+				}) => {
+					return (
+						<Component
+							{ ...eventProps }
+							index={index}
+							event={event}
+							registerChild={registerChild}
+						/>
+					)
+				}}
+			</CellMeasurer>
+		)
 	}
 
 	// QueryForMoreIfNecessary runs a query if the component
@@ -75,7 +118,7 @@ export class InfiniteList extends React.Component {
 		}
 	}
 
-	handleScroll () {
+	loadMoreRows () {
 		const {
 			processing,
 			onScrollBeginning,
@@ -106,23 +149,42 @@ export class InfiniteList extends React.Component {
 		}
 	}
 
-	handleRef (ref) {
-		this.scrollArea = ref
-	}
-
 	render () {
 		const {
-			onScrollEnding,
-			onScrollBeginning,
-			...rest
+			list
 		} = this.props
 
 		return (
-			<ScrollArea
-				{...rest}
-				ref={this.handleRef}
-				onScroll={this.handleScroll}
-			/>
+			<InfiniteLoader
+				isRowLoaded={this.isRowLoaded}
+				loadMoreRows={this.loadMoreRows}
+				rowCount={list.length}
+			>
+				{({
+					onRowsRendered, registerChild
+				}) => {
+					return (
+						<AutoSizer>
+							{({
+								height, width
+							}) => {
+								return (
+									<List
+										ref={registerChild}
+										onRowsRendered={onRowsRendered}
+										height={height}
+										width={width}
+										rowCount={list.length}
+										rowRenderer={this.rowRenderer}
+										rowHeight={this.cache.rowHeight}
+									/>
+								)
+							}
+							}
+						</AutoSizer>
+					)
+				}}
+			</InfiniteLoader>
 		)
 	}
 }
