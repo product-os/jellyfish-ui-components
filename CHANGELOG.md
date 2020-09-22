@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v2.0.3
+## (2020-09-22)
+
+* Moves check for update type to Event component [Lucy-Jane]
+
 # v2.0.2
 ## (2020-09-22)
 
