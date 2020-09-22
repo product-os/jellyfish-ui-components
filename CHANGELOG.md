@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v2.0.2
+## (2020-09-22)
+
+* Prevent user sending blank messages [Graham McCulloch]
+
 # v2.0.1
 ## (2020-09-22)
 
