@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v2.0.6
+## (2020-09-23)
+
+* patch: Update dependency eslint-plugin-react to ^7.21.1 [Renovate Bot]
+
 # v2.0.5
 ## (2020-09-23)
 
