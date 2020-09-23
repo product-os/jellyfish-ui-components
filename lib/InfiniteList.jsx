@@ -94,26 +94,26 @@ export class InfiniteList extends React.Component {
 	// cannot load because they cannot scroll
 	queryForMoreIfNecessary () {
 		const {
-			onScrollBeginning,
-			onScrollEnding,
 			processing
 		} = this.props
 		if (processing) {
 			return
 		}
-		const {
-			clientHeight,
-			scrollHeight
-		} = this.scrollArea
-		const noScrollBar = clientHeight === scrollHeight
-		if (noScrollBar) {
-			if (onScrollBeginning) {
-				onScrollBeginning()
-			}
-			if (onScrollEnding) {
-				onScrollEnding()
-			}
-		}
+		console.log(this.cache)
+
+		// Const {
+		// 	clientHeight,
+		// 	scrollHeight
+		// } = this.scrollArea
+		// const noScrollBar = clientHeight === scrollHeight
+		// if (noScrollBar) {
+		// 	if (onScrollBeginning) {
+		// 		onScrollBeginning()
+		// 	}
+		// 	if (onScrollEnding) {
+		// 		onScrollEnding()
+		// 	}
+		// }
 	}
 
 	loadMoreRows () {

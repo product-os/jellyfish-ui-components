@@ -3,11 +3,11 @@ import _ from 'lodash'
 import {
 	Box
 } from 'rendition'
+import Icon from '../shame/Icon'
+import Event from '../Event'
 import {
 	withSetup
 } from '../SetupProvider'
-import Icon from '../shame/Icon'
-import Event from '../Event'
 import {
 	MESSAGE,
 	WHISPER,
@@ -51,7 +51,6 @@ const TimelineEvent = ({
 			key={event.id}
 			ref={registerChild}
 		>
-
 			<Event
 				{...eventProps}
 				previousEvent={sortedEvents[index - 1]}
