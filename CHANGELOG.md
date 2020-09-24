@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v2.0.7
+## (2020-09-24)
+
+* patch: Update dependency enzyme-adapter-react-16 to ^1.15.5 [Renovate Bot]
+
 # v2.0.6
 ## (2020-09-23)
 
