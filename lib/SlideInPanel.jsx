@@ -51,7 +51,7 @@ const SlideInWrapper = styled.div `
 
 const SlideInPanelBase = styled(Flex) `
 	position: absolute;
-  background: ${(props) => { return props.theme.global.colors.white }};
+  background: ${(props) => { return props.theme.colors.background.main }};
   z-index: 1;
 	transition: transform ${DELAY / 2}s ${DELAY / 2}s;
 	.slide-in--open & {

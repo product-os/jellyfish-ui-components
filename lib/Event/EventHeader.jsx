@@ -20,7 +20,7 @@ const HeaderWrapper = styled(Flex) `
 const ActorPlaceholder = styled.span `
 	width: 80px;
 	line-height: inherit;
-	background: #eee;
+	background: ${(props) => { return props.theme.colors.background.main }};
 	display: inline-block;
 	border-radius: 10px;
 	text-align: center;
@@ -84,7 +84,7 @@ export default class EventHeader extends React.Component {
 							tooltip={actor ? actor.email : 'loading...'}
 						>
 							{Boolean(actor) && Boolean(actor.card) && (() => {
-								const text = <Txt.span color="black">{actor.name}</Txt.span>
+								const text = <Txt.span color="text.main">{actor.name}</Txt.span>
 
 								if (getActorHref) {
 									return (

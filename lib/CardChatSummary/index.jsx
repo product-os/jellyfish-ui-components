@@ -37,24 +37,24 @@ const SummaryWrapper = styled(Link) `
 	padding: 18px 16px;
 	border-left-style: solid;
 	border-left-width: 4px;
-	border-bottom: 1px solid #eee;
+	border-bottom: 1px solid ${(props) => { return props.theme.colors.background.dark }};
 	cursor: pointer;
 	color: ${(props) => { return props.theme.colors.text.main }};
 	box-shadow: -5px 4.5px 10.5px 0 rgba(152, 173, 227, 0.08);
 
 	${(props) => {
 		return props.active ? `
-			background: ${props.theme.colors.info.light};
-			border-left-color: ${props.theme.colors.info.main};
+			background: ${props.theme.colors.primary.dark};
+			border-left-color: ${props.theme.colors.primary.main};
 		` : `
-			background: white;
+			background: ${props.theme.colors.background.light};
 			border-left-color: transparent;
 		`
 	}}
 
 	&:hover {
 		color: ${(props) => { return props.theme.colors.text.main }};
-		background: ${(props) => { return props.theme.colors.quartenary.light }};
+		background: ${(props) => { return props.theme.colors.background.main }};
 	}
 `
 
@@ -208,7 +208,7 @@ export class CardChatSummary extends React.Component {
 							name="reply"
 							rotate={180}
 							style={{
-								color: active ? theme.colors.info.main : theme.colors.quartenary.dark
+								color: active ? theme.colors.primary.main : theme.colors.text.dark
 							}}
 						/>
 

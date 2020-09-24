@@ -13,7 +13,7 @@ const MenuPanel = styled(Box) `
 	position: absolute;
 	top: 64px;
 	width: 180px;
-	background: white;
+	background: ${(props) => { return props.theme.colors.background.main }};
 	box-shadow: 0 1px 4px rgba(17, 17, 17, 0.5);
 	border-radius: 3px;
 
@@ -23,7 +23,7 @@ const MenuPanel = styled(Box) `
 		height: 0;
 		border-left: 5px solid transparent;
 		border-right: 5px solid transparent;
-		border-bottom: 5px solid #ccc;
+		border-bottom: 5px solid ${(props) => { return props.theme.colors.background.dark }};
 		position: absolute;
     top: -6px;
 		left: 14px;
@@ -35,7 +35,7 @@ const MenuPanel = styled(Box) `
 		height: 0;
 		border-left: 5px solid transparent;
 		border-right: 5px solid transparent;
-		border-bottom: 5px solid white;
+		border-bottom: 5px solid ${(props) => { return props.theme.colors.background.main }};
 		position: absolute;
     top: -5px;
 		left: 14px;

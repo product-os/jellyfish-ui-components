@@ -20,7 +20,7 @@ const AttachmentButton = ({
 		<Button
 			data-attachmentslug={attachment.slug}
 			onClick={downloadAttachments}
-			secondary={card.type.split('@')[0] === 'whisper'}
+			primary={card.type.split('@')[0] === 'whisper'}
 			data-test="event-card__file"
 			mr={2}
 			my={1}

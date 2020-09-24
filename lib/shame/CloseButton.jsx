@@ -50,6 +50,7 @@ class CloseButtonBase extends React.Component {
 				pl={3}
 				{...this.props}
 				plain
+				primary
 				icon={<Icon name="times"/>}
 				onClick={this.navigate}
 			/>

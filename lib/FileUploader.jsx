@@ -56,7 +56,7 @@ export const FileUploadButton = ({
 }) => {
 	return (
 		<FileUploader onChange={onChange}>
-			{(startUpload) => { return <Button onClick={startUpload} {...rest} /> }}
+			{(startUpload) => { return <Button primary onClick={startUpload} {...rest} /> }}
 		</FileUploader>
 	)
 }
@@ -95,6 +95,7 @@ export const FilesInput = ({
 						p={2}
 						fontSize="18px"
 						plain
+						primary
 						multiple={multiple}
 						onChange={onChange}
 						icon={<FaPaperclip />}

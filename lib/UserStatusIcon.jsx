@@ -34,16 +34,16 @@ const StatusWrapper = styled(Flex) `
 		transform: scale(0);
 	}
 	&.user-status-icon--donotdisturb {
-		background: ${(props) => { return props.theme.colors.tertiary.dark }};
-		color: #fff;
+		background: ${(props) => { return props.theme.colors.secondary.dark }};
+		color: ${(props) => { return props.theme.colors.background.main }};
 	}
 	&.user-status-icon--annualleave {
 		background: ${(props) => { return props.theme.colors.success.dark }};
-		color: #FFF;
+		color: ${(props) => { return props.theme.colors.background.main }};
 	}
 	&.user-status-icon--inameeting {
 		background: ${(props) => { return props.theme.colors.info.main }};
-		color: #FFF;
+		color: ${(props) => { return props.theme.colors.background.main }};
 	}
 `
 

@@ -14,7 +14,11 @@ import {
 } from 'common-tags'
 
 const StyledBox = styled.div `
-	background: white;
+	background: ${(props) => { return props.theme.background.main }};
+	border: 1px solid ${(props) => { return props.theme.background.dark }};
+	border-radius: ${(props) => { return props.theme.border }}px;
+	color: ${(props) => { return props.theme.text.main }};
+	margin-left: ${(props) => { return props.theme.space[3] }}px;
 	transform: translateY(-10px);
 	height: 0;
 	overflow: visible;
@@ -45,9 +49,7 @@ const TypingNotice = ({
 	if (typingMessage) {
 		return (
 			<StyledBox data-test="typing-notice">
-				<Box bg="white" ml={3}>
-					<em>{typingMessage}</em>
-				</Box>
+				<em>{typingMessage}</em>
 			</StyledBox>
 		)
 	}

@@ -41,7 +41,7 @@ const InputWrapper = styled(Box) `
 	border-radius: ${(props) => { return props.theme.radius }}px;
 
 	&:focus-within {
-		border-color: ${(props) => { return props.borderColorWhenFocused || props.theme.colors.secondary.main }};
+		border-color: ${(props) => { return props.borderColorWhenFocused || props.theme.colors.primary.main }};
 	}
 
 	${(props) => {
@@ -184,14 +184,14 @@ const MessageInput = ({
 			px={3}
 			wide={wide}
 			{...(whisper ? {
-				color: 'white',
-				bg: theme.colors.secondary.main,
-				borderColor: theme.colors.secondary.main
+				color: theme.colors.text.main,
+				bg: theme.colors.primary.main,
+				borderColor: theme.colors.primary.dark
 			} : {
-				color: theme.text.main,
-				borderColor: 'white',
-				bg: 'white',
-				borderColorWhenFocused: 'white',
+				color: theme.colors.text.main,
+				borderColor: theme.colors.background.dark,
+				bg: theme.colors.background.main,
+				borderColorWhenFocused: theme.colors.primary.main,
 				...(wide ? {
 					px: 0
 				} : {})
@@ -218,6 +218,7 @@ const MessageInput = ({
 			p={1}
 			fontSize="18px"
 			plain
+			primary
 			onClick={toggleWhisper}
 			data-test="timeline__whisper-toggle"
 			tooltip={{
@@ -238,7 +239,7 @@ const MessageInput = ({
 				pt={3}
 				pb={1}
 				pl={3}
-				bg="white"
+				bg="background.main"
 				style={{
 					...style,
 					display: 'grid',
@@ -267,7 +268,7 @@ const MessageInput = ({
 					gridColumn: 1,
 					gridRow: 2
 				}}>
-					<Txt fontSize={11} italic color="#859CB0">
+					<Txt fontSize={11} italic color="text.light">
 						Press {sendCommand} to send
 					</Txt>
 				</Box>
@@ -279,7 +280,7 @@ const MessageInput = ({
 		<Flex
 			{...rest}
 			style={style}
-			bg="white"
+			bg="background.main"
 			flexDirection="column"
 		>
 			<Box
@@ -290,7 +291,7 @@ const MessageInput = ({
 			</Box>
 
 			<Flex px={2} alignItems="center" style={{
-				borderTop: 'solid 1px rgb(238, 238, 238)',
+				borderTop: `solid 1px ${theme.colors.text.main})`,
 				borderTopStyle: 'dashed'
 			}}>
 				<Flex alignSelf="flex-start" p={1}>
@@ -307,12 +308,12 @@ const MessageInput = ({
 						<Button
 							p={2}
 							plain
+							primary
 							fontSize={26}
 							tooltip={{
 								text: sendCommand,
 								placement: 'left'
 							}}
-							color={theme.colors.primary.main}
 							icon={<MdSend />}
 							onClick={onSubmitInput}
 						/>

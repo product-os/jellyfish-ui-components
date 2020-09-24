@@ -44,7 +44,7 @@ const EventWrapper = styled(Flex) `
 	background: transparent;
 	transition: 150ms ease-in-out background;
 	&:hover {
-		background: #dde1f080;
+		background: ${(props) => { return props.theme.colors.background.semilight }};
 	}
 	min-width: 0;
 	word-break: break-word;

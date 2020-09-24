@@ -12,15 +12,16 @@ import {
 import styled from 'styled-components'
 
 export const tagStyle = `
-	background: #efefef;
+	background:  ${(props) => { return props.theme.colors.gray.light }};
 	padding: 2px 5px 1px;
 	border-radius: ${Theme.radius}px;
-	border: 1px solid #c3c3c3;
+	border: 1px solid ${(props) => { return props.theme.colors.gray.dark }};
 	line-height: 1;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	overflow: hidden;
 	max-width: 180px;
+	color: ${(props) => { return props.theme.colors.gray.dark }};
 
 	> a {
 		display: inline

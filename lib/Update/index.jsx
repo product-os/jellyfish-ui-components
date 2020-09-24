@@ -162,6 +162,7 @@ export default class Update extends React.Component {
 							px={2}
 							mr={typeBase === 'whisper' ? -12 : -1}
 							plain
+							primary
 							onClick={this.toggleMenu}
 							icon={<Icon name="ellipsis-v"/>}
 						/>

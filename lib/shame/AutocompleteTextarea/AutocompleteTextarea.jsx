@@ -13,7 +13,9 @@ import {
 	Card,
 	Txt
 } from 'rendition'
-import styled from 'styled-components'
+import styled, {
+	withTheme
+} from 'styled-components'
 import Link from '../../Link'
 import * as helpers from '../../services/helpers'
 import Icon from '../Icon'
@@ -27,7 +29,7 @@ const QUICK_SEARCH_RE = /^\s*\?[\w_-]+\s+[\w_-]+/
 
 const QuickSearchPanel = styled(Card) `
 	position: fixed;
-	background: white;
+	background: ${(props) => { return props.theme.colors.background.main }};
 	color: ${(props) => { return props.theme.colors.text.main }};
 	bottom: 80px;
 	right: 10px;
@@ -38,7 +40,7 @@ const QuickSearchPanel = styled(Card) `
 
 const LoaderSpan = styled.span `
 	color: ${(props) => { return props.theme.colors.text.main }};
-	background-color: ${(props) => { return props.theme.colors.background }};
+	background-color: ${(props) => { return props.theme.colors.background.main }};
 `
 
 const Loader = () => {
@@ -58,7 +60,8 @@ const SubAuto = (props) => {
 		className,
 		onChange,
 		onKeyPress,
-		placeholder
+		placeholder,
+		theme
 	} = props
 	const rest = _.omit(props, [
 		'value',
@@ -112,7 +115,7 @@ const SubAuto = (props) => {
 				placeholder={placeholder}
 				maxRows={12}
 				listStyle={{
-					color: 'black'
+					color: theme.colors.text.main
 				}}
 			/>
 		</Container>
@@ -338,4 +341,4 @@ class AutoCompleteArea extends React.Component {
 	}
 }
 
-export default AutoCompleteArea
+export default withTheme(AutoCompleteArea)

@@ -39,6 +39,7 @@ import EventsContainer from '../EventsContainer'
 import {
 	InfiniteList
 } from '../InfiniteList'
+import styled from 'styled-components'
 
 const PAGE_SIZE = 20
 
@@ -58,6 +59,10 @@ const getFreshPendingMessages = (tail, pendingMessages) => {
 		return !_.find(tail, [ 'slug', pending.slug ])
 	})
 }
+
+const ThemedMessageInput = styled(MessageInput) `
+	border-top: 1px solid ${(props) => { return props.theme.colors.background.dark }};
+`
 
 class Timeline extends React.Component {
 	constructor (props) {
@@ -464,15 +469,12 @@ class Timeline extends React.Component {
 
 				<TypingNotice usersTyping={usersTyping} />
 
-				<MessageInput
+				<ThemedMessageInput
 					enableAutocomplete={enableAutocomplete}
 					sdk={sdk}
 					types={types}
 					user={user}
 					wide={wide}
-					style={{
-						borderTop: '1px solid #eee'
-					}}
 					allowWhispers={allowWhispers}
 					sendCommand={sendCommand}
 					value={timelineMessage}

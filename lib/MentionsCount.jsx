@@ -22,12 +22,13 @@ const getFontSize = (string) => {
 }
 
 const MentionsCount = styled(Box) `
-	background: rgb(255, 197, 35);
-	color: white;
+	background: ${(props) => { return props.theme.colors.primary.light }};
+	color: ${(props) => { return props.theme.colors.primary.dark }};
 	width: auto;
 	min-width: 18px;
 	height: 18px;
 	padding: 0px 4px;
+	border: 1px solid;
 	border-radius: 18px;
 	transform: translateX(6px);
 	display: inline-flex;

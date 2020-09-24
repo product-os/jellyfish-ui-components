@@ -51,11 +51,11 @@ const InnerWrapper = styled(Box) `
 const IconWrapper = styled(Flex) `
 	width: 100%;
 	height: 100%;
-	background: ${(props) => { return props.theme.colors.quartenary.dark }};
-	color: white;
+	background: ${(props) => { return props.theme.colors.primary.dark }};
+	color: ${(props) => { return props.theme.colors.primary.light }};
 	flex-direction: column;
 	justify-content: center;
-    align-items: center;
+  align-items: center;
 `
 
 export default function Avatar ({

@@ -29,11 +29,11 @@ const ContextWrapper = styled(Flex) `
 	padding: 2px 4px 2px 2px;
  	border-radius: 6px;
 	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
- 	border: solid 0.5px #e8ebf2;
+ 	border: solid 0.5px ${(props) => { return props.theme.colors.background.light }};
  	position: absolute;
  	right: 16px;
  	bottom: -6px;
- 	background: #fff;
+ 	background: ${(props) => { return props.theme.colors.background.dark }};
 	opacity: ${(props) => { return props.card.pending || props.updating || props.editing ? 1 : 0 }};
 	transition: 150ms ease-in-out opacity, 150ms ease-in-out width;
 	.event-card:hover & {
@@ -122,7 +122,7 @@ export default function EventContext ({
 					px={2}
 					py={1}
 					plain
-					tertiary
+					primary
 					data-test="event-header__btn--cancel-edit"
 					icon={<Icon name="undo"/>}
 					onClick={onCancelEdit}
@@ -179,6 +179,7 @@ export default function EventContext ({
 						py={1}
 						ml={1}
 						plain
+						primary
 						onClick={toggleMenu}
 						icon={<Icon name="ellipsis-v" />}
 					/>

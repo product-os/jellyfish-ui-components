@@ -62,14 +62,16 @@ const Container = styled(Box) `
 	.rta__list {
 		margin: 0;
 		padding: 0;
-		background: #fff;
-		border: 1px solid #dfe2e5;
+		background: ${(props) => { return props.theme.colors.background.main }};
+		border: 1px solid ${(props) => { return props.theme.colors.background.dark }};
 		border-radius: 3px;
-		box-shadow: 0 0 5px rgba(27, 31, 35, 0.1);
+		box-shadow: 0 0 5px ${(props) => {
+		return props.theme.colors.background.main
+	}}20;
 		list-style: none;
 	}
 	.rta__entity {
-		background: white;
+		background: ${(props) => { return props.theme.colors.background.main }};
 		width: 100%;
 		text-align: left;
 		outline: none;
@@ -78,16 +80,16 @@ const Container = styled(Box) `
 		cursor: pointer;
 	}
 	.rta__item:not(:last-child) {
-		border-bottom: 1px solid #dfe2e5;
+		border-bottom: 1px solid ${(props) => { return props.theme.colors.background.dark }};
 	}
 	.rta__entity > * {
 		padding-left: 4px;
 		padding-right: 4px;
 	}
 	.rta__entity--selected {
-		color: #fff;
+		color: ${(props) => { return props.theme.colors.primary.dark }};
 		text-decoration: none;
-		background: #0366d6;
+		background: ${(props) => { return props.theme.colors.primary.light }};
 	}
 `
 

@@ -10,7 +10,7 @@ import {
 import styled from 'styled-components'
 
 export default styled(Txt) `
-	color: #252629;
+	color: ${(props) => { return props.theme.colors.text.main }};
 	font-size: 11px;
 	text-transform: uppercase;
 	margin-bottom: 6px;

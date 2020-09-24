@@ -107,6 +107,7 @@ export default class Header extends React.Component {
 				}}>
 					<Button
 						plain
+						primary
 						tooltip={{
 							placement: 'left',
 							text: 'Jump to first message'
@@ -119,6 +120,7 @@ export default class Header extends React.Component {
 					{_.get(headerOptions, [ 'buttons', 'toggleWhispers' ]) !== false && (
 						<Button
 							plain
+							primary
 							tooltip={{
 								placement: 'left',
 								text: `${hideWhispers ? 'Show' : 'Hide'} whispers`
@@ -135,6 +137,7 @@ export default class Header extends React.Component {
 					{_.get(headerOptions, [ 'buttons', 'toggleEvents' ]) !== false && (
 						<Button
 							plain
+							primary
 							tooltip={{
 								placement: 'left',
 								text: `${messagesOnly ? 'Show' : 'Hide'} create and update events`
@@ -151,6 +154,7 @@ export default class Header extends React.Component {
 
 					<Button
 						plain
+						primary
 						tooltip={{
 							placement: 'left',
 							text: 'Download conversation'

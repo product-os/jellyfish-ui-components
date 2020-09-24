@@ -16,6 +16,6 @@ export default styled(Box) `
 	padding: ${(props) => { return px(props.theme.space[2]) }} 0;
 	flex: 1;
 	overflow-y: auto;
-	border-top: 1px solid ${(props) => { return props.theme.colors.border }};
-	background-color: ${(props) => { return props.theme.colors.quartenary.light }};
+	border-top: 1px solid ${(props) => { return props.theme.colors.background.dark }};
+	background-color: ${(props) => { return props.theme.colors.background.light }};
 `
