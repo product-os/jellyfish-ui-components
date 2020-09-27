@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v2.0.17
+## (2020-09-27)
+
+* patch: Update dependency ava to ^3.13.0 [Renovate Bot]
+
 # v2.0.16
 ## (2020-09-27)
 
