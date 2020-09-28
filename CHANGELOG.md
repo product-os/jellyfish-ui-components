@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v2.0.19
+## (2020-09-28)
+
+* patch: Update dependency eslint-plugin-import to ^2.22.1 [Renovate Bot]
+
 # v2.0.18
 ## (2020-09-27)
 
