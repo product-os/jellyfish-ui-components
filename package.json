@@ -82,7 +82,7 @@
     "react-textarea-autosize": "^7.1.2",
     "react-visibility-sensor": "^5.1.1",
     "redux": "^4.0.5",
-    "rendition": "^18.10.0",
+    "rendition": "^18.10.1",
     "skhema": "^5.3.3",
     "styled-components": "^5.2.0",
     "uuid": "^8.3.0"
@@ -107,7 +107,7 @@
     "eslint": "^7.10.0",
     "eslint-config-standard": "^14.1.1",
     "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jsdoc": "^30.6.1",
+    "eslint-plugin-jsdoc": "^30.6.2",
     "eslint-plugin-lodash": "^7.1.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
