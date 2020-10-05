@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v2.0.33
+## (2020-10-05)
+
+* patch: Update dependency @sentry/browser to ^5.25.0 [Renovate Bot]
+
 # v2.0.32
 ## (2020-10-04)
 
