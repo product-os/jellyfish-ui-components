@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v2.0.35
+## (2020-10-06)
+
+* patch: Update dependency sinon to ^9.2.0 [Renovate Bot]
+
 # v2.0.34
 ## (2020-10-06)
 
