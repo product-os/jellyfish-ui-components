@@ -56,25 +56,25 @@ const EventWrapper = styled(Flex) `
 		border-color: inherit;
 	}
 	.rendition-tag--personal {
-		background: ${(props) => { return props.theme.colors.warning.light }};
+		background: ${(props) => { return props.theme.colors.warning.semilight }};
 		border-color: ${(props) => { return props.theme.colors.warning.main }};
 		color: ${(props) => { return props.theme.colors.warning.dark }};
 
 		&.rendition-tag--alert {
-			background: ${(props) => { return props.theme.colors.danger.light }};
+			background: ${(props) => { return props.theme.colors.danger.semilight }};
 			border-color: ${(props) => { return props.theme.colors.danger.main }};
 			color: ${(props) => { return props.theme.colors.danger.dark }};
 
 			&.rendition-tag--read:after,
 			&.rendition-tag--read-by:after {
 				background: ${(props) => { return props.theme.colors.danger.main }};
-				color: ${(props) => { return props.theme.colors.danger.light }};
+				color: ${(props) => { return props.theme.colors.danger.semilight }};
 			}
 		}
 		&.rendition-tag--read:after,
 		&.rendition-tag--read-by:after {
 			background: ${(props) => { return props.theme.colors.warning.main }};
-			color: ${(props) => { return props.theme.colors.warning.light }};
+			color: ${(props) => { return props.theme.colors.warning.semilight }};
 			width: 1.5em;
 			height: 1.5em;
 			border-radius: 50%;

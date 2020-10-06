@@ -12,9 +12,9 @@ import {
 const MessageContainer = styled(Box) `
 	border-radius: 6px;
 	border-top-left-radius: 0;
-	box-shadow: -5px 4.5px 10.5px 0 ${(props) => {
-		return props.theme.colors.background.main
-	}}20;
+	box-shadow: -5px 4.5px 11px 0 ${(props) => {
+		return props.theme.colors.background.dark
+	}};
 	color: ${(props) => { return props.theme.colors.text.main }};
 
 	a {
@@ -48,26 +48,29 @@ const MessageContainer = styled(Box) `
 		}
 
 		if (editing) {
-			return (card.type === 'whisper' || card.type === 'whisper@1.0.0') ? `
-				border: solid 0.5px ${theme.colors.primary.light};
-				background: ${theme.colors.text.main};
-				color: ${theme.colors.background.light};
-			` : `
-				border: solid 0.5px ${theme.colors.gray.main};
-				background: ${theme.colors.background.light};
-				color: ${theme.colors.text.main};
-			`
+			return `border: solid 1px ${theme.colors.info.main};`
+
+			// Trying what it looks like with just a info border
+			// Return (card.type === 'whisper' || card.type === 'whisper@1.0.0') ? `
+			// 	border: solid 1px ${theme.colors.primary.dark};
+			// 	background: ${theme.colors.text.light};
+			// 	color: ${theme.colors.primary.dark};
+			// ` : `
+			// 	border: solid 1px ${theme.colors.border.main};
+			// 	background: ${theme.colors.background.light};
+			// 	color: ${theme.colors.text.main};
+			// `
 		}
 
 		if (card.type === 'whisper' || card.type === 'whisper@1.0.0' ||
 			card.type === 'summary' || card.type === 'summary@1.0.0') {
 			return `
-				background: ${theme.colors.primary.main};
-				color: ${theme.colors.text.main};
-				border: solid 0.5px ${theme.colors.primary.dark};
+				background: ${theme.colors.primary.dark};
+				color: ${theme.colors.text.light};
+				border: solid 1px ${theme.colors.primary.dark};
 
 				blockquote {
-					color: ${theme.colors.primary.main};
+					color: ${theme.colors.text.main};
 				}
 			`
 		}
@@ -80,7 +83,7 @@ const MessageContainer = styled(Box) `
 		}
 
 		return `
-			border: solid 0.5px ${theme.colors.background.dark};
+			border: solid 1px ${theme.colors.border.dark};
 			background: ${theme.colors.background.main};
 		`
 	}}

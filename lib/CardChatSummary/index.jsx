@@ -37,7 +37,7 @@ const SummaryWrapper = styled(Link) `
 	padding: 18px 16px;
 	border-left-style: solid;
 	border-left-width: 4px;
-	border-bottom: 1px solid ${(props) => { return props.theme.colors.background.dark }};
+	border-bottom: 1px solid ${(props) => { return props.theme.colors.border.dark }};
 	cursor: pointer;
 	color: ${(props) => { return props.theme.colors.text.main }};
 	box-shadow: -5px 4.5px 10.5px 0 rgba(152, 173, 227, 0.08);

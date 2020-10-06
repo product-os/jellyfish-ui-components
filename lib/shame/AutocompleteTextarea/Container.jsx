@@ -6,8 +6,7 @@
 
 import styled from 'styled-components'
 import {
-	Box,
-	Theme
+	Box
 } from 'rendition'
 
 const Container = styled(Box) `
@@ -38,8 +37,8 @@ const Container = styled(Box) `
 		width: 100%;
 		height: 100%;
 		font-size: 1em;
-		border-radius: ${Theme.radius}px;
-		border: 1px solid ${Theme.colors.gray.main};
+		border-radius: ${(props) => { return props.theme.radius }}px;
+		border: 1px solid ${(props) => { return props.theme.colors.border.main }};
 		padding: 8px 16px;
 		resize: vertical;
 		display: block;
@@ -47,7 +46,7 @@ const Container = styled(Box) `
 			box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.1);
 		}
 		&::placeholder {
-			color: ${Theme.colors.gray.main};
+			color: ${(props) => { return props.theme.colors.text.semilight }};
 		}
 	}
 	.rta__autocomplete {

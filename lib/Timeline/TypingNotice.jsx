@@ -13,9 +13,9 @@ import {
 	commaListsAnd
 } from 'common-tags'
 
-const StyledBox = styled.div `
+const StyledBox = styled(Box) `
 	background: ${(props) => { return props.theme.background.main }};
-	border: 1px solid ${(props) => { return props.theme.background.dark }};
+	border: 1px solid ${(props) => { return props.theme.border.main }};
 	border-radius: ${(props) => { return props.theme.border }}px;
 	color: ${(props) => { return props.theme.text.main }};
 	margin-left: ${(props) => { return props.theme.space[3] }}px;

@@ -55,7 +55,7 @@ const Menu = styled(Box) `
 			top: 9px;
 			border-top: ${ARROW_WIDTH}px solid transparent;
 			border-bottom: ${ARROW_WIDTH}px solid transparent;
-			border-right: ${ARROW_WIDTH - 1}px solid ${(props) => { return props.theme.colors.background.dark }};
+			border-right: ${ARROW_WIDTH - 1}px solid ${(props) => { return props.theme.colors.border.dark }};
 		}
 
 		&:after {
@@ -63,7 +63,7 @@ const Menu = styled(Box) `
 			top: 10px;
 			border-top: ${ARROW_WIDTH - 1}px solid transparent;
 			border-bottom: ${ARROW_WIDTH - 1}px solid transparent;
-			border-right: ${ARROW_WIDTH - 2}px solid ${(props) => { return props.theme.colors.background.main }};
+			border-right: ${ARROW_WIDTH - 2}px solid ${(props) => { return props.theme.colors.border.main }};
 		}
 	}
 
@@ -73,7 +73,7 @@ const Menu = styled(Box) `
 			top: -6px;
 			border-right: ${ARROW_WIDTH}px solid transparent;
 			border-left: ${ARROW_WIDTH}px solid transparent;
-			border-bottom: ${ARROW_WIDTH - 1}px solid ${(props) => { return props.theme.colors.background.dark }};
+			border-bottom: ${ARROW_WIDTH - 1}px solid ${(props) => { return props.theme.colors.border.dark }};
 		}
 
 		&:after {
@@ -81,7 +81,7 @@ const Menu = styled(Box) `
 			top: -5px;
 			border-right: ${ARROW_WIDTH - 1}px solid transparent;
 			border-left: ${ARROW_WIDTH - 1}px solid transparent;
-			border-bottom: 5px solid ${(props) => { return props.theme.colors.background.main }};
+			border-bottom: 5px solid ${(props) => { return props.theme.colors.border.main }};
 		}
 	}
 `

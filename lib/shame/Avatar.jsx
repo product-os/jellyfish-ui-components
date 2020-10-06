@@ -52,7 +52,7 @@ const IconWrapper = styled(Flex) `
 	width: 100%;
 	height: 100%;
 	background: ${(props) => { return props.theme.colors.primary.dark }};
-	color: ${(props) => { return props.theme.colors.primary.light }};
+	color: ${(props) => { return props.theme.colors.background.main }};
 	flex-direction: column;
 	justify-content: center;
   align-items: center;

@@ -23,7 +23,7 @@ const MenuPanel = styled(Box) `
 		height: 0;
 		border-left: 5px solid transparent;
 		border-right: 5px solid transparent;
-		border-bottom: 5px solid ${(props) => { return props.theme.colors.background.dark }};
+		border-bottom: 5px solid ${(props) => { return props.theme.colors.border.dark }};
 		position: absolute;
     top: -6px;
 		left: 14px;

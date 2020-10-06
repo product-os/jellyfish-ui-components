@@ -184,12 +184,12 @@ const MessageInput = ({
 			px={3}
 			wide={wide}
 			{...(whisper ? {
-				color: theme.colors.text.main,
-				bg: theme.colors.primary.main,
+				color: theme.colors.text.light,
+				bg: theme.colors.primary.dark,
 				borderColor: theme.colors.primary.dark
 			} : {
 				color: theme.colors.text.main,
-				borderColor: theme.colors.background.dark,
+				borderColor: theme.colors.background.main,
 				bg: theme.colors.background.main,
 				borderColorWhenFocused: theme.colors.primary.main,
 				...(wide ? {

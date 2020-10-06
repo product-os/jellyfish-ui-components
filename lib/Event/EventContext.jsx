@@ -29,11 +29,11 @@ const ContextWrapper = styled(Flex) `
 	padding: 2px 4px 2px 2px;
  	border-radius: 6px;
 	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
- 	border: solid 0.5px ${(props) => { return props.theme.colors.background.light }};
+ 	border: solid 0.5px ${(props) => { return props.theme.colors.border.main }};
  	position: absolute;
  	right: 16px;
  	bottom: -6px;
- 	background: ${(props) => { return props.theme.colors.background.dark }};
+ 	background: ${(props) => { return props.theme.colors.background.main }};
 	opacity: ${(props) => { return props.card.pending || props.updating || props.editing ? 1 : 0 }};
 	transition: 150ms ease-in-out opacity, 150ms ease-in-out width;
 	.event-card:hover & {
