@@ -5,6 +5,13 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v2.0.13
+## (2020-10-06)
+
+* set boxshadow of message container [StefKors]
+* Support border colors [StefKors]
+* WIP [StefKors]
+
 # v2.0.12
 ## (2020-09-25)
 
