@@ -13,7 +13,7 @@ const MessageContainer = styled(Box) `
 	border-radius: 6px;
 	border-top-left-radius: 0;
 	box-shadow: -5px 4.5px 11px 0 ${(props) => {
-		return props.theme.colors.background.dark
+		return props.theme.colors.border.main
 	}};
 	color: ${(props) => { return props.theme.colors.text.main }};
 
