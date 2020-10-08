@@ -82,7 +82,7 @@
     "react-textarea-autosize": "^7.1.2",
     "react-visibility-sensor": "^5.1.1",
     "redux": "^4.0.5",
-    "rendition": "^18.10.2",
+    "rendition": "^18.11.0",
     "skhema": "^5.3.3",
     "styled-components": "^5.2.0",
     "uuid": "^8.3.1"
