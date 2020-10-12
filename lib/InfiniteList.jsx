@@ -49,17 +49,17 @@ export class InfiniteList extends React.Component {
 	isRowLoaded ({
 		index
 	}) {
-		return Boolean(this.props.list[index])
+		return Boolean(this.props.children[index])
 	}
 
 	rowRenderer ({
 		index, key, isScrolling, parent, style
 	}) {
 		const {
-			list, component: Component
+			children, component: Component
 		} = this.props
 
-		const item = list[index]
+		const item = children[index]
 
 		return (
 			<CellMeasurer
@@ -149,14 +149,14 @@ export class InfiniteList extends React.Component {
 
 	render () {
 		const {
-			list
+			children
 		} = this.props
 
 		return (
 			<InfiniteLoader
 				isRowLoaded={this.isRowLoaded}
 				loadMoreRows={this.loadMoreRows}
-				rowCount={list.length}
+				rowCount={children.length}
 			>
 				{({
 					onRowsRendered, registerChild
@@ -172,7 +172,7 @@ export class InfiniteList extends React.Component {
 										onRowsRendered={onRowsRendered}
 										height={height}
 										width={width}
-										rowCount={list.length}
+										rowCount={children.length}
 										rowRenderer={this.rowRenderer}
 										rowHeight={this.cache.rowHeight}
 									/>
