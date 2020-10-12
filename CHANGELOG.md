@@ -5,6 +5,13 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v2.0.42
+## (2020-10-12)
+
+* WIP [StefKors]
+* fixup try rendering with children prop [StefKors]
+* Updates rendition [Lucy-Jane]
+
 # v2.0.41
 ## (2020-10-09)
 
