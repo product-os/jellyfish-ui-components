@@ -12,6 +12,9 @@ import {
 	CellMeasurerCache,
 	InfiniteLoader
 } from 'react-virtualized'
+import {
+	Box
+} from 'rendition'
 
 export class InfiniteList extends React.Component {
 	constructor (props, context) {
@@ -33,7 +36,7 @@ export class InfiniteList extends React.Component {
 			fillMaxArea
 		} = this.props
 		if (fillMaxArea) {
-			// This.queryForMoreIfNecessary()
+			this.queryForMoreIfNecessary()
 		}
 	}
 
@@ -42,7 +45,7 @@ export class InfiniteList extends React.Component {
 			fillMaxArea
 		} = this.props
 		if (fillMaxArea) {
-			// This.queryForMoreIfNecessary()
+			this.queryForMoreIfNecessary()
 		}
 	}
 
@@ -61,6 +64,10 @@ export class InfiniteList extends React.Component {
 
 		const item = children[index]
 
+		if (!item) {
+			return null
+		}
+
 		return (
 			<CellMeasurer
 				key={key}
@@ -70,13 +77,15 @@ export class InfiniteList extends React.Component {
 				rowIndex={index}
 			>
 				{({
-					measure, registerChild
+					registerChild
 				}) => {
 					return (
-						<Component
-							item={item}
-							registerChild={registerChild}
-						/>
+						<div
+							className="cellMeasurerChild"
+							style={style}
+						>
+							{index}{item}
+						</div>
 					)
 				}}
 			</CellMeasurer>
@@ -99,7 +108,8 @@ export class InfiniteList extends React.Component {
 		if (processing) {
 			return
 		}
-		console.log(this.cache)
+
+		console.log('queryForMoreIfNecessary')
 
 		// Const {
 		// 	clientHeight,
@@ -116,7 +126,9 @@ export class InfiniteList extends React.Component {
 		// }
 	}
 
-	loadMoreRows () {
+	loadMoreRows ({
+		startIndex, stopIndex
+	}) {
 		const {
 			processing,
 			onScrollBeginning,
@@ -126,63 +138,70 @@ export class InfiniteList extends React.Component {
 		if (processing) {
 			return
 		}
-		const {
-			scrollTop,
-			scrollHeight,
-			offsetHeight
-		} = this.scrollArea
 
-		if (scrollTop < triggerOffset && onScrollBeginning) {
-			onScrollBeginning()
-		}
+		console.log('loadMoreRows', startIndex, stopIndex)
 
-		const scrollOffset = scrollHeight - (scrollTop + offsetHeight)
+		// Const {
+		// 	scrollTop,
+		// 	scrollHeight,
+		// 	offsetHeight
+		// } = this.scrollArea
 
-		if (scrollOffset > triggerOffset) {
-			return
-		}
+		// if (scrollTop < triggerOffset && onScrollBeginning) {
+		// 	onScrollBeginning()
+		// }
 
-		if (onScrollEnding) {
-			onScrollEnding()
-		}
+		// const scrollOffset = scrollHeight - (scrollTop + offsetHeight)
+
+		// if (scrollOffset > triggerOffset) {
+		// 	return
+		// }
+
+		// if (onScrollEnding) {
+		// 	onScrollEnding()
+		// }
 	}
 
 	render () {
 		const {
 			children
 		} = this.props
+		console.log(this.props)
+		console.log('children', children)
 
 		return (
-			<InfiniteLoader
-				isRowLoaded={this.isRowLoaded}
-				loadMoreRows={this.loadMoreRows}
-				rowCount={children.length}
-			>
-				{({
-					onRowsRendered, registerChild
-				}) => {
-					return (
-						<AutoSizer>
-							{({
-								height, width
-							}) => {
-								return (
-									<List
-										ref={registerChild}
-										onRowsRendered={onRowsRendered}
-										height={height}
-										width={width}
-										rowCount={children.length}
-										rowRenderer={this.rowRenderer}
-										rowHeight={this.cache.rowHeight}
-									/>
-								)
-							}
-							}
-						</AutoSizer>
-					)
-				}}
-			</InfiniteLoader>
+			<Box bg={this.props.bg} style={this.props.style}>
+				<InfiniteLoader
+					isRowLoaded={this.isRowLoaded}
+					loadMoreRows={this.loadMoreRows}
+					rowCount={children.length}
+				>
+					{({
+						onRowsRendered, registerChild
+					}) => {
+						return (
+							<AutoSizer>
+								{({
+									height, width
+								}) => {
+									return (
+										<List
+											ref={registerChild}
+											onRowsRendered={onRowsRendered}
+											height={height}
+											width={width}
+											rowCount={children.length}
+											rowRenderer={this.rowRenderer}
+											rowHeight={this.cache.rowHeight}
+										/>
+									)
+								}
+								}
+							</AutoSizer>
+						)
+					}}
+				</InfiniteLoader>
+			</Box>
 		)
 	}
 }
