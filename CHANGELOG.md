@@ -5,6 +5,21 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v2.1.0
+## (2020-10-21)
+
+* Add support for regular font-awesome icons [Graham McCulloch]
+* patch: Update dependency rendition to ^18.12.1 [Renovate Bot]
+* patch: Update dependency eslint-plugin-react to ^7.21.5 [Renovate Bot]
+* patch: Update dependency rendition to ^18.12.0 [Renovate Bot]
+* patch: Update dependency eslint-plugin-jsdoc to ^30.7.3 [Renovate Bot]
+* patch: Update dependency eslint-plugin-jsdoc to ^30.7.1 [Renovate Bot]
+* patch: Update dependency query-string to ^6.13.6 [Renovate Bot]
+* patch: Update dependency lint-staged to ^10.4.2 [Renovate Bot]
+* patch: Update dependency @babel/core to ^7.12.3 [Renovate Bot]
+* patch: Update dependency lint-staged to ^10.4.1 [Renovate Bot]
+* patch: Update non-major to ^7.12.1 [Renovate Bot]
+
 # v2.0.46
 ## (2020-10-14)
 
