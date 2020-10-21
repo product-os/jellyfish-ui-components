@@ -70,9 +70,7 @@ export default function UserStatusIcon ({
 			{...props}
 			alignItems="center"
 			justifyContent="center"
-			tooltip={{
-				text: userStatus.title, placement: 'right'
-			}}
+			tooltip={userStatus.title}
 		>
 			{ statusIconName && <Icon name={statusIconName} /> }
 		</StatusWrapper>
