@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v2.2.0
+## (2020-10-21)
+
+* New UserAvatar component [Graham McCulloch]
+
 # v2.1.0
 ## (2020-10-21)
 
