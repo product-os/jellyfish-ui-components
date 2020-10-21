@@ -5,24 +5,28 @@
  */
 
 import * as _ from 'lodash'
+import classnames from 'classnames'
 import React from 'react'
 
 export default function Icon (props) {
 	const restProps = _.omit(props, [
 		'brands',
+		'regular',
 		'name',
 		'spin',
 		'rotate'
 	])
-	let className = `fa${props.brands ? 'b' : 's'} fa-${props.name}`
-	if (props.spin) {
-		className += ' fa-spin'
-	}
 
-	if (props.rotate) {
-		className += ` fa-rotate-${props.rotate}`
-	}
-
+	// TODO: Replace the boolean props (brands, regular) with
+	// a single enum prop so it's impossible to inadvertently
+	// set two of them
+	const className = classnames(`fa-${props.name}`, {
+		fas: !props.brands && !props.regular,
+		far: !props.brands && props.regular,
+		fab: props.brands,
+		'fa-spin': props.spin,
+		[`fa-rotate-${props.rotate}`]: props.rotate
+	})
 	return (
 		<i
 			{...restProps}
