@@ -5,11 +5,11 @@
  */
 
 import {
+	flushPromises,
 	getWrapper
 } from '../../../test/ui-setup'
 import _ from 'lodash'
 import ava from 'ava'
-import Bluebird from 'bluebird'
 import {
 	shallow,
 	mount
@@ -25,6 +25,8 @@ import inlineImageMsg from './fixtures/msg-inline-image.json'
 import user1 from './fixtures/user1.json'
 import user2 from './fixtures/user2.json'
 
+const sandbox = sinon.createSandbox()
+
 const getActor = async (id) => {
 	if (id === user1.id) {
 		return user1
@@ -39,36 +41,47 @@ const getTimeline = (target) => {
 
 const wrappingComponent = getWrapper().wrapper
 
+ava.beforeEach((test) => {
+	const getActorSpy = sandbox.spy(getActor)
+	test.context = {
+		...test.context,
+		commonProps: {
+			active: true,
+			getCard: sandbox.stub(),
+			selectCard: sandbox.stub().returns(() => {
+				return user2
+			}),
+			card,
+			theme,
+			timeline: getTimeline(card),
+			getActor: getActorSpy
+		}
+	}
+})
+
+ava.afterEach(() => {
+	sandbox.restore()
+})
+
 ava('It should render', (test) => {
+	const {
+		commonProps
+	} = test.context
+
 	test.notThrows(() => {
-		shallow(
-			<CardChatSummary
-				active
-				card={card}
-				theme={theme}
-				timeline={getTimeline(card)}
-				getActor={getActor}
-			/>
-		)
+		shallow(<CardChatSummary {...commonProps} />)
 	})
 })
 
 ava('It should change the actor after an update', async (test) => {
-	const spy = sinon.spy(getActor)
-	const timeline = getTimeline(card)
+	const {
+		commonProps
+	} = test.context
 
-	const component = shallow(
-		<CardChatSummary
-			active
-			card={card}
-			theme={theme}
-			timeline={timeline}
-			getActor={spy}
-		/>
-	)
+	const component = shallow(<CardChatSummary {...commonProps} />)
 
-	// Check if getTimeline is used
-	test.is(spy.callCount, 1)
+	// Check if getActor is used
+	test.is(commonProps.getActor.callCount, 1)
 
 	const newWhisper = {
 		id: 'acbfc1ec-bf55-44aa-9361-910f52df3c05',
@@ -104,22 +117,24 @@ ava('It should change the actor after an update', async (test) => {
 	// Add the new whisper to the current
 	// timeline and sort it by timestamp
 	component.setProps({
-		timeline: _.sortBy([ ...timeline, newWhisper ], 'data.timestamp')
+		timeline: _.sortBy([ ...commonProps.timeline, newWhisper ], 'data.timestamp')
 	})
 
-	await Bluebird.delay(500)
+	component.update()
+	await flushPromises()
 
 	test.is(component.state('actor').id, newWhisper.data.actor)
 })
 
 ava('Inline messages are transformed to a text representation', async (test) => {
+	const {
+		commonProps
+	} = test.context
+
 	const component = await mount((
 		<CardChatSummary
-			active
-			card={card}
-			theme={theme}
+			{...commonProps}
 			timeline={[ inlineImageMsg ]}
-			getActor={getActor}
 		/>
 	), {
 		wrappingComponent
@@ -130,13 +145,14 @@ ava('Inline messages are transformed to a text representation', async (test) => 
 })
 
 ava('Links are transformed to use the RouterLink component', async (test) => {
+	const {
+		commonProps
+	} = test.context
+
 	const component = await mount((
 		<CardChatSummary
-			active
-			card={card}
-			theme={theme}
+			{...commonProps}
 			timeline={[ inlineImageMsg ]}
-			getActor={getActor}
 		/>
 	), {
 		wrappingComponent

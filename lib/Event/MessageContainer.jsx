@@ -10,7 +10,8 @@ import {
 } from 'rendition'
 
 const MessageContainer = styled(Box) `
-	border-radius: 6px;
+	min-width: 0;
+	border-radius: 12px;
 	border-top-left-radius: 0;
 	box-shadow: -5px 4.5px 10.5px 0 rgba(152, 173, 227, 0.08);
 	a {
@@ -94,8 +95,24 @@ const MessageContainer = styled(Box) `
 				border-bottom-left-radius: 0;
 				border-bottom-color: transparent;
 			` : ''
-	}
-}}
+	}}
+
+	${({
+		truncated
+	}) => {
+		return truncated ? `
+			border-right-width: 0;
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+			p {
+				line-height: 1.2;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+		` : ''
+	}}
+}
 `
 
 export default MessageContainer

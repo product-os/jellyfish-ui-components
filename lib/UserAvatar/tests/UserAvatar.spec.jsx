@@ -63,5 +63,5 @@ ava('UserAvatar displays the user`s avatar, tooltip and status', async (test) =>
 	test.deepEqual(statusIcon.props().userStatus.value, 'DoNotDisturb')
 
 	const wrapper = component.find('Box').first()
-	test.is(wrapper.props().tooltip, 'Test User (test@jel.ly.fish)')
+	test.is(wrapper.props().tooltip, 'Test User\ntest@jel.ly.fish')
 })
