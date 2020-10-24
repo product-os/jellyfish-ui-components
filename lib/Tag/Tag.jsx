@@ -6,35 +6,55 @@
 
 import React from 'react'
 import {
+	Button,
 	Txt,
 	Theme
 } from 'rendition'
 import styled from 'styled-components'
+import {
+	px
+} from '../services/helpers'
+import Icon from '../shame/Icon'
 
 export const tagStyle = `
+	display: flex;
 	background: #efefef;
 	padding: 2px 5px 1px;
 	border-radius: ${Theme.radius}px;
 	border: 1px solid #c3c3c3;
 	line-height: 1;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	overflow: hidden;
 	max-width: 180px;
+	position: relative;
 
 	> a {
-		display: inline
+		flex: 1;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
 	}
 `
 
 const StyledTag = styled(Txt.span) `
 	${tagStyle}
+	${(props) => {
+		return (props.hasRemoveButton ? `padding-right: ${px(props.theme.space[3])} !important;` : '')
+	}}
+`
+
+const StyledRemoveButton = styled(Button).attrs({
+	plain: true
+}) `
+	position: absolute;
+	right: 3px;
+	cursor: default;
+	color: ${(props) => { return props.theme.colors.tertiary.main }};
 `
 
 export const TAG_SYMBOL = '#'
 
 export default function Tag ({
 	children,
+	onRemove,
 	...rest
 }) {
 	let content = children
@@ -43,7 +63,28 @@ export default function Tag ({
 		content = `${TAG_SYMBOL}${content}`
 	}
 
+	const handleRemoveButtonClick = React.useCallback((event) => {
+		event.preventDefault()
+		onRemove()
+	}, [ onRemove ])
+
+	const hasRemoveButton = Boolean(onRemove)
+
+	const confirmation = React.useMemo(() => {
+		return {
+			placement: 'bottom',
+			text: 'Are you sure?'
+		}
+	}, [])
+
 	return (
-		<StyledTag {...rest}>{content}</StyledTag>
+		<StyledTag {...rest} hasRemoveButton={hasRemoveButton}>
+			{content}
+			{hasRemoveButton && (
+				<StyledRemoveButton confirmation={confirmation} onClick={handleRemoveButtonClick}>
+					<Icon name="times" />
+				</StyledRemoveButton>
+			)}
+		</StyledTag>
 	)
 }
