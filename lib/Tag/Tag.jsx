@@ -17,7 +17,7 @@ import {
 import Icon from '../shame/Icon'
 
 export const tagStyle = `
-	display: flex;
+	display: inline-flex;
 	background: #efefef;
 	padding: 2px 5px 1px;
 	border-radius: ${Theme.radius}px;
