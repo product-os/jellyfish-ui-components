@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v2.3.1
+## (2020-10-26)
+
+* Fix mentions taking whole line [Kakhaber]
+
 # v2.3.0
 ## (2020-10-24)
 
