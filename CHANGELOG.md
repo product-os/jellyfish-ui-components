@@ -5,6 +5,20 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v2.3.0
+## (2020-10-24)
+
+* Tag: Add onRemove property [Kakhaber]
+* patch: Update dependency eslint to ^7.12.0 [Renovate Bot]
+* patch: Update dependency rendition to ^18.13.1 [Renovate Bot]
+* patch: Update dependency @sentry/browser to ^5.27.1 [Renovate Bot]
+* patch: Update dependency rendition to ^18.13.0 [Renovate Bot]
+* patch: Update dependency eslint-config-standard to v15 [Renovate Bot]
+* patch: Update dependency @balena/jellyfish-client-sdk to ^2.3.0 [Renovate Bot]
+* patch: Update dependency eslint-plugin-standard to ^4.0.2 [Renovate Bot]
+* patch: Update dependency rendition to ^18.12.2 [Renovate Bot]
+* patch: Update dependency @sentry/browser to ^5.27.0 [Renovate Bot]
+
 # v2.2.0
 ## (2020-10-21)
 
