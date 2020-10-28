@@ -5,6 +5,15 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v2.3.2
+## (2020-10-28)
+
+* Update readme [Josh Bowling]
+* patch: Update dependency eslint to ^7.12.1 [Renovate Bot]
+* patch: Update dependency @balena/jellyfish-client-sdk to ^2.4.0 [Renovate Bot]
+* patch: Update dependency react-redux to ^7.2.2 [Renovate Bot]
+* patch: Update dependency lint-staged to ^10.5.0 [Renovate Bot]
+
 # v2.3.1
 ## (2020-10-26)
 
