@@ -7,7 +7,7 @@
   ],
   "rangeStrategy": "bump",
   "commitMessagePrefix": "patch:",
-  "commitBody": "Change-type: patch",
+  "commitBody": "Change-Type: patch\nSigned-off-by: Josh Bowling <josh@balena.io>",
   "prHourlyLimit": 0,
   "labels": [
     "dependencies"
