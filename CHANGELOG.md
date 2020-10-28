@@ -5,6 +5,14 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v2.3.3
+## (2020-10-28)
+
+* Renovate config set pruneStaleBranches to false [Marios Balamatsias]
+* patch: Update dependency @balena/jellyfish-client-sdk to ^2.4.1 [Renovate Bot]
+* patch: Update dependency sinon to ^9.2.1 [Renovate Bot]
+* patch: Update dependency eslint-config-standard to ^15.0.1 [Renovate Bot]
+
 # v2.3.2
 ## (2020-10-28)
 
