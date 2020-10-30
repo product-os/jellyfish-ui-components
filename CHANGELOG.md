@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v2.3.7
+## (2020-10-30)
+
+* patch: Update dependency styled-components to ^5.2.1 [Renovate Bot]
+
 # v2.3.6
 ## (2020-10-29)
 
