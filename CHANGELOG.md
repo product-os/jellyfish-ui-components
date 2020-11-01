@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v2.3.13
+## (2020-11-01)
+
+* patch: Update dependency @emotion/core to ^10.1.0 [Renovate Bot]
+
 # v2.3.12
 ## (2020-11-01)
 
