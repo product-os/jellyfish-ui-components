@@ -51,9 +51,10 @@ export const UserAvatar = React.memo(({
 		>
 			{(user) => {
 				const actor = generateActorFromUserCard(user)
+				const tooltip = actor && `${_.truncate(actor.name, 30)}\n${_.truncate(actor.email, 30)}`
 				return (
 					<Wrapper
-						tooltip={_.truncate(`${actor.name} (${actor.email})`, 30)}
+						tooltip={tooltip}
 						emphasized={emphasized}
 						{...rest}
 					>

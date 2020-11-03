@@ -1,5 +1,5 @@
 /*
- * Copyright (C) Balena.io - All Rights Reserved
+ * Copyright (C) Balena.io - All Rights Reserved TEST
  * Unauthorized copying of this file, via any medium is strictly prohibited.
  * Proprietary and confidential.
  */
@@ -7,30 +7,39 @@
 import {
 	circularDeepEqual
 } from 'fast-equals'
-import * as _ from 'lodash'
-import * as React from 'react'
+import _ from 'lodash'
+import React from 'react'
 import {
-	Box,
 	Flex,
-	Txt,
-	Link as RenditionLink
+	Txt
 } from 'rendition'
-import {
-	Markdown
-} from 'rendition/dist/extra/Markdown'
 import styled, {
 	withTheme
 } from 'styled-components'
 import Link from '../Link'
 import * as helpers from '../services/helpers'
 import ColorHashPill from '../shame/ColorHashPill'
-import Icon from '../shame/Icon'
 import {
 	TagList
 } from '../Tag'
 import {
-	HIDDEN_ANCHOR
-} from '../Timeline'
+	MessageSnippet
+} from './MessageSnippet'
+import {
+	TimeSummary
+} from './TimeSummary'
+import {
+	OwnerDisplay
+} from './OwnerDisplay'
+
+const TitleTxt = styled(Txt) `
+	display: block;
+	flex: 1;
+	min-width: 0;
+	whiteSpace: nowrap;
+	overflow: hidden;
+	textOverflow: ellipsis;
+`
 
 const SummaryWrapper = styled(Link) `
 	display: block;
@@ -57,39 +66,6 @@ const SummaryWrapper = styled(Link) `
 		background: ${(props) => { return props.theme.colors.quartenary.light }};
 	}
 `
-
-const LatestMessage = styled(Markdown) `
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	border-radius: 6px;
-	padding-left: 10px;
-	flex: 1;
-
-	p {
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-	}
-`
-
-const componentOverrides = {
-	img: (attribs) => {
-		return <span>[{attribs.title || attribs.alt || 'image'}]</span>
-	},
-	// eslint-disable-next-line id-length
-	a: (attribs) => {
-		// The whole chat summary is clickable. Prevent navigating to the
-		// chat/thread channel when clicking on a link within the last message
-		// summary.
-		const onClick = (event) => {
-			event.stopPropagation()
-			event.preventDefault()
-			window.open(attribs.href)
-		}
-		return <RenditionLink blank {...attribs} onClick={onClick} />
-	}
-}
 
 export class CardChatSummary extends React.Component {
 	constructor (props) {
@@ -120,11 +96,14 @@ export class CardChatSummary extends React.Component {
 	render () {
 		const {
 			card,
+			selectCard,
+			getCard,
 			timeline,
 			active,
 			to,
 			theme,
 			highlightedFields,
+			displayOwner,
 			...rest
 		} = this.props
 
@@ -132,23 +111,15 @@ export class CardChatSummary extends React.Component {
 			actor
 		} = this.state
 
-		let latestMessageText = ''
-
-		// Get latest message text
-		for (let index = timeline.length - 1; index >= 0; index--) {
-			const event = timeline[index]
+		const latestMessageCard = _.findLast(timeline, (event) => {
 			const typeBase = event.type.split('@')[0]
-			if (typeBase === 'message' || typeBase === 'whisper') {
-				latestMessageText = _.get(event, [ 'data', 'payload', 'message' ], '')
-					.replace(/```[^`]*```/, '`<code block>`')
-					.split('\n')
-					.filter((line) => {
-						return !line.includes(HIDDEN_ANCHOR)
-					})
-					.shift()
-				break
-			}
-		}
+			return typeBase === 'message' || typeBase === 'whisper'
+		})
+
+		const createdTime = _.get(helpers.getCreateCard(card), [ 'data', 'timestamp' ])
+		const updatedTime = _.get(helpers.getLastUpdate(card), [ 'data', 'timestamp' ])
+
+		const threadOwner = _.get(card.links, [ 'is owned by', 0 ])
 
 		return (
 			<SummaryWrapper
@@ -158,7 +129,7 @@ export class CardChatSummary extends React.Component {
 				to={to}
 				{...rest}
 			>
-				<Flex justifyContent="space-between" mb={3}>
+				<Flex justifyContent="space-between" mb={3} flexWrap="wrap">
 					<Flex alignItems="flex-start" flexWrap="wrap">
 						{_.map(highlightedFields, (keypath) => {
 							return <ColorHashPill key={keypath} value={_.get(card, keypath)} mr={2} mb={1} />
@@ -177,46 +148,22 @@ export class CardChatSummary extends React.Component {
 						/>
 					</Flex>
 
-					{_.get(card.links, [ 'has attached element' ], []).length > 0 && (
-						<Txt color="text.light" fontSize={12}>
-							Updated {helpers.timeAgo(_.get(helpers.getLastUpdate(card), [ 'data', 'timestamp' ]))}
-						</Txt>
-					)}
-				</Flex>
-
-				<Flex justifyContent="space-between" mb={1}>
-					<Box style={{
-						flex: 1,
-						minWidth: 0,
-						marginRight: 10
-					}}>
-						<Txt
-							bold
-							style={{
-								whiteSpace: 'nowrap',
-								overflow: 'hidden',
-								textOverflow: 'ellipsis'
-							}}>
-							{card.name || (actor && `Conversation with ${actor.name}`) || card.slug}
-						</Txt>
-					</Box>
-				</Flex>
-
-				{latestMessageText && (
-					<Flex alignItems="center">
-						<Icon
-							name="reply"
-							rotate={180}
-							style={{
-								color: active ? theme.colors.info.main : theme.colors.quartenary.dark
-							}}
-						/>
-
-						<LatestMessage data-test="card-chat-summary__message" componentOverrides={componentOverrides}>
-							{latestMessageText}
-						</LatestMessage>
+					<Flex alignItems="center" mb={1} color="text.light">
+						{_.get(card.links, [ 'has attached element' ], []).length > 0 && (
+							<React.Fragment>
+								<TimeSummary timestamp={createdTime} prefix="Created" iconName="history" ml={3} />
+								<TimeSummary timestamp={updatedTime} prefix="Updated" iconName="sync" ml={3} />
+							</React.Fragment>
+						)}
+						{ displayOwner && <OwnerDisplay owner={threadOwner} selectCard={selectCard} getCard={getCard} ml={3} /> }
 					</Flex>
-				)}
+				</Flex>
+
+				<TitleTxt bold mb={1}>
+					{card.name || (actor && `Conversation with ${actor.name}`) || card.slug}
+				</TitleTxt>
+
+				<MessageSnippet messageCard={latestMessageCard} selectCard={selectCard} getCard={getCard} mt={2}/>
 			</SummaryWrapper>
 		)
 	}
