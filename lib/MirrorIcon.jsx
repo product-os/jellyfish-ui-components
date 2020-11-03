@@ -16,17 +16,17 @@ import Icon from './shame/Icon'
 const Mirrors = [
 	{
 		name: 'Discourse',
-		matcher: new RegExp(/forums.balena.io/),
+		matcher: /forums.balena.io/,
 		icon: <Icon name="discourse" brands />
 	},
 	{
 		name: 'GitHub',
-		matcher: new RegExp(/github.com/),
+		matcher: /github.com/,
 		icon: <Icon name="github" brands />
 	},
 	{
 		name: 'Front',
-		matcher: new RegExp(/frontapp.com/),
+		matcher: /frontapp.com/,
 		icon: <Img
 			width="100%"
 			style={{
