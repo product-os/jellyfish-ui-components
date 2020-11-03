@@ -24,6 +24,17 @@ import {
 const wrappingComponent = getWrapper().wrapper
 const sandbox = sinon.createSandbox()
 
+const getMessageInCard = (message) => {
+	const newCard = _.merge(card, {
+		data: {
+			payload: {
+				message
+			}
+		}
+	})
+	return getMessage(newCard)
+}
+
 ava.beforeEach((test) => {
 	test.context.commonProps = {
 		enableAutocomplete: false,
@@ -50,22 +61,22 @@ ava.afterEach(() => {
 	sandbox.restore()
 })
 
+ava.only('getMessage replaces inline Discourse attachment links with correct markdown links', (test) => {
+	const msg = getMessageInCard(
+		'This is a link: [file1.log|attachment](upload://2NTd93eaDOQohgCHeMpUr5cynbL.log) (149.6 KB) ' +
+		'This is another link: [file2.log|attachment](upload://4EDd93eaDOQohgCHeMpUr5cynbL.log) (149.6 KB)'
+	)
+	test.is(msg,
+		'This is a link: [file1.log](https://forums.balena.io/uploads/short-url/2NTd93eaDOQohgCHeMpUr5cynbL.log) (149.6 KB) ' +
+		'This is another link: [file2.log](https://forums.balena.io/uploads/short-url/4EDd93eaDOQohgCHeMpUr5cynbL.log) (149.6 KB)')
+})
+
 ava('getMessage detects a message that only contains an image url and wraps it', (test) => {
 	const jpgURL = 'http://test.com/image.jpg?some-data=2'
 	const pngURL = 'http://test.co.uk/image%20again.png?some-data=+2'
 	const gifURL = 'https://wwww.test.com/image.gif'
 	const imageMessage = (url) => {
 		return `![image](${url})`
-	}
-	const getMessageInCard = (message) => {
-		const newCard = _.merge(card, {
-			data: {
-				payload: {
-					message
-				}
-			}
-		})
-		return getMessage(newCard)
 	}
 	test.is(getMessageInCard(jpgURL), imageMessage(jpgURL))
 	test.is(getMessageInCard(pngURL), imageMessage(pngURL))

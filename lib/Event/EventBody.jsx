@@ -49,6 +49,7 @@ const StyledMarkdown = styled(Markdown)(({
 	}
 })
 
+const DISCOURSE_ATTACHMENT_RE = /\[(.+?)\|attachment\]\(upload:\/\/(.+?\..+?)\)/g
 const FRONT_MARKDOWN_IMG_RE = /\[\/api\/1\/companies\/resin_io\/attachments\/[a-z0-9]+\?resource_link_id=\d+\]/g
 const FRONT_HTML_IMG_RE = /\/api\/1\/companies\/resin_io\/attachments\/[a-z0-9]+\?resource_link_id=\d+/g
 const IMAGE_URL_RE = /^https?:\/\/.*\.(?:png|jpg|gif)(?:\?\S*)*$/
@@ -87,6 +88,14 @@ export const getMessage = (card) => {
 				1,
 				-1
 			)})`
+		})
+	}
+
+	// Fun hack to convert inline attachments from synced Discourse messages into
+	// markdown links
+	if (message.match(DISCOURSE_ATTACHMENT_RE)) {
+		return message.replace(DISCOURSE_ATTACHMENT_RE, (link, filename, urlPrefix) => {
+			return `[${filename}](https://forums.balena.io/uploads/short-url/${urlPrefix})`
 		})
 	}
 
