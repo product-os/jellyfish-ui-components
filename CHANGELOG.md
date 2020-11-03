@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v4.0.1
+## (2020-11-03)
+
+* patch: Update dependency @babel/preset-react to ^7.12.5 [Renovate Bot]
+
 # v4.0.0
 ## (2020-11-03)
 
