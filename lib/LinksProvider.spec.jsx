@@ -123,7 +123,7 @@ ava('LinksProvider can be used with useLink', async (test) => {
 	const subscriberSpy = sandbox.stub()
 
 	const TestHooksSubscriber = () => {
-		const context = useLink(linkVerb, linkPropName, card.id)
+		const context = useLink(linkVerb, card.id, linkPropName)
 		subscriberSpy(context)
 		return <div>Subscriber</div>
 	}
@@ -155,7 +155,7 @@ ava('LinksProvider can be used with useLinks', async (test) => {
 	const subscriberSpy = sandbox.stub()
 
 	const TestHooksSubscriber = () => {
-		const context = useLinks(linkVerb, linksPropName, card.id)
+		const context = useLinks(linkVerb, card.id, linksPropName)
 		subscriberSpy(context)
 		return <div>Subscriber</div>
 	}
