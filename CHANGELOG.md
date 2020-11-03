@@ -5,6 +5,14 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v4.0.0
+## (2020-11-03)
+
+* Modify useLink(s) hook arguments [Graham McCulloch]
+* Fix new lint errors [Graham McCulloch]
+* Remove eslint-plugin-standard [Josh Bowling]
+* patch: Update dependency eslint-config-standard to v16 [Renovate Bot]
+
 # v3.0.0
 ## (2020-11-03)
 
