@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v3.0.0
+## (2020-11-03)
+
+* Add owner, created at, last message avatar to CardChatSummary [Graham McCulloch]
+
 # v2.3.15
 ## (2020-11-02)
 
