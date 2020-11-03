@@ -139,12 +139,12 @@ export const withLinks = (linkVerb, linksPropName = 'links') => {
 // Use these custom hooks (that internally use the React.useContext hook) in
 // functional components that use the linked cards provided by LinksProvider.
 
-export const useLink = (linkVerb, linkPropName = 'link', cardId) => {
+export const useLink = (linkVerb, cardId, linkPropName = 'link') => {
 	const context = React.useContext(linksContext)
 	return getSingleLinkSubscriberProps(context, linkVerb, linkPropName, cardId)
 }
 
-export const useLinks = (linkVerb, linksPropName = 'links', cardId) => {
+export const useLinks = (linkVerb, cardId, linksPropName = 'links') => {
 	const context = React.useContext(linksContext)
 	return getMultipleLinksSubscriberProps(context, linkVerb, linksPropName, cardId)
 }
