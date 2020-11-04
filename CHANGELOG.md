@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v4.0.4
+## (2020-11-04)
+
+* Fix rendering of inline Discourse images [Graham McCulloch]
+
 # v4.0.3
 ## (2020-11-04)
 
