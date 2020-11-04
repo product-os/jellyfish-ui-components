@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v4.0.2
+## (2020-11-04)
+
+* Lint jsx files on pre-commit hook [Graham McCulloch]
+
 # v4.0.1
 ## (2020-11-03)
 
