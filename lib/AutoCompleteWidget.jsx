@@ -67,7 +67,7 @@ class AutoCompleteWidget extends React.Component {
 	constructor (props) {
 		super(props)
 
-		this.getTargets = this.getTargets.bind(this)
+		this.getTargets = _.debounce(this.getTargets.bind(this), 500)
 		this.onChange = this.onChange.bind(this)
 	}
 
