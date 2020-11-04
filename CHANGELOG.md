@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v4.0.4
+## (2020-11-04)
+
+* Refactor Update - break down into smaller components. Add tests. Convert Update component from class to functional component [Lucy-Jane]
+
 # v4.0.3
 ## (2020-11-04)
 
