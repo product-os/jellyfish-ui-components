@@ -30,19 +30,9 @@ export {
 
 const EventWithActor = (props) => {
 	const {
-		card, user, selectCard, getCard, getActor, onCardVisible
+		card, user, selectCard, getCard, onCardVisible
 	} = props
 	const typeBase = props.card.type.split('@')[0]
-	if (typeBase === UPDATE) {
-		return (
-			<Update
-				onCardVisible={onCardVisible}
-				card={card}
-				user={user}
-				getActor={getActor}
-			/>
-		)
-	}
 	return (
 		<CardLoader
 			id={helpers.getActorIdFromCard(props.card)}
@@ -52,8 +42,19 @@ const EventWithActor = (props) => {
 			getCard={getCard}
 		>
 			{(author) => {
+				const actor = helpers.generateActorFromUserCard(author)
+				if (typeBase === UPDATE) {
+					return (
+						<Update
+							onCardVisible={onCardVisible}
+							card={card}
+							user={user}
+							actor={actor}
+						/>
+					)
+				}
 				return (
-					<Event {...props} actor={helpers.generateActorFromUserCard(author)} />
+					<Event {...props} actor={actor} />
 				)
 			}}
 		</CardLoader>

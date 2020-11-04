@@ -415,8 +415,7 @@ class Timeline extends React.Component {
 			getCard,
 			threadIsMirrored: isMirrored,
 			menuOptions: eventMenuOptions,
-			getActorHref,
-			getActor
+			getActorHref
 		}
 
 		return (

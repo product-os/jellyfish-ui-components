@@ -21,9 +21,7 @@ import {
 import {
 	getMessage
 } from '../Event'
-import {
-	generateJSONPatchDescription
-} from '../Update'
+import * as helpers from '../services/helpers'
 import Icon from '../shame/Icon'
 import HeaderTitle from './HeaderTitle'
 
@@ -31,7 +29,7 @@ const getEventContent = (typeBase, event) => {
 	switch (typeBase) {
 		case 'update':
 			if (_.some(event.data.payload, 'op')) {
-				return generateJSONPatchDescription(event.data.payload)
+				return helpers.generateJSONPatchDescription(event.data.payload)
 			}
 			return event.name
 		case 'message':
