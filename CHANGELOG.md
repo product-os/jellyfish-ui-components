@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v4.0.3
+## (2020-11-04)
+
+* Handle discourse attachments with a special case [Graham McCulloch]
+
 # v4.0.2
 ## (2020-11-04)
 
