@@ -5,6 +5,12 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v4.0.8
+## (2020-11-05)
+
+* Add handling of inline discourse attachments and images [Graham McCulloch]
+* Refactor getMessage [Graham McCulloch]
+
 # v4.0.7
 ## (2020-11-05)
 
