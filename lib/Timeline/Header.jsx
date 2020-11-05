@@ -19,7 +19,7 @@ import {
 	Button
 } from 'rendition'
 import {
-	getMessage
+	parseMessage
 } from '../Event'
 import * as helpers from '../services/helpers'
 import Icon from '../shame/Icon'
@@ -33,9 +33,9 @@ const getEventContent = (typeBase, event) => {
 			}
 			return event.name
 		case 'message':
-			return getMessage(event)
+			return parseMessage(helpers.getMessage(event))
 		case 'whisper':
-			return `**whisper** ${getMessage(event)}`
+			return `**whisper** ${parseMessage(helpers.getMessage(event))}`
 		default:
 			return ''
 	}

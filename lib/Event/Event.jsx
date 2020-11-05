@@ -23,7 +23,7 @@ import Icon from '../shame/Icon'
 import EventWrapper from './EventWrapper'
 import EventHeader from './EventHeader'
 import EventBody, {
-	getMessage
+	parseMessage
 } from './EventBody'
 
 const MESSAGE_COLLAPSED_HEIGHT = 400
@@ -106,7 +106,7 @@ export default class Event extends React.Component {
 
 		this.onStartEditing = () => {
 			this.setState({
-				editedMessage: getMessage(this.props.card)
+				editedMessage: parseMessage(helpers.getMessage(this.props.card))
 			})
 		}
 
@@ -130,7 +130,7 @@ export default class Event extends React.Component {
 				card,
 				onUpdateCard
 			} = this.props
-			if (this.state.editedMessage === getMessage(card) || this.state.editedMessage.length === 0) {
+			if (this.state.editedMessage === parseMessage(helpers.getMessage(card)) || this.state.editedMessage.length === 0) {
 				// No change or empty message - just finish editing now
 				this.onStopEditing()
 			} else {
