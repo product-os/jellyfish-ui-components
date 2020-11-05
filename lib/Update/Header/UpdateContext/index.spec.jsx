@@ -29,13 +29,12 @@ const ACTOR = {
 }
 
 const CARD = {
-	name: 'fake card name',
 	data: {
 		timestamp: TIMESTAMP_DATE.toString()
 	}
 }
 
-ava('Renders a pencil icon', async (test) => {
+ava('Renders a pencil icon if the card has no name', async (test) => {
 	const header = shallow(<UpdateContext card={CARD} actor={ACTOR} />)
 	const icon = header.find(Icon)
 	test.deepEqual(icon.props(), {
@@ -43,18 +42,44 @@ ava('Renders a pencil icon', async (test) => {
 	})
 })
 
-ava('Renders a message with the actor name and when they made the update', async (test) => {
+ava('Renders a lightbulb icon if the card has a name', (test) => {
+	const card = {
+		...CARD,
+		name: 'Reopen due to activity'
+	}
+	const header = shallow(<UpdateContext card={card} actor={ACTOR} />)
+	const icon = header.find(Icon)
+	test.deepEqual(icon.props(), {
+		name: 'lightbulb'
+	})
+})
+
+ava('If the card has no name, UpdateContext renders a message ' +
+' with the actor name and when they made the update', async (test) => {
 	const header = mount(<UpdateContext card={CARD} actor={ACTOR}/>, {
 		wrappingComponent: wrapper
 	})
 	test.is(header.text(), `${ACTOR.name} updated this at ${TIMESTAMP_DATE.format('HH:mm')}`)
 })
 
-ava('If actor is not present, renders a message with when the update was made', async (test) => {
+ava('If the card has no name and the actor is not present, ' +
+'UpdateContext renders a message with when the update was made', async (test) => {
 	const header = mount(<UpdateContext card={CARD} />, {
 		wrappingComponent: wrapper
 	})
 	test.is(header.text(), ` updated this at ${TIMESTAMP_DATE.format('HH:mm')}`)
+})
+
+ava('If the card has a name, UpdateContext uses the name to render' +
+' a message including the reason for the update', (test) => {
+	const card = {
+		...CARD,
+		name: 'Support Thread reopened due to activity'
+	}
+	const header = mount(<UpdateContext card={card} />, {
+		wrappingComponent: wrapper
+	})
+	test.is(header.text(), `Support Thread reopened due to activity at ${TIMESTAMP_DATE.format('HH:mm')}`)
 })
 
 ava('If there is no timestamp on the card, the created_at field is used instead', async (test) => {

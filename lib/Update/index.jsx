@@ -16,16 +16,9 @@ const Update = ({
 	card, actor
 }) => {
 	return (
-		<Wrapper
-			card={card}
-		>
-			<Header
-				actor={actor}
-				card={card}
-			/>
-			<Content
-				card={card}
-			/>
+		<Wrapper card={card}>
+			<Header actor={actor} card={card} />
+			<Content card={card} />
 		</Wrapper>
 	)
 }

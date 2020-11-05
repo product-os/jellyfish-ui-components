@@ -14,9 +14,6 @@ import Icon from '../shame/Icon'
 import * as helpers from '../services/helpers'
 
 const getUpdateDescription = (card) => {
-	if (card.name) {
-		return card.name
-	}
 	const operation = _.some(card.data.payload, 'op')
 	if (operation) {
 		const patchDescription = helpers.generateJSONPatchDescription(card.data.payload)
@@ -28,6 +25,9 @@ const getUpdateDescription = (card) => {
 const Content = ({
 	card
 }) => {
+	if (card && card.name) {
+		return null
+	}
 	const description = getUpdateDescription(card)
 	if (!description) {
 		return null

@@ -16,17 +16,33 @@ const formatTimestamp = (card) => {
 	return helpers.formatTimestamp(timestamp, true)
 }
 
-const UpdateContext = ({
-	actor, card
+const UpdateMessage = ({
+	updateReason, actor, formattedTimestamp
 }) => {
+	if (updateReason) {
+		const updateMessage = `${updateReason} ${formattedTimestamp}`
+		return (
+			<Txt ml={2}>{ updateMessage }</Txt>
+		)
+	}
+	return (
+		<Txt ml={2}>
+			<ActorMessage actor={actor} />
+			{ formattedTimestamp }
+		</Txt>
+	)
+}
+
+const UpdateContext = ({
+	card, ...messageProps
+}) => {
+	const updateReason = _.get(card, [ 'name' ])
 	const formattedTimestamp = formatTimestamp(card)
+	const iconName = updateReason ? 'lightbulb' : 'pencil-alt'
 	return (
 		<Flex alignItems="center">
-			<Icon name="pencil-alt" />
-			<Txt ml={2}>
-				<ActorMessage actor={actor} />
-				{ formattedTimestamp }
-			</Txt>
+			<Icon name={iconName} />
+			<UpdateMessage {...messageProps} updateReason={updateReason} formattedTimestamp={formattedTimestamp} />
 		</Flex>
 	)
 }
