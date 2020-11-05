@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v5.0.1
+## (2020-11-05)
+
+* patch: Update dependency query-string to ^6.13.7 [Renovate Bot]
+
 # v5.0.0
 ## (2020-11-05)
 
