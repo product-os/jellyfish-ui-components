@@ -18,7 +18,9 @@ import {
 import styled from 'styled-components'
 import SmartVisibilitySensor from '../SmartVisibilitySensor'
 import * as helpers from '../services/helpers'
-import Avatar from '../shame/Avatar'
+import {
+	UserAvatar
+} from '../UserAvatar'
 import Icon from '../shame/Icon'
 import EventWrapper from './EventWrapper'
 import EventHeader from './EventHeader'
@@ -275,11 +277,10 @@ export default class Event extends React.Component {
 					>
 						{!squashTop && (
 							<React.Fragment>
-								<Avatar
-									small
-									name={actor ? actor.name : null}
-									url={actor ? actor.avatarUrl : null}
-									userStatus={_.get(actor, [ 'card', 'data', 'status' ])}
+								<UserAvatar
+									userId={helpers.getActorIdFromCard(card)}
+									selectCard={this.props.selectCard}
+									getCard={this.props.getCard}
 								/>
 
 								{openChannel && (
