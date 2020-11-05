@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v4.0.6
+## (2020-11-05)
+
+* Fix debounced async select react-select doesn't play nicely with lodash's debounce so this is a better approach. [Graham McCulloch]
+
 # v4.0.5
 ## (2020-11-04)
 
