@@ -26,7 +26,15 @@ import {
 } from 'rendition/dist/extra/Markdown'
 
 const user = {
-	slug: 'user-johndoe'
+	slug: 'user-johndoe',
+	data: {
+		profile: {
+			name: {
+				first: 'john',
+				last: 'doe'
+			}
+		}
+	}
 }
 
 const username = user.slug.slice(5)
@@ -66,7 +74,12 @@ const sandbox = sinon.createSandbox()
 
 const commonProps = {
 	user,
-	actor
+	actor,
+	selectCard: (state) => {
+		return () => {
+			return user
+		}
+	}
 }
 
 const testHighlightTags = (test, {
@@ -122,8 +135,9 @@ ava('It should display the actor\'s details', (test) => {
 			wrappingComponent: wrapper
 		}
 	)
-	const avatar = event.find('Avatar')
-	test.is(avatar.props().name, actor.name)
+	const avatar = event.find('AvatarBase')
+	test.is(avatar.props().firstName, user.data.profile.name.first)
+	test.is(avatar.props().lastName, user.data.profile.name.last)
 	const actorLabel = event.find('Txt[data-test="event__actor-label"]')
 	test.is(actorLabel.props().tooltip, actor.email)
 })

@@ -39,6 +39,24 @@ const Wrapper = styled(Flex) `
 `
 
 export const UserAvatar = React.memo(({
+	user, tooltip, emphasized
+}) => {
+	const firstName = _.get(user, [ 'data', 'profile', 'name', 'first' ])
+	const lastName = _.get(user, [ 'data', 'profile', 'name', 'last' ])
+	const src = _.get(user, [ 'data', 'avatar' ])
+	const tooltipText = tooltip || `${firstName} ${lastName}`.trim() || user.name || user.slug
+	return (
+		<Avatar
+			tooltip={tooltipText}
+			emphasized={emphasized}
+			firstName={firstName}
+			lastName={lastName}
+			src={src}
+		/>
+	)
+})
+
+export const UserAvatarLive = React.memo(({
 	userId, selectCard, getCard, emphasized, ...rest
 }) => {
 	return (
@@ -54,15 +72,13 @@ export const UserAvatar = React.memo(({
 				const tooltip = actor && `${_.truncate(actor.name, 30)}\n${_.truncate(actor.email, 30)}`
 				return (
 					<Wrapper
-						tooltip={tooltip}
 						emphasized={emphasized}
 						{...rest}
 					>
-						<Avatar
+						<UserAvatar
 							emphasized={emphasized}
-							firstName={_.get(user, [ 'data', 'profile', 'name', 'first' ])}
-							lastName={_.get(user, [ 'data', 'profile', 'name', 'last' ])}
-							src={_.get(user, [ 'data', 'avatar' ])}
+							tooltip={tooltip}
+							user={user}
 						/>
 						<UserStatusIcon
 							className="user-status-icon"
