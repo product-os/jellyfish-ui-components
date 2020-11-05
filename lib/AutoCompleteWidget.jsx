@@ -7,6 +7,7 @@
 import * as _ from 'lodash'
 import React from 'react'
 import AsyncCreatableSelect from 'react-select/async-creatable'
+import debounce from 'debounce-promise'
 import {
 	withSetup
 } from './SetupProvider'
@@ -67,7 +68,7 @@ class AutoCompleteWidget extends React.Component {
 	constructor (props) {
 		super(props)
 
-		this.getTargets = _.debounce(this.getTargets.bind(this), 500)
+		this.getTargets = debounce(this.getTargets.bind(this), 500)
 		this.onChange = this.onChange.bind(this)
 	}
 
