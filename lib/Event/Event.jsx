@@ -19,7 +19,7 @@ import styled from 'styled-components'
 import SmartVisibilitySensor from '../SmartVisibilitySensor'
 import * as helpers from '../services/helpers'
 import {
-	UserAvatar
+	UserAvatarLive
 } from '../UserAvatar'
 import Icon from '../shame/Icon'
 import EventWrapper from './EventWrapper'
@@ -277,7 +277,7 @@ export default class Event extends React.Component {
 					>
 						{!squashTop && (
 							<React.Fragment>
-								<UserAvatar
+								<UserAvatarLive
 									userId={helpers.getActorIdFromCard(card)}
 									selectCard={this.props.selectCard}
 									getCard={this.props.getCard}

@@ -14,7 +14,7 @@ import {
 	Markdown
 } from 'rendition/dist/extra/Markdown'
 import {
-	UserAvatar
+	UserAvatarLive
 } from '../UserAvatar'
 import CardLoader from '../CardLoader'
 import MessageContainer from '../Event/MessageContainer'
@@ -75,7 +75,7 @@ export const MessageSnippet = React.memo(({
 				const actor = generateActorFromUserCard(user)
 				return (
 					<Flex alignItems="flex-start" {...rest}>
-						<UserAvatar
+						<UserAvatarLive
 							userId={userId}
 							selectCard={selectCard}
 							getCard={getCard}

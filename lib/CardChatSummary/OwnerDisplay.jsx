@@ -9,7 +9,7 @@ import {
 	Flex
 } from 'rendition'
 import {
-	UserAvatar
+	UserAvatarLive
 } from '../UserAvatar'
 import Icon from '../shame/Icon'
 
@@ -26,7 +26,7 @@ export const OwnerDisplay = ({
 			tooltip={`Owned by ${owner.name || owner.slug}`}
 		>
 			<Icon name="user" regular />
-			<UserAvatar
+			<UserAvatarLive
 				ml={2}
 				userId={owner.id}
 				selectCard={selectCard}

@@ -15,7 +15,7 @@ import {
 import React from 'react'
 import userWithOrg from './fixtures/user-with-org.json'
 import {
-	UserAvatar
+	UserAvatarLive
 } from '../'
 
 const wrappingComponent = getWrapper().wrapper
@@ -41,13 +41,13 @@ ava.afterEach(() => {
 	sandbox.restore()
 })
 
-ava('UserAvatar displays the user`s avatar, tooltip and status', async (test) => {
+ava('UserAvatarLive displays the user`s avatar, tooltip and status', async (test) => {
 	const {
 		commonProps
 	} = test.context
 
 	const component = await mount((
-		<UserAvatar {...commonProps} />
+		<UserAvatarLive {...commonProps} />
 	), {
 		wrappingComponent
 	})
@@ -62,6 +62,6 @@ ava('UserAvatar displays the user`s avatar, tooltip and status', async (test) =>
 	test.is(statusIcon.props().small, !commonProps.emphasized)
 	test.deepEqual(statusIcon.props().userStatus.value, 'DoNotDisturb')
 
-	const wrapper = component.find('Box').first()
-	test.is(wrapper.props().tooltip, 'Test User\ntest@jel.ly.fish')
+	const avatarBox = component.find('StyledAvatar').find('Box').first()
+	test.is(avatarBox.props().tooltip, 'Test User\ntest@jel.ly.fish')
 })
