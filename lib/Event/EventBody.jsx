@@ -48,6 +48,8 @@ const StyledMarkdown = styled(Markdown)(({
 	}
 })
 
+const DISCOURSE_IMAGE_RE = /!\[(.+?)\|\d*x\d*\]\(upload:\/\/(.+?\..+?)\)/g
+const DISCOURSE_ATTACHMENT_RE = /\[(.+?)\|attachment\]\(upload:\/\/(.+?\..+?)\)/g
 const FRONT_MARKDOWN_IMG_RE = /\[\/api\/1\/companies\/resin_io\/attachments\/[a-z0-9]+\?resource_link_id=\d+\]/g
 const FRONT_HTML_IMG_RE = /\/api\/1\/companies\/resin_io\/attachments\/[a-z0-9]+\?resource_link_id=\d+/g
 const IMAGE_URL_RE = /^https?:\/\/.*\.(?:png|jpg|gif)(?:\?\S*)*$/
@@ -71,7 +73,20 @@ export const parseMessage = (messageField) => {
 		return `![image](${message.trim()})`
 	}
 
-	// Fun hack to extract attached images embedded in HTML from synced front messages
+	// Convert inline images from synced Discourse messages into markdown images
+	if (message.match(DISCOURSE_IMAGE_RE)) {
+		message = message.replace(DISCOURSE_IMAGE_RE, (link, filename, urlPrefix) => {
+			return `![${filename}](https://forums.balena.io/uploads/short-url/${urlPrefix})`
+		})
+	}
+
+	// Convert inline attachments from synced Discourse messages into markdown links
+	if (message.match(DISCOURSE_ATTACHMENT_RE)) {
+		message = message.replace(DISCOURSE_ATTACHMENT_RE, (link, filename, urlPrefix) => {
+			return `[${filename}](https://forums.balena.io/uploads/short-url/${urlPrefix})`
+		})
+	}
+
 	// Extract attached images embedded in HTML from synced front messages
 	if (message.includes('<img src="/api/1/companies/resin_io/attachments')) {
 		message = message.replace(FRONT_HTML_IMG_RE, (source) => {

@@ -54,3 +54,23 @@ ava('parseMessage() detects a message that only contains an image url and wraps 
 	test.not(parseMessage(`>${jpgURL}`), imageMessage(jpgURL))
 	test.not(parseMessage(`${jpgURL}!`), imageMessage(jpgURL))
 })
+
+ava('parseMessage() replaces inline Discourse attachment links with correct markdown links', (test) => {
+	const msg = parseMessage(
+		'This is a link: [file1.log|attachment](upload://2NTd93eaDOQohgCHeMpUr5cynbL.log) (149.6 KB) ' +
+		'This is another link: [file2.log|attachment](upload://4EDd93eaDOQohgCHeMpUr5cynbL.log) (149.6 KB)'
+	)
+	test.is(msg,
+		'This is a link: [file1.log](https://forums.balena.io/uploads/short-url/2NTd93eaDOQohgCHeMpUr5cynbL.log) (149.6 KB) ' +
+		'This is another link: [file2.log](https://forums.balena.io/uploads/short-url/4EDd93eaDOQohgCHeMpUr5cynbL.log) (149.6 KB)')
+})
+
+ava('parseMessage() replaces inline Discourse images with correct markdown images', (test) => {
+	const msg = parseMessage(
+		'This is an inline image: ![file1.log|600x400](upload://2NTd93eaDOQohgCHeMpUr5cynbL.log) (149.6 KB) ' +
+		'This is another inline image: ![file2.log|64x48](upload://4EDd93eaDOQohgCHeMpUr5cynbL.log) (149.6 KB)'
+	)
+	test.is(msg,
+		'This is an inline image: ![file1.log](https://forums.balena.io/uploads/short-url/2NTd93eaDOQohgCHeMpUr5cynbL.log) (149.6 KB) ' +
+		'This is another inline image: ![file2.log](https://forums.balena.io/uploads/short-url/4EDd93eaDOQohgCHeMpUr5cynbL.log) (149.6 KB)')
+})
