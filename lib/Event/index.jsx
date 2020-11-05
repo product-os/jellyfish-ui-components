@@ -9,7 +9,7 @@ import {
 	compose
 } from 'redux'
 import {
-	getMessage
+	parseMessage
 } from './EventBody'
 import CardLoader from '../CardLoader'
 import * as helpers from '../services/helpers'
@@ -25,7 +25,7 @@ import Update from '../Update'
 import Event from './Event'
 
 export {
-	getMessage
+	parseMessage
 }
 
 const EventWithActor = (props) => {

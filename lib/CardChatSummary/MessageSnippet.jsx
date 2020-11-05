@@ -22,6 +22,7 @@ import {
 	HIDDEN_ANCHOR
 } from '../Timeline'
 import {
+	getMessage,
 	generateActorFromUserCard
 } from '../services/helpers'
 
@@ -51,7 +52,7 @@ export const MessageSnippet = React.memo(({
 	}
 
 	const messageText = React.useMemo(() => {
-		return _.get(messageCard, [ 'data', 'payload', 'message' ], '')
+		return getMessage(messageCard)
 			.replace(/```[^`]*```/, '`<code block>`')
 			.split('\n')
 			.map((line) => {

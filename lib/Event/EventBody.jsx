@@ -5,7 +5,6 @@
  */
 
 import React from 'react'
-import _ from 'lodash'
 import styled from 'styled-components'
 import {
 	Button, Txt, Img, Link
@@ -65,28 +64,25 @@ const OverflowButton = styled(Button) `
 	}}
 `
 
-export const getMessage = (card) => {
-	const message = _.get(card, [ 'data', 'payload', 'message' ], '')
+export const parseMessage = (messageField) => {
+	let message = messageField
 
 	if (message.trim().match(IMAGE_URL_RE)) {
 		return `![image](${message.trim()})`
 	}
 
 	// Fun hack to extract attached images embedded in HTML from synced front messages
+	// Extract attached images embedded in HTML from synced front messages
 	if (message.includes('<img src="/api/1/companies/resin_io/attachments')) {
-		return message.replace(FRONT_HTML_IMG_RE, (source) => {
+		message = message.replace(FRONT_HTML_IMG_RE, (source) => {
 			return `https://app.frontapp.com${source}`
 		})
 	}
 
-	// Fun hack to extract attached images from synced front messages embedded in
-	// a different way
+	// Extract attached images from synced front messages embedded in a different way
 	if (message.match(FRONT_MARKDOWN_IMG_RE)) {
-		return message.replace(FRONT_MARKDOWN_IMG_RE, (source) => {
-			return `![Attached image](https://app.frontapp.com${source.slice(
-				1,
-				-1
-			)})`
+		message = message.replace(FRONT_MARKDOWN_IMG_RE, (source) => {
+			return `![Attached image](https://app.frontapp.com${source.slice(1,	-1)})`
 		})
 	}
 
@@ -146,7 +142,7 @@ const EventBody = (props) => {
 		setExpanded(!expanded)
 	}, [ expanded ])
 
-	const message = getMessage(card)
+	const message = parseMessage(helpers.getMessage(card))
 
 	const decorators = React.useMemo(() => {
 		return [ {
