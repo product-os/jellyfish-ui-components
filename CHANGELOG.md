@@ -5,6 +5,12 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v5.0.0
+## (2020-11-05)
+
+* Refactor UserAvatar into two components [Graham McCulloch]
+* Use rendition avatar instead of shame/Avatar [Graham McCulloch]
+
 # v4.0.8
 ## (2020-11-05)
 
