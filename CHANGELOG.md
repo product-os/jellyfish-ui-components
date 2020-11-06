@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v5.0.4
+## (2020-11-06)
+
+* Remove unused shame/Avatar component [Graham McCulloch]
+
 # v5.0.3
 ## (2020-11-06)
 
