@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v5.1.0
+## (2020-11-06)
+
+* error-reporter: Add info logs [Kakhaber]
+
 # v5.0.5
 ## (2020-11-06)
 
