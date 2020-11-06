@@ -13,7 +13,7 @@ import {
 	stringToNumber
 } from '../services/helpers'
 
-export default (props) => {
+const ColorHashPill = (props) => {
 	const value = props.value
 	const rest = _.omit(props, 'value')
 
@@ -43,3 +43,5 @@ export default (props) => {
 		</Badge>
 	)
 }
+
+export default ColorHashPill

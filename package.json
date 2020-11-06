@@ -130,5 +130,6 @@
       "eslint --cache --fix",
       "npm run doc"
     ]
-  }
+  },
+  "main": "./lib/index.js"
 }

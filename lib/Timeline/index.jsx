@@ -42,6 +42,10 @@ import {
 
 const PAGE_SIZE = 20
 
+export {
+	MessageInput
+}
+
 /*
  * This message text is used when uploading a file so that syncing can be done
  * effectively without have to sync the entire file
