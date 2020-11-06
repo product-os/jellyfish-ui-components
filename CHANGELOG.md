@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v5.0.3
+## (2020-11-06)
+
+* Force Renovate to use node 14 and npm 6 [Josh Bowling]
+
 # v5.0.2
 ## (2020-11-06)
 
