@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v5.1.5
+## (2020-11-09)
+
+* Export all components from the top-level [Graham McCulloch]
+
 # v5.1.4
 ## (2020-11-09)
 
