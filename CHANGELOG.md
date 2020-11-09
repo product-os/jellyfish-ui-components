@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v5.1.3
+## (2020-11-08)
+
+* patch: Update dependency react-textarea-autosize to v8 [Renovate Bot]
+
 # v5.1.2
 ## (2020-11-08)
 
