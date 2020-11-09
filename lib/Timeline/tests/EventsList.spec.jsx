@@ -22,7 +22,8 @@ ava.before((test) => {
 	test.context = createTestContext(test, sandbox)
 })
 
-ava('Only messages and whispers are displayed when the messagesOnly field is set', async (test) => {
+ava('Only messages, whispers, and update cards without name values are ' +
+'displayed when the messagesOnly field is set', async (test) => {
 	const {
 		eventProps: {
 			tail,
@@ -55,6 +56,34 @@ ava('Only messages and whispers are displayed when the messagesOnly field is set
 	test.is(whispers.length, 1)
 	test.is(update.length, 0)
 	test.is(create.length, 0)
+})
+
+ava('Updates are displayed when the messagesOnly field is set IF they have a name value', async (test) => {
+	const {
+		eventProps: {
+			tail,
+			...props
+		},
+		updateEvent
+	} = test.context
+
+	updateEvent.name = 'Some reason for existing'
+
+	const eventsList = await mount(
+		<EventsList
+			{...props}
+			messagesOnly
+			sortedEvents={tail}
+		/>,
+		{
+			wrappingComponent: wrapperWithSetup,
+			wrappingComponentProps: {
+				sdk: props.sdk
+			}
+		})
+	const update = eventsList.find(`div[data-test="${updateEvent.id}"]`)
+
+	test.is(update.length, 1)
 })
 
 ava('Whispers are not shown if hideWhispers is set', async (test) => {

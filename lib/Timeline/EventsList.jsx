@@ -45,7 +45,7 @@ export default class EventsList extends React.Component {
 
 				const pureType = event.type.split('@')[0]
 
-				if (messagesOnly && isNotMessage(pureType)) {
+				if (messagesOnly && isNotMessage(pureType) && !event.name) {
 					return null
 				}
 				if (hideWhispers && pureType === WHISPER) {

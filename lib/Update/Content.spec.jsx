@@ -18,7 +18,13 @@ import Content from './Content'
 import Icon from '../shame/Icon'
 
 const CARD = {
-	name: 'fake card name'
+	data: {
+		payload: [ {
+			op: 'add',
+			path: '/data/participants',
+			value: [ 'fake participant 1', 'fake participant 2' ]
+		} ]
+	}
 }
 
 ava('An arrow icon is rendered by the Content component', async (test) => {
@@ -30,23 +36,16 @@ ava('An arrow icon is rendered by the Content component', async (test) => {
 	})
 })
 
-ava('The card name is rendered when it is present', async (test) => {
-	const content = shallow(<Content card={CARD} />)
-	const txt = content.find(Txt)
-	test.is(txt.text(), CARD.name)
+ava('Nothing is rendered if the name is present on the card', async (test) => {
+	const cardWithName = {
+		name: 'reason for update'
+	}
+	const content = shallow(<Content card={cardWithName} />)
+	test.true(content.isEmptyRender())
 })
 
 ava('A description of the operations is rendered when the name is not present on the card', async (test) => {
-	const card = {
-		data: {
-			payload: [ {
-				op: 'add',
-				path: '/data/participants',
-				value: [ 'fake participant 1', 'fake participant 2' ]
-			} ]
-		}
-	}
-	const content = shallow(<Content card={card} />)
+	const content = shallow(<Content card={CARD} />)
 	const txt = content.find(Txt)
 	test.is(txt.text(), 'added value to path "/data/participants"')
 })
