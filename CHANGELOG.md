@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v5.1.4
+## (2020-11-09)
+
+* Update how we display Update cards that include a name value [Lucy-Jane]
+
 # v5.1.3
 ## (2020-11-08)
 
