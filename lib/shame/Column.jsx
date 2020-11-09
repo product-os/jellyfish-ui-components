@@ -19,7 +19,7 @@ const ColumnBase = styled(Flex).attrs({
 	min-width: 270px;
 `
 
-export default (props) => {
+const Column = (props) => {
 	const {
 		overflowY
 	} = props
@@ -32,3 +32,5 @@ export default (props) => {
 
 	return <ColumnBase {...rest} style={style} />
 }
+
+export default Column

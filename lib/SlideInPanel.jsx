@@ -91,7 +91,7 @@ const Panels = {
 	`
 }
 
-export default function SlideIn ({
+export default function SlideInPanel ({
 	className,
 	from,
 	isOpen,
@@ -106,8 +106,8 @@ export default function SlideIn ({
 		lagOnRisingEdge: false
 	})
 
-	const SlideInPanel = Panels[from]
-	if (typeof SlideInPanel === 'undefined') {
+	const DirectionalSlideInPanel = Panels[from]
+	if (typeof DirectionalSlideInPanel === 'undefined') {
 		throw new Error('SlideIn \'from\' prop must be one of: top | bottom | left | right')
 	}
 	return (
@@ -115,14 +115,14 @@ export default function SlideIn ({
 			className={`slide-in--${isOpen ? 'open' : 'closed'}`}
 			onClick={disableClickOutsideToClose ? null : onClose}
 		>
-			<SlideInPanel
+			<DirectionalSlideInPanel
 				width={width}
 				height={height}
 				className={className}
 				onClick={swallowEvent}
 			>
 				{(!lazyLoadContent || isContentLoaded) && <ErrorBoundary>{children}</ErrorBoundary>}
-			</SlideInPanel>
+			</DirectionalSlideInPanel>
 		</SlideInWrapper>
 	)
 }
