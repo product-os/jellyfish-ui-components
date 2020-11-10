@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v5.1.8
+## (2020-11-10)
+
+* Fix react-textarea-autosize ref value [Graham McCulloch]
+
 # v5.1.7
 ## (2020-11-10)
 
