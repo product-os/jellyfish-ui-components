@@ -7,7 +7,7 @@
 import ava from 'ava'
 import {
 	parseMessage
-} from '../EventBody'
+} from '../Body'
 
 ava('parseMessage() should prefix Front image embedded in img tags', (test) => {
 	const url = '/api/1/companies/resin_io/attachments/8381633c052e15b96c3a25581f7869b5332c032b?resource_link_id=14267942787'

@@ -9,13 +9,13 @@ import React from 'react'
 import {
 	shallow
 } from 'enzyme'
-import '../../test/ui-setup'
+import '../../../test/ui-setup'
 import {
 	Txt
 } from 'rendition'
 
 import Content from './Content'
-import Icon from '../shame/Icon'
+import Icon from '../../shame/Icon'
 
 const CARD = {
 	data: {

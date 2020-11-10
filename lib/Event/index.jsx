@@ -1,16 +1,10 @@
-/*
- * Copyright (C) Balena.io - All Rights Reserved
- * Unauthorized copying of this file, via any medium is strictly prohibited.
- * Proprietary and confidential.
- */
-
 import React from 'react'
 import {
 	compose
 } from 'redux'
 import {
 	parseMessage
-} from './EventBody'
+} from './Message/Body'
 import CardLoader from '../CardLoader'
 import * as helpers from '../services/helpers'
 import withCardUpdater from '../HOC/with-card-updater'
@@ -21,8 +15,8 @@ import {
 import {
 	UPDATE
 } from '../constants'
-import Event from './Event'
 import Update from './Update'
+import Message from './Message'
 
 export {
 	parseMessage
@@ -54,7 +48,7 @@ const EventWithActor = (props) => {
 					)
 				}
 				return (
-					<Event {...props} actor={actor} />
+					<Message {...props} actor={actor} />
 				)
 			}}
 		</CardLoader>

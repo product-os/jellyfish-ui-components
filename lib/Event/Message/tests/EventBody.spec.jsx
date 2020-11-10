@@ -13,7 +13,7 @@ import {
 	mount
 } from 'enzyme'
 import React from 'react'
-import EventBody from '../EventBody'
+import Body from '../Body'
 import {
 	card
 } from './fixtures'
@@ -52,7 +52,7 @@ ava('Auto-complete textarea is shown if message is being edited', (test) => {
 		commonProps
 	} = test.context
 	const eventBody = mount(
-		<EventBody
+		<Body
 			{...commonProps}
 			editedMessage="test message"
 			updating={false}
@@ -70,7 +70,7 @@ ava('Edited message is shown in markdown if message is being updated', (test) =>
 	} = test.context
 	const editedMessage = 'test message'
 	const eventBody = mount(
-		<EventBody
+		<Body
 			{...commonProps}
 			editedMessage={editedMessage}
 			updating
@@ -90,7 +90,7 @@ ava('An error is captured by the component and an error message is rendered', (t
 	} = test.context
 
 	const eventBody = mount(
-		<EventBody
+		<Body
 			{...commonProps}
 		/>
 		, {

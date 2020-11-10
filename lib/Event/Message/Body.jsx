@@ -14,16 +14,16 @@ import {
 } from 'rendition/dist/extra/Markdown'
 import {
 	HIDDEN_ANCHOR
-} from '../Timeline'
-import Icon from '../shame/Icon'
+} from '../../Timeline'
+import Icon from '../../shame/Icon'
 import MessageContainer from './MessageContainer'
 import {
 	PlainAutocompleteTextarea
-} from '../Timeline/MessageInput'
+} from '../../Timeline/MessageInput'
 import Attachments from './Attachments'
 import Mention from './Mention'
-import * as helpers from '../services/helpers'
-import ErrorBoundary from '../shame/ErrorBoundary'
+import * as helpers from '../../services/helpers'
+import ErrorBoundary from '../../shame/ErrorBoundary'
 
 const tagMatchRE = helpers.createPrefixRegExp(helpers.TAG_MATCH_REGEXP_PREFIX)
 
@@ -129,7 +129,7 @@ const componentOverrides = {
 	}
 }
 
-const EventBody = (props) => {
+const Body = (props) => {
 	const {
 		squashTop,
 		squashBottom,
@@ -272,7 +272,7 @@ export default (props) => {
 
 	return (
 		<ErrorBoundary getErrorElement={getErrorElement}>
-			<EventBody {...props} />
+			<Body {...props} />
 		</ErrorBoundary>
 	)
 }

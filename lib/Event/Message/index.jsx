@@ -16,17 +16,17 @@ import {
 	Box
 }	from 'rendition'
 import styled from 'styled-components'
-import SmartVisibilitySensor from '../SmartVisibilitySensor'
-import * as helpers from '../services/helpers'
+import SmartVisibilitySensor from '../../SmartVisibilitySensor'
+import * as helpers from '../../services/helpers'
 import {
 	UserAvatarLive
-} from '../UserAvatar'
-import Icon from '../shame/Icon'
-import EventWrapper from './EventWrapper'
-import EventHeader from './EventHeader'
-import EventBody, {
+} from '../../UserAvatar'
+import Icon from '../../shame/Icon'
+import Wrapper from './Wrapper'
+import Header from './Header'
+import Body, {
 	parseMessage
-} from './EventBody'
+} from './Body'
 
 const MESSAGE_COLLAPSED_HEIGHT = 400
 
@@ -260,7 +260,7 @@ export default class Event extends React.Component {
 
 		return (
 			<SmartVisibilitySensor onChange={this.handleVisibilityChange}>
-				<EventWrapper
+				<Wrapper
 					{...rest}
 					squashTop={squashTop}
 					className={classnames(`event-card event-card--${typeBase}`, {
@@ -307,7 +307,7 @@ export default class Event extends React.Component {
 							minWidth: 0
 						}}
 					>
-						<EventHeader
+						<Header
 							actor={actor}
 							card={card}
 							threadIsMirrored={threadIsMirrored}
@@ -322,7 +322,7 @@ export default class Event extends React.Component {
 							squashTop={squashTop}
 							getActorHref={getActorHref}
 						/>
-						<EventBody
+						<Body
 							squashTop={squashTop}
 							squashBottom={squashBottom}
 							card={card}
@@ -343,7 +343,7 @@ export default class Event extends React.Component {
 							onSaveEditedMessage={this.saveEditedMessage}
 						/>
 					</Box>
-				</EventWrapper>
+				</Wrapper>
 			</SmartVisibilitySensor>
 		)
 	}
