@@ -5,10 +5,10 @@
  */
 
 import React from 'react'
-import ContextMenu from '../../ContextMenu'
+import ContextMenu from '../../../ContextMenu'
 import {
 	ActionLink
-} from '../../shame/ActionLink'
+} from '../../../shame/ActionLink'
 
 const Menu = ({
 	showMenu,

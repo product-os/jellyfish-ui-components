@@ -21,8 +21,8 @@ import {
 import {
 	UPDATE
 } from '../constants'
-import Update from '../Update'
 import Event from './Event'
+import Update from './Update'
 
 export {
 	parseMessage
