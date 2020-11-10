@@ -101,7 +101,7 @@ const SubAuto = (props) => {
 				innerRef={innerRefCallback}
 				textAreaComponent={{
 					component: TextareaAutosize,
-					ref: 'inputRef'
+					ref: 'ref'
 				}}
 				className={className}
 				value={value}
