@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v5.1.7
+## (2020-11-10)
+
+* patch: Update dependency depcheck to ^1.3.1 [Renovate Bot]
+
 # v5.1.6
 ## (2020-11-09)
 
