@@ -1,10 +1,16 @@
+/*
+ * Copyright (C) Balena.io - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited.
+ * Proprietary and confidential.
+ */
+
 import React from 'react'
 import styled from 'styled-components'
 import _ from 'lodash'
 import {
 	Box
 }	from 'rendition'
-import * as helpers from '../../services/helpers'
+import * as helpers from '../services/helpers'
 
 // Min-width is used to stop text from overflowing the flex container, see
 // https://css-tricks.com/flexbox-truncated-text/ for a nice explanation

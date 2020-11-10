@@ -14,8 +14,8 @@ import {
 	Txt
 } from 'rendition'
 
-import Content from './Content'
 import Icon from '../../shame/Icon'
+import Body from './Body'
 
 const CARD = {
 	data: {
@@ -27,8 +27,8 @@ const CARD = {
 	}
 }
 
-ava('An arrow icon is rendered by the Content component', async (test) => {
-	const content = shallow(<Content card={CARD} />)
+ava('An arrow icon is rendered by the Body component', async (test) => {
+	const content = shallow(<Body card={CARD} />)
 	const icon = content.find(Icon)
 	test.deepEqual(icon.props(), {
 		name: 'level-up-alt',
@@ -40,12 +40,12 @@ ava('Nothing is rendered if the name is present on the card', async (test) => {
 	const cardWithName = {
 		name: 'reason for update'
 	}
-	const content = shallow(<Content card={cardWithName} />)
+	const content = shallow(<Body card={cardWithName} />)
 	test.true(content.isEmptyRender())
 })
 
 ava('A description of the operations is rendered when the name is not present on the card', async (test) => {
-	const content = shallow(<Content card={CARD} />)
+	const content = shallow(<Body card={CARD} />)
 	const txt = content.find(Txt)
 	test.is(txt.text(), 'added value to path "/data/participants"')
 })
@@ -68,7 +68,7 @@ ava('A description of multiple operations is rendered as a list with an \'and\''
 			} ]
 		}
 	}
-	const content = shallow(<Content card={card} />)
+	const content = shallow(<Body card={card} />)
 	const txt = content.find(Txt)
 	test.is(txt.text(), 'added value to path "/data/participants", changed ' +
 		'value at path "/data/owner" and removed path "/data/mirrors"')

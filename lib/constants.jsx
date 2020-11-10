@@ -9,11 +9,13 @@ const WHISPER = 'whisper'
 const UPDATE = 'update'
 const CREATE = 'create'
 const SUMMARY = 'summary'
+const LINK = 'link'
 
 export {
 	MESSAGE,
 	WHISPER,
 	UPDATE,
 	CREATE,
-	SUMMARY
+	SUMMARY,
+	LINK
 }

@@ -12,14 +12,13 @@ import {
 	Flex
 }	from 'rendition'
 import copy from 'copy-to-clipboard'
-import Icon from '../../../shame/Icon'
-import UpdateContext from './UpdateContext'
+import Icon from '../../shame/Icon'
 import Menu from './Menu'
 
 const Header = ({
-	actor,
 	card,
-	menuOptions
+	menuOptions,
+	children
 }) => {
 	const [ showMenu, updateShowMenu ] = useState(false)
 
@@ -38,7 +37,7 @@ const Header = ({
 			justifyContent="space-between"
 			mr={2}
 		>
-			<UpdateContext actor={actor} card={card} />
+			{ children }
 			<span>
 				<Button
 					className="event-card--actions"

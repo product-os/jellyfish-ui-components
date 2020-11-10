@@ -8,17 +8,20 @@ import {
 	circularDeepEqual
 } from 'fast-equals'
 import React from 'react'
-import Wrapper from './Wrapper'
-import Header from './Header'
-import Content from './Content'
+import Wrapper from '../Wrapper'
+import Header from '../Header'
+import Body from './Body'
+import Context from './Context'
 
 const Update = ({
 	card, actor
 }) => {
 	return (
 		<Wrapper card={card}>
-			<Header actor={actor} card={card} />
-			<Content card={card} />
+			<Header card={card}>
+				<Context card={card} actor={actor} />
+			</Header>
+			<Body card={card} />
 		</Wrapper>
 	)
 }

@@ -1,3 +1,9 @@
+/*
+ * Copyright (C) Balena.io - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited.
+ * Proprietary and confidential.
+ */
+
 import React from 'react'
 import {
 	circularDeepEqual
@@ -22,7 +28,7 @@ const getUpdateDescription = (card) => {
 	return null
 }
 
-const Content = ({
+const Body = ({
 	card
 }) => {
 	if (card && card.name) {
@@ -40,4 +46,4 @@ const Content = ({
 	)
 }
 
-export default React.memo(Content, circularDeepEqual)
+export default React.memo(Body, circularDeepEqual)

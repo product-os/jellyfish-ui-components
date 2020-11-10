@@ -6,7 +6,8 @@
 
 import React from 'react'
 import {
-	getWrapper
+	getWrapper,
+	flushPromises
 } from '../../../test/ui-setup'
 import {
 	SetupProvider
@@ -38,15 +39,21 @@ const createTestContext = (test, sandbox) => {
 	const createEvent = {
 		id: 'fake-create-id',
 		type: 'create@1.0.0',
-		created_at: timestamp
+		created_at: timestamp,
+		data: {
+			timestamp,
+			readBy: []
+		}
 	}
+
 	const whisperEvent = {
 		id: 'fake-whisper-id',
 		type: 'whisper@1.0.0',
 		created_at: timestamp,
 		data: {
 			timestamp,
-			message: 'I am a whisper'
+			message: 'I am a whisper',
+			readBy: []
 		}
 	}
 
@@ -56,7 +63,8 @@ const createTestContext = (test, sandbox) => {
 		created_at: timestamp,
 		data: {
 			timestamp,
-			message: 'I am a message'
+			message: 'I am a message',
+			readBy: []
 		}
 	}
 
@@ -75,7 +83,8 @@ const createTestContext = (test, sandbox) => {
 	const user = {
 		id: 'fake-user-id',
 		slug: 'user-fakeuser',
-		created_at: timestamp
+		created_at: timestamp,
+		type: 'user@1.0.0'
 	}
 
 	const getActor = sandbox.stub()
@@ -113,5 +122,6 @@ const createTestContext = (test, sandbox) => {
 
 export {
 	createTestContext,
-	wrapperWithSetup
+	wrapperWithSetup,
+	flushPromises
 }

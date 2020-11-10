@@ -6,7 +6,7 @@
 
 import ava from 'ava'
 import React from 'react'
-import moment from 'moment'
+import format from 'date-fns/format'
 import {
 	mount,
 	shallow
@@ -22,7 +22,7 @@ const {
 	wrapper
 } = getWrapper()
 
-const TIMESTAMP_DATE = moment()
+const TIMESTAMP_DATE = new Date()
 
 const ACTOR = {
 	name: 'fake-actor'
@@ -30,7 +30,7 @@ const ACTOR = {
 
 const CARD = {
 	data: {
-		timestamp: TIMESTAMP_DATE.toString()
+		timestamp: TIMESTAMP_DATE.toISOString()
 	}
 }
 
@@ -59,7 +59,7 @@ ava('If the card has no name, Context renders a message ' +
 	const header = mount(<Context card={CARD} actor={ACTOR}/>, {
 		wrappingComponent: wrapper
 	})
-	test.is(header.text(), `${ACTOR.name} updated this at ${TIMESTAMP_DATE.format('HH:mm')}`)
+	test.is(header.text(), `${ACTOR.name} updated this at ${format(TIMESTAMP_DATE, 'HH:mm')}`)
 })
 
 ava('If the card has no name and the actor is not present, ' +
@@ -67,7 +67,7 @@ ava('If the card has no name and the actor is not present, ' +
 	const header = mount(<Context card={CARD} />, {
 		wrappingComponent: wrapper
 	})
-	test.is(header.text(), `updated this at ${TIMESTAMP_DATE.format('HH:mm')}`)
+	test.is(header.text(), `updated this at ${format(TIMESTAMP_DATE, 'HH:mm')}`)
 })
 
 ava('If the card has a name, Context uses the name to render' +
@@ -79,18 +79,18 @@ ava('If the card has a name, Context uses the name to render' +
 	const header = mount(<Context card={card} />, {
 		wrappingComponent: wrapper
 	})
-	test.is(header.text(), `Support Thread reopened due to activity at ${TIMESTAMP_DATE.format('HH:mm')}`)
+	test.is(header.text(), `Support Thread reopened due to activity at ${format(TIMESTAMP_DATE, 'HH:mm')}`)
 })
 
 ava('If there is no timestamp on the card, the created_at field is used instead', async (test) => {
-	const createdAtDate = moment()
+	const createdAtDate = new Date()
 
 	const card = {
-		created_at: createdAtDate.toString()
+		created_at: createdAtDate.toISOString()
 	}
 
 	const header = mount(<Context actor={ACTOR} card={card} />, {
 		wrappingComponent: wrapper
 	})
-	test.is(header.text(), `${ACTOR.name} updated this at ${createdAtDate.format('HH:mm')}`)
+	test.is(header.text(), `${ACTOR.name} updated this at ${format(createdAtDate, 'HH:mm')}`)
 })

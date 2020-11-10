@@ -1,3 +1,9 @@
+/*
+ * Copyright (C) Balena.io - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited.
+ * Proprietary and confidential.
+ */
+
 import React from 'react'
 import {
 	compose
@@ -13,9 +19,11 @@ import {
 } from '../SetupProvider'
 
 import {
-	UPDATE
+	UPDATE,
+	LINK
 } from '../constants'
 import Update from './Update'
+import LinkedCard from './LinkedCard'
 import Message from './Message'
 
 export {
@@ -24,7 +32,7 @@ export {
 
 const EventWithActor = (props) => {
 	const {
-		card, user, selectCard, getCard, onCardVisible
+		card, user, selectCard, getCard, onCardVisible, targetCard
 	} = props
 	const typeBase = props.card.type.split('@')[0]
 	return (
@@ -44,6 +52,15 @@ const EventWithActor = (props) => {
 							card={card}
 							user={user}
 							actor={actor}
+						/>
+					)
+				}
+				if (typeBase === LINK) {
+					return (
+						<LinkedCard
+							actor={actor}
+							card={card}
+							targetCard={targetCard}
 						/>
 					)
 				}

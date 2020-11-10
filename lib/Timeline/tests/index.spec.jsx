@@ -15,13 +15,14 @@ import {
 import {
 	timestamp,
 	createTestContext,
-	wrapperWithSetup
+	wrapperWithSetup,
+	flushPromises
 } from './helpers'
 import Timeline from '../'
 
 const sandbox = sinon.createSandbox()
 
-ava.before((test) => {
+ava.beforeEach((test) => {
 	test.context = createTestContext(test, sandbox)
 })
 
@@ -29,7 +30,7 @@ ava.afterEach(() => {
 	sandbox.restore()
 })
 
-ava('The TimelineStart component is rendered' +
+ava.serial('The TimelineStart component is rendered' +
 	' when all the events in the timeline have been returned and rendered', async (test) => {
 	const {
 		eventProps
@@ -50,7 +51,59 @@ ava('The TimelineStart component is rendered' +
 	test.is(timelineStart.text(), 'Beginning of Timeline')
 })
 
-ava('Events are toggled when the event in the url is one of type UPDATE', async (test) => {
+ava.serial('Events are ordered by either timestamp or created_at date', async (test) => {
+	const {
+		eventProps: {
+			tail,
+			...props
+		}
+	} = test.context
+
+	const date = new Date()
+	const oldTimestamp = date.getTime() - 6000
+
+	const link = {
+		id: 'fake-link-id',
+		type: 'link@1.0.0',
+		created_at: (new Date(oldTimestamp)).toISOString(),
+		data: {
+			to: {
+				id: 'fake-card-id',
+				type: 'user@1.0.0'
+			},
+			from: {
+				id: 'fake-linked-card-id',
+				type: 'org@1.0.0'
+			}
+		}
+	}
+
+	const wrapper = await mount(
+		<Timeline
+			{...props}
+			tail={[ ...tail, link ]}
+		/>, {
+			wrappingComponent: wrapperWithSetup,
+			wrappingComponentProps: {
+				sdk: props.sdk
+			}
+		})
+
+	const timeline = wrapper
+		.childAt(0)
+		.instance()
+
+	timeline.handleEventToggle()
+
+	await flushPromises()
+	wrapper.update()
+
+	const events = wrapper.find('div[data-test]')
+	const firstEvent = events.get(0).props
+	test.is(firstEvent['data-test'], link.id)
+})
+
+ava.serial('Events are toggled when the event in the url is one of type UPDATE', async (test) => {
 	const {
 		eventProps
 	} = test.context
@@ -72,9 +125,9 @@ ava('Events are toggled when the event in the url is one of type UPDATE', async 
 			tail={[ {
 				id: eventId,
 				type: 'update@1.0.0',
-				created_at: timestamp,
 				data: {
-					payload: []
+					payload: [],
+					timestamp
 				}
 			} ]}
 		/>, {
@@ -90,7 +143,7 @@ ava('Events are toggled when the event in the url is one of type UPDATE', async 
 	test.false(timeline.state('messagesOnly'))
 })
 
-ava('Events are toggled when the event in the url is one of type CREATE', async (test) => {
+ava.serial('Events are toggled when the event in the url is one of type CREATE', async (test) => {
 	const {
 		eventProps
 	} = test.context
@@ -111,7 +164,10 @@ ava('Events are toggled when the event in the url is one of type CREATE', async 
 			tail={[ {
 				id: eventId,
 				type: 'create@1,0,0',
-				created_at: timestamp
+				data: {
+					readBy: [],
+					timestamp
+				}
 			} ]}
 		/>, {
 			wrappingComponent: wrapperWithSetup,
@@ -126,7 +182,7 @@ ava('Events are toggled when the event in the url is one of type CREATE', async 
 	test.false(timeline.state('messagesOnly'))
 })
 
-ava('A message is not removed from the pendingMessage list until it has been added to the tail', async (test) => {
+ava.serial('A message is not removed from the pendingMessage list until it has been added to the tail', async (test) => {
 	const {
 		eventProps
 	} = test.context
@@ -165,6 +221,9 @@ ava('A message is not removed from the pendingMessage list until it has been add
 	wrapper.setProps({
 		tail: [ pendingMessages[0] ]
 	})
+
+	await flushPromises()
+	wrapper.update()
 
 	const updatedPendingMessages = timeline.state.pendingMessages
 	test.is(updatedPendingMessages.length, 0)

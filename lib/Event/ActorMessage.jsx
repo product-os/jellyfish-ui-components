@@ -5,23 +5,21 @@
  */
 
 import React from 'react'
-
-const ActorSuffix = () => {
-	return <span>{ ' updated this '}</span>
-}
+import Space from '../shame/Space'
 
 const ActorMessage = ({
-	actor
+	actor, suffix
 }) => {
 	if (actor && actor.name) {
 		return (
 			<span>
 				<strong>{actor.name}</strong>
-				<ActorSuffix />
+				<Space/>
+				{ suffix }
 			</span>
 		)
 	}
-	return <ActorSuffix />
+	return <span>{ suffix }</span>
 }
 
 export default React.memo(ActorMessage)
