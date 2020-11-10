@@ -7,8 +7,11 @@ import {
 	Flex,
 	Txt
 } from 'rendition'
-import Icon from '../../../shame/Icon'
-import * as helpers from '../../../services/helpers'
+import {
+	LINK
+} from '../../../../constants'
+import Icon from '../../../../shame/Icon'
+import * as helpers from '../../../../services/helpers'
 import ActorMessage from './ActorMessage'
 
 const formatTimestamp = (card) => {
@@ -33,12 +36,23 @@ const UpdateMessage = ({
 	)
 }
 
+const getIconName = (updateReason, type) => {
+	const typeBase = type.split('@')[0]
+	if (typeBase === LINK) {
+		return 'link'
+	}
+	if (updateReason) {
+		return 'lightbulb'
+	}
+	return 'pencil-alt'
+}
+
 const UpdateContext = ({
 	card, ...messageProps
 }) => {
 	const updateReason = _.get(card, [ 'name' ])
 	const formattedTimestamp = formatTimestamp(card)
-	const iconName = updateReason ? 'lightbulb' : 'pencil-alt'
+	const iconName = getIconName(updateReason, card.type)
 	return (
 		<Flex alignItems="center">
 			<Icon name={iconName} />

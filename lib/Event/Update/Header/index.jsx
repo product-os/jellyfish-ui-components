@@ -12,7 +12,7 @@ import {
 	Flex
 }	from 'rendition'
 import copy from 'copy-to-clipboard'
-import Icon from '../../shame/Icon'
+import Icon from '../../../shame/Icon'
 import UpdateContext from './UpdateContext'
 import Menu from './Menu'
 

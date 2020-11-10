@@ -10,8 +10,8 @@ import _ from 'lodash'
 import {
 	commaListsAnd
 } from 'common-tags'
-import Icon from '../shame/Icon'
-import * as helpers from '../services/helpers'
+import Icon from '../../shame/Icon'
+import * as helpers from '../../services/helpers'
 
 const getUpdateDescription = (card) => {
 	const operation = _.some(card.data.payload, 'op')
