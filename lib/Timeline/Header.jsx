@@ -6,7 +6,8 @@
 
 import React from 'react'
 import _ from 'lodash'
-import moment from 'moment'
+import format from 'date-fns/format'
+import isSameDay from 'date-fns/isSameDay'
 import {
 	html
 } from 'common-tags'
@@ -61,13 +62,13 @@ export default class Header extends React.Component {
 			const content = getEventContent(typeBase, event)
 			const actorCard = await getActor(event.data.actor)
 			const actorName = actorCard.name || ''
-			const timestamp = moment(_.get(event, [ 'data', 'timestamp' ]) || event.created_at)
-			const time = timestamp.format('HH:mm')
+			const timestamp = new Date(_.get(event, [ 'data', 'timestamp' ]) || event.created_at)
+			const time = format(timestamp, 'HH:mm')
 			let date = ''
 
 			// Show message date if it's different from previous message date
-			if (!activeDate || !timestamp.isSame(activeDate, 'day')) {
-				date = timestamp.format('YYYY - MM - DD')
+			if (!activeDate || !isSameDay(timestamp, activeDate)) {
+				date = format(timestamp, 'yyyy - MM - dd')
 				activeDate = timestamp
 			}
 

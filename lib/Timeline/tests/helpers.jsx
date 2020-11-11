@@ -29,19 +29,23 @@ const wrapperWithSetup = ({
 	)
 }
 
+export const timestamp = (new Date()).toISOString()
+
 const createTestContext = (test, sandbox) => {
 	const loadMoreChannelData = sandbox.stub()
 	loadMoreChannelData.resolves([])
 
 	const createEvent = {
 		id: 'fake-create-id',
-		type: 'create@1.0.0'
+		type: 'create@1.0.0',
+		created_at: timestamp
 	}
 	const whisperEvent = {
 		id: 'fake-whisper-id',
 		type: 'whisper@1.0.0',
+		created_at: timestamp,
 		data: {
-			timestamp: new Date(),
+			timestamp,
 			message: 'I am a whisper'
 		}
 	}
@@ -49,8 +53,9 @@ const createTestContext = (test, sandbox) => {
 	const messageEvent = {
 		id: 'fake-message-id',
 		type: 'message@1.0.0',
+		created_at: timestamp,
 		data: {
-			timestamp: new Date(),
+			timestamp,
 			message: 'I am a message'
 		}
 	}
@@ -58,6 +63,7 @@ const createTestContext = (test, sandbox) => {
 	const updateEvent = {
 		id: 'fake-update-id',
 		type: 'update@1.0.0',
+		created_at: timestamp,
 		data: {
 			payload: {
 				op: 'add',
@@ -68,7 +74,8 @@ const createTestContext = (test, sandbox) => {
 
 	const user = {
 		id: 'fake-user-id',
-		slug: 'user-fakeuser'
+		slug: 'user-fakeuser',
+		created_at: timestamp
 	}
 
 	const getActor = sandbox.stub()
@@ -79,7 +86,8 @@ const createTestContext = (test, sandbox) => {
 	const eventProps = {
 		card: {
 			id: 'fake-card-id',
-			slug: 'fake-card'
+			slug: 'fake-card',
+			created_at: timestamp
 		},
 		selectCard: () => {
 			return sandbox.stub()
