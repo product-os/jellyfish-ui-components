@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v5.1.10
+## (2020-11-11)
+
+* Use Node v14 during CI tests [Josh Bowling]
+
 # v5.1.9
 ## (2020-11-10)
 
