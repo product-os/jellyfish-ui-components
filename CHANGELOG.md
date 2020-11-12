@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v5.1.12
+## (2020-11-12)
+
+* Require Node v14 [Josh Bowling]
+
 # v5.1.11
 ## (2020-11-11)
 
