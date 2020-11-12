@@ -13,6 +13,7 @@ import {
 	mount
 } from 'enzyme'
 import {
+	timestamp,
 	createTestContext,
 	wrapperWithSetup
 } from './helpers'
@@ -71,6 +72,7 @@ ava('Events are toggled when the event in the url is one of type UPDATE', async 
 			tail={[ {
 				id: eventId,
 				type: 'update@1.0.0',
+				created_at: timestamp,
 				data: {
 					payload: []
 				}
@@ -108,7 +110,8 @@ ava('Events are toggled when the event in the url is one of type CREATE', async 
 			{...eventProps}
 			tail={[ {
 				id: eventId,
-				type: 'create@1,0,0'
+				type: 'create@1,0,0',
+				created_at: timestamp
 			} ]}
 		/>, {
 			wrappingComponent: wrapperWithSetup,
