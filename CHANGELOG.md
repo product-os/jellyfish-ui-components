@@ -5,6 +5,12 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v5.1.11
+## (2020-11-11)
+
+* Add list of timezone names [Graham McCulloch]
+* Remove momentjs dependency [Graham McCulloch]
+
 # v5.1.10
 ## (2020-11-11)
 
