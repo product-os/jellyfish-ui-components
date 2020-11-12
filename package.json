@@ -6,7 +6,7 @@
     "url": "https://github.com/product-os/jellyfish-ui-components.git"
   },
   "engines": {
-    "node": ">=12.15.0"
+    "node": ">=14.2.0"
   },
   "description": "UI components library for Jellyfish",
   "directories": {
