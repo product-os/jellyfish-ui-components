@@ -52,7 +52,7 @@
   "author": "Balena.io. <hello@balena.io>",
   "license": "UNLICENSED",
   "dependencies": {
-    "@balena/jellyfish-client-sdk": "^2.7.4",
+    "@balena/jellyfish-client-sdk": "2.7.5-renovate-major-socket-io-packages-c7aaef3906772fcd115f5ff5b165e23fbf0fd25a",
     "@sentry/browser": "^5.29.2",
     "@webscopeio/react-textarea-autocomplete": "^4.7.2",
     "bluebird": "^3.7.2",
