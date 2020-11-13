@@ -5,6 +5,12 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v5.1.14
+## (2020-11-13)
+
+* Update references to emotion [Graham McCulloch]
+* patch: Update emotion monorepo to v11 [Renovate Bot]
+
 # v5.1.13
 ## (2020-11-12)
 
