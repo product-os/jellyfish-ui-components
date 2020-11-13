@@ -27,12 +27,14 @@ import {
 import configureStore from 'redux-mock-store'
 import {
 	CacheProvider
-} from '@emotion/core'
+} from '@emotion/react'
 import createCache from '@emotion/cache'
 
 import Adapter from 'enzyme-adapter-react-16'
 
-const emotionCache = createCache({})
+const emotionCache = createCache({
+	key: 'test'
+})
 
 configure({
 	adapter: new Adapter()
