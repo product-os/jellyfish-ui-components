@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v5.1.17
+## (2020-11-16)
+
+* Move Update into Event [Lucy-Jane]
+
 # v5.1.16
 ## (2020-11-14)
 
