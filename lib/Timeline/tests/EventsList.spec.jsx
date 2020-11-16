@@ -121,6 +121,7 @@ ava('All events are shown if messagesOnly and hideWhispers are not set', async (
 	const {
 		eventProps: {
 			tail,
+			card,
 			...props
 		},
 		whisperEvent,
@@ -132,6 +133,7 @@ ava('All events are shown if messagesOnly and hideWhispers are not set', async (
 	const eventsList = await mount(
 		<EventsList
 			{...props}
+			targetCard={card}
 			sortedEvents={tail}
 		/>,
 		{

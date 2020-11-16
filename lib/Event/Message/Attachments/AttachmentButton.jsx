@@ -9,7 +9,7 @@ import {
 	Button,
 	Txt
 } from 'rendition'
-import Icon from '../../shame/Icon'
+import Icon from '../../../shame/Icon'
 
 const AttachmentButton = ({
 	attachment,

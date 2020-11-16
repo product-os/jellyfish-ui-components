@@ -13,10 +13,10 @@ import {
 } from 'enzyme'
 import {
 	getWrapper
-} from '../../../../test/ui-setup'
+} from '../../../test/ui-setup'
 
-import UpdateContext from './'
-import Icon from '../../../shame/Icon'
+import Context from './Context'
+import Icon from '../../shame/Icon'
 
 const {
 	wrapper
@@ -35,7 +35,7 @@ const CARD = {
 }
 
 ava('Renders a pencil icon if the card has no name', async (test) => {
-	const header = shallow(<UpdateContext card={CARD} actor={ACTOR} />)
+	const header = shallow(<Context card={CARD} actor={ACTOR} />)
 	const icon = header.find(Icon)
 	test.deepEqual(icon.props(), {
 		name: 'pencil-alt'
@@ -47,36 +47,36 @@ ava('Renders a lightbulb icon if the card has a name', (test) => {
 		...CARD,
 		name: 'Reopen due to activity'
 	}
-	const header = shallow(<UpdateContext card={card} actor={ACTOR} />)
+	const header = shallow(<Context card={card} actor={ACTOR} />)
 	const icon = header.find(Icon)
 	test.deepEqual(icon.props(), {
 		name: 'lightbulb'
 	})
 })
 
-ava('If the card has no name, UpdateContext renders a message ' +
+ava('If the card has no name, Context renders a message ' +
 ' with the actor name and when they made the update', async (test) => {
-	const header = mount(<UpdateContext card={CARD} actor={ACTOR}/>, {
+	const header = mount(<Context card={CARD} actor={ACTOR}/>, {
 		wrappingComponent: wrapper
 	})
 	test.is(header.text(), `${ACTOR.name} updated this at ${format(TIMESTAMP_DATE, 'HH:mm')}`)
 })
 
 ava('If the card has no name and the actor is not present, ' +
-'UpdateContext renders a message with when the update was made', async (test) => {
-	const header = mount(<UpdateContext card={CARD} />, {
+'Context renders a message with when the update was made', async (test) => {
+	const header = mount(<Context card={CARD} />, {
 		wrappingComponent: wrapper
 	})
-	test.is(header.text(), ` updated this at ${format(TIMESTAMP_DATE, 'HH:mm')}`)
+	test.is(header.text(), `updated this at ${format(TIMESTAMP_DATE, 'HH:mm')}`)
 })
 
-ava('If the card has a name, UpdateContext uses the name to render' +
+ava('If the card has a name, Context uses the name to render' +
 ' a message including the reason for the update', (test) => {
 	const card = {
 		...CARD,
 		name: 'Support Thread reopened due to activity'
 	}
-	const header = mount(<UpdateContext card={card} />, {
+	const header = mount(<Context card={card} />, {
 		wrappingComponent: wrapper
 	})
 	test.is(header.text(), `Support Thread reopened due to activity at ${format(TIMESTAMP_DATE, 'HH:mm')}`)
@@ -89,7 +89,7 @@ ava('If there is no timestamp on the card, the created_at field is used instead'
 		created_at: createdAtDate.toISOString()
 	}
 
-	const header = mount(<UpdateContext actor={ACTOR} card={card} />, {
+	const header = mount(<Context actor={ACTOR} card={card} />, {
 		wrappingComponent: wrapper
 	})
 	test.is(header.text(), `${ACTOR.name} updated this at ${format(createdAtDate, 'HH:mm')}`)

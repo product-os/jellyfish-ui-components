@@ -1,3 +1,9 @@
+/*
+ * Copyright (C) Balena.io - All Rights Reserved
+ * Unauthorized copying of this file, via any medium is strictly prohibited.
+ * Proprietary and confidential.
+ */
+
 import React from 'react'
 import {
 	circularDeepEqual
@@ -10,8 +16,8 @@ import _ from 'lodash'
 import {
 	commaListsAnd
 } from 'common-tags'
-import Icon from '../shame/Icon'
-import * as helpers from '../services/helpers'
+import Icon from '../../shame/Icon'
+import * as helpers from '../../services/helpers'
 
 const getUpdateDescription = (card) => {
 	const operation = _.some(card.data.payload, 'op')
@@ -22,7 +28,7 @@ const getUpdateDescription = (card) => {
 	return null
 }
 
-const Content = ({
+const Body = ({
 	card
 }) => {
 	if (card && card.name) {
@@ -40,4 +46,4 @@ const Content = ({
 	)
 }
 
-export default React.memo(Content, circularDeepEqual)
+export default React.memo(Body, circularDeepEqual)

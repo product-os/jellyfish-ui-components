@@ -10,8 +10,8 @@ import styled from 'styled-components'
 import {
 	Theme, Flex, Txt
 } from 'rendition'
-import Link from '../Link'
-import EventContext from './EventContext'
+import Link from '../../Link'
+import Context from './Context'
 
 const HeaderWrapper = styled(Flex) `
 	position: relative;
@@ -106,7 +106,7 @@ export default class EventHeader extends React.Component {
 					{(!squashTop && !isMessage) && this.getTimelineElement(card)}
 				</Flex>
 
-				<EventContext
+				<Context
 					card={card}
 					{...contextProps}
 					isOwnMessage={isOwnMessage}

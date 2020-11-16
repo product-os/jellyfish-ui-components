@@ -17,7 +17,7 @@ import {
 	UserAvatarLive
 } from '../UserAvatar'
 import CardLoader from '../CardLoader'
-import MessageContainer from '../Event/MessageContainer'
+import MessageContainer from '../Event/Message/MessageContainer'
 import {
 	HIDDEN_ANCHOR
 } from '../Timeline'

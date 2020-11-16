@@ -402,7 +402,9 @@ class Timeline extends React.Component {
 		} = this.state
 
 		// Due to a bug in syncing, sometimes there can be duplicate cards in events
-		const sortedEvents = _.uniqBy(_.sortBy(tail, 'data.timestamp'), 'id')
+		const sortedEvents = _.uniqBy(_.sortBy(tail, (event) => {
+			return _.get(event, [ 'data', 'timestamp' ]) || event.created_at
+		}), 'id')
 
 		const sendCommand = getSendCommand(user)
 
@@ -419,7 +421,8 @@ class Timeline extends React.Component {
 			getCard,
 			threadIsMirrored: isMirrored,
 			menuOptions: eventMenuOptions,
-			getActorHref
+			getActorHref,
+			targetCard: card
 		}
 
 		return (

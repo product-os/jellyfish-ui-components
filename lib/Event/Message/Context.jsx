@@ -14,15 +14,15 @@ import {
 } from 'rendition'
 import {
 	formatTimestamp
-} from '../services/helpers'
-import Icon from '../shame/Icon'
+} from '../../services/helpers'
+import Icon from '../../shame/Icon'
 import {
 	ActionLink
-} from '../shame/ActionLink'
+} from '../../shame/ActionLink'
 import {
 	MirrorIcon
-} from '../MirrorIcon'
-import ContextMenu from '../ContextMenu'
+} from '../../MirrorIcon'
+import ContextMenu from '../../ContextMenu'
 
 const ContextWrapper = styled(Flex) `
 	z-index: 2;

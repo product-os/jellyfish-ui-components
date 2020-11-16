@@ -6,7 +6,7 @@
 
 import {
 	getWrapper
-} from '../../../test/ui-setup'
+} from '../../../../test/ui-setup'
 import ava from 'ava'
 import sinon from 'sinon'
 import {
@@ -14,7 +14,7 @@ import {
 	mount
 } from 'enzyme'
 import React from 'react'
-import Event from '../Event'
+import Message from '../'
 import {
 	highlightTags
 } from '../Mention'
@@ -104,7 +104,7 @@ ava.afterEach(() => {
 ava('It should render', (test) => {
 	test.notThrows(() => {
 		shallow(
-			<Event
+			<Message
 				{...commonProps}
 				card={card}
 			/>
@@ -115,7 +115,7 @@ ava('It should render', (test) => {
 ava('The event is marked as \'focused\' if the card\'s ID matches the \'event\' url param', (test) => {
 	global.location.search = `?event=${card.id}`
 	const event = mount(
-		<Event
+		<Message
 			{...commonProps}
 			card={card}
 		/>, {
@@ -128,7 +128,7 @@ ava('The event is marked as \'focused\' if the card\'s ID matches the \'event\' 
 
 ava('It should display the actor\'s details', (test) => {
 	const event = mount(
-		<Event
+		<Message
 			{...commonProps}
 			card={card}
 		/>, {
@@ -154,7 +154,7 @@ ava('A markdown message is displayed when the card is a message', async (test) =
 		}
 	}
 	const event = mount(
-		<Event
+		<Message
 			{...commonProps}
 			card={messageCard}
 		/>, {
@@ -216,7 +216,7 @@ ava('Editing a message will update the mentions, alerts, tags and message', asyn
 	}
 
 	const event = await mount(
-		<Event
+		<Message
 			{...commonProps}
 			onUpdateCard={onUpdateCard}
 			user={author}

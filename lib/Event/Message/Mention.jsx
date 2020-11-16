@@ -6,7 +6,7 @@
 
 import _ from 'lodash'
 import React from 'react'
-import * as helpers from '../services/helpers'
+import * as helpers from '../../services/helpers'
 
 // Adds attributes to the spans that wrap matched tokens
 // (usernames, groups, hashtags etc) in messages.

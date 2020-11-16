@@ -6,14 +6,14 @@
 
 import {
 	getWrapper
-} from '../../../test/ui-setup'
+} from '../../../../test/ui-setup'
 import ava from 'ava'
 import sinon from 'sinon'
 import {
 	mount
 } from 'enzyme'
 import React from 'react'
-import EventHeader from '../EventHeader'
+import Header from '../Header'
 import {
 	card
 } from './fixtures'
@@ -45,8 +45,8 @@ ava('\'updating...\' is displayed if card is updating and editing', async (test)
 	const {
 		commonProps
 	} = test.context
-	const eventHeader = await mount((
-		<EventHeader
+	const messageHeader = await mount((
+		<Header
 			{...commonProps}
 			updating
 			editing
@@ -54,7 +54,7 @@ ava('\'updating...\' is displayed if card is updating and editing', async (test)
 	), {
 		wrappingComponent
 	})
-	const status = eventHeader.find('Txt[data-test="event-header__status"]')
+	const status = messageHeader.find('Txt[data-test="event-header__status"]')
 	test.is(status.text(), 'updating...')
 })
 
@@ -62,29 +62,29 @@ ava('\'Edit Message\' is not available if the user did not write the message', a
 	const {
 		commonProps
 	} = test.context
-	const eventHeader = await mount((
-		<EventHeader
+	const messageHeader = await mount((
+		<Header
 			{...commonProps}
 		/>
 	), {
 		wrappingComponent
 	})
 
-	const trigger = eventHeader.find('button[data-test="event-header__context-menu-trigger"]')
+	const trigger = messageHeader.find('button[data-test="event-header__context-menu-trigger"]')
 	trigger.simulate('click')
-	eventHeader.update()
+	messageHeader.update()
 
 	// The 'Copy JSON' link is now shown but the 'Edit Message' link is not
-	test.truthy(eventHeader.find('a[data-test="event-header__link--copy-json"]').length)
-	test.falsy(eventHeader.find('a[data-test="event-header__link--edit-message"]').length)
+	test.truthy(messageHeader.find('a[data-test="event-header__link--copy-json"]').length)
+	test.falsy(messageHeader.find('a[data-test="event-header__link--edit-message"]').length)
 })
 
 ava('Clicking \'Edit Message\' calls the onEditMessage prop callback', async (test) => {
 	const {
 		commonProps
 	} = test.context
-	const eventHeader = await mount((
-		<EventHeader
+	const messageHeader = await mount((
+		<Header
 			{...commonProps}
 			user={{
 				id: card.data.actor
@@ -94,11 +94,11 @@ ava('Clicking \'Edit Message\' calls the onEditMessage prop callback', async (te
 		wrappingComponent
 	})
 
-	const trigger = eventHeader.find('button[data-test="event-header__context-menu-trigger"]')
+	const trigger = messageHeader.find('button[data-test="event-header__context-menu-trigger"]')
 	trigger.simulate('click')
-	eventHeader.update()
+	messageHeader.update()
 
 	test.is(commonProps.onEditMessage.callCount, 0)
-	eventHeader.find('a[data-test="event-header__link--edit-message"]').simulate('click')
+	messageHeader.find('a[data-test="event-header__link--edit-message"]').simulate('click')
 	test.is(commonProps.onEditMessage.callCount, 1)
 })

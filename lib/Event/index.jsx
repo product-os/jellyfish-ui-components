@@ -10,7 +10,7 @@ import {
 } from 'redux'
 import {
 	parseMessage
-} from './EventBody'
+} from './Message/Body'
 import CardLoader from '../CardLoader'
 import * as helpers from '../services/helpers'
 import withCardUpdater from '../HOC/with-card-updater'
@@ -19,10 +19,12 @@ import {
 } from '../SetupProvider'
 
 import {
-	UPDATE
+	UPDATE,
+	LINK
 } from '../constants'
-import Update from '../Update'
-import Event from './Event'
+import Update from './Update'
+import LinkedCard from './LinkedCard'
+import Message from './Message'
 
 export {
 	parseMessage
@@ -30,7 +32,7 @@ export {
 
 const EventWithActor = (props) => {
 	const {
-		card, user, selectCard, getCard, onCardVisible
+		card, user, selectCard, getCard, onCardVisible, targetCard
 	} = props
 	const typeBase = props.card.type.split('@')[0]
 	return (
@@ -53,8 +55,17 @@ const EventWithActor = (props) => {
 						/>
 					)
 				}
+				if (typeBase === LINK) {
+					return (
+						<LinkedCard
+							actor={actor}
+							card={card}
+							targetCard={targetCard}
+						/>
+					)
+				}
 				return (
-					<Event {...props} actor={actor} />
+					<Message {...props} actor={actor} />
 				)
 			}}
 		</CardLoader>

@@ -11,10 +11,10 @@ import {
 } from 'file-saver'
 import {
 	addNotification
-} from '../../services/notifications'
+} from '../../../services/notifications'
 import AttachmentButton from './AttachmentButton'
 import MessageContainer from '../MessageContainer'
-import AuthenticatedImage from '../../AuthenticatedImage'
+import AuthenticatedImage from '../../../AuthenticatedImage'
 
 const downloadFile = async (sdk, cardId, file) => {
 	const {
