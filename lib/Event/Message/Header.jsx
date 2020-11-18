@@ -12,6 +12,9 @@ import {
 } from 'rendition'
 import Link from '../../Link'
 import Context from './Context'
+import {
+	getUserTooltipText
+} from '../../services/helpers'
 
 const HeaderWrapper = styled(Flex) `
 	position: relative;
@@ -81,7 +84,9 @@ export default class EventHeader extends React.Component {
 					{(!squashTop && isMessage) && (
 						<Txt
 							data-test="event__actor-label"
-							tooltip={actor ? actor.email : 'loading...'}
+							tooltip={getUserTooltipText(_.get(actor, [ 'card' ]), {
+								hideName: true
+							}) || 'loading...'}
 						>
 							{Boolean(actor) && Boolean(actor.card) && (() => {
 								const text = <Txt.span color="black">{actor.name}</Txt.span>
