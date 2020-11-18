@@ -51,7 +51,11 @@ const actor = {
 	name: 'johndoe',
 	email: 'johndoe@example.com',
 	proxy: false,
-	card: {}
+	card: {
+		data: {
+			email: 'johndoe@example.com'
+		}
+	}
 }
 
 const groups = {
