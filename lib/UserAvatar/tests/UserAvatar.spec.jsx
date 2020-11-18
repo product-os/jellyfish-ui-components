@@ -62,6 +62,9 @@ ava('UserAvatarLive displays the user`s avatar, tooltip and status', async (test
 	test.is(statusIcon.props().small, !commonProps.emphasized)
 	test.deepEqual(statusIcon.props().userStatus.value, 'DoNotDisturb')
 
-	const avatarBox = component.find('StyledAvatar').find('Box').first()
-	test.is(avatarBox.props().tooltip, 'Test User\ntest@jel.ly.fish')
+	const avatarBox = component.find('[data-test="avatar-wrapper"]').first()
+	test.deepEqual(avatarBox.props().tooltip, {
+		text: 'Test User\ntest@jel.ly.fish\njellyfish',
+		placement: 'top'
+	})
 })

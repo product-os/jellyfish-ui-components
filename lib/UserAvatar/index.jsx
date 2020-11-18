@@ -9,12 +9,13 @@ import styled from 'styled-components'
 import _ from 'lodash'
 import {
 	Avatar,
+	Box,
 	Flex
 } from 'rendition'
 import CardLoader from '../CardLoader'
 import UserStatusIcon from '../UserStatusIcon'
 import {
-	generateActorFromUserCard
+	getUserTooltipText
 } from '../services/helpers'
 
 const dimensions = ({
@@ -39,25 +40,31 @@ const Wrapper = styled(Flex) `
 `
 
 export const UserAvatar = React.memo(({
-	user, tooltip, emphasized
+	user, emphasized, tooltipPlacement = 'top'
 }) => {
 	const firstName = _.get(user, [ 'data', 'profile', 'name', 'first' ])
 	const lastName = _.get(user, [ 'data', 'profile', 'name', 'last' ])
 	const src = _.get(user, [ 'data', 'avatar' ])
-	const tooltipText = tooltip || `${firstName} ${lastName}`.trim() || user.name || user.slug
 	return (
-		<Avatar
-			tooltip={tooltipText}
-			emphasized={emphasized}
-			firstName={firstName}
-			lastName={lastName}
-			src={src}
-		/>
+		<Box
+			data-test="avatar-wrapper"
+			tooltip={{
+				text: getUserTooltipText(user),
+				placement: tooltipPlacement
+			}}
+		>
+			<Avatar
+				emphasized={emphasized}
+				firstName={firstName}
+				lastName={lastName}
+				src={src}
+			/>
+		</Box>
 	)
 })
 
 export const UserAvatarLive = React.memo(({
-	userId, selectCard, getCard, emphasized, ...rest
+	userId, selectCard, getCard, emphasized, tooltipPlacement, ...rest
 }) => {
 	return (
 		<CardLoader
@@ -68,8 +75,6 @@ export const UserAvatarLive = React.memo(({
 			getCard={getCard}
 		>
 			{(user) => {
-				const actor = generateActorFromUserCard(user)
-				const tooltip = actor && `${_.truncate(actor.name, 30)}\n${_.truncate(actor.email, 30)}`
 				return (
 					<Wrapper
 						emphasized={emphasized}
@@ -77,8 +82,8 @@ export const UserAvatarLive = React.memo(({
 					>
 						<UserAvatar
 							emphasized={emphasized}
-							tooltip={tooltip}
 							user={user}
+							tooltipPlacement={tooltipPlacement}
 						/>
 						<UserStatusIcon
 							className="user-status-icon"
