@@ -69,6 +69,8 @@ export default class EventHeader extends React.Component {
 
 		const isOwnMessage = user.id === _.get(card, [ 'data', 'actor' ])
 
+		const actorTooltip = actor ? `${_.castArray(actor.email)[0]} (${actor.card.slug.slice(5)})` : 'loading...'
+
 		return (
 			<HeaderWrapper justifyContent="space-between">
 				<Flex
@@ -81,7 +83,7 @@ export default class EventHeader extends React.Component {
 					{(!squashTop && isMessage) && (
 						<Txt
 							data-test="event__actor-label"
-							tooltip={actor ? actor.email : 'loading...'}
+							tooltip={actorTooltip}
 						>
 							{Boolean(actor) && Boolean(actor.card) && (() => {
 								const text = <Txt.span color="black">{actor.name}</Txt.span>
