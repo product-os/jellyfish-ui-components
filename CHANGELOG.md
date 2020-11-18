@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v5.2.1
+## (2020-11-18)
+
+* patch: Update dependency eslint-config-standard to ^16.0.2 [Renovate Bot]
+
 # v5.2.0
 ## (2020-11-18)
 
