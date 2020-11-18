@@ -7,7 +7,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import {
-	Button, Txt, Img, Link
+	Button, Txt, Img
 } from 'rendition'
 import {
 	Markdown
@@ -22,6 +22,10 @@ import {
 } from '../../Timeline/MessageInput'
 import Attachments from './Attachments'
 import Mention from './Mention'
+import Link from '../../Link'
+import {
+	getLinkProps
+} from '../../Link/Link'
 import * as helpers from '../../services/helpers'
 import ErrorBoundary from '../../shame/ErrorBoundary'
 
@@ -119,10 +123,11 @@ const componentOverrides = {
 		return <Img {...attribs} style={IMG_STYLE} />
 	},
 	// eslint-disable-next-line id-length
-	a: (attribs) => {
-		// TODO: Use RouterLink and navigate internally if the href
-		// is on the same domain.
-		return <Link blank {...attribs} />
+	a: ({
+		href, ...rest
+	}) => {
+		const linkProps = getLinkProps(href)
+		return <Link {...rest} {...linkProps} />
 	},
 	mention: (attribs) => {
 		return <Mention {...attribs} />
