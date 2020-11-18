@@ -5,6 +5,12 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v5.2.0
+## (2020-11-18)
+
+* Use generic user tooltip for user's name [Graham McCulloch]
+* Fix user avatar tooltip [Graham McCulloch]
+
 # v5.1.20
 ## (2020-11-17)
 
