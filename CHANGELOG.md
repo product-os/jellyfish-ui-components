@@ -5,6 +5,15 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v5.3.0
+## (2020-11-19)
+
+* Fix unhandled exceptions on unit tests [Graham McCulloch]
+* Avoid default export [Graham McCulloch]
+* Use react-router link to navigate to Jellyfish or relative URLs [Graham McCulloch]
+* Refactor Link component [Graham McCulloch]
+* Add URL helper methods [Graham McCulloch]
+
 # v5.2.2
 ## (2020-11-18)
 
