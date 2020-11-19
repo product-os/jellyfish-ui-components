@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v5.3.2
+## (2020-11-19)
+
+* patch: Update dependency file-saver to ^2.0.5 [Renovate Bot]
+
 # v5.3.1
 ## (2020-11-19)
 
