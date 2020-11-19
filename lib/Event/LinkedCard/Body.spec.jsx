@@ -16,7 +16,9 @@ import {
 
 import Body from './Body'
 import Icon from '../../shame/Icon'
-import Link from '../../Link'
+import {
+	Link
+} from '../../Link'
 
 const CARD = {
 	id: 'fake_id'

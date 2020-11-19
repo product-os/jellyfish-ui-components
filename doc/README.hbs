@@ -7,7 +7,9 @@ This module is a collection of re-usable React component that Jellyfish uses to 
 Below is an example how to use this library:
 
 ```js
-import Link from '@balena/jellyfish-ui-components/lib/Link'
+import {
+	Link
+} from '@balena/jellyfish-ui-components'
 
 const RENDERERS = {
 	name: (name, item) => {

@@ -7,8 +7,7 @@
 import React from 'react'
 import _ from 'lodash'
 import {
-	Flex,
-	Link
+	Flex
 } from 'rendition'
 import {
 	Markdown
@@ -22,6 +21,10 @@ import {
 	HIDDEN_ANCHOR
 } from '../Timeline'
 import {
+	Link,
+	getLinkProps
+} from '../Link'
+import {
 	getMessage,
 	generateActorFromUserCard
 } from '../services/helpers'
@@ -31,16 +34,11 @@ const componentOverrides = {
 		return <span>[{attribs.title || attribs.alt || 'image'}]</span>
 	},
 	// eslint-disable-next-line id-length
-	a: (attribs) => {
-		// The whole chat summary is clickable. Prevent navigating to the
-		// chat/thread channel when clicking on a link within the last message
-		// summary.
-		const onClick = (event) => {
-			event.stopPropagation()
-			event.preventDefault()
-			window.open(attribs.href)
-		}
-		return <Link blank {...attribs} onClick={onClick} />
+	a: ({
+		href, ...rest
+	}) => {
+		const linkProps = getLinkProps(href)
+		return <Link {...rest} {...linkProps} />
 	}
 }
 

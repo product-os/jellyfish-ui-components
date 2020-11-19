@@ -144,7 +144,7 @@ ava('Inline messages are transformed to a text representation', async (test) => 
 	test.is(messageSummaryText.trim(), '[some-image.png]')
 })
 
-ava('Links are transformed to use the RouterLink component', async (test) => {
+ava('Links are transformed to use the Link component', async (test) => {
 	const {
 		commonProps
 	} = test.context
@@ -159,6 +159,6 @@ ava('Links are transformed to use the RouterLink component', async (test) => {
 	})
 	const messageSummary = component.find('div[data-test="card-chat-summary__message"]')
 
-	const link = messageSummary.find('Link')
-	test.is(link.props().href, 'https://via.placeholder.com/150')
+	const link = messageSummary.find('Link').first()
+	test.is(link.props().to, 'https://via.placeholder.com/150')
 })

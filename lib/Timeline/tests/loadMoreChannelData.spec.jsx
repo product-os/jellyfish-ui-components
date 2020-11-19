@@ -280,7 +280,11 @@ ava('loadMoreChannelData is called when there is an event in the url ' +
 			{...rest}
 			tail={[ {
 				id: 'fake-event-id',
-				type: 'message@1.0.0'
+				type: 'message@1.0.0',
+				slug: 'message-1',
+				data: {
+					readBy: []
+				}
 			} ]}
 			loadMoreChannelData={loadMoreChannelData}
 		/>, {
@@ -335,8 +339,12 @@ ava('loadMoreChannelData is used to get all the events for the timeline when' +
 		return {
 			id: `fake-event-${index}`,
 			type: 'message@1.0.0',
+			slug: `message=${index}`,
 			data: {
-				target: 'fake-target-id'
+				target: {
+					id: 'fake-target-id'
+				},
+				readBy: []
 			}
 		}
 	})
@@ -348,7 +356,8 @@ ava('loadMoreChannelData is used to get all the events for the timeline when' +
 		data: {
 			target: {
 				id: 'fake-target-id'
-			}
+			},
+			readBy: []
 		}
 	} ])
 
