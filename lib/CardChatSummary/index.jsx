@@ -16,7 +16,9 @@ import {
 import styled, {
 	withTheme
 } from 'styled-components'
-import Link from '../Link'
+import {
+	Link
+} from '../Link'
 import * as helpers from '../services/helpers'
 import ColorHashPill from '../shame/ColorHashPill'
 import {

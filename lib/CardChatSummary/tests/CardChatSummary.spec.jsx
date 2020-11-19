@@ -144,7 +144,7 @@ ava('Inline messages are transformed to a text representation', async (test) => 
 	test.is(messageSummaryText.trim(), '[some-image.png]')
 })
 
-ava('Links are transformed to use the RouterLink component', async (test) => {
+ava('Links are transformed to use the Link component', async (test) => {
 	const {
 		commonProps
 	} = test.context

@@ -22,10 +22,10 @@ import {
 } from '../../Timeline/MessageInput'
 import Attachments from './Attachments'
 import Mention from './Mention'
-import Link from '../../Link'
 import {
+	Link,
 	getLinkProps
-} from '../../Link/Link'
+} from '../../Link'
 import * as helpers from '../../services/helpers'
 import ErrorBoundary from '../../shame/ErrorBoundary'
 

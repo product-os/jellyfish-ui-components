@@ -8,7 +8,11 @@ import {
 	withRouter
 } from 'react-router-dom'
 import {
-	Link
+	Link as InnerLink
 } from './Link'
 
-export default withRouter(Link)
+export {
+	getLinkProps
+} from './Link'
+
+export const Link = withRouter(InnerLink)

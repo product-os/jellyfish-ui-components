@@ -14,7 +14,9 @@ import {
 	Txt
 } from 'rendition'
 import styled from 'styled-components'
-import Link from '../../Link'
+import {
+	Link
+} from '../../Link'
 import * as helpers from '../../services/helpers'
 import Icon from '../Icon'
 import Container from './Container'

@@ -14,7 +14,9 @@ import {
 	Txt
 }	from 'rendition'
 import Icon from '../../shame/Icon'
-import Link from '../../Link'
+import {
+	Link
+} from '../../Link'
 
 const Body = ({
 	card

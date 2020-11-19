@@ -20,10 +20,10 @@ import MessageContainer from '../Event/Message/MessageContainer'
 import {
 	HIDDEN_ANCHOR
 } from '../Timeline'
-import Link from '../Link'
 import {
+	Link,
 	getLinkProps
-} from '../Link/Link'
+} from '../Link'
 import {
 	getMessage,
 	generateActorFromUserCard

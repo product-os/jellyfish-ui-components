@@ -10,7 +10,9 @@ import styled from 'styled-components'
 import {
 	Theme, Flex, Txt
 } from 'rendition'
-import Link from '../../Link'
+import {
+	Link
+} from '../../Link'
 import Context from './Context'
 import {
 	getUserTooltipText
