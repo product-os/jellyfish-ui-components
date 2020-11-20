@@ -247,10 +247,6 @@ class Timeline extends React.Component {
 
 		this.props.sdk.event.create(message)
 			.then(() => {
-				this.setState({
-					uploadingFiles: _.without(this.state.uploadingFiles, message.slug)
-				})
-
 				this.props.analytics.track('element.create', {
 					element: {
 						type
@@ -259,6 +255,11 @@ class Timeline extends React.Component {
 			})
 			.catch((error) => {
 				addNotification('danger', error.message || error)
+			})
+			.finally(() => {
+				this.setState({
+					uploadingFiles: _.without(this.state.uploadingFiles, message.slug)
+				})
 			})
 	}
 
