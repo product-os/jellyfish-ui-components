@@ -226,6 +226,9 @@ class Timeline extends React.Component {
 
 	handleFileChange (files, whisper) {
 		const type = whisper ? 'whisper' : 'message'
+		if (!files || !files.length) {
+			return
+		}
 		const file = _.first(files)
 		const message = {
 			target: this.props.card,
@@ -244,10 +247,6 @@ class Timeline extends React.Component {
 
 		this.props.sdk.event.create(message)
 			.then(() => {
-				this.setState({
-					uploadingFiles: _.without(this.state.uploadingFiles, message.slug)
-				})
-
 				this.props.analytics.track('element.create', {
 					element: {
 						type
@@ -256,6 +255,11 @@ class Timeline extends React.Component {
 			})
 			.catch((error) => {
 				addNotification('danger', error.message || error)
+			})
+			.finally(() => {
+				this.setState({
+					uploadingFiles: _.without(this.state.uploadingFiles, message.slug)
+				})
 			})
 	}
 
