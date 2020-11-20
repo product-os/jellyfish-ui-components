@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v5.3.3
+## (2020-11-20)
+
+* Correct text representation of attached file [Graham McCulloch]
+
 # v5.3.2
 ## (2020-11-19)
 
