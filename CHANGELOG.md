@@ -5,6 +5,12 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v5.3.4
+## (2020-11-20)
+
+* Always update the uploadingFiles state [Graham McCulloch]
+* Do not allow sending file msgs with undefined files [Graham McCulloch]
+
 # v5.3.3
 ## (2020-11-20)
 
