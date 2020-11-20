@@ -54,7 +54,7 @@ export const MessageSnippet = React.memo(({
 			.replace(/```[^`]*```/, '`<code block>`')
 			.split('\n')
 			.map((line) => {
-				return line.includes(HIDDEN_ANCHOR) ? '[image]' : line
+				return line.includes(HIDDEN_ANCHOR) ? '[attachment]' : line
 			})
 			.shift()
 	}, [ messageCard ])
