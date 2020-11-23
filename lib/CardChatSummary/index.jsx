@@ -153,8 +153,12 @@ export class CardChatSummary extends React.Component {
 					<Flex alignItems="center" mb={1} color="text.light">
 						{_.get(card.links, [ 'has attached element' ], []).length > 0 && (
 							<React.Fragment>
-								<TimeSummary timestamp={createdTime} prefix="Created" iconName="history" ml={3} />
-								<TimeSummary timestamp={updatedTime} prefix="Updated" iconName="sync" ml={3} />
+								{createdTime &&
+									<TimeSummary timestamp={createdTime} prefix="Created" iconName="history" ml={3} />
+								}
+								{updatedTime &&
+									<TimeSummary timestamp={updatedTime} prefix="Updated" iconName="sync" ml={3} />
+								}
 							</React.Fragment>
 						)}
 						{ displayOwner && <OwnerDisplay owner={threadOwner} selectCard={selectCard} getCard={getCard} ml={3} /> }
