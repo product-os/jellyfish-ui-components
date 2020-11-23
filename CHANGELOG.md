@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v5.3.7
+## (2020-11-23)
+
+* Fix handling of invalid timestamps [Graham McCulloch]
+
 # v5.3.6
 ## (2020-11-21)
 
