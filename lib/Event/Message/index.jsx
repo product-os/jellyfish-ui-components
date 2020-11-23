@@ -284,12 +284,7 @@ export default class Event extends React.Component {
 					>
 						{!squashTop && (
 							<React.Fragment>
-								<UserAvatarLive
-									userId={helpers.getActorIdFromCard(card)}
-									selectCard={this.props.selectCard}
-									getCard={this.props.getCard}
-								/>
-
+								<UserAvatarLive userId={helpers.getActorIdFromCard(card)}/>
 								{openChannel && (
 									<MessageIconWrapper
 										tooltip={{

@@ -11,7 +11,9 @@ import {
 import {
 	parseMessage
 } from './Message/Body'
-import CardLoader from '../CardLoader'
+import {
+	CardLoader
+} from '../CardLoader'
 import * as helpers from '../services/helpers'
 import withCardUpdater from '../HOC/with-card-updater'
 import {
@@ -32,7 +34,7 @@ export {
 
 const EventWithActor = (props) => {
 	const {
-		card, user, selectCard, getCard, onCardVisible, targetCard
+		card, user, onCardVisible, targetCard
 	} = props
 	const typeBase = props.card.type.split('@')[0]
 	return (
@@ -40,8 +42,6 @@ const EventWithActor = (props) => {
 			id={helpers.getActorIdFromCard(props.card)}
 			type="user"
 			withLinks={[ 'is member of' ]}
-			cardSelector={selectCard}
-			getCard={getCard}
 		>
 			{(author) => {
 				const actor = helpers.generateActorFromUserCard(author)

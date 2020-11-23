@@ -20,24 +20,21 @@ import {
 	MessageSnippet
 } from '../MessageSnippet'
 
-const wrappingComponent = getWrapper().wrapper
-
 const sandbox = sinon.createSandbox()
+
+const wrappingComponent = getWrapper({}, {
+	getCard: sandbox.stub().resolves(userWithOrg),
+	selectCard: sandbox.stub().returns(sandbox.stub().returns(userWithOrg))
+}).wrapper
 
 ava.afterEach(() => {
 	sandbox.restore()
 })
 
 ava('MessageSnippet displays the user avatar and the message text', async (test) => {
-	const selectCard = sandbox.stub().returns(() => {
-		return userWithOrg
-	})
-	const getCard = sandbox.stub()
 	const component =	await mount((
 		<MessageSnippet
 			messageCard={msg}
-			selectCard={selectCard}
-			getCard={getCard}
 		/>
 	), {
 		wrappingComponent

@@ -70,20 +70,16 @@ const groups = {
 	}
 }
 
-const {
-	wrapper
-} = getWrapper()
-
 const sandbox = sinon.createSandbox()
+
+const wrappingComponent = getWrapper({}, {
+	getCard: sandbox.stub(),
+	selectCard: sandbox.stub().returns(sandbox.stub().returns(user))
+}).wrapper
 
 const commonProps = {
 	user,
-	actor,
-	selectCard: (state) => {
-		return () => {
-			return user
-		}
-	}
+	actor
 }
 
 const testHighlightTags = (test, {
@@ -123,7 +119,7 @@ ava('The event is marked as \'focused\' if the card\'s ID matches the \'event\' 
 			{...commonProps}
 			card={card}
 		/>, {
-			wrappingComponent: wrapper
+			wrappingComponent
 		}
 	)
 	const eventWrapper = event.find(`div#event-${card.id}`)
@@ -136,7 +132,7 @@ ava('It should display the actor\'s details', (test) => {
 			{...commonProps}
 			card={card}
 		/>, {
-			wrappingComponent: wrapper
+			wrappingComponent
 		}
 	)
 	const avatar = event.find('BaseAvatar')
@@ -162,7 +158,7 @@ ava('A markdown message is displayed when the card is a message', async (test) =
 			{...commonProps}
 			card={messageCard}
 		/>, {
-			wrappingComponent: wrapper
+			wrappingComponent
 		}
 	)
 	const message = event.find(Markdown)
@@ -226,7 +222,7 @@ ava('Editing a message will update the mentions, alerts, tags and message', asyn
 			user={author}
 			card={card}
 		/>, {
-			wrappingComponent: wrapper
+			wrappingComponent
 		}
 	)
 

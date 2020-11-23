@@ -15,7 +15,9 @@ import {
 import {
 	UserAvatarLive
 } from '../UserAvatar'
-import CardLoader from '../CardLoader'
+import {
+	CardLoader
+} from '../CardLoader'
 import MessageContainer from '../Event/Message/MessageContainer'
 import {
 	RE_FRONT_HIDDEN_URL
@@ -42,7 +44,7 @@ const componentOverrides = {
 }
 
 export const MessageSnippet = React.memo(({
-	messageCard, selectCard, getCard, ...rest
+	messageCard, ...rest
 }) => {
 	if (!messageCard) {
 		return null
@@ -65,18 +67,12 @@ export const MessageSnippet = React.memo(({
 			id={userId}
 			type="user"
 			withLinks={[ 'is member of' ]}
-			cardSelector={selectCard}
-			getCard={getCard}
 		>
 			{(user) => {
 				const actor = generateActorFromUserCard(user)
 				return (
 					<Flex alignItems="flex-start" {...rest}>
-						<UserAvatarLive
-							userId={userId}
-							selectCard={selectCard}
-							getCard={getCard}
-						/>
+						<UserAvatarLive userId={userId} />
 						<MessageContainer
 							truncated
 							flex={1}

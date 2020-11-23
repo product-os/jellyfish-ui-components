@@ -14,7 +14,7 @@ import {
 import Icon from '../shame/Icon'
 
 export const OwnerDisplay = ({
-	owner, selectCard, getCard, ...rest
+	owner, ...rest
 }) => {
 	if (!owner) {
 		return null
@@ -29,8 +29,6 @@ export const OwnerDisplay = ({
 			<UserAvatarLive
 				ml={2}
 				userId={owner.id}
-				selectCard={selectCard}
-				getCard={getCard}
 			/>
 		</Flex>
 	)
