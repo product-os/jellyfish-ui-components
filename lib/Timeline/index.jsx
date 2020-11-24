@@ -84,7 +84,6 @@ class Timeline extends React.Component {
 		this.scrollToTop = this.scrollToTop.bind(this)
 		this.scrollToBottom = this.scrollToBottom.bind(this)
 		this.scrollToEvent = this.scrollToEvent.bind(this)
-		this.handleScrollBeginning = this.handleScrollBeginning.bind(this)
 		this.retrieveFullTimelime = this.retrieveFullTimeline.bind(this)
 		this.addMessage = this.addMessage.bind(this)
 		this.handleCardVisible = this.handleCardVisible.bind(this)
@@ -93,6 +92,7 @@ class Timeline extends React.Component {
 		this.handleJumpToTop = this.handleJumpToTop.bind(this)
 		this.handleWhisperToggle = this.handleWhisperToggle.bind(this)
 		this.loadMoreEvents = this.loadMoreEvents.bind(this)
+		this.loadNext = this.loadNext.bind(this)
 
 		this.signalTyping = _.throttle(() => {
 			this.props.signalTyping(this.props.card.id)
@@ -108,16 +108,13 @@ class Timeline extends React.Component {
 			event
 		} = queryString.parse(window.location.search)
 
-		// Timeout required to ensure the timeline has loaded before we scroll to the bottom
-		await Bluebird.delay(2000)
 		if (event) {
 			this.scrollToEvent(event)
 		} else {
+			console.log('scrolling to bottom')
 			this.scrollToBottom()
 		}
 
-		// Timeout to ensure scroll has finished
-		await Bluebird.delay(500)
 		this.setState({
 			ready: true
 		})
@@ -141,75 +138,25 @@ class Timeline extends React.Component {
 	}
 
 	scrollToEvent (eventId) {
-		const {
-			tail
-		} = this.props
-		const {
-			reachedBeginningOfTimeline
-		} = this.state
-		const existing = _.find(tail, {
-			id: eventId
-		})
-		if (existing) {
-			const pureType = existing.type.split('@')[0]
-			if (pureType === UPDATE || pureType === CREATE) {
-				this.handleEventToggle()
-			}
-			const messageElement = document.getElementById(`event-${eventId}`)
-			if (messageElement) {
-				messageElement.scrollIntoView({
-					behavior: 'smooth'
-				})
-			}
-		} else if (!reachedBeginningOfTimeline) {
-			this.retrieveFullTimeline(() => {
-				this.scrollToEvent(eventId)
-			})
-		}
+		console.log('scroll to event')
 	}
 
-	handleScrollBeginning () {
-		return new Promise((resolve, reject) => {
-			const {
-				eventSkip
-			} = this.state
-			this.setState({
-				loadingMoreEvents: true
-			}, () => {
-				return this.loadMoreEvents({
-					limit: PAGE_SIZE,
-					skip: eventSkip
-				}).then((newEvents) => {
-					const receivedNewEvents = newEvents.length > 0
-					this.setState({
-						eventSkip: receivedNewEvents ? eventSkip + PAGE_SIZE : eventSkip,
-						loadingMoreEvents: false,
-						reachedBeginningOfTimeline: !receivedNewEvents
-					})
-					resolve()
-				}
-				)
-			})
-		})
+	async loadNext () {
+		console.log('load next')
+		if (this.loading) {
+			return
+		}
+		this.loading = true
+		await this.props.next()
+		this.loading = false
 	}
 
 	handleJumpToTop () {
-		if (this.state.reachedBeginningOfTimeline) {
-			this.scrollToTop()
-		} else {
-			this.retrieveFullTimeline(() => {
-				this.scrollToTop()
-			})
-		}
+		console.log('jump to top')
 	}
 
 	retrieveFullTimeline (callback) {
-		return this.loadMoreEvents()
-			.then(() => {
-				this.setState({
-					reachedBeginningOfTimeline: true
-				}, callback)
-			})
+		console.log('retrieve full timeline')
 	}
 
 	handleEventToggle () {
@@ -335,44 +282,11 @@ class Timeline extends React.Component {
 	}
 
 	scrollToBottom () {
-		this.timelineEnd.current.scrollIntoView({
-			behavior: 'smooth'
-		})
+		this.timelineEnd.current.scrollIntoView()
 	}
 
 	loadMoreEvents (options = {}) {
-		const {
-			card,
-			loadMoreChannelData
-		} = this.props
-		return loadMoreChannelData({
-			target: card.slug,
-			query: {
-				type: 'object',
-				properties: {
-					id: {
-						const: card.id
-					}
-				},
-				$$links: {
-					'has attached element': {
-						type: 'object'
-					}
-				}
-			},
-			queryOptions: {
-				links: {
-					'has attached element': {
-						sortBy: 'created_at',
-						sortDir: 'desc',
-						...options
-					}
-				}
-			}
-		})
-			.then(([ newCard ]) => {
-				return _.get(newCard, [ 'links', 'has attached element' ], [])
-			})
+		console.log('load more events', options)
 	}
 
 	render () {
@@ -444,9 +358,8 @@ class Timeline extends React.Component {
 						<Loading />
 					</Box>)}
 					<InfiniteList
-						fillMaxArea
-						onScrollBeginning={!reachedBeginningOfTimeline && ready && this.handleScrollBeginning}
-						processing={loadingMoreEvents}
+						up
+						next={this.loadNext}
 					>
 						<div ref={this.timelineStart} />
 						{ reachedBeginningOfTimeline && <TimelineStart />}
