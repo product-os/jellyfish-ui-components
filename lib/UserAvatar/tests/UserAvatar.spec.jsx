@@ -52,7 +52,7 @@ ava('UserAvatarLive displays the user`s avatar, tooltip and status', async (test
 		wrappingComponent
 	})
 
-	const avatar = component.find('AvatarBase')
+	const avatar = component.find('BaseAvatar')
 	test.false(avatar.props().emphasized)
 	test.is(avatar.props().firstName, 'Test')
 	test.is(avatar.props().lastName, 'User')

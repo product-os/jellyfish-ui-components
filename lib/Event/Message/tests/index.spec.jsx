@@ -139,7 +139,7 @@ ava('It should display the actor\'s details', (test) => {
 			wrappingComponent: wrapper
 		}
 	)
-	const avatar = event.find('AvatarBase')
+	const avatar = event.find('BaseAvatar')
 	test.is(avatar.props().firstName, user.data.profile.name.first)
 	test.is(avatar.props().lastName, user.data.profile.name.last)
 	const actorLabel = event.find('Txt[data-test="event__actor-label"]')
