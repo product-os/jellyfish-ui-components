@@ -5,6 +5,12 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v5.3.11
+## (2020-11-25)
+
+* Fix test references to Rendition [Graham McCulloch]
+* patch: Update non-major [Renovate Bot]
+
 # v5.3.10
 ## (2020-11-23)
 
