@@ -25,10 +25,8 @@ const Menu = styled(Box) `
 	list-style: none;
 	margin: 2px 0 0;
 	min-width: 160px;
-	padding: 8px;
 	position: absolute;
 	text-align: left;
-	width: 220px;
 	z-index: 1000;
 	&:before {
 		position: absolute;
@@ -122,7 +120,8 @@ export default class ContextMenu extends React.Component {
 		const {
 			children,
 			onClose,
-			position
+			position,
+			...rest
 		} = this.props
 		const {
 			offsetLeft,
@@ -140,6 +139,9 @@ export default class ContextMenu extends React.Component {
 				onClick={onClose}
 			>
 				<Menu
+					width="220px"
+					px={0} py={2}
+					{...rest}
 					className={`context-menu context-menu--${position || 'left'}`}
 					style={{
 						top: offsetTop,
