@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v6.0.1
+## (2020-11-26)
+
+* Fix order of exports [Graham McCulloch]
+
 # v6.0.0
 ## (2020-11-26)
 
