@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v6.0.0
+## (2020-11-26)
+
+* Improve context menu styling [Graham McCulloch]
+
 # v5.3.12
 ## (2020-11-25)
 
