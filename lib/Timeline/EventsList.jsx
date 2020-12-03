@@ -12,14 +12,11 @@ import {
 import Icon from '../shame/Icon'
 import Event from '../Event'
 import {
-	MESSAGE,
-	WHISPER,
-	SUMMARY
+	WHISPER
 } from '../constants'
-
-const isNotMessage = (type) => {
-	return !_.includes([ MESSAGE, WHISPER, SUMMARY ], type)
-}
+import {
+	getTypeBase, isTimelineEvent
+} from '../helpers'
 
 export default class EventsList extends React.Component {
 	render () {
@@ -43,9 +40,9 @@ export default class EventsList extends React.Component {
 					)
 				}
 
-				const pureType = event.type.split('@')[0]
+				const pureType = getTypeBase(event.type)
 
-				if (messagesOnly && isNotMessage(pureType) && !event.name) {
+				if (messagesOnly && !isTimelineEvent(pureType) && !event.name) {
 					return null
 				}
 				if (hideWhispers && pureType === WHISPER) {

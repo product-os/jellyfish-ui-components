@@ -27,6 +27,10 @@ import Header from './Header'
 import Body, {
 	parseMessage
 } from './Body'
+import {
+	getTypeBase,
+	isTimelineEvent
+} from '../../helpers'
 
 const MESSAGE_COLLAPSED_HEIGHT = 400
 
@@ -194,8 +198,7 @@ export default class Event extends React.Component {
 			card
 		} = this.props
 
-		const typeBase = card.type.split('@')[0]
-		const isMessage = typeBase === 'message' || typeBase === 'whisper' || typeBase === 'summary'
+		const isMessage = isTimelineEvent(card.type)
 
 		if (
 			isMessage &&
@@ -234,8 +237,8 @@ export default class Event extends React.Component {
 			updating
 		} = this.state
 
-		const typeBase = card.type.split('@')[0]
-		const isMessage = typeBase === 'message' || typeBase === 'whisper' || typeBase === 'summary'
+		const typeBase = getTypeBase(card.type)
+		const isMessage = isTimelineEvent(typeBase)
 
 		const messageOverflows = this.state.messageHeight >= MESSAGE_COLLAPSED_HEIGHT
 		const threadColor = helpers.colorHash(getTargetId(card))
