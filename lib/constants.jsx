@@ -9,6 +9,7 @@ const WHISPER = 'whisper'
 const UPDATE = 'update'
 const CREATE = 'create'
 const SUMMARY = 'summary'
+const RATING = 'rating'
 const LINK = 'link'
 
 export {
@@ -17,5 +18,6 @@ export {
 	UPDATE,
 	CREATE,
 	SUMMARY,
+	RATING,
 	LINK
 }
