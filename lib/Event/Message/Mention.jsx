@@ -6,7 +6,14 @@
 
 import _ from 'lodash'
 import React from 'react'
+import {
+	Box, Popover
+} from 'rendition'
+import styled from 'styled-components'
 import * as helpers from '../../services/helpers'
+import {
+	tagStyle
+} from '../../Tag'
 
 // Adds attributes to the spans that wrap matched tokens
 // (usernames, groups, hashtags etc) in messages.
@@ -46,15 +53,69 @@ export const highlightTags = (element, readBy, username, groups) => {
 	}
 }
 
+const Container = styled(Box) `
+display: inline;
+position: relative;
+${tagStyle}
+background: none;
+color: inherit;
+border-color: inherit;
+
+&.rendition-tag--personal {
+	background: ${(props) => { return props.theme.colors.warning.light }};
+	border-color: ${(props) => { return props.theme.colors.warning.main }};
+	color: ${(props) => { return props.theme.colors.warning.dark }};
+
+	&.rendition-tag--alert {
+		background: ${(props) => { return props.theme.colors.danger.light }};
+		border-color: ${(props) => { return props.theme.colors.danger.main }};
+		color: ${(props) => { return props.theme.colors.danger.dark }};
+
+		&.rendition-tag--read:after,
+		&.rendition-tag--read-by:after {
+			background: ${(props) => { return props.theme.colors.danger.main }};
+			color: ${(props) => { return props.theme.colors.danger.light }};
+		}
+	}
+	&.rendition-tag--read:after,
+	&.rendition-tag--read-by:after {
+		background: ${(props) => { return props.theme.colors.warning.main }};
+		color: ${(props) => { return props.theme.colors.warning.light }};
+		width: 1.5em;
+		height: 1.5em;
+		border-radius: 50%;
+		line-height: 1.5em;
+		vertical-align: middle;
+		text-align: center;
+		font-size: 8px;
+	}
+}
+&.rendition-tag--read:after {
+	content: '✔';
+	position: absolute;
+	top: -4px;
+	right: -4px;
+	font-size: 10px;
+}
+&.rendition-tag--read-by:after {
+	content: attr(data-read-by-count);
+	position: absolute;
+	top: -4px;
+	right: -4px;
+	font-size: 10px;
+}
+`
+
 const Mention = ({
-	readBy = '', slug, groups, ...rest
+	readBy = '', slug, groups, children, ...rest
 }) => {
-	const ref = React.useRef(null)
+	const [ target, setTarget ] = React.useState(null)
+	const [ open, setOpen ] = React.useState(false)
 
 	React.useEffect(() => {
-		if (ref.current) {
+		if (target) {
 			highlightTags(
-				ref.current,
+				target,
 
 				// Rehype-react serializes array, we need to deserialize it.
 				// See: https://github.com/rehypejs/rehype-react/issues/23
@@ -65,14 +126,47 @@ const Mention = ({
 			)
 		}
 	}, [
-		ref.current,
+		target,
 		readBy,
 		slug,
 		groups
 	])
 
+	const group = React.useMemo(() => {
+		const name = children[0].split('@@')[1]
+		return groups[name]
+	}, [ children, groups ])
+
+	const handleClick = React.useCallback(() => {
+		setOpen(true)
+	}, [])
+
+	const handleDismiss = React.useCallback(() => {
+		setOpen(false)
+	}, [])
+
 	return (
-		<span {...rest} ref={ref} className="rendition-tag--hl" />
+		<>
+			{target && group && open && (
+				<Popover target={target} placement="top" onDismiss={handleDismiss}>
+					<Box py={1} pr={1}>
+						{group.users.map((groupUserSlug) => {
+							return (
+								<Mention
+									ml={1}
+									key={groupUserSlug}
+									readBy={readBy}
+									slug={slug}
+									groups={groups}>
+									{groupUserSlug.slice('user-'.length)}
+								</Mention>
+							)
+						})}
+					</Box>
+				</Popover>
+			)}
+			<Container {...rest} ref={setTarget} onClick={handleClick}>{children}</Container>
+		</>
 	)
 }
 
