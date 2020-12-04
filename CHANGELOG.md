@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v6.2.0
+## (2020-12-04)
+
+* Mention: Add popover to view mentioned group users [Kakhaber]
+
 # v6.1.1
 ## (2020-12-03)
 
