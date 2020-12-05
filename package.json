@@ -96,7 +96,7 @@
     "@babel/register": "^7.12.1",
     "@balena/jellycheck": "^0.0.8",
     "@emotion/cache": "^11.0.0",
-    "@emotion/react": "^11.1.1",
+    "@emotion/react": "^11.1.2",
     "ava": "^3.13.0",
     "browser-env": "^3.3.0",
     "catch-uncommitted": "^1.6.2",
