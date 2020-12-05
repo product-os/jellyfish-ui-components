@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v6.2.5
+## (2020-12-05)
+
+* patch: Update dependency husky to ^4.3.4 [Renovate Bot]
+
 # v6.2.4
 ## (2020-12-05)
 
