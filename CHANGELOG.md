@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v6.2.3
+## (2020-12-05)
+
+* patch: Update dependency eslint to ^7.15.0 [Renovate Bot]
+
 # v6.2.2
 ## (2020-12-04)
 
