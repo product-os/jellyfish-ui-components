@@ -5,6 +5,15 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v6.2.7
+## (2020-12-07)
+
+* patch: Update dependency @sentry/browser to ^5.29.0 [Renovate Bot]
+* patch: Update dependency ava to ^3.14.0 [Renovate Bot]
+* Remove husky postinstall [Josh Bowling]
+* Migrate husky configuration for v5 [Josh Bowling]
+* patch: Update dependency husky to v5 [Renovate Bot]
+
 # v6.2.6
 ## (2020-12-05)
 
