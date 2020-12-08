@@ -86,7 +86,7 @@
     "rendition": "^18.19.1",
     "skhema": "^5.3.3",
     "styled-components": "^5.2.1",
-    "uuid": "^8.3.1"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@ava/babel": "^1.0.1",
