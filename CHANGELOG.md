@@ -5,6 +5,12 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v6.2.8
+## (2020-12-08)
+
+* patch: Update dependency @balena/jellyfish-client-sdk to ^2.6.2 [Renovate Bot]
+* Add husky postinstall [Josh Bowling]
+
 # v6.2.7
 ## (2020-12-07)
 
