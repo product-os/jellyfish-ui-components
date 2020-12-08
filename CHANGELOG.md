@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v6.2.9
+## (2020-12-08)
+
+* patch: Update dependency uuid to ^8.3.2 [Renovate Bot]
+
 # v6.2.8
 ## (2020-12-08)
 
