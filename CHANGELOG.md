@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v6.2.13
+## (2020-12-10)
+
+* Do not show hidden front URLs in messages [Graham McCulloch]
+
 # v6.2.12
 ## (2020-12-10)
 
