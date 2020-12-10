@@ -23,8 +23,7 @@ import {
 import Attachments from './Attachments'
 import Mention from './Mention'
 import {
-	Link,
-	getLinkProps
+	linkComponentOverride
 } from '../../Link'
 import * as helpers from '../../services/helpers'
 import ErrorBoundary from '../../shame/ErrorBoundary'
@@ -51,6 +50,12 @@ const StyledMarkdown = styled(Markdown)(({
 		overflow: messageOverflows ? 'hidden' : 'initial'
 	}
 })
+
+/*
+ * This message text is added by Front when syncing whispers. It should be hidden in the message
+* text in Jellyfish.
+ */
+export const RE_FRONT_HIDDEN_URL = /https:\/\/www\.balena-cloud\.com\?hidden=whisper.*/
 
 const DISCOURSE_IMAGE_RE = /!\[(.+?)\|\d*x\d*\]\(upload:\/\/(.+?\..+?)\)/g
 const DISCOURSE_ATTACHMENT_RE = /\[(.+?)\|attachment\]\(upload:\/\/(.+?\..+?)\)/g
@@ -123,12 +128,9 @@ const componentOverrides = {
 		return <Img {...attribs} style={IMG_STYLE} />
 	},
 	// eslint-disable-next-line id-length
-	a: ({
-		href, ...rest
-	}) => {
-		const linkProps = getLinkProps(href)
-		return <Link {...rest} {...linkProps} />
-	},
+	a: linkComponentOverride({
+		blacklist: [ RE_FRONT_HIDDEN_URL ]
+	}),
 	mention: (attribs) => {
 		return <Mention {...attribs} />
 	}

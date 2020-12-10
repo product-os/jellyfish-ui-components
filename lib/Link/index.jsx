@@ -12,7 +12,8 @@ import {
 } from './Link'
 
 export {
-	getLinkProps
+	getLinkProps,
+	linkComponentOverride
 } from './Link'
 
 export const Link = withRouter(InnerLink)

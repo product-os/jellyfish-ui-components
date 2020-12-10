@@ -18,11 +18,13 @@ import {
 import CardLoader from '../CardLoader'
 import MessageContainer from '../Event/Message/MessageContainer'
 import {
+	RE_FRONT_HIDDEN_URL
+} from '../Event/Message'
+import {
 	HIDDEN_ANCHOR
 } from '../Timeline'
 import {
-	Link,
-	getLinkProps
+	linkComponentOverride
 } from '../Link'
 import {
 	getMessage,
@@ -34,12 +36,9 @@ const componentOverrides = {
 		return <span>[{attribs.title || attribs.alt || 'image'}]</span>
 	},
 	// eslint-disable-next-line id-length
-	a: ({
-		href, ...rest
-	}) => {
-		const linkProps = getLinkProps(href)
-		return <Link {...rest} {...linkProps} />
-	}
+	a: linkComponentOverride({
+		blacklist: [ RE_FRONT_HIDDEN_URL ]
+	})
 }
 
 export const MessageSnippet = React.memo(({
