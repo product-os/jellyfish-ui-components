@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v6.2.12
+## (2020-12-10)
+
+* Set as root in eslint config file [Graham McCulloch]
+
 # v6.2.11
 ## (2020-12-09)
 
