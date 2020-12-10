@@ -7,6 +7,7 @@
 import {
 	getWrapper
 } from '../../../test/ui-setup'
+import _ from 'lodash'
 import ava from 'ava'
 import {
 	mount
@@ -48,4 +49,32 @@ ava('MessageSnippet displays the user avatar and the message text', async (test)
 
 	const txt = component.find('p').first()
 	test.is(txt.text(), msg.data.payload.message)
+})
+
+ava('MessageSnippet does not display hidden front URLs', async (test) => {
+	const selectCard = sandbox.stub().returns(() => {
+		return userWithOrg
+	})
+	const getCard = sandbox.stub()
+
+	const frontCard = _.merge({}, msg, {
+		data: {
+			payload: {
+				message: 'Line1[](https://www.balena-cloud.com?hidden=whisper&source=flowdock)'
+			}
+		}
+	})
+
+	const component =	await mount((
+		<MessageSnippet
+			messageCard={frontCard}
+			selectCard={selectCard}
+			getCard={getCard}
+		/>
+	), {
+		wrappingComponent
+	})
+
+	const txt = component.find('p').first()
+	test.is(txt.text(), 'Line1')
 })

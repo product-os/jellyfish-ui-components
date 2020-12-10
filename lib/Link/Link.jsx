@@ -32,6 +32,22 @@ export const getLinkProps = (href) => {
 		}
 }
 
+export const linkComponentOverride = ({
+	blacklist
+}) => {
+	return ({
+		href, ...rest
+	}) => {
+		if (_.some(blacklist, (url) => {
+			return href.match(url)
+		})) {
+			return null
+		}
+		const linkProps = getLinkProps(href)
+		return <Link {...rest} {...linkProps} />
+	}
+}
+
 export class Link extends React.Component {
 	constructor (props) {
 		super(props)

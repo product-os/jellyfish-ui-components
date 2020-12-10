@@ -7,6 +7,7 @@
 import {
 	getWrapper
 } from '../../../../test/ui-setup'
+import _ from 'lodash'
 import ava from 'ava'
 import sinon from 'sinon'
 import {
@@ -102,4 +103,30 @@ ava('An error is captured by the component and an error message is rendered', (t
 
 	const message = eventBody.first('div[data-test="eventBody__errorMessage"]')
 	test.is(message.text(), 'An error occured while attempting to render this message')
+})
+
+ava('Hidden front URLs are not displayed in the message', (test) => {
+	const {
+		commonProps
+	} = test.context
+
+	const frontCard = _.merge({}, card, {
+		data: {
+			payload: {
+				message: 'Line1\n[](https://www.balena-cloud.com?hidden=whisper&source=flowdock)'
+			}
+		}
+	})
+
+	const eventBody = mount(
+		<Body
+			{...commonProps}
+			card={frontCard}
+		/>
+		, {
+			wrappingComponent
+		})
+
+	const message = eventBody.first('[data-test="event-card__message"]')
+	test.is(message.text().trim(), 'Line1')
 })

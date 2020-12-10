@@ -32,6 +32,10 @@ import {
 	isTimelineEvent
 } from '../../helpers'
 
+export {
+	RE_FRONT_HIDDEN_URL
+} from './Body'
+
 const MESSAGE_COLLAPSED_HEIGHT = 400
 
 const EventButton = styled.button `
