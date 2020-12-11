@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v7.0.0
+## (2020-12-11)
+
+* Refactor CardLoader to use context [Graham McCulloch]
+
 # v6.2.14
 ## (2020-12-11)
 
