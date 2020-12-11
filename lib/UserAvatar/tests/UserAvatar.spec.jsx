@@ -18,20 +18,19 @@ import {
 	UserAvatarLive
 } from '../'
 
-const wrappingComponent = getWrapper().wrapper
-
 const sandbox = sinon.createSandbox()
+
+const wrappingComponent = getWrapper({}, {
+	getCard: sandbox.stub(),
+	selectCard: sandbox.stub().returns(sandbox.stub().returns(userWithOrg))
+}).wrapper
 
 ava.beforeEach((test) => {
 	test.context = {
 		...test.context,
 		commonProps: {
 			emphasized: false,
-			userId: userWithOrg.id,
-			getCard: sandbox.stub(),
-			selectCard: sandbox.stub().returns(() => {
-				return userWithOrg
-			})
+			userId: userWithOrg.id
 		}
 	}
 	sandbox.restore()

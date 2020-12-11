@@ -12,7 +12,9 @@ import {
 	Box,
 	Flex
 } from 'rendition'
-import CardLoader from '../CardLoader'
+import {
+	CardLoader
+} from '../CardLoader'
 import UserStatusIcon from '../UserStatusIcon'
 import {
 	getUserTooltipText
@@ -64,15 +66,13 @@ export const UserAvatar = React.memo(({
 })
 
 export const UserAvatarLive = React.memo(({
-	userId, selectCard, getCard, emphasized, tooltipPlacement, ...rest
+	userId, emphasized, tooltipPlacement, ...rest
 }) => {
 	return (
 		<CardLoader
 			id={userId}
 			type="user"
 			withLinks={[ 'is member of' ]}
-			cardSelector={selectCard}
-			getCard={getCard}
 		>
 			{(user) => {
 				return (

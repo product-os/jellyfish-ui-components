@@ -21,6 +21,7 @@ import {
 import {
 	configure
 } from 'enzyme'
+import sinon from 'sinon'
 import {
 	MemoryRouter
 } from 'react-router-dom'
@@ -29,6 +30,9 @@ import {
 	CacheProvider
 } from '@emotion/react'
 import createCache from '@emotion/cache'
+import {
+	CardLoaderContext
+} from '../lib/CardLoader'
 
 import Adapter from 'enzyme-adapter-react-16'
 
@@ -76,7 +80,10 @@ export const getPromiseResolver = () => {
 	}
 }
 
-export const getWrapper = (initialState = {}) => {
+export const getWrapper = (initialState = {}, cardLoader = {
+	getCard: sinon.stub().returns(null),
+	selectCard: sinon.stub().returns(sinon.stub().returns(null))
+}) => {
 	const store = mockStore(initialState)
 	return {
 		store,
@@ -89,7 +96,9 @@ export const getWrapper = (initialState = {}) => {
 						<ReduxProvider store={store}>
 							<Provider>
 								<DndProvider backend={HTML5Backend}>
-									{children}
+									<CardLoaderContext.Provider value={cardLoader}>
+										{children}
+									</CardLoaderContext.Provider>
 								</DndProvider>
 							</Provider>
 						</ReduxProvider>

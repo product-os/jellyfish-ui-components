@@ -98,10 +98,6 @@ const createTestContext = (test, sandbox) => {
 			slug: 'fake-card',
 			created_at: timestamp
 		},
-		selectCard: () => {
-			return sandbox.stub()
-		},
-		getCard: sandbox.stub(),
 		usersTyping: [],
 		user,
 		getActor,

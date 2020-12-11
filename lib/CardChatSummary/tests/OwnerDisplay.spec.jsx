@@ -23,15 +23,9 @@ ava.afterEach(() => {
 })
 
 ava('OwnerDisplay displays the user avatar and the message text', async (test) => {
-	const selectCard = sandbox.stub().returns(() => {
-		return userWithOrg
-	})
-	const getCard = sandbox.stub()
 	const component =	shallow(
 		<OwnerDisplay
 			owner={userWithOrg}
-			selectCard={selectCard}
-			getCard={getCard}
 		/>
 	)
 

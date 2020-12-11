@@ -98,8 +98,6 @@ export class CardChatSummary extends React.Component {
 	render () {
 		const {
 			card,
-			selectCard,
-			getCard,
 			timeline,
 			active,
 			to,
@@ -161,7 +159,7 @@ export class CardChatSummary extends React.Component {
 								}
 							</React.Fragment>
 						)}
-						{ displayOwner && <OwnerDisplay owner={threadOwner} selectCard={selectCard} getCard={getCard} ml={3} /> }
+						{ displayOwner && <OwnerDisplay owner={threadOwner} ml={3} /> }
 					</Flex>
 				</Flex>
 
@@ -169,7 +167,7 @@ export class CardChatSummary extends React.Component {
 					{card.name || (actor && `Conversation with ${actor.name}`) || card.slug}
 				</TitleTxt>
 
-				<MessageSnippet messageCard={latestMessageCard} selectCard={selectCard} getCard={getCard} mt={2}/>
+				<MessageSnippet messageCard={latestMessageCard} mt={2}/>
 			</SummaryWrapper>
 		)
 	}

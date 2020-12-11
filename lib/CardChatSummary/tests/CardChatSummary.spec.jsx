@@ -39,7 +39,10 @@ const getTimeline = (target) => {
 	return _.sortBy(_.get(target.links, [ 'has attached element' ], []), 'data.timestamp')
 }
 
-const wrappingComponent = getWrapper().wrapper
+const wrappingComponent = getWrapper({}, {
+	getCard: sandbox.stub(),
+	selectCard: sandbox.stub().returns(sandbox.stub().returns(user2))
+}).wrapper
 
 ava.beforeEach((test) => {
 	const getActorSpy = sandbox.spy(getActor)
@@ -47,10 +50,6 @@ ava.beforeEach((test) => {
 		...test.context,
 		commonProps: {
 			active: true,
-			getCard: sandbox.stub(),
-			selectCard: sandbox.stub().returns(() => {
-				return user2
-			}),
 			card,
 			theme,
 			timeline: getTimeline(card),
