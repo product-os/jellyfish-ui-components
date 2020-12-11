@@ -14,9 +14,11 @@ import {
 	mount
 } from 'enzyme'
 import {
-	Link,
-	getLinkProps
+	Link
 } from './Link'
+import {
+	getLinkProps
+} from './index'
 
 const sandbox = sinon.createSandbox()
 
