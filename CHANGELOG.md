@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v6.2.14
+## (2020-12-11)
+
+* Fix Link component references [Graham McCulloch]
+
 # v6.2.13
 ## (2020-12-10)
 
