@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v7.0.1
+## (2020-12-12)
+
+* renovate: Ignore node version bumps [Josh Bowling]
+
 # v7.0.0
 ## (2020-12-11)
 
