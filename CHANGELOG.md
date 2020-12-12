@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v7.0.3
+## (2020-12-12)
+
+* Make postinstall cross shell compatible [Josh Bowling]
+
 # v7.0.2
 ## (2020-12-12)
 
