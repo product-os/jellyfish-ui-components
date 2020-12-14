@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v7.0.8
+## (2020-12-14)
+
+* patch: Update dependency rendition to ^18.20.1 [Renovate Bot]
+
 # v7.0.7
 ## (2020-12-14)
 
