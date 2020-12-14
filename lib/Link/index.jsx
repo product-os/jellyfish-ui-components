@@ -42,7 +42,7 @@ export const linkComponentOverride = ({
 	return ({
 		href, ...rest
 	}) => {
-		if (_.some(blacklist, (url) => {
+		if (href && _.some(blacklist, (url) => {
 			return href.match(url)
 		})) {
 			return null
