@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v7.0.5
+## (2020-12-14)
+
+* Check if href exists when overriding link [Graham McCulloch]
+
 # v7.0.4
 ## (2020-12-12)
 
