@@ -53,7 +53,7 @@
   "license": "UNLICENSED",
   "dependencies": {
     "@balena/jellyfish-client-sdk": "^2.7.2",
-    "@sentry/browser": "^5.29.0",
+    "@sentry/browser": "^5.29.1",
     "@webscopeio/react-textarea-autocomplete": "^4.7.2",
     "bluebird": "^3.7.2",
     "classnames": "^2.2.6",
@@ -83,7 +83,7 @@
     "react-textarea-autosize": "^8.3.0",
     "react-visibility-sensor": "^5.1.1",
     "redux": "^4.0.5",
-    "rendition": "^18.20.1",
+    "rendition": "^18.20.2",
     "skhema": "^5.3.3",
     "styled-components": "^5.2.1",
     "uuid": "^8.3.2"
