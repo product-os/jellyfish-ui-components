@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v7.1.0
+## (2020-12-17)
+
+* Add data formatters [Graham McCulloch]
+
 # v7.0.10
 ## (2020-12-16)
 
