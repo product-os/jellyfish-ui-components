@@ -30,7 +30,7 @@ import Body, {
 import {
 	getTypeBase,
 	isTimelineEvent
-} from '../../helpers'
+} from '../../services/helpers'
 
 export {
 	RE_FRONT_HIDDEN_URL
