@@ -10,7 +10,7 @@ import {
 } from 'rendition'
 import {
 	isPrivateTimelineEvent
-} from '../../helpers'
+} from '../../services/helpers'
 
 const MessageContainer = styled(Box) `
 	min-width: 0;

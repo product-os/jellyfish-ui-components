@@ -16,7 +16,7 @@ import {
 } from '../constants'
 import {
 	getTypeBase, isTimelineEvent
-} from '../helpers'
+} from '../services/helpers'
 
 export default class EventsList extends React.Component {
 	render () {
