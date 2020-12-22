@@ -13,11 +13,11 @@ import {
 	pathWithoutChannel
 } from '../services/helpers'
 import {
-	Button
-} from 'rendition'
+	PlainButton
+} from '../PlainButton'
 import Icon from './Icon'
 
-const CloseRenditionButton = styled(Button) `
+const CloseRenditionButton = styled(PlainButton) `
 	i {
 		line-height: 1.5;
 	}
@@ -47,9 +47,7 @@ class CloseButtonBase extends React.Component {
 	render () {
 		return (
 			<CloseRenditionButton
-				pl={3}
 				{...this.props}
-				plain
 				icon={<Icon name="times"/>}
 				onClick={this.navigate}
 			/>
