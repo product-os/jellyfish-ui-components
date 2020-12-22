@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v7.2.0
+## (2020-12-21)
+
+* Remove duplicate helper file [Kakhaber]
+
 # v7.1.8
 ## (2020-12-21)
 
