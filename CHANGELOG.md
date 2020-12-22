@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v7.3.0
+## (2020-12-22)
+
+* Add PlainButton component [Graham McCulloch]
+
 # v7.2.1
 ## (2020-12-22)
 
