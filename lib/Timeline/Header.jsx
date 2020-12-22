@@ -15,15 +15,16 @@ import {
 	saveAs
 } from 'file-saver'
 import {
-	Flex,
-	Box,
-	Button
+	Flex
 } from 'rendition'
 import {
 	parseMessage
 } from '../Event'
 import * as helpers from '../services/helpers'
 import Icon from '../shame/Icon'
+import {
+	PlainButton
+} from '../PlainButton'
 import HeaderTitle from './HeaderTitle'
 
 const getEventContent = (typeBase, event) => {
@@ -99,25 +100,20 @@ export default class Header extends React.Component {
 			handleEventToggle
 		} = this.props
 		return (
-			<Flex m={2}>
-				<HeaderTitle title={_.get(headerOptions, [ 'title' ])} />
-				<Box style={{
-					marginLeft: 'auto'
-				}}>
-					<Button
-						plain
+			<Flex mx={2} justifyContent="flex-end">
+				<HeaderTitle flex={1} title={_.get(headerOptions, [ 'title' ])} />
+				<Flex alignItems="center" flex={0}>
+					<PlainButton
 						tooltip={{
 							placement: 'left',
 							text: 'Jump to first message'
 						}}
-						ml={2}
 						onClick={handleJumpToTop}
 						icon={<Icon name="chevron-circle-up"/>}
 					/>
 
 					{_.get(headerOptions, [ 'buttons', 'toggleWhispers' ]) !== false && (
-						<Button
-							plain
+						<PlainButton
 							tooltip={{
 								placement: 'left',
 								text: `${hideWhispers ? 'Show' : 'Hide'} whispers`
@@ -125,15 +121,13 @@ export default class Header extends React.Component {
 							style={{
 								opacity: hideWhispers ? 0.5 : 1
 							}}
-							ml={2}
 							onClick={handleWhisperToggle}
 							icon={<Icon name="user-secret"/>}
 						/>
 					)}
 
 					{_.get(headerOptions, [ 'buttons', 'toggleEvents' ]) !== false && (
-						<Button
-							plain
+						<PlainButton
 							tooltip={{
 								placement: 'left',
 								text: `${messagesOnly ? 'Show' : 'Hide'} create and update events`
@@ -142,23 +136,20 @@ export default class Header extends React.Component {
 								opacity: messagesOnly ? 0.5 : 1
 							}}
 							className="timeline__checkbox--additional-info"
-							ml={2}
 							onClick={handleEventToggle}
 							icon={<Icon name="stream"/>}
 						/>
 					)}
 
-					<Button
-						plain
+					<PlainButton
 						tooltip={{
 							placement: 'left',
 							text: 'Download conversation'
 						}}
-						ml={2}
 						onClick={() => { return this.handleDownloadConversation(sortedEvents) }}
 						icon={<Icon name="download"/>}
 					/>
-				</Box>
+				</Flex>
 			</Flex>
 		)
 	}

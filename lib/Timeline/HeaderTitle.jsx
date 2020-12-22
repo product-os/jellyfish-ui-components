@@ -6,29 +6,24 @@
 
 import React from 'react'
 import {
-	Box,
 	Txt
 } from 'rendition'
 import styled from 'styled-components'
 
-const StyledBox = styled(Box) `
+const StyledTxt = styled(Txt.span) `
 	min-width: 0;
-	overflow: 'hidden';
-	text-overflow: 'ellipsis';
-	white-space: 'nowrap';
+	flex: 1;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 `
 
 const HeaderTitle = ({
 	title
 }) => {
-	if (title) {
-		return (
-			<StyledBox flex={1} mr={2}>
-				<Txt.span tooltip={title}>{title}</Txt.span>
-			</StyledBox>
-		)
-	}
-	return null
+	return title
+		? <StyledTxt mr={2} my={2} tooltip={title}>{title}</StyledTxt>
+		: null
 }
 
 export default HeaderTitle
