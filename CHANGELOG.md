@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v7.2.1
+## (2020-12-22)
+
+* patch: Update dependency @emotion/react to ^11.1.4 [Renovate Bot]
+
 # v7.2.0
 ## (2020-12-21)
 
