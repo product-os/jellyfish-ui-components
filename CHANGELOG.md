@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v7.3.3
+## (2020-12-23)
+
+* Bump dependencies [Graham McCulloch]
+
 # v7.3.2
 ## (2020-12-23)
 
