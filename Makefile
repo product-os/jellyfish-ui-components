@@ -36,10 +36,10 @@ export FILES
 # -----------------------------------------------
 
 lint:
-	npx eslint --ext .js,.jsx $(ESLINT_OPTION_FIX) lib test
+	npx eslint --ext .js,.jsx $(ESLINT_OPTION_FIX) lib test .storybook
 	npx jellycheck --ui-lib
 	npx deplint
-	npx depcheck --ignore-bin-package --ignores='@babel/*,@ava/babel'
+	npx depcheck --ignore-bin-package --ignores='@babel/*,@ava/babel,@storybook/*,babel-loader,core-js'
 
 test:
 	node $(NODE_DEBUG_ARGS) ./node_modules/.bin/ava $(AVA_ARGS) $(FILES)
