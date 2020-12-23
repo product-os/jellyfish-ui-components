@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v7.3.3
+## (2020-12-23)
+
+* patch: Update dependency @balena/jellycheck to ^0.1.0 [Renovate Bot]
+
 # v7.3.2
 ## (2020-12-23)
 
