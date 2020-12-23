@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v7.3.2
+## (2020-12-23)
+
+* Remove react-icons dependency [Graham McCulloch]
+
 # v7.3.1
 ## (2020-12-22)
 
