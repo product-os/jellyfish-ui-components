@@ -6,15 +6,15 @@
 
 import React from 'react'
 import {
-	FaPaperclip
-} from 'react-icons/fa'
-import {
 	Box,
-	Button,
 	Flex,
 	Tag
 } from 'rendition'
 import styled from 'styled-components'
+import {
+	PlainButton
+} from './PlainButton'
+import Icon from './shame/Icon'
 
 const HiddenFileInput = styled.input.attrs({
 	type: 'file'
@@ -56,7 +56,9 @@ export const FileUploadButton = ({
 }) => {
 	return (
 		<FileUploader onChange={onChange}>
-			{(startUpload) => { return <Button onClick={startUpload} {...rest} /> }}
+			{(startUpload) => {
+				return <PlainButton onClick={startUpload} fontSize="18px" {...rest} />
+			}}
 		</FileUploader>
 	)
 }
@@ -92,12 +94,9 @@ export const FilesInput = ({
 					lineHeight: 1
 				}}>
 					<FileUploadButton
-						p={2}
-						fontSize="18px"
-						plain
 						multiple={multiple}
 						onChange={onChange}
-						icon={<FaPaperclip />}
+						icon={<Icon name="paperclip" />}
 					/>
 				</Box>
 			)}

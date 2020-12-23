@@ -7,19 +7,16 @@
 import React from 'react'
 import {
 	Box,
-	Button,
 	Flex,
 	Txt,
 	useTheme
 } from 'rendition'
 import styled from 'styled-components'
+import {
+	PlainButton
+} from '../PlainButton'
 import AutocompleteTextarea from '../shame/AutocompleteTextarea'
-import {
-	FaUserSecret
-} from 'react-icons/fa'
-import {
-	MdSend
-} from 'react-icons/md'
+import Icon from '../shame/Icon'
 import {
 	FilesInput
 } from '../FileUploader'
@@ -214,17 +211,15 @@ const MessageInput = ({
 	)
 
 	const toggleWhisperButton = Boolean(allowWhispers) && (
-		<Button
-			p={1}
+		<PlainButton
 			fontSize="18px"
-			plain
 			onClick={toggleWhisper}
 			data-test="timeline__whisper-toggle"
 			tooltip={{
 				placement: 'left',
 				text: `Toggle response visibility (currently ${whisper ? 'private' : 'public'})`
 			}}
-			icon={<FaUserSecret />}
+			icon={<Icon name="user-secret" />}
 			style={{
 				opacity: whisper ? 1 : 0.6
 			}}
@@ -304,16 +299,14 @@ const MessageInput = ({
 					marginLeft: 'auto'
 				}}>
 					{onSubmit && (
-						<Button
-							p={2}
-							plain
-							fontSize={26}
+						<PlainButton
+							fontSize="18px"
 							tooltip={{
 								text: sendCommand,
 								placement: 'left'
 							}}
 							color={theme.colors.primary.main}
-							icon={<MdSend />}
+							icon={<Icon name="paper-plane" />}
 							onClick={onSubmitInput}
 						/>
 					)}
