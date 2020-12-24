@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v7.4.0
+## (2020-12-23)
+
+* Add react-storybook integration [Graham McCulloch]
+
 # v7.3.3
 ## (2020-12-23)
 
