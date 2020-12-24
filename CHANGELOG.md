@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v7.4.1
+## (2020-12-24)
+
+* Add ErrorBoundary to CardChatSummary [Graham McCulloch]
+
 # v7.4.0
 ## (2020-12-23)
 
