@@ -33,6 +33,7 @@ import {
 import {
 	OwnerDisplay
 } from './OwnerDisplay'
+import ErrorBoundary from '../shame/ErrorBoundary'
 
 const TitleTxt = styled(Txt) `
 	display: block;
@@ -68,6 +69,10 @@ const SummaryWrapper = styled(Link) `
 		background: ${(props) => { return props.theme.colors.quartenary.light }};
 	}
 `
+
+const getErrorElement = () => {
+	return <Txt color="danger.main">An error occured while attempting to render this card</Txt>
+}
 
 export class CardChatSummary extends React.Component {
 	constructor (props) {
@@ -129,45 +134,47 @@ export class CardChatSummary extends React.Component {
 				to={to}
 				{...rest}
 			>
-				<Flex justifyContent="space-between" mb={3} flexWrap="wrap">
-					<Flex alignItems="flex-start" flexWrap="wrap">
-						{_.map(highlightedFields, (keypath) => {
-							return <ColorHashPill key={keypath} value={_.get(card, keypath)} mr={2} mb={1} />
-						})}
+				<ErrorBoundary getErrorElement={getErrorElement}>
+					<Flex justifyContent="space-between" mb={3} flexWrap="wrap">
+						<Flex alignItems="flex-start" flexWrap="wrap">
+							{_.map(highlightedFields, (keypath) => {
+								return <ColorHashPill key={keypath} value={_.get(card, keypath)} mr={2} mb={1} />
+							})}
 
-						<TagList
-							tags={card.tags.filter((tag) => { return !tag.includes('pending') })}
-							blacklist={[ 'status', 'summary' ]}
-							tagProps={{
-								style: {
-									lineHeight: 1.5,
-									fontSize: 10,
-									letterSpacing: 0.5
-								}
-							}}
-						/>
+							<TagList
+								tags={card.tags.filter((tag) => { return !tag.includes('pending') })}
+								blacklist={[ 'status', 'summary' ]}
+								tagProps={{
+									style: {
+										lineHeight: 1.5,
+										fontSize: 10,
+										letterSpacing: 0.5
+									}
+								}}
+							/>
+						</Flex>
+
+						<Flex alignItems="center" mb={1} color="text.light">
+							{_.get(card.links, [ 'has attached element' ], []).length > 0 && (
+								<React.Fragment>
+									{createdTime &&
+										<TimeSummary timestamp={createdTime} prefix="Created" iconName="history" ml={3} />
+									}
+									{updatedTime &&
+										<TimeSummary timestamp={updatedTime} prefix="Updated" iconName="sync" ml={3} />
+									}
+								</React.Fragment>
+							)}
+							{ displayOwner && <OwnerDisplay owner={threadOwner} ml={3} /> }
+						</Flex>
 					</Flex>
 
-					<Flex alignItems="center" mb={1} color="text.light">
-						{_.get(card.links, [ 'has attached element' ], []).length > 0 && (
-							<React.Fragment>
-								{createdTime &&
-									<TimeSummary timestamp={createdTime} prefix="Created" iconName="history" ml={3} />
-								}
-								{updatedTime &&
-									<TimeSummary timestamp={updatedTime} prefix="Updated" iconName="sync" ml={3} />
-								}
-							</React.Fragment>
-						)}
-						{ displayOwner && <OwnerDisplay owner={threadOwner} ml={3} /> }
-					</Flex>
-				</Flex>
+					<TitleTxt bold mb={1}>
+						{card.name || (actor && `Conversation with ${actor.name}`) || card.slug}
+					</TitleTxt>
 
-				<TitleTxt bold mb={1}>
-					{card.name || (actor && `Conversation with ${actor.name}`) || card.slug}
-				</TitleTxt>
-
-				<MessageSnippet messageCard={latestMessageCard} mt={2}/>
+					<MessageSnippet messageCard={latestMessageCard} mt={2}/>
+				</ErrorBoundary>
 			</SummaryWrapper>
 		)
 	}
