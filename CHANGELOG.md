@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v7.4.13
+## (2021-01-05)
+
+* Fix publish storybook action [Graham McCulloch]
+
 # v7.4.12
 ## (2021-01-05)
 
