@@ -8,6 +8,9 @@ on:
   release:
     types: [created]
 
+env:
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
 jobs:
   publish-storybook:
     runs-on: ubuntu-latest
@@ -16,7 +19,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 14
+      - name: Install dependencies
       - run: npm ci
+      - name: Build and deploy storybook
       - run: npm run deploy
-        env:
-          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
