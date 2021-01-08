@@ -56,7 +56,9 @@ export default class EventHeader extends React.Component {
 
 			return (
 				<Txt color={Theme.colors.text.light}>
-					<em>{text}</em> <strong>{this.props.actor ? this.props.actor.name : ''}</strong>
+					<em>{text}</em> <strong>{
+						this.props.actor && this.props.actor.card ? username(this.props.actor.card.slug) : ''
+					}</strong>
 				</Txt>
 			)
 		}
@@ -88,11 +90,11 @@ export default class EventHeader extends React.Component {
 						<Txt
 							data-test="event__actor-label"
 							tooltip={getUserTooltipText(_.get(actor, [ 'card' ]), {
-								hideName: true
+								hideUsername: true
 							}) || 'loading...'}
 						>
 							{Boolean(actor) && Boolean(actor.card) && (() => {
-								const text = <Txt.span color="black">{actor.name}</Txt.span>
+								const text = <Txt.span color="black">{username(actor.card.slug)}</Txt.span>
 
 								if (getActorHref) {
 									return (
