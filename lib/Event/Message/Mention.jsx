@@ -158,7 +158,7 @@ const Mention = ({
 									readBy={readBy}
 									slug={slug}
 									groups={groups}>
-									{groupUserSlug.slice('user-'.length)}
+									{helpers.username(groupUserSlug)}
 								</Mention>
 							)
 						})}

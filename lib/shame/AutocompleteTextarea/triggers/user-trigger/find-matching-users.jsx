@@ -6,6 +6,9 @@
 
 import _ from 'lodash'
 import getUsers from './get-users'
+import {
+	username
+} from '../../../../services/helpers'
 
 const getFullName = (data) => {
 	const firstName = _.get(data, [ 'profile', 'name', 'first' ])
@@ -24,7 +27,7 @@ const findMatchingUsers = async (user, sdk, token, tag) => {
 		data
 	}) => {
 		return {
-			slug: `${slug.replace(/^user-/, '')}`,
+			slug: `${username(slug)}`,
 			name: getFullName(data)
 		}
 	})

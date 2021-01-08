@@ -15,6 +15,7 @@ import {
 } from '../../Link'
 import Context from './Context'
 import {
+	username,
 	getUserTooltipText
 } from '../../services/helpers'
 
@@ -41,7 +42,7 @@ export default class EventHeader extends React.Component {
 			if (typeBase === 'user') {
 				return (
 					<Txt color={Theme.colors.text.light}>
-						<strong>{targetCard.slug.replace('user-', '')}</strong> joined
+						<strong>{username(targetCard)}</strong> joined
 					</Txt>
 				)
 			}
