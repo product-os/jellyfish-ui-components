@@ -15,6 +15,7 @@ import {
 } from '../../Link'
 import Context from './Context'
 import {
+	username,
 	getUserTooltipText
 } from '../../services/helpers'
 
@@ -41,7 +42,7 @@ export default class EventHeader extends React.Component {
 			if (typeBase === 'user') {
 				return (
 					<Txt color={Theme.colors.text.light}>
-						<strong>{targetCard.slug.replace('user-', '')}</strong> joined
+						<strong>{username(targetCard)}</strong> joined
 					</Txt>
 				)
 			}
@@ -55,7 +56,9 @@ export default class EventHeader extends React.Component {
 
 			return (
 				<Txt color={Theme.colors.text.light}>
-					<em>{text}</em> <strong>{this.props.actor ? this.props.actor.name : ''}</strong>
+					<em>{text}</em> <strong>{
+						this.props.actor && this.props.actor.card ? username(this.props.actor.card.slug) : ''
+					}</strong>
 				</Txt>
 			)
 		}
@@ -87,11 +90,11 @@ export default class EventHeader extends React.Component {
 						<Txt
 							data-test="event__actor-label"
 							tooltip={getUserTooltipText(_.get(actor, [ 'card' ]), {
-								hideName: true
+								hideUsername: true
 							}) || 'loading...'}
 						>
 							{Boolean(actor) && Boolean(actor.card) && (() => {
-								const text = <Txt.span color="black">{actor.name}</Txt.span>
+								const text = <Txt.span color="black">{username(actor.card.slug)}</Txt.span>
 
 								if (getActorHref) {
 									return (
