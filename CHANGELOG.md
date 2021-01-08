@@ -5,6 +5,12 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v7.5.0
+## (2021-01-08)
+
+* Display username instead of name in message header [Graham McCulloch]
+* Add username helper method [Graham McCulloch]
+
 # v7.4.14
 ## (2021-01-06)
 
