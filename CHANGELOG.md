@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v7.5.13
+## (2021-01-14)
+
+* Add README.md to git index in lint-staged [Josh Bowling]
+
 # v7.5.12
 ## (2021-01-14)
 
