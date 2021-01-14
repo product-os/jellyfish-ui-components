@@ -133,7 +133,8 @@
   "lint-staged": {
     "*.{js,jsx}": [
       "eslint --cache --fix",
-      "npm run doc"
+      "npm run doc",
+      "git add README.md"
     ]
   },
   "main": "./lib/index.js"
