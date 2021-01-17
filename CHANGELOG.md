@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v7.5.19
+## (2021-01-17)
+
+* patch: Update dependency eslint-plugin-jsdoc to ^31.0.6 [Renovate Bot]
+
 # v7.5.18
 ## (2021-01-16)
 
