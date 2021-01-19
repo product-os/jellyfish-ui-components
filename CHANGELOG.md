@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v7.5.23
+## (2021-01-19)
+
+* patch: Update dependency core-js to ^3.8.3 [Renovate Bot]
+
 # v7.5.22
 ## (2021-01-18)
 
