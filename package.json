@@ -55,7 +55,7 @@
   "author": "Balena.io. <hello@balena.io>",
   "license": "UNLICENSED",
   "dependencies": {
-    "@balena/jellyfish-client-sdk": "^2.11.6",
+    "@balena/jellyfish-client-sdk": "^2.11.8",
     "@sentry/browser": "^6.0.1",
     "@webscopeio/react-textarea-autocomplete": "^4.7.3",
     "bluebird": "^3.7.2",
@@ -116,7 +116,7 @@
     "eslint": "^7.18.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jsdoc": "^31.1.0",
+    "eslint-plugin-jsdoc": "^31.2.1",
     "eslint-plugin-lodash": "^7.1.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
