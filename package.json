@@ -122,7 +122,7 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.22.0",
     "gh-pages": "^3.1.0",
-    "husky": "^5.0.6",
+    "husky": "^5.0.7",
     "jsdoc-to-markdown": "^6.0.1",
     "lint-staged": "^10.5.3",
     "node-hook": "^1.0.0",
