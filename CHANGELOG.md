@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v8.0.27
+## (2021-01-29)
+
+* patch: Update dependency @sentry/browser to ^6.0.3 [Renovate Bot]
+
 # v8.0.26
 ## (2021-01-29)
 
