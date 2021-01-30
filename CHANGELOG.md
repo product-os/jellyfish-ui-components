@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v8.0.28
+## (2021-01-30)
+
+* patch: Update dependency @balena/jellyfish-client-sdk to ^2.12.5 [Renovate Bot]
+
 # v8.0.27
 ## (2021-01-29)
 
