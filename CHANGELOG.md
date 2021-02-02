@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v8.1.0
+## (2021-02-02)
+
+* Add new getTypesFromViewCard helper method [Graham McCulloch]
+
 # v8.0.37
 ## (2021-02-02)
 
