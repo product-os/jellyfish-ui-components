@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v8.0.34
+## (2021-02-02)
+
+* Add .whitesource configuration file [whitesource-bolt-for-github[bot]]
+
 # v8.0.33
 ## (2021-02-01)
 
