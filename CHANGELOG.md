@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v8.1.1
+## (2021-02-03)
+
+* patch: Update non-major to ^7.12.13 [Renovate Bot]
+
 # v8.1.0
 ## (2021-02-02)
 
