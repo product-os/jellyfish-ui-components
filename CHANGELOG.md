@@ -5,6 +5,12 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v8.2.0
+## (2021-02-03)
+
+* createFullTextSearchFilter searches for fullTextSearch _or_ regexp [Graham McCulloch]
+* Add getMergedSchema helper method [Graham McCulloch]
+
 # v8.1.1
 ## (2021-02-03)
 
