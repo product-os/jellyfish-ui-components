@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v8.2.2
+## (2021-02-03)
+
+* patch: Update dependency react-select to v4 [Renovate Bot]
+
 # v8.2.1
 ## (2021-02-03)
 
