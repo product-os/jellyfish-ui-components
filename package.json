@@ -55,7 +55,7 @@
   "author": "Balena.io. <hello@balena.io>",
   "license": "UNLICENSED",
   "dependencies": {
-    "@balena/jellyfish-client-sdk": "^2.12.11",
+    "@balena/jellyfish-client-sdk": "^2.13.0",
     "@sentry/browser": "^6.0.4",
     "@webscopeio/react-textarea-autocomplete": "^4.7.3",
     "bluebird": "^3.7.2",
@@ -85,7 +85,7 @@
     "react-textarea-autosize": "^8.3.0",
     "react-visibility-sensor": "^5.1.1",
     "redux": "^4.0.5",
-    "rendition": "^20.4.1",
+    "rendition": "^20.5.0",
     "skhema": "^5.3.3",
     "styled-components": "^5.2.1",
     "uuid": "^8.3.2"
