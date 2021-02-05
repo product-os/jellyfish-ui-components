@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v8.2.9
+## (2021-02-05)
+
+* patch: Update dependency lint-staged to ^10.5.4 [Renovate Bot]
+
 # v8.2.8
 ## (2021-02-05)
 
