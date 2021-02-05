@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v8.2.6
+## (2021-02-05)
+
+* Set renovate npm version [Josh Bowling]
+
 # v8.2.5
 ## (2021-02-04)
 
