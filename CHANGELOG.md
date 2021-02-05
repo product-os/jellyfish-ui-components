@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v8.2.8
+## (2021-02-05)
+
+* patch: Update dependency date-fns to ^2.17.0 [Renovate Bot]
+
 # v8.2.7
 ## (2021-02-05)
 
