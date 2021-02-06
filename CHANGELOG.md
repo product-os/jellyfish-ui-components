@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v8.2.10
+## (2021-02-06)
+
+* Use shared renovate config base [Josh Bowling]
+
 # v8.2.9
 ## (2021-02-05)
 
