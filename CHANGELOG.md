@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v8.4.0
+## (2021-02-08)
+
+* Use options arg for createFullTextSearchFilter [Graham McCulloch]
+
 # v8.3.0
 ## (2021-02-08)
 
