@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v8.4.1
+## (2021-02-08)
+
+* patch: Update dependency husky to ^5.0.9 [Renovate Bot]
+
 # v8.4.0
 ## (2021-02-08)
 
