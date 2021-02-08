@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v8.3.0
+## (2021-02-08)
+
+* Add fullTextSearchFieldsOnly optional argument to createFullTextSearchFilter [Graham McCulloch]
+
 # v8.2.14
 ## (2021-02-07)
 
