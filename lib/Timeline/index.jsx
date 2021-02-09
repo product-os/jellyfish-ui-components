@@ -75,7 +75,7 @@ class Timeline extends React.Component {
 			uploadingFiles: [],
 			eventSkip: PAGE_SIZE,
 			reachedBeginningOfTimeline: this.props.tail < PAGE_SIZE,
-			loadingMoreEvents: false,
+			loadingNextPage: false,
 			ready: false
 		}
 
@@ -124,7 +124,7 @@ class Timeline extends React.Component {
 	componentDidUpdate (prevProps) {
 		const {
 			pendingMessages,
-			loadingMoreEvents
+			loadingNextPage
 		} = this.state
 		const {
 			tail
@@ -132,12 +132,14 @@ class Timeline extends React.Component {
 
 		const newMessages = _.differenceBy(tail, prevProps.tail, 'id')
 
-		// Stop loading state if are loadingMoreEvents and have newMessages
-		if (newMessages.length && loadingMoreEvents) {
-			console.log('turn off loadingMoreEvents', newMessages)
-			this.setState({
-				loadingMoreEvents: false
-			})
+		console.log('newMessages', newMessages.length)
+
+		// Stop loading state if are loadingNextPage and have newMessages
+		if (newMessages.length && loadingNextPage) {
+			console.log('turn off loadingNextPage (DISABLED)', newMessages)
+			// this.setState({
+			// 	loadingNextPage: false
+			// })
 		}
 
 		// If we have newMessages and pendingMessages
@@ -147,7 +149,6 @@ class Timeline extends React.Component {
 			this.setState({
 				pendingMessages: _.pullAllBy(pendingMessages, newMessages, 'slug')
 			})
-			console.log('remove new message from pending state callback')
 		}
 	}
 
@@ -273,21 +274,11 @@ class Timeline extends React.Component {
 			})
 		}, async () => {
 			this.scrollToBottom()
-			await this.loadMoreEvents({
-				links: {
-					'has attached element': {
-						sortBy: 'created_at',
-						sortDir: 'desc',
-						limit: this.props.tail.length + this.state.pendingMessages.length
-					}
-				}
-			})
+			await this.loadMoreEvents()
 		})
 
-		console.log('before message create')
 		this.props.sdk.event.create(message)
 			.then(() => {
-				console.log('message create callback')
 				this.props.analytics.track('element.create', {
 					element: {
 						type: message.type
@@ -311,36 +302,36 @@ class Timeline extends React.Component {
 		this.timelineEnd.current.scrollIntoView()
 	}
 
-	getOptions () {
+	getOptions (pageSize = 0) {
+		const {
+			pendingMessages
+		} = this.state
+
+		const {
+			tail
+		} = this.props
+
+		const limit = tail.length + pendingMessages.length + pageSize
+
+		console.log('getOptions', limit)
+
 		return {
 			links: {
 				'has attached element': {
 					sortBy: 'created_at',
 					sortDir: 'desc',
-					limit: PAGE_SIZE * 3,
-					skip: this.props.tail.length
+					limit
 				}
 			}
 		}
 	}
 
 	async loadMoreEvents (queryOptions = this.getOptions()) {
-		const {
-			loadingMoreEvents,
-			reachedBeginningOfTimeline
-		} = this.state
+		// const {
+		// 	loadingNextPage,
+		// 	reachedBeginningOfTimeline
+		// } = this.state
 
-		// Don't load more events if we're already loading
-		// Of if we reached the beginning of the timeline
-		// if (loadingMoreEvents || reachedBeginningOfTimeline) {
-		if (loadingMoreEvents) {
-			return
-		}
-
-		// Set the state to loading
-		this.setState({
-			loadingMoreEvents: true
-		}, async () => {
 			// Start the query to load more events
 			const {
 				card,
@@ -362,7 +353,7 @@ class Timeline extends React.Component {
 				}
 			}
 
-			console.log('call loadMoreChannelData')
+			console.log('loadMoreChannelData target:', target, 'should return', queryOptions.links['has attached element'].limit)
 
 			const [ result ] = await loadMoreChannelData({
 				target, query, queryOptions
@@ -378,10 +369,64 @@ class Timeline extends React.Component {
 			if (resultNewMessages.length === 0) {
 				this.setState({
 					reachedBeginningOfTimeline: true,
-					loadingMoreEvents: false
+					loadingNextPage: false
 				})
 			}
-		})
+
+
+		// Don't load more events if we're already loading
+		// Of if we reached the beginning of the timeline
+		// if (loadingNextPage || reachedBeginningOfTimeline) {
+		// if (loadingNextPage) {
+		// 	console.log('loadingNextPage return early', loadingNextPage)
+		// 	return
+		// }
+
+		// // Set the state to loading
+		// this.setState({
+		// 	loadingNextPage: true
+		// }, async () => {
+		// 	// Start the query to load more events
+		// 	const {
+		// 		card,
+		// 		loadMoreChannelData
+		// 	} = this.props
+
+		// 	const target = card.slug
+		// 	const query = {
+		// 		type: 'object',
+		// 		properties: {
+		// 			id: {
+		// 				const: card.id
+		// 			}
+		// 		},
+		// 		$$links: {
+		// 			'has attached element': {
+		// 				type: 'object'
+		// 			}
+		// 		}
+		// 	}
+
+		// 	console.log('call loadMoreChannelData', queryOptions.links['has attached element'].limit)
+
+		// 	const [ result ] = await loadMoreChannelData({
+		// 		target, query, queryOptions
+		// 	})
+
+		// 	// Because we dont't know how many pages / cards we have in total.
+		// 	// We can use the return value to determine if we reached the end of the timeline
+		// 	// Note: Shouldn't use the return value to set the new timeline cards
+		// 	// because this is way slower than just letting the stream update.
+		// 	// TODO: remove this logic when the backend returns the full count of cards
+		// 	const resultNewMessages = _.get(result, [ 'links', 'has attached element' ], [])
+
+		// 	if (resultNewMessages.length === 0) {
+		// 		this.setState({
+		// 			reachedBeginningOfTimeline: true,
+		// 			loadingNextPage: false
+		// 		})
+		// 	}
+		// })
 	}
 
 	render () {
@@ -406,7 +451,7 @@ class Timeline extends React.Component {
 			messagesOnly,
 			pendingMessages,
 			hideWhispers,
-			loadingMoreEvents,
+			loadingNextPage,
 			uploadingFiles,
 			reachedBeginningOfTimeline
 		} = this.state
@@ -459,7 +504,7 @@ class Timeline extends React.Component {
 					>
 						<div ref={this.timelineStart} />
 						{ reachedBeginningOfTimeline && <TimelineStart />}
-						{ loadingMoreEvents && <Loading />}
+						{ loadingNextPage && <Loading />}
 						<EventsList
 							{ ...eventProps }
 							user={user}
