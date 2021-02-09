@@ -93,6 +93,7 @@ class Timeline extends React.Component {
 		this.handleWhisperToggle = this.handleWhisperToggle.bind(this)
 		this.loadMoreEvents = this.loadMoreEvents.bind(this)
 		this.loadNext = this.loadNext.bind(this)
+		this.getOptions = this.getOptions.bind(this)
 
 		this.signalTyping = _.throttle(() => {
 			this.props.signalTyping(this.props.card.id)
@@ -122,18 +123,31 @@ class Timeline extends React.Component {
 
 	componentDidUpdate (prevProps) {
 		const {
-			pendingMessages
+			pendingMessages,
+			loadingMoreEvents
 		} = this.state
 		const {
 			tail
 		} = this.props
 
-		const newMessages = tail.length > prevProps.tail.length
+		const newMessages = _.differenceBy(tail, prevProps.tail, 'id')
 
-		if (newMessages) {
+		// Stop loading state if are loadingMoreEvents and have newMessages
+		if (newMessages.length && loadingMoreEvents) {
+			console.log('turn off loadingMoreEvents', newMessages)
 			this.setState({
-				pendingMessages: newMessages ? getFreshPendingMessages(tail, pendingMessages) : pendingMessages
+				loadingMoreEvents: false
 			})
+		}
+
+		// If we have newMessages and pendingMessages
+		if (newMessages.length && pendingMessages.length) {
+			// Remove the messages in the newMessage array from the
+			// pendingMessages and set the updated pendingMessages state
+			this.setState({
+				pendingMessages: _.pullAllBy(pendingMessages, newMessages, 'slug')
+			})
+			console.log('remove new message from pending state callback')
 		}
 	}
 
@@ -142,21 +156,20 @@ class Timeline extends React.Component {
 	}
 
 	async loadNext () {
-		console.log('load next')
-		if (this.loading) {
-			return
-		}
-		this.loading = true
-		await this.props.next()
-		this.loading = false
+		await this.loadMoreEvents()
 	}
 
-	handleJumpToTop () {
+	async handleJumpToTop () {
 		console.log('jump to top')
+		await this.retrieveFullTimeline()
 	}
 
-	retrieveFullTimeline (callback) {
-		console.log('retrieve full timeline')
+	async retrieveFullTimeline (callback) {
+		// Set links options to empty object to remove default query options
+		const options = {
+			links: {}
+		}
+		await this.loadMoreEvents(options)
 	}
 
 	handleEventToggle () {
@@ -258,12 +271,23 @@ class Timeline extends React.Component {
 					target: this.props.card.id
 				}
 			})
-		}, () => {
+		}, async () => {
 			this.scrollToBottom()
+			await this.loadMoreEvents({
+				links: {
+					'has attached element': {
+						sortBy: 'created_at',
+						sortDir: 'desc',
+						limit: this.props.tail.length + this.state.pendingMessages.length
+					}
+				}
+			})
 		})
 
+		console.log('before message create')
 		this.props.sdk.event.create(message)
 			.then(() => {
+				console.log('message create callback')
 				this.props.analytics.track('element.create', {
 					element: {
 						type: message.type
@@ -285,8 +309,77 @@ class Timeline extends React.Component {
 		this.timelineEnd.current.scrollIntoView()
 	}
 
-	loadMoreEvents (options = {}) {
-		console.log('load more events', options)
+	getOptions () {
+		return {
+			links: {
+				'has attached element': {
+					sortBy: 'created_at',
+					sortDir: 'desc',
+					limit: PAGE_SIZE * 3,
+					skip: this.props.tail.length
+				}
+			}
+		}
+	}
+
+	async loadMoreEvents (queryOptions = this.getOptions()) {
+		const {
+			loadingMoreEvents,
+			reachedBeginningOfTimeline
+		} = this.state
+
+		// Don't load more events if we're already loading
+		// Of if we reached the beginning of the timeline
+		// if (loadingMoreEvents || reachedBeginningOfTimeline) {
+		if (loadingMoreEvents) {
+			return
+		}
+
+		// Set the state to loading
+		this.setState({
+			loadingMoreEvents: true
+		}, async () => {
+			// Start the query to load more events
+			const {
+				card,
+				loadMoreChannelData
+			} = this.props
+
+			const target = card.slug
+			const query = {
+				type: 'object',
+				properties: {
+					id: {
+						const: card.id
+					}
+				},
+				$$links: {
+					'has attached element': {
+						type: 'object'
+					}
+				}
+			}
+
+			console.log('call loadMoreChannelData')
+
+			const [ result ] = await loadMoreChannelData({
+				target, query, queryOptions
+			})
+
+			// Because we dont't know how many pages / cards we have in total.
+			// We can use the return value to determine if we reached the end of the timeline
+			// Note: Shouldn't use the return value to set the new timeline cards
+			// because this is way slower than just letting the stream update.
+			// TODO: remove this logic when the backend returns the full count of cards
+			const resultNewMessages = _.get(result, [ 'links', 'has attached element' ], [])
+
+			if (resultNewMessages.length === 0) {
+				this.setState({
+					reachedBeginningOfTimeline: true,
+					loadingMoreEvents: false
+				})
+			}
+		})
 	}
 
 	render () {
@@ -312,7 +405,6 @@ class Timeline extends React.Component {
 			pendingMessages,
 			hideWhispers,
 			loadingMoreEvents,
-			ready,
 			uploadingFiles,
 			reachedBeginningOfTimeline
 		} = this.state
@@ -338,6 +430,8 @@ class Timeline extends React.Component {
 			getActorHref,
 			targetCard: card
 		}
+
+		console.log('tail length', tail.length, 'sortedEvents', sortedEvents.length)
 
 		return (
 			<Column>
