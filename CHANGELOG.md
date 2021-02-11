@@ -5,6 +5,12 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v8.5.1
+## (2021-02-11)
+
+* Pin xterm dependency at 4.9.0 to avoid test failure [Graham McCulloch]
+* patch: Update non-major [Renovate Bot]
+
 # v8.5.0
 ## (2021-02-11)
 
