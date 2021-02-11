@@ -178,7 +178,15 @@ class AutoCompleteArea extends React.Component {
 	}
 
 	loadResults (typeCard, value) {
-		const filter = helpers.createFullTextSearchFilter(typeCard.data.schema, value)
+		const filter = helpers.createFullTextSearchFilter(typeCard.data.schema, value, {
+			fullTextSearchFieldsOnly: true
+		})
+		if (!filter) {
+			this.setState({
+				results: []
+			})
+			return
+		}
 		_.set(filter, [ 'properties', 'type' ], {
 			type: 'string',
 			const: `${typeCard.slug}@${typeCard.version}`
