@@ -55,7 +55,7 @@
   "author": "Balena.io. <hello@balena.io>",
   "license": "UNLICENSED",
   "dependencies": {
-    "@balena/jellyfish-client-sdk": "^2.13.3",
+    "@balena/jellyfish-client-sdk": "^2.13.4",
     "@sentry/browser": "^6.1.0",
     "@webscopeio/react-textarea-autocomplete": "^4.7.3",
     "bluebird": "^3.7.2",
@@ -85,10 +85,11 @@
     "react-textarea-autosize": "^8.3.1",
     "react-visibility-sensor": "^5.1.1",
     "redux": "^4.0.5",
-    "rendition": "^20.6.0",
+    "rendition": "^20.7.1",
     "skhema": "^5.3.3",
     "styled-components": "^5.2.1",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "xterm": "4.9.0"
   },
   "devDependencies": {
     "@ava/babel": "^1.0.1",
@@ -119,7 +120,7 @@
     "eslint-plugin-jsdoc": "^31.6.1",
     "eslint-plugin-lodash": "^7.1.0",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-promise": "^4.3.1",
     "eslint-plugin-react": "^7.22.0",
     "gh-pages": "^3.1.0",
     "husky": "^5.0.9",
