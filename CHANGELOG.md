@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+# v8.5.2
+## (2021-02-15)
+
+* Bump storybook deps [Josh Bowling]
+
 # v8.5.1
 ## (2021-02-11)
 
