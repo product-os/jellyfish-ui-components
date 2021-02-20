@@ -1,0 +1,6 @@
+type: 'node'
+upstream:
+  - repo: 'jellyfish-client-sdk'
+    url: 'https://github.com/product-os/jellyfish-client-sdk'
+  - repo: 'jellycheck'
+    url: 'https://github.com/product-os/jellycheck'
