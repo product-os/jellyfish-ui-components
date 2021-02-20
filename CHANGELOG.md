@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 8.5.4 - 2021-02-20
+
+* Add versionbot CHANGELOG.yml [Josh Bowling]
+
 # v8.5.3
 ## (2021-02-15)
 
