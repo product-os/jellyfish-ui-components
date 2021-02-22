@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 8.6.0 - 2021-02-22
+
+* Allow a view to explicitly define the types it is interested in [Graham McCulloch]
+
 ## 8.5.4 - 2021-02-20
 
 * Add versionbot CHANGELOG.yml [Josh Bowling]

@@ -1,4 +1,17 @@
 - commits:
+    - subject: Allow a view to explicitly define the types it is interested in
+      hash: d7a6510cffe248d63846af0662299dd8ac2f5f2e
+      body: ''
+      footer:
+        Change-type: minor
+        change-type: minor
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+  version: 8.6.0
+  date: 2021-02-22T02:56:05.301Z
+- commits:
     - subject: Add versionbot CHANGELOG.yml
       hash: 21b86273b6c8b312cf4704ed8c2f1ddcbad03b2c
       body: ''
