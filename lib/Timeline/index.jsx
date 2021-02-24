@@ -329,15 +329,19 @@ class Timeline extends React.Component {
 	}
 
 	scrollToTop () {
-		this.timelineStart.current.scrollIntoView({
-			behaviour: 'smooth'
-		})
+		if (this.timelineStart.current) {
+			this.timelineStart.current.scrollIntoView({
+				behaviour: 'smooth'
+			})
+		}
 	}
 
 	scrollToBottom () {
-		this.timelineEnd.current.scrollIntoView({
-			behavior: 'smooth'
-		})
+		if (this.timelineEnd.current) {
+			this.timelineEnd.current.scrollIntoView({
+				behavior: 'smooth'
+			})
+		}
 	}
 
 	loadMoreEvents (options = {}) {
