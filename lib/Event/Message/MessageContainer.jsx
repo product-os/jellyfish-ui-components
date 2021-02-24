@@ -9,6 +9,7 @@ import {
 	Box
 } from 'rendition'
 import {
+	px,
 	isPrivateTimelineEvent
 } from '../../services/helpers'
 
@@ -17,6 +18,12 @@ const MessageContainer = styled(Box) `
 	border-radius: 12px;
 	border-top-left-radius: 0;
 	box-shadow: -5px 4.5px 10.5px 0 rgba(152, 173, 227, 0.08);
+	p {
+		padding-bottom: ${(props) => { return px(props.theme.space[2]) }};
+	}
+	p:last-child {
+		padding-bottom: 0;
+	}
 	a {
 		color: inherit;
 		text-decoration: underline;
