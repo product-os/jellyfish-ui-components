@@ -1,4 +1,17 @@
 - commits:
+    - subject: Bump rendition and client-sdk dependencies
+      hash: fdab71f685b1e01313b7419baf4a08ac339b53b3
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+  version: 8.7.1
+  date: 2021-02-24T03:04:27.337Z
+- commits:
     - subject: Add full text search support within arrays of strings
       hash: 55b1f83c2cb7e221cd2734173f30a45104e13fd4
       body: ''

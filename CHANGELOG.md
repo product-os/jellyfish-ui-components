@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 8.7.1 - 2021-02-24
+
+* Bump rendition and client-sdk dependencies [Graham McCulloch]
+
 ## 8.7.0 - 2021-02-23
 
 * Add full text search support within arrays of strings [Graham McCulloch]
