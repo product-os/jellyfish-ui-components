@@ -1,4 +1,18 @@
 - commits:
+    - subject: Check for element before trying to call scrollIntoView on it!
+      hash: 0327080a47e05793a54437401227c3a3a1446f2f
+      body: |
+        Fixes https://github.com/product-os/jellyfish/issues/4823
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+  version: 8.7.2
+  date: 2021-02-24T08:39:12.922Z
+- commits:
     - subject: Bump rendition and client-sdk dependencies
       hash: fdab71f685b1e01313b7419baf4a08ac339b53b3
       body: ''

@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 8.7.2 - 2021-02-24
+
+* Check for element before trying to call scrollIntoView on it! [Graham McCulloch]
+
 ## 8.7.1 - 2021-02-24
 
 * Bump rendition and client-sdk dependencies [Graham McCulloch]
