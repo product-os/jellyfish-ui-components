@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 8.7.0 - 2021-02-23
+
+* Add full text search support within arrays of strings [Graham McCulloch]
+
 ## 8.6.0 - 2021-02-22
 
 * Allow a view to explicitly define the types it is interested in [Graham McCulloch]

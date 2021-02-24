@@ -1,4 +1,17 @@
 - commits:
+    - subject: Add full text search support within arrays of strings
+      hash: 55b1f83c2cb7e221cd2734173f30a45104e13fd4
+      body: ''
+      footer:
+        Change-type: minor
+        change-type: minor
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+  version: 8.7.0
+  date: 2021-02-23T02:22:03.593Z
+- commits:
     - subject: Allow a view to explicitly define the types it is interested in
       hash: d7a6510cffe248d63846af0662299dd8ac2f5f2e
       body: ''
