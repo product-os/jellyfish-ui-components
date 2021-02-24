@@ -84,7 +84,6 @@ class Timeline extends React.Component {
 		this.scrollToTop = this.scrollToTop.bind(this)
 		this.scrollToBottom = this.scrollToBottom.bind(this)
 		this.scrollToEvent = this.scrollToEvent.bind(this)
-		this.handleScrollBeginning = this.handleScrollBeginning.bind(this)
 		this.retrieveFullTimelime = this.retrieveFullTimeline.bind(this)
 		this.addMessage = this.addMessage.bind(this)
 		this.handleCardVisible = this.handleCardVisible.bind(this)
@@ -93,6 +92,8 @@ class Timeline extends React.Component {
 		this.handleJumpToTop = this.handleJumpToTop.bind(this)
 		this.handleWhisperToggle = this.handleWhisperToggle.bind(this)
 		this.loadMoreEvents = this.loadMoreEvents.bind(this)
+		this.loadNext = this.loadNext.bind(this)
+		this.getOptions = this.getOptions.bind(this)
 
 		this.signalTyping = _.throttle(() => {
 			this.props.signalTyping(this.props.card.id)
@@ -108,16 +109,13 @@ class Timeline extends React.Component {
 			event
 		} = queryString.parse(window.location.search)
 
-		// Timeout required to ensure the timeline has loaded before we scroll to the bottom
-		await Bluebird.delay(2000)
 		if (event) {
 			this.scrollToEvent(event)
 		} else {
+			console.log('scrolling to bottom')
 			this.scrollToBottom()
 		}
 
-		// Timeout to ensure scroll has finished
-		await Bluebird.delay(500)
 		this.setState({
 			ready: true
 		})
@@ -125,91 +123,53 @@ class Timeline extends React.Component {
 
 	componentDidUpdate (prevProps) {
 		const {
-			pendingMessages
+			pendingMessages,
+			loadingMoreEvents
 		} = this.state
 		const {
 			tail
 		} = this.props
 
-		const newMessages = tail.length > prevProps.tail.length
+		const newMessages = _.differenceBy(tail, prevProps.tail, 'id')
 
-		if (newMessages) {
+		// Stop loading state if are loadingMoreEvents and have newMessages
+		if (newMessages.length && loadingMoreEvents) {
+			console.log('turn off loadingMoreEvents', newMessages)
 			this.setState({
-				pendingMessages: newMessages ? getFreshPendingMessages(tail, pendingMessages) : pendingMessages
+				loadingMoreEvents: false
 			})
+		}
+
+		// If we have newMessages and pendingMessages
+		if (newMessages.length && pendingMessages.length) {
+			// Remove the messages in the newMessage array from the
+			// pendingMessages and set the updated pendingMessages state
+			this.setState({
+				pendingMessages: _.pullAllBy(pendingMessages, newMessages, 'slug')
+			})
+			console.log('remove new message from pending state callback')
 		}
 	}
 
 	scrollToEvent (eventId) {
-		const {
-			tail
-		} = this.props
-		const {
-			reachedBeginningOfTimeline
-		} = this.state
-		const existing = _.find(tail, {
-			id: eventId
-		})
-		if (existing) {
-			const pureType = existing.type.split('@')[0]
-			if (pureType === UPDATE || pureType === CREATE) {
-				this.handleEventToggle()
-			}
-			const messageElement = document.getElementById(`event-${eventId}`)
-			if (messageElement) {
-				messageElement.scrollIntoView({
-					behavior: 'smooth'
-				})
-			}
-		} else if (!reachedBeginningOfTimeline) {
-			this.retrieveFullTimeline(() => {
-				this.scrollToEvent(eventId)
-			})
+		console.log('scroll to event')
+	}
+
+	async loadNext () {
+		await this.loadMoreEvents()
+	}
+
+	async handleJumpToTop () {
+		console.log('jump to top')
+		await this.retrieveFullTimeline()
+	}
+
+	async retrieveFullTimeline (callback) {
+		// Set links options to empty object to remove default query options
+		const options = {
+			links: {}
 		}
-	}
-
-	handleScrollBeginning () {
-		return new Promise((resolve, reject) => {
-			const {
-				eventSkip
-			} = this.state
-			this.setState({
-				loadingMoreEvents: true
-			}, () => {
-				return this.loadMoreEvents({
-					limit: PAGE_SIZE,
-					skip: eventSkip
-				}).then((newEvents) => {
-					const receivedNewEvents = newEvents.length > 0
-					this.setState({
-						eventSkip: receivedNewEvents ? eventSkip + PAGE_SIZE : eventSkip,
-						loadingMoreEvents: false,
-						reachedBeginningOfTimeline: !receivedNewEvents
-					})
-					resolve()
-				}
-				)
-			})
-		})
-	}
-
-	handleJumpToTop () {
-		if (this.state.reachedBeginningOfTimeline) {
-			this.scrollToTop()
-		} else {
-			this.retrieveFullTimeline(() => {
-				this.scrollToTop()
-			})
-		}
-	}
-
-	retrieveFullTimeline (callback) {
-		return this.loadMoreEvents()
-			.then(() => {
-				this.setState({
-					reachedBeginningOfTimeline: true
-				}, callback)
-			})
+		await this.loadMoreEvents(options)
 	}
 
 	handleEventToggle () {
@@ -311,12 +271,23 @@ class Timeline extends React.Component {
 					target: this.props.card.id
 				}
 			})
-		}, () => {
+		}, async () => {
 			this.scrollToBottom()
+			await this.loadMoreEvents({
+				links: {
+					'has attached element': {
+						sortBy: 'created_at',
+						sortDir: 'desc',
+						limit: this.props.tail.length + this.state.pendingMessages.length
+					}
+				}
+			})
 		})
 
+		console.log('before message create')
 		this.props.sdk.event.create(message)
 			.then(() => {
+				console.log('message create callback')
 				this.props.analytics.track('element.create', {
 					element: {
 						type: message.type
@@ -335,19 +306,47 @@ class Timeline extends React.Component {
 	}
 
 	scrollToBottom () {
-		this.timelineEnd.current.scrollIntoView({
-			behavior: 'smooth'
-		})
+		this.timelineEnd.current.scrollIntoView()
 	}
 
-	loadMoreEvents (options = {}) {
+	getOptions () {
+		return {
+			links: {
+				'has attached element': {
+					sortBy: 'created_at',
+					sortDir: 'desc',
+					limit: PAGE_SIZE * 3,
+					skip: this.props.tail.length
+				}
+			}
+		}
+	}
+
+	async loadMoreEvents (queryOptions = this.getOptions()) {
 		const {
-			card,
-			loadMoreChannelData
-		} = this.props
-		return loadMoreChannelData({
-			target: card.slug,
-			query: {
+			loadingMoreEvents,
+			reachedBeginningOfTimeline
+		} = this.state
+
+		// Don't load more events if we're already loading
+		// Of if we reached the beginning of the timeline
+		// if (loadingMoreEvents || reachedBeginningOfTimeline) {
+		if (loadingMoreEvents) {
+			return
+		}
+
+		// Set the state to loading
+		this.setState({
+			loadingMoreEvents: true
+		}, async () => {
+			// Start the query to load more events
+			const {
+				card,
+				loadMoreChannelData
+			} = this.props
+
+			const target = card.slug
+			const query = {
 				type: 'object',
 				properties: {
 					id: {
@@ -359,20 +358,28 @@ class Timeline extends React.Component {
 						type: 'object'
 					}
 				}
-			},
-			queryOptions: {
-				links: {
-					'has attached element': {
-						sortBy: 'created_at',
-						sortDir: 'desc',
-						...options
-					}
-				}
+			}
+
+			console.log('call loadMoreChannelData')
+
+			const [ result ] = await loadMoreChannelData({
+				target, query, queryOptions
+			})
+
+			// Because we dont't know how many pages / cards we have in total.
+			// We can use the return value to determine if we reached the end of the timeline
+			// Note: Shouldn't use the return value to set the new timeline cards
+			// because this is way slower than just letting the stream update.
+			// TODO: remove this logic when the backend returns the full count of cards
+			const resultNewMessages = _.get(result, [ 'links', 'has attached element' ], [])
+
+			if (resultNewMessages.length === 0) {
+				this.setState({
+					reachedBeginningOfTimeline: true,
+					loadingMoreEvents: false
+				})
 			}
 		})
-			.then(([ newCard ]) => {
-				return _.get(newCard, [ 'links', 'has attached element' ], [])
-			})
 	}
 
 	render () {
@@ -398,7 +405,6 @@ class Timeline extends React.Component {
 			pendingMessages,
 			hideWhispers,
 			loadingMoreEvents,
-			ready,
 			uploadingFiles,
 			reachedBeginningOfTimeline
 		} = this.state
@@ -425,6 +431,8 @@ class Timeline extends React.Component {
 			targetCard: card
 		}
 
+		console.log('tail length', tail.length, 'sortedEvents', sortedEvents.length)
+
 		return (
 			<Column>
 				<Header
@@ -444,9 +452,8 @@ class Timeline extends React.Component {
 						<Loading />
 					</Box>)}
 					<InfiniteList
-						fillMaxArea
-						onScrollBeginning={!reachedBeginningOfTimeline && ready && this.handleScrollBeginning}
-						processing={loadingMoreEvents}
+						up
+						next={this.loadNext}
 					>
 						<div ref={this.timelineStart} />
 						{ reachedBeginningOfTimeline && <TimelineStart />}
