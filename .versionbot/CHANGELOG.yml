@@ -1,4 +1,17 @@
 - commits:
+    - subject: Fix paragraph spacing in messages
+      hash: d77c229e096157d80e39f86ec5736cf28f62caf9
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+  version: 8.7.3
+  date: 2021-02-24T10:10:44.921Z
+- commits:
     - subject: Check for element before trying to call scrollIntoView on it!
       hash: 0327080a47e05793a54437401227c3a3a1446f2f
       body: |

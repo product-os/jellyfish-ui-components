@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 8.7.3 - 2021-02-24
+
+* Fix paragraph spacing in messages [Graham McCulloch]
+
 ## 8.7.2 - 2021-02-24
 
 * Check for element before trying to call scrollIntoView on it! [Graham McCulloch]
