@@ -124,7 +124,7 @@
     "eslint-plugin-react": "^7.22.0",
     "gh-pages": "^3.1.0",
     "husky": "^5.0.9",
-    "jsdoc-to-markdown": "^6.0.1",
+    "jsdoc-to-markdown": "^7.0.0",
     "lint-staged": "^10.5.4",
     "node-hook": "^1.0.0",
     "react-dnd-html5-backend": "^11.1.3",
