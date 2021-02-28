@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 8.7.4 - 2021-02-26
+
+* patch: Update dependency jsdoc-to-markdown to v7 [Renovate Bot]
+
 ## 8.7.3 - 2021-02-24
 
 * Fix paragraph spacing in messages [Graham McCulloch]

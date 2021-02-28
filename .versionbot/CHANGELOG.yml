@@ -1,4 +1,15 @@
 - commits:
+    - subject: 'patch: Update dependency jsdoc-to-markdown to v7'
+      hash: d968a68c5b0524490b922438e16e9445de9e1222
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 8.7.4
+  date: 2021-02-26T23:15:13.407Z
+- commits:
     - subject: Fix paragraph spacing in messages
       hash: d77c229e096157d80e39f86ec5736cf28f62caf9
       body: ''
