@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 8.7.5 - 2021-03-02
+
+* Pin xterm to 4.9.0 [Graham McCulloch]
+* patch: Update non-major [Renovate Bot]
+
 ## 8.7.4 - 2021-02-26
 
 * patch: Update dependency jsdoc-to-markdown to v7 [Renovate Bot]

@@ -1,4 +1,27 @@
 - commits:
+    - subject: Pin xterm to 4.9.0
+      hash: 02514503ebd1fb5eb4355a3d2cf3acf2397c259f
+      body: >
+        xterm 4.10.0 has problems when run outside of the browser (in our unit
+        tests).
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+    - subject: 'patch: Update non-major'
+      hash: 8e0144ee903c9a589070d49a4b41cf5162126986
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 8.7.5
+  date: 2021-03-02T02:20:51.712Z
+- commits:
     - subject: 'patch: Update dependency jsdoc-to-markdown to v7'
       hash: d968a68c5b0524490b922438e16e9445de9e1222
       body: ''
