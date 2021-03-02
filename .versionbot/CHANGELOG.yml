@@ -1,4 +1,17 @@
 - commits:
+    - subject: Bump jellyfish-client-sdk dependency
+      hash: ab839f55d623bcc06c6e02cd0c1e24999bd35726
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+  version: 8.7.5
+  date: 2021-03-02T02:22:37.473Z
+- commits:
     - subject: 'patch: Update dependency jsdoc-to-markdown to v7'
       hash: d968a68c5b0524490b922438e16e9445de9e1222
       body: ''
