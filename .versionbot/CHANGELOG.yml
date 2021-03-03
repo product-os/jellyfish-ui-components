@@ -1,4 +1,19 @@
 - commits:
+    - subject: Add includeIdAndSlug option for createFullTextSearchFilter
+      hash: 1e658273a9b591db289d3099d0c55bec00c398f8
+      body: >
+        This is a convenience option for those situations where you also want to
+        search the ID or slug of the card (in full).
+      footer:
+        Change-type: minor
+        change-type: minor
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+  version: 8.8.0
+  date: 2021-03-03T03:21:29.112Z
+- commits:
     - subject: Pin xterm to 4.9.0
       hash: 02514503ebd1fb5eb4355a3d2cf3acf2397c259f
       body: >

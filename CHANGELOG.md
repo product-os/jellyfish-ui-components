@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 8.8.0 - 2021-03-03
+
+* Add includeIdAndSlug option for createFullTextSearchFilter [Graham McCulloch]
+
 ## 8.7.5 - 2021-03-02
 
 * Pin xterm to 4.9.0 [Graham McCulloch]
