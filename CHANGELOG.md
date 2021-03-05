@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 8.8.0 - 2021-03-05
+
+* Allow the full content of a whisper/message to be deleted [Graham McCulloch]
+
 ## 8.7.5 - 2021-03-02
 
 * Pin xterm to 4.9.0 [Graham McCulloch]

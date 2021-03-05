@@ -1,4 +1,18 @@
 - commits:
+    - subject: Allow the full content of a whisper/message to be deleted
+      hash: c4bb3475bcf0e1666f5526c4a70e946b42056a34
+      body: |
+        Fixes #4855
+      footer:
+        Change-type: minor
+        change-type: minor
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+  version: 8.8.0
+  date: 2021-03-05T00:49:20.984Z
+- commits:
     - subject: Pin xterm to 4.9.0
       hash: 02514503ebd1fb5eb4355a3d2cf3acf2397c259f
       body: >
