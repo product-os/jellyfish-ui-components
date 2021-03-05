@@ -4,13 +4,9 @@
  * Proprietary and confidential.
  */
 
-import * as Bluebird from 'bluebird'
 import _ from 'lodash'
 import React from 'react'
 import queryString from 'query-string'
-import {
-	Box
-} from 'rendition'
 import {
 	v4 as uuid
 } from 'uuid'
@@ -23,24 +19,18 @@ import {
 	withSetup
 } from '../SetupProvider'
 import Header from './Header'
-import Loading from './Loading'
-import TimelineStart from './TimelineStart'
-import EventsList from './EventsList'
-import PendingMessages from './PendingMessages'
+import EventWrapper from './EventWrapper'
 import TypingNotice from './TypingNotice'
 import {
 	addNotification
 } from '../services/notifications'
-import {
-	UPDATE,
-	CREATE
-} from '../constants'
 import EventsContainer from '../EventsContainer'
 import {
 	InfiniteList
 } from '../InfiniteList'
 
-const PAGE_SIZE = 20
+// TODO: Abstract this constant to Redux and allow setting page size in user settings.
+const PAGE_SIZE = 40
 
 export {
 	MessageInput
@@ -57,15 +47,11 @@ const getSendCommand = (user) => {
 	return _.get(user.data, [ 'profile', 'sendCommand' ], 'shift+enter')
 }
 
-const getFreshPendingMessages = (tail, pendingMessages) => {
-	return _.filter(pendingMessages, (pending) => {
-		return !_.find(tail, [ 'slug', pending.slug ])
-	})
-}
-
 class Timeline extends React.Component {
 	constructor (props) {
 		super(props)
+
+		// TODO: after this refactor go through state and props and remove unused
 		this.state = {
 			hideWhispers: false,
 			messageSymbol: false,
@@ -75,8 +61,7 @@ class Timeline extends React.Component {
 			uploadingFiles: [],
 			eventSkip: PAGE_SIZE,
 			reachedBeginningOfTimeline: this.props.tail < PAGE_SIZE,
-			loadingNextPage: false,
-			ready: false
+			loadingNextPage: false
 		}
 
 		this.timelineStart = React.createRef()
@@ -105,20 +90,9 @@ class Timeline extends React.Component {
 	}
 
 	async componentDidMount () {
-		const {
-			event
-		} = queryString.parse(window.location.search)
-
-		if (event) {
-			this.scrollToEvent(event)
-		} else {
-			console.log('scrolling to bottom')
-			this.scrollToBottom()
-		}
-
-		this.setState({
-			ready: true
-		})
+		// When component mounts call scrollToEvent, calling this without arguments
+		// will parse the window url looking for an event identifier
+		this.scrollToEvent()
 	}
 
 	componentDidUpdate (prevProps) {
@@ -132,32 +106,61 @@ class Timeline extends React.Component {
 
 		const newMessages = _.differenceBy(tail, prevProps.tail, 'id')
 
-		console.log('newMessages', newMessages.length)
-
 		// Stop loading state if are loadingNextPage and have newMessages
 		if (newMessages.length && loadingNextPage) {
-			console.log('turn off loadingNextPage (DISABLED)', newMessages)
-			// this.setState({
-			// 	loadingNextPage: false
-			// })
+			// TODO: Confirm the the InfiniteList >> InfiniteScroll component already debouces loading triggers
+			// If so remove this logic
+			// If not clean up this logic
+			// console.log('turn off loadingNextPage (DISABLED)')
+			this.setState({
+				loadingNextPage: false
+			})
 		}
 
 		// If we have newMessages and pendingMessages
 		if (newMessages.length && pendingMessages.length) {
+			const prevPendingMessages = pendingMessages
+
 			// Remove the messages in the newMessage array from the
 			// pendingMessages and set the updated pendingMessages state
+			// It probably means the messages user posted are comming in
 			this.setState({
 				pendingMessages: _.pullAllBy(pendingMessages, newMessages, 'slug')
+			}, () => {
+				console.log('should call scroll to bottom')
+
+				// If we removed messages AND are at the bottom of the timeline,
+				// scroll to bottom to keep the new message in view
+				// if (prevPendingMessages.length < this.state.pendingMessages.length) {
+				// 	this.scrollToBottom()
+				// }
 			})
 		}
 	}
 
-	scrollToEvent (eventId) {
-		console.log('scroll to event')
+	// eslint-disable-next-line class-methods-use-this
+	scrollToTop () {
+		console.log('scrolling to top (disabled)')
 	}
 
-	async loadNext () {
-		await this.loadMoreEvents()
+	// eslint-disable-next-line class-methods-use-this
+	scrollToBottom () {
+		console.log('scrolling to bottom (disabled)')
+	}
+
+	// eslint-disable-next-line class-methods-use-this
+	scrollToEvent (eventId) {
+		const {
+			event: queryEventId
+		} = queryString.parse(window.location.search)
+
+		const event = eventId || queryEventId
+
+		if (!event) {
+			return
+		}
+
+		console.log('scrolling to event (disabled)')
 	}
 
 	async handleJumpToTop () {
@@ -165,7 +168,28 @@ class Timeline extends React.Component {
 		await this.retrieveFullTimeline()
 	}
 
+	async loadNext () {
+		const {
+			loadingNextPage,
+			reachedBeginningOfTimeline
+		} = this.state
+
+		if (loadingNextPage) {
+			return
+		}
+
+		// Set the state to loading
+		this.setState({
+			loadingNextPage: true
+		}, async () => {
+			// TODO: remove this loading state and use the infinite list loading indicator
+			// TODO: check if the infinite loader rebounces loading
+			await this.loadMoreEvents(this.getOptions(PAGE_SIZE))
+		})
+	}
+
 	async retrieveFullTimeline (callback) {
+		// TODO: Confirm this still works...
 		// Set links options to empty object to remove default query options
 		const options = {
 			links: {}
@@ -186,6 +210,9 @@ class Timeline extends React.Component {
 	}
 
 	handleFileChange (files, whisper) {
+		// TODO: Confirm the uploadingFiles events still work as expected
+		// TODO: Update this method to also call `loadMoreEvents` correctly
+		// perhaps this method should call `addMessage` instead of duplicating logic...
 		const type = whisper ? 'whisper' : 'message'
 		if (!files || !files.length) {
 			return
@@ -233,10 +260,13 @@ class Timeline extends React.Component {
 
 	addMessage (newMessage, whisper) {
 		const trimmedMessage = newMessage.trim()
+
 		if (!trimmedMessage) {
 			return
 		}
+
 		this.props.setTimelineMessage(this.props.card.id, '')
+
 		const {
 			mentionsUser,
 			alertsUser,
@@ -244,6 +274,7 @@ class Timeline extends React.Component {
 			alertsGroup,
 			tags
 		} = helpers.getMessageMetaData(trimmedMessage)
+
 		const message = {
 			target: this.props.card,
 			type: whisper ? 'whisper' : 'message',
@@ -274,32 +305,33 @@ class Timeline extends React.Component {
 			})
 		}, async () => {
 			this.scrollToBottom()
-			await this.loadMoreEvents()
-		})
 
-		this.props.sdk.event.create(message)
-			.then(() => {
+			try {
+				// Update the schema so we're listening to the correct items
+				// To get the correct new page size, we either need the pendingMessages count
+				// or 1. If pendingMessages is 0 it means the message has already arrived in
+				const pageSize = this.state.pendingMessages.length ? 0 : 1
+				const options = this.getOptions(pageSize)
+
+				const broadcast = true
+
+				// Note: Don't await this method, it won't resolve without triggering an update
+				this.loadMoreEvents(options, broadcast)
+
+				// When the message has been added to the pendingMessage state.
+				// Fire the sdk method to create the message in the backend
+				await this.props.sdk.event.create(message)
+
+				// After creating an element, track the create event
 				this.props.analytics.track('element.create', {
 					element: {
 						type: message.type
 					}
 				})
-			})
-			.catch((error) => {
+			} catch (error) {
 				addNotification('danger', error.message || error)
-			})
-	}
-
-	scrollToTop () {
-		if (this.timelineStart.current) {
-			this.timelineStart.current.scrollIntoView({
-				behaviour: 'smooth'
-			})
-		}
-	}
-
-	scrollToBottom () {
-		this.timelineEnd.current.scrollIntoView()
+			}
+		})
 	}
 
 	getOptions (pageSize = 0) {
@@ -313,8 +345,6 @@ class Timeline extends React.Component {
 
 		const limit = tail.length + pendingMessages.length + pageSize
 
-		console.log('getOptions', limit)
-
 		return {
 			links: {
 				'has attached element': {
@@ -326,107 +356,38 @@ class Timeline extends React.Component {
 		}
 	}
 
-	async loadMoreEvents (queryOptions = this.getOptions()) {
-		// const {
-		// 	loadingNextPage,
-		// 	reachedBeginningOfTimeline
-		// } = this.state
+	async loadMoreEvents (queryOptions = this.getOptions(), broadcast = false) {
+		// Start the query to load more events
+		const {
+			card,
+			loadMoreChannelData
+		} = this.props
 
-			// Start the query to load more events
-			const {
-				card,
-				loadMoreChannelData
-			} = this.props
-
-			const target = card.slug
-			const query = {
-				type: 'object',
-				properties: {
-					id: {
-						const: card.id
-					}
-				},
-				$$links: {
-					'has attached element': {
-						type: 'object'
-					}
+		const target = card.slug
+		const query = {
+			type: 'object',
+			properties: {
+				id: {
+					const: card.id
+				}
+			},
+			$$links: {
+				'has attached element': {
+					type: 'object'
 				}
 			}
+		}
 
-			console.log('loadMoreChannelData target:', target, 'should return', queryOptions.links['has attached element'].limit)
+		await loadMoreChannelData({
+			target, query, queryOptions, broadcast
+		})
 
-			const [ result ] = await loadMoreChannelData({
-				target, query, queryOptions
-			})
-
-			// Because we dont't know how many pages / cards we have in total.
-			// We can use the return value to determine if we reached the end of the timeline
-			// Note: Shouldn't use the return value to set the new timeline cards
-			// because this is way slower than just letting the stream update.
-			// TODO: remove this logic when the backend returns the full count of cards
-			const resultNewMessages = _.get(result, [ 'links', 'has attached element' ], [])
-
-			if (resultNewMessages.length === 0) {
-				this.setState({
-					reachedBeginningOfTimeline: true,
-					loadingNextPage: false
-				})
-			}
-
-
-		// Don't load more events if we're already loading
-		// Of if we reached the beginning of the timeline
-		// if (loadingNextPage || reachedBeginningOfTimeline) {
-		// if (loadingNextPage) {
-		// 	console.log('loadingNextPage return early', loadingNextPage)
-		// 	return
-		// }
-
-		// // Set the state to loading
-		// this.setState({
-		// 	loadingNextPage: true
-		// }, async () => {
-		// 	// Start the query to load more events
-		// 	const {
-		// 		card,
-		// 		loadMoreChannelData
-		// 	} = this.props
-
-		// 	const target = card.slug
-		// 	const query = {
-		// 		type: 'object',
-		// 		properties: {
-		// 			id: {
-		// 				const: card.id
-		// 			}
-		// 		},
-		// 		$$links: {
-		// 			'has attached element': {
-		// 				type: 'object'
-		// 			}
-		// 		}
-		// 	}
-
-		// 	console.log('call loadMoreChannelData', queryOptions.links['has attached element'].limit)
-
-		// 	const [ result ] = await loadMoreChannelData({
-		// 		target, query, queryOptions
-		// 	})
-
-		// 	// Because we dont't know how many pages / cards we have in total.
-		// 	// We can use the return value to determine if we reached the end of the timeline
-		// 	// Note: Shouldn't use the return value to set the new timeline cards
-		// 	// because this is way slower than just letting the stream update.
-		// 	// TODO: remove this logic when the backend returns the full count of cards
-		// 	const resultNewMessages = _.get(result, [ 'links', 'has attached element' ], [])
-
-		// 	if (resultNewMessages.length === 0) {
-		// 		this.setState({
-		// 			reachedBeginningOfTimeline: true,
-		// 			loadingNextPage: false
-		// 		})
-		// 	}
-		// })
+		// TODO: implement end of list logic
+		// Because we dont't know how many pages / cards we have in total.
+		// We can use the return value to determine if we reached the end of the timeline
+		// Note: Shouldn't use the return value to set the new timeline cards
+		// because this is way slower than just letting the stream update.
+		// TODO: remove this logic when the backend returns the full count of cards
 	}
 
 	render () {
@@ -456,10 +417,31 @@ class Timeline extends React.Component {
 			reachedBeginningOfTimeline
 		} = this.state
 
+		// TODO: Problem:
+		// 1. timeline: 40 messages
+		// 2. create message: 40 messages + 1 pending message = 41
+		// 3. setSchema gets called in loadMoreChannelData: 41 messages + 1 pending
+		// 4. stream recieves created message: 41 message + 0 pending
+		// So what happens is we set the schema
+		// and it returns the results quicker than
+		// the new message is streamed to the client
+		// meaning the first get an extra "older message"
+		// before we get the new message through the stream
+
+		// TODO: Problem 2:
+		// 2 browsers side by side,
+		// - B1 on page 2 (80 messages)
+		// - B2 on page 1 (40 messages)
+		// 1. B1 create a message and updates it's schema to 81 messages
+		// 2. B2 will recieve the broadcasted setSchema with the limit set
+		// 		to 81 instead of the expected 41.
+		// 		See: https://github.com/product-os/jellyfish-core/blob/18c1799eee418c41d33c2f8846c0a6d3355ee81e/lib/backend/postgres/streams.js#L338-L341
+
+		// We should join the tail messages and pendingMessages in a single array
 		// Due to a bug in syncing, sometimes there can be duplicate cards in events
-		const sortedEvents = _.uniqBy(_.sortBy(tail, (event) => {
+		const sortedEvents = _.uniqBy(_.sortBy([ ...tail, ...pendingMessages ], (event) => {
 			return _.get(event, [ 'data', 'timestamp' ]) || event.created_at
-		}), 'id')
+		}), 'slug')
 
 		const sendCommand = getSendCommand(user)
 
@@ -478,7 +460,21 @@ class Timeline extends React.Component {
 			targetCard: card
 		}
 
-		console.log('tail length', tail.length, 'sortedEvents', sortedEvents.length)
+		const events = _.reverse(sortedEvents.map((event, index) => {
+			return (
+				<EventWrapper
+					{ ...eventProps }
+					key={event.slug}
+					user={user}
+					hideWhispers={hideWhispers}
+					sortedEvents={sortedEvents}
+					uploadingFiles={uploadingFiles}
+					messagesOnly={messagesOnly}
+					event={event}
+					index={index}
+				/>
+			)
+		}))
 
 		return (
 			<Column>
@@ -494,31 +490,13 @@ class Timeline extends React.Component {
 					getActor={getActor}
 				/>
 
+				{/* TODO: EventsContainer can be merged with the InfiniteList component  */}
 				<EventsContainer>
-					{!sortedEvents && (<Box p={3}>
-						<Loading />
-					</Box>)}
 					<InfiniteList
 						up
 						next={this.loadNext}
 					>
-						<div ref={this.timelineStart} />
-						{ reachedBeginningOfTimeline && <TimelineStart />}
-						{ loadingNextPage && <Loading />}
-						<EventsList
-							{ ...eventProps }
-							user={user}
-							hideWhispers={hideWhispers}
-							sortedEvents={sortedEvents}
-							uploadingFiles={uploadingFiles}
-							messagesOnly={messagesOnly}
-						/>
-						<PendingMessages
-							{ ...eventProps }
-							pendingMessages={pendingMessages}
-							sortedEvents={sortedEvents}
-						/>
-						<div ref={this.timelineEnd} />
+						{ events }
 					</InfiniteList>
 				</EventsContainer>
 

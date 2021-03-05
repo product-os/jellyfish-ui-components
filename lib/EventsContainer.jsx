@@ -18,4 +18,7 @@ export default styled(Box) `
 	overflow-y: auto;
 	border-top: 1px solid ${(props) => { return props.theme.colors.border }};
 	background-color: ${(props) => { return props.theme.colors.quartenary.light }};
+	position: relative;
+	display: flex;
+	flex-direction: column;
 `
