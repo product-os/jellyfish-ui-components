@@ -1,4 +1,92 @@
 - commits:
+    - subject: Refactor pagination logic to be less complex
+      hash: ba20e722516623ac3748dfc24e40c6d1a62e38d1
+      body: ''
+      footer:
+        Change-type: major
+        change-type: major
+        Signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+        signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+      author: Lucian Buzzo
+      nested: []
+  version: 9.0.0
+  date: 2021-03-05T11:38:44.018Z
+- commits:
+    - subject: Allow the full content of a whisper/message to be deleted
+      hash: c4bb3475bcf0e1666f5526c4a70e946b42056a34
+      body: |
+        Fixes #4855
+      footer:
+        Change-type: minor
+        change-type: minor
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+  version: 8.8.0
+  date: 2021-03-05T00:49:20.984Z
+- commits:
+    - subject: Pin xterm to 4.9.0
+      hash: 02514503ebd1fb5eb4355a3d2cf3acf2397c259f
+      body: >
+        xterm 4.10.0 has problems when run outside of the browser (in our unit
+        tests).
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+    - subject: 'patch: Update non-major'
+      hash: 8e0144ee903c9a589070d49a4b41cf5162126986
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 8.7.5
+  date: 2021-03-02T02:20:51.712Z
+- commits:
+    - subject: 'patch: Update dependency jsdoc-to-markdown to v7'
+      hash: d968a68c5b0524490b922438e16e9445de9e1222
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 8.7.4
+  date: 2021-02-26T23:15:13.407Z
+- commits:
+    - subject: Fix paragraph spacing in messages
+      hash: d77c229e096157d80e39f86ec5736cf28f62caf9
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+  version: 8.7.3
+  date: 2021-02-24T10:10:44.921Z
+- commits:
+    - subject: Check for element before trying to call scrollIntoView on it!
+      hash: 0327080a47e05793a54437401227c3a3a1446f2f
+      body: |
+        Fixes https://github.com/product-os/jellyfish/issues/4823
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+  version: 8.7.2
+  date: 2021-02-24T08:39:12.922Z
+- commits:
     - subject: Bump rendition and client-sdk dependencies
       hash: fdab71f685b1e01313b7419baf4a08ac339b53b3
       body: ''

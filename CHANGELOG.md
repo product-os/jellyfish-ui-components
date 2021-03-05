@@ -5,6 +5,31 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.0.0 - 2021-03-05
+
+* Refactor pagination logic to be less complex [Lucian Buzzo]
+
+## 8.8.0 - 2021-03-05
+
+* Allow the full content of a whisper/message to be deleted [Graham McCulloch]
+
+## 8.7.5 - 2021-03-02
+
+* Pin xterm to 4.9.0 [Graham McCulloch]
+* patch: Update non-major [Renovate Bot]
+
+## 8.7.4 - 2021-02-26
+
+* patch: Update dependency jsdoc-to-markdown to v7 [Renovate Bot]
+
+## 8.7.3 - 2021-02-24
+
+* Fix paragraph spacing in messages [Graham McCulloch]
+
+## 8.7.2 - 2021-02-24
+
+* Check for element before trying to call scrollIntoView on it! [Graham McCulloch]
+
 ## 8.7.1 - 2021-02-24
 
 * Bump rendition and client-sdk dependencies [Graham McCulloch]
