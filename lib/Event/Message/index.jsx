@@ -140,7 +140,7 @@ export default class Event extends React.Component {
 				card,
 				onUpdateCard
 			} = this.props
-			if (this.state.editedMessage === parseMessage(helpers.getMessage(card)) || this.state.editedMessage.length === 0) {
+			if (this.state.editedMessage === parseMessage(helpers.getMessage(card))) {
 				// No change or empty message - just finish editing now
 				this.onStopEditing()
 			} else {

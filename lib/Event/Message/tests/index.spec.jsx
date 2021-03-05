@@ -25,6 +25,17 @@ import {
 	Markdown
 } from 'rendition/dist/extra/Markdown'
 
+// HACK to get react-textarea-autosize not to complain
+// eslint-disable-next-line no-multi-assign
+global.getComputedStyle = global.window.getComputedStyle = () => {
+	return {
+		height: '100px',
+		getPropertyValue: (name) => {
+			return name === 'box-sizing' ? '' : null
+		}
+	}
+}
+
 const user = {
 	slug: 'user-johndoe',
 	data: {
@@ -95,6 +106,20 @@ const testHighlightTags = (test, {
 	highlightTags(element, readBy, username, groups)
 	test.is(element.className, expectedClassName)
 	return element
+}
+
+const editMessage = (event, newMessage) => {
+	event.find('button[data-test="event-header__context-menu-trigger"]').simulate('click')
+	event.find('a[data-test="event-header__link--edit-message"]').simulate('click')
+	const autocomplete = event.find('AutoCompleteArea')
+
+	// Force the change via the props (avoid interaction with react-textarea-autosize)
+	autocomplete.props().onChange({
+		target: {
+			value: newMessage
+		}
+	})
+	autocomplete.props().onSubmit()
 }
 
 ava.afterEach(() => {
@@ -204,16 +229,45 @@ ava('Editing a message will update the mentions, alerts, tags and message', asyn
 
 	const onUpdateCard = sandbox.stub().resolves(null)
 
-	// HACK to get react-textarea-autosize not to complain
-	// eslint-disable-next-line no-multi-assign
-	global.getComputedStyle = global.window.getComputedStyle = () => {
-		return {
-			height: '100px',
-			getPropertyValue: (name) => {
-				return name === 'box-sizing' ? '' : null
-			}
+	const event = await mount(
+		<Message
+			{...commonProps}
+			onUpdateCard={onUpdateCard}
+			user={author}
+			card={card}
+		/>, {
+			wrappingComponent
 		}
+	)
+
+	editMessage(event, newMessage)
+
+	// Verify the onUpdateCard prop callback is called with the expected patch
+	test.is(onUpdateCard.callCount, 1)
+	test.is(onUpdateCard.getCall(0).args[0].id, card.id)
+
+	// Use a Set here as we can't be sure of the order of patches in the patch array
+	const updatePatches = onUpdateCard.getCall(0).args[1].reduce((acc, patch) => {
+		acc[patch.path] = patch
+		return acc
+	}, {})
+	test.deepEqual(updatePatches, expectedPatches)
+})
+
+ava('You can delete the whole content of a message when editing it', async (test) => {
+	const author = {
+		...user,
+		id: card.data.actor
 	}
+	const expectedPatches = [
+		{
+			op: 'replace',
+			path: '/data/payload/message',
+			value: ''
+		}
+	]
+
+	const onUpdateCard = sandbox.stub().resolves(null)
 
 	const event = await mount(
 		<Message
@@ -226,29 +280,12 @@ ava('Editing a message will update the mentions, alerts, tags and message', asyn
 		}
 	)
 
-	// Go into edit mode
-	event.find('button[data-test="event-header__context-menu-trigger"]').simulate('click')
-	event.find('a[data-test="event-header__link--edit-message"]').simulate('click')
-	const autocomplete = event.find('AutoCompleteArea')
-
-	// Force the change via the props (avoid interaction with react-textarea-autosize)
-	autocomplete.props().onChange({
-		target: {
-			value: newMessage
-		}
-	})
-	autocomplete.props().onSubmit()
+	editMessage(event, '')
 
 	// Verify the onUpdateCard prop callback is called with the expected patch
 	test.is(onUpdateCard.callCount, 1)
 	test.is(onUpdateCard.getCall(0).args[0].id, card.id)
-
-	// Use a Set here as we can't be sure of the order of patches in the patch array
-	const updatePatches = onUpdateCard.getCall(0).args[1].reduce((acc, patch) => {
-		acc[patch.path] = patch
-		return acc
-	}, {})
-	test.deepEqual(updatePatches, expectedPatches)
+	test.deepEqual(onUpdateCard.getCall(0).args[1], expectedPatches)
 })
 
 ava('If user mention matches the authenticated user it is identified as \'personal\'', async (test) => {
