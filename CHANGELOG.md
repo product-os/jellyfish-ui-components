@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.0.0 - 2021-03-05
+
+* Refactor pagination logic to be less complex [Lucian Buzzo]
+
 ## 8.8.0 - 2021-03-05
 
 * Allow the full content of a whisper/message to be deleted [Graham McCulloch]

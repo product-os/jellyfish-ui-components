@@ -1,4 +1,17 @@
 - commits:
+    - subject: Refactor pagination logic to be less complex
+      hash: ba20e722516623ac3748dfc24e40c6d1a62e38d1
+      body: ''
+      footer:
+        Change-type: major
+        change-type: major
+        Signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+        signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+      author: Lucian Buzzo
+      nested: []
+  version: 9.0.0
+  date: 2021-03-05T11:40:59.358Z
+- commits:
     - subject: Allow the full content of a whisper/message to be deleted
       hash: c4bb3475bcf0e1666f5526c4a70e946b42056a34
       body: |
