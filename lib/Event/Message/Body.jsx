@@ -194,7 +194,7 @@ const Body = (props) => {
 				squashBottom={squashBottom}
 			/>
 			{
-				isMessage && Boolean(message) && (
+				isMessage && (
 					<MessageContainer
 						ref={setMessageElement}
 						card={card}
