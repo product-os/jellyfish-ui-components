@@ -36,6 +36,12 @@ export const getLinkProps = (href) => {
 		}
 }
 
+export const JellyfishLink = ({
+	href, ...rest
+}) => {
+	return <Link {...rest} {...getLinkProps(href)} />
+}
+
 export const linkComponentOverride = ({
 	blacklist
 }) => {
@@ -47,7 +53,6 @@ export const linkComponentOverride = ({
 		})) {
 			return null
 		}
-		const linkProps = getLinkProps(href)
-		return <Link {...rest} {...linkProps} />
+		return <JellyfishLink {...rest} href={href} />
 	}
 }
