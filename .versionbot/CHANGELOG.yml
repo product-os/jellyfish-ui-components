@@ -1,4 +1,21 @@
 - commits:
+    - subject: Export JellyfishLink component
+      hash: 8467423464c561232f78cd2beb7bb3081b6f215b
+      body: >
+        This component wraps the Link component and coverts the href prop into
+        the correct combination of append, to and blank. Relative or local URLs
+        are appended to the current path, while any other URLs will open in a
+        new tab.
+      footer:
+        Change-type: minor
+        change-type: minor
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+  version: 8.9.0
+  date: 2021-03-08T08:07:41.337Z
+- commits:
     - subject: Allow the full content of a whisper/message to be deleted
       hash: c4bb3475bcf0e1666f5526c4a70e946b42056a34
       body: |
