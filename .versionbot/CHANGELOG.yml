@@ -1,4 +1,18 @@
 - commits:
+    - subject: Fix call to username helper method
+      hash: 1025178d6bcb41b2b26e2e5128a83e60ed249bcc
+      body: |
+        Need to pass in the slug, not the whole card.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+  version: 8.9.1
+  date: 2021-03-12T04:29:13.407Z
+- commits:
     - subject: Export JellyfishLink component
       hash: 8467423464c561232f78cd2beb7bb3081b6f215b
       body: >

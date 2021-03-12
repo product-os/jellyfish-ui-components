@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 8.9.1 - 2021-03-12
+
+* Fix call to username helper method [Graham McCulloch]
+
 ## 8.9.0 - 2021-03-08
 
 * Export JellyfishLink component [Graham McCulloch]
