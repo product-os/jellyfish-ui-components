@@ -103,6 +103,7 @@ const MessageContainer = styled(Box) `
 				border-bottom-right-radius: 0;
 				border-bottom-left-radius: 0;
 				border-bottom-color: transparent;
+				border-bottom-width: 0;
 			` : ''
 	}}
 
