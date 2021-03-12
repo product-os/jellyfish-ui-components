@@ -42,7 +42,7 @@ export default class EventHeader extends React.Component {
 			if (typeBase === 'user') {
 				return (
 					<Txt color={Theme.colors.text.light}>
-						<strong>{username(targetCard)}</strong> joined
+						<strong>{username(targetCard.slug)}</strong> joined
 					</Txt>
 				)
 			}
