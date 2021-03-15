@@ -93,6 +93,7 @@ class Timeline extends React.Component {
 		this.handleJumpToTop = this.handleJumpToTop.bind(this)
 		this.handleWhisperToggle = this.handleWhisperToggle.bind(this)
 		this.loadMoreEvents = this.loadMoreEvents.bind(this)
+		this.isAtBottomOfTimeline = this.isAtBottomOfTimeline.bind(this)
 
 		this.signalTyping = _.throttle(() => {
 			this.props.signalTyping(this.props.card.id)
@@ -123,7 +124,15 @@ class Timeline extends React.Component {
 		})
 	}
 
-	componentDidUpdate (prevProps) {
+	getSnapshotBeforeUpdate (prevProps) {
+		const snapshot = {}
+		if (_.get(this.props, [ 'tail', 'length' ], 0) > _.get(prevProps, [ 'tail', 'length' ], 0)) {
+			snapshot.wasAtBottomOfTimeline = this.isAtBottomOfTimeline()
+		}
+		return snapshot
+	}
+
+	componentDidUpdate (prevProps, _prevState, snapshot) {
 		const {
 			pendingMessages
 		} = this.state
@@ -136,8 +145,27 @@ class Timeline extends React.Component {
 		if (newMessages) {
 			this.setState({
 				pendingMessages: newMessages ? getFreshPendingMessages(tail, pendingMessages) : pendingMessages
+			}, () => {
+				if (snapshot.wasAtBottomOfTimeline) {
+					this.scrollToBottom()
+				}
 			})
 		}
+	}
+
+	isAtBottomOfTimeline () {
+		if (this.timelineEnd.current) {
+			try {
+				const timelineEndRect = this.timelineEnd.current.getBoundingClientRect()
+				const timelineRect = this.timelineEnd.current.parentElement.getBoundingClientRect()
+
+				// We consider it to be at the bottom if we're within 30 pixels of the bottom
+				return _.inRange(timelineEndRect.bottom, timelineRect.bottom - 1, timelineRect.bottom + 30)
+			} catch (error) {
+				return true
+			}
+		}
+		return true
 	}
 
 	scrollToEvent (eventId) {
