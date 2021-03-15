@@ -366,9 +366,7 @@ class Timeline extends React.Component {
 
 	scrollToBottom () {
 		if (this.timelineEnd.current) {
-			this.timelineEnd.current.scrollIntoView({
-				behavior: 'smooth'
-			})
+			this.timelineEnd.current.scrollIntoView()
 		}
 	}
 
