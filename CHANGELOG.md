@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 8.10.0 - 2021-03-18
+
+* Scroll to bottom instantly [Graham McCulloch]
+* Scroll to newly received message if required [Graham McCulloch]
+
 ## 8.9.1 - 2021-03-12
 
 * Fix call to username helper method [Graham McCulloch]

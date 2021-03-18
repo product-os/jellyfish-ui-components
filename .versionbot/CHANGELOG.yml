@@ -1,4 +1,32 @@
 - commits:
+    - subject: Scroll to bottom instantly
+      hash: 892122d923db276d066934617c1bd4d2f1aac26b
+      body: >
+        Firstly, some browsers have trouble scrolling smoothly - the scroll
+        never completes. Secondly, when first loading the timeline, it's more
+        useful to scroll immediately to the bottom. This has actually been
+        requested by users.
+      footer:
+        Change-type: minor
+        change-type: minor
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+    - subject: Scroll to newly received message if required
+      hash: 0833bdc22f311abd5df1691dae4a82a48d569201
+      body: |
+        Do not scroll if not previously at the bottom of the list.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+  version: 8.10.0
+  date: 2021-03-18T09:47:32.799Z
+- commits:
     - subject: Fix call to username helper method
       hash: 1025178d6bcb41b2b26e2e5128a83e60ed249bcc
       body: |
