@@ -1,4 +1,18 @@
 - commits:
+    - subject: Configure private npm registry setting
+      hash: 8f9ebce3d743c3c478364640933af4b9365ef036
+      body: |
+        This is needed by the GitHub workflow.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+  version: 8.10.1
+  date: 2021-03-24T05:25:42.872Z
+- commits:
     - subject: Scroll to bottom instantly
       hash: 892122d923db276d066934617c1bd4d2f1aac26b
       body: >

@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 8.10.1 - 2021-03-24
+
+* Configure private npm registry setting [Graham McCulloch]
+
 ## 8.10.0 - 2021-03-18
 
 * Scroll to bottom instantly [Graham McCulloch]
