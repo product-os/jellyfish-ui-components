@@ -1,4 +1,17 @@
 - commits:
+    - subject: Replace husky with simple-git-hooks
+      hash: d07d7cca399775fa01d62128a5ac1a6ac149af06
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+  version: 8.10.2
+  date: 2021-03-26T07:07:32.474Z
+- commits:
     - subject: Configure private npm registry setting
       hash: 8f9ebce3d743c3c478364640933af4b9365ef036
       body: |
