@@ -9,6 +9,7 @@
     "node": ">=14.2.0"
   },
   "description": "UI components library for Jellyfish",
+  "main": "./lib/index.js",
   "directories": {
     "lib": "lib"
   },
@@ -44,10 +45,16 @@
       "./test/max-listeners"
     ]
   },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint --cache --fix",
+      "npm run doc",
+      "git add README.md"
+    ]
+  },
   "scripts": {
     "test": "npm run doc && catch-uncommitted --skip-node-versionbot-changes && make lint && make test",
     "doc": "jsdoc2md --template doc/README.hbs lib/*.jsx lib/**/*.jsx lib/**/*.js > README.md",
-    "postinstall": "if [ -z \"$CI\" ] && [ -d \".git\" ]; then husky install; fi",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -o .out",
     "deploy": "npm run build-storybook && gh-pages -d .out"
@@ -123,20 +130,15 @@
     "eslint-plugin-promise": "^4.3.1",
     "eslint-plugin-react": "^7.22.0",
     "gh-pages": "^3.1.0",
-    "husky": "^5.1.2",
     "jsdoc-to-markdown": "^7.0.0",
     "lint-staged": "^10.5.4",
     "node-hook": "^1.0.0",
     "react-dnd-html5-backend": "^11.1.3",
     "redux-mock-store": "^1.5.4",
+    "simple-git-hooks": "^2.2.0",
     "sinon": "^9.2.4"
   },
-  "lint-staged": {
-    "*.{js,jsx}": [
-      "eslint --cache --fix",
-      "npm run doc",
-      "git add README.md"
-    ]
-  },
-  "main": "./lib/index.js"
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
+  }
 }
