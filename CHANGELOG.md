@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 8.10.3 - 2021-04-01
+
+* patch: Update dependency sinon to v10 [Renovate Bot]
+
 ## 8.10.2 - 2021-03-26
 
 * Replace husky with simple-git-hooks [Graham McCulloch]

@@ -1,4 +1,15 @@
 - commits:
+    - subject: 'patch: Update dependency sinon to v10'
+      hash: adf36c8e84300f0c2527dc2c63ea8fae508ab979
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 8.10.3
+  date: 2021-04-01T02:48:55.762Z
+- commits:
     - subject: Replace husky with simple-git-hooks
       hash: d07d7cca399775fa01d62128a5ac1a6ac149af06
       body: ''
