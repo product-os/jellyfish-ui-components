@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 8.10.4 - 2021-04-01
+
+* Change card links to point to specific version [Martin Rauscher]
+
 ## 8.10.3 - 2021-04-01
 
 * patch: Update dependency sinon to v10 [Renovate Bot]

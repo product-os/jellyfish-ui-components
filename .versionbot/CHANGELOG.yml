@@ -1,4 +1,20 @@
 - commits:
+    - subject: Change card links to point to specific version
+      hash: 8dadd3df04ece8cf3da54c97b80fe0d1bede91f0
+      body: |
+        This fixes links to cards that are not @1.0.0
+
+        Depends-on https://github.com/product-os/jellyfish/pull/6077
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Martin Rauscher <martin@balena.io>
+        signed-off-by: Martin Rauscher <martin@balena.io>
+      author: Martin Rauscher
+      nested: []
+  version: 8.10.4
+  date: 2021-04-01T11:53:43.138Z
+- commits:
     - subject: 'patch: Update dependency sinon to v10'
       hash: adf36c8e84300f0c2527dc2c63ea8fae508ab979
       body: ''
