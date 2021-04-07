@@ -1,4 +1,25 @@
 - commits:
+    - subject: Update client sdk require path
+      hash: 828cf5fd90c0dcf63797e3c42b401ef6fda59058
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Josh Bowling <josh@balena.io>
+        signed-off-by: Josh Bowling <josh@balena.io>
+      author: Josh Bowling
+      nested: []
+    - subject: 'patch: Update dependency @balena/jellyfish-client-sdk to v3'
+      hash: 990065b8e5c7e5432d391c4943140a13e97ab0be
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 8.10.5
+  date: 2021-04-07T01:22:35.826Z
+- commits:
     - subject: Change card links to point to specific version
       hash: 8dadd3df04ece8cf3da54c97b80fe0d1bede91f0
       body: |

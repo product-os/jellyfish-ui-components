@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 8.10.5 - 2021-04-07
+
+* Update client sdk require path [Josh Bowling]
+* patch: Update dependency @balena/jellyfish-client-sdk to v3 [Renovate Bot]
+
 ## 8.10.4 - 2021-04-01
 
 * Change card links to point to specific version [Martin Rauscher]
