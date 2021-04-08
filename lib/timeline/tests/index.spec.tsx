@@ -54,8 +54,8 @@ test('Events are ordered by either timestamp or created_at date', async () => {
 		eventProps: { tail, ...props },
 	} = context;
 
-	const date = new Date();
-	const oldTimestamp = date.getTime() - 6000;
+	const date = new Date(timestamp);
+	const oldTimestamp = date.getTime() - 1;
 
 	const link = {
 		id: 'fake-link-id',
