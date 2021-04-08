@@ -16,8 +16,7 @@ export {
 	formatDateLocal,
 	formatMb,
 	formatSize,
-	addNotification,
-	removeNotification,
+	notifications,
 } from './services';
 export {
 	AutocompleteTextarea,
@@ -81,3 +80,4 @@ export { SetupProvider, withSetup, useSetup } from './setup-provider';
 export { default as SlideInPanel } from './slide-in-panel';
 export { default as SmartVisibilitySensor } from './smart-visibility-sensor';
 export { default as UserStatusIcon } from './user-status-icon';
+export * as icons from './icons';

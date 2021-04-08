@@ -16,4 +16,4 @@ export {
 	formatMb,
 	formatSize,
 } from './formatters';
-export { addNotification, removeNotification } from './notifications';
+export * as notifications from './notifications';

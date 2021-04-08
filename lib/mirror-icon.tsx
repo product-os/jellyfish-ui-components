@@ -9,6 +9,7 @@ import _ from 'lodash';
 import styled from 'styled-components';
 import { Flex, FlexProps, Img } from 'rendition';
 import Icon from './shame/icon';
+import { frontAppSvg } from './icons';
 
 const Mirrors = [
 	{
@@ -31,7 +32,7 @@ const Mirrors = [
 				style={{
 					height: '100%',
 				}}
-				src="/icons/front-app.svg"
+				src={frontAppSvg}
 			/>
 		),
 	},
