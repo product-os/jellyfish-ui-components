@@ -1,4 +1,15 @@
 - commits:
+    - subject: Convert to typescript
+      hash: 99fde47fde9238427b8ee29499f3a79fef3d9cc4
+      body: ''
+      footer:
+        Change-type: major
+        change-type: major
+      author: Kakhaber
+      nested: []
+  version: 9.0.0
+  date: 2021-04-09T09:24:19.878Z
+- commits:
     - subject: Update client sdk require path
       hash: 828cf5fd90c0dcf63797e3c42b401ef6fda59058
       body: ''

@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.0.0 - 2021-04-09
+
+* Convert to typescript [Kakhaber]
+
 ## 8.10.5 - 2021-04-07
 
 * Update client sdk require path [Josh Bowling]
