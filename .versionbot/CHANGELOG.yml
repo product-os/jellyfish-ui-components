@@ -1,4 +1,15 @@
 - commits:
+    - subject: 'patch: Update dependency webpack to ^5.31.2'
+      hash: 132655b2389249a577106465adff84038f70f559
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 9.0.3
+  date: 2021-04-09T18:05:32.415Z
+- commits:
     - subject: Remove terser plugin
       hash: 8d45db781305ba41d4f7d3f71f508bb2df1d3b8c
       body: ''
