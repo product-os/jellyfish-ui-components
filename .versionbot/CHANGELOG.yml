@@ -1,4 +1,15 @@
 - commits:
+    - subject: Remove terser plugin
+      hash: 8d45db781305ba41d4f7d3f71f508bb2df1d3b8c
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Kakhaber
+      nested: []
+  version: 9.0.2
+  date: 2021-04-09T17:41:20.846Z
+- commits:
     - subject: 'patch: Update non-major'
       hash: 288de047df7d33c49b3141edbdd60f9c5a09ffcd
       body: ''

@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.0.2 - 2021-04-09
+
+* Remove terser plugin [Kakhaber]
+
 ## 9.0.1 - 2021-04-09
 
 * patch: Update non-major [Renovate Bot]
