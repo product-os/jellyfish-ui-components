@@ -5,6 +5,7 @@
  */
 const path = require('path')
 const nodeExternals = require('webpack-node-externals');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
     context: path.resolve(__dirname, './lib'),
@@ -41,4 +42,15 @@ module.exports = {
     resolve: {
         extensions: ['.tsx', '.ts', '.js']
     },
+    optimization: {
+        minimize: true,
+        minimizer: [
+            new TerserPlugin({
+                terserOptions: {
+                    keep_classnames: true,
+                    keep_fnames: true
+                }
+            })
+        ]
+    }
 };
