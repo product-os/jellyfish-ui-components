@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.0.47 - 2021-04-13
+
+* patch: Update dependency date-fns to ^2.20.3 [Renovate Bot]
+
 ## 9.0.46 - 2021-04-13
 
 * patch: Update non-major [Renovate Bot]
