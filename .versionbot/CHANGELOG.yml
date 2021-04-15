@@ -1,4 +1,15 @@
 - commits:
+    - subject: 'patch: Update dependency @types/sinon to v10'
+      hash: 50434859535953c2de2d161863ed533dd680ea64
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 9.0.57
+  date: 2021-04-14T20:26:16.255Z
+- commits:
     - subject: 'patch: Update non-major'
       hash: db85483815db1a20b3e7405d81b6083dbd087ef9
       body: ''

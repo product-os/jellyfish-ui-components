@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.0.57 - 2021-04-14
+
+* patch: Update dependency @types/sinon to v10 [Renovate Bot]
+
 ## 9.0.56 - 2021-04-14
 
 * patch: Update non-major [Renovate Bot]
