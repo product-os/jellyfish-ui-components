@@ -1,4 +1,15 @@
 - commits:
+    - subject: 'patch: Update dependency ts-loader to v9'
+      hash: f8ecd10fa3e8336beaff6679533f1f6e18172ee5
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 9.0.97
+  date: 2021-04-19T00:49:52.391Z
+- commits:
     - subject: 'patch: Update dependency @balena/jellyfish-client-sdk to ^3.2.83'
       hash: 2c1360bb7f7405aa68c1e78d7da63bf313929312
       body: ''
