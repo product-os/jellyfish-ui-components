@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.0.116 - 2021-04-21
+
+* patch: Update dependency webpack-node-externals to v3 [Renovate Bot]
+
 ## 9.0.115 - 2021-04-21
 
 * patch: Update non-major [Renovate Bot]
