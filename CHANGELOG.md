@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.0.110 - 2021-04-21
+
+* patch: Update non-major [Renovate Bot]
+
 ## 9.0.109 - 2021-04-20
 
 * patch: Update dependency ts-loader to ^9.0.2 [Renovate Bot]

@@ -1,4 +1,15 @@
 - commits:
+    - subject: 'patch: Update non-major'
+      hash: bdeb96253ef4f00488337f7ce2ec92d0b0a5f34b
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 9.0.110
+  date: 2021-04-21T09:17:23.147Z
+- commits:
     - subject: 'patch: Update dependency ts-loader to ^9.0.2'
       hash: 37dd8d9dab658d1bd4f05240277d9bd811032a13
       body: ''
