@@ -1,4 +1,15 @@
 - commits:
+    - subject: 'patch: Update non-major'
+      hash: 2d67d37e8216e80884e4a25f7f8a546a9993f373
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 9.0.117
+  date: 2021-04-22T10:52:52.870Z
+- commits:
     - subject: 'patch: Update dependency webpack-node-externals to v3'
       hash: c1391caac4b8dfe967db70d97aafa1c4416f5b5b
       body: ''
