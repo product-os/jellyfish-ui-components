@@ -1,4 +1,15 @@
 - commits:
+    - subject: Build without webpack
+      hash: a49f34e8e565a3dde03491855f46acc10665983f
+      body: ''
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Kakhaber
+      nested: []
+  version: 9.1.0
+  date: 2021-04-27T10:40:06.440Z
+- commits:
     - subject: 'patch: Update dependency webpack to ^5.36.0'
       hash: 1e6731845c82cdb1c74f2164d4f90abffeb064f7
       body: ''

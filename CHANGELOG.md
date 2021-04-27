@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.1.0 - 2021-04-27
+
+* Build without webpack [Kakhaber]
+
 ## 9.0.138 - 2021-04-27
 
 * patch: Update dependency webpack to ^5.36.0 [Renovate Bot]
