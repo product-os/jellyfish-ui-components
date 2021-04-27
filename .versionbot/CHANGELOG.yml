@@ -1,4 +1,15 @@
 - commits:
+    - subject: 'patch: Update dependency webpack to ^5.36.0'
+      hash: 1e6731845c82cdb1c74f2164d4f90abffeb064f7
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 9.0.138
+  date: 2021-04-27T10:28:28.829Z
+- commits:
     - subject: 'patch: Update dependency @balena/jellyfish-types to ^0.5.59'
       hash: fda815b939c4e3b966183a6bf1dd952dd7409f4f
       body: ''
