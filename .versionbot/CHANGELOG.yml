@@ -1,4 +1,15 @@
 - commits:
+    - subject: 'patch: Update dependency skhema to ^5.3.4'
+      hash: 7f732fa7b57aa46cf8a21302a9827153d074cba9
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 9.1.1
+  date: 2021-04-27T16:26:54.519Z
+- commits:
     - subject: Build without webpack
       hash: a49f34e8e565a3dde03491855f46acc10665983f
       body: ''

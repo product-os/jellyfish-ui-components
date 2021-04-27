@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.1.1 - 2021-04-27
+
+* patch: Update dependency skhema to ^5.3.4 [Renovate Bot]
+
 ## 9.1.0 - 2021-04-27
 
 * Build without webpack [Kakhaber]
