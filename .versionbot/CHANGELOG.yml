@@ -1,4 +1,15 @@
 - commits:
+    - subject: 'patch: Update dependency @sentry/browser to ^6.3.3'
+      hash: b084c48631071e98342cf5a2f3905c7fc964edf4
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 9.1.3
+  date: 2021-04-28T11:06:42.794Z
+- commits:
     - subject: 'patch: Update dependency @sentry/browser to ^6.3.2'
       hash: 81096d331c310a42177e1a60541c8815d3e25e0e
       body: ''
