@@ -1,4 +1,15 @@
 - commits:
+    - subject: 'patch: Update dependency @sentry/browser to ^6.3.2'
+      hash: 81096d331c310a42177e1a60541c8815d3e25e0e
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 9.1.2
+  date: 2021-04-28T10:45:32.332Z
+- commits:
     - subject: 'patch: Update dependency skhema to ^5.3.4'
       hash: 7f732fa7b57aa46cf8a21302a9827153d074cba9
       body: ''
