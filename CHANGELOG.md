@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.1.18 - 2021-04-30
+
+* patch: Update dependency @sentry/browser to ^6.3.5 [Renovate Bot]
+
 ## 9.1.17 - 2021-04-30
 
 * patch: Update dependency @balena/jellyfish-client-sdk to ^3.2.126 [Renovate Bot]
