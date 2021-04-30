@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.1.16 - 2021-04-30
+
+* patch: Update non-major [Renovate Bot]
+
 ## 9.1.15 - 2021-04-30
 
 * patch: Update non-major [Renovate Bot]
