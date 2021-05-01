@@ -1,4 +1,15 @@
 - commits:
+    - subject: 'patch: Update non-major'
+      hash: 5f323ea78ff6eeacaa50b5bd175f51ceb8239c64
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 9.1.19
+  date: 2021-05-01T02:03:53.407Z
+- commits:
     - subject: 'patch: Update dependency @sentry/browser to ^6.3.5'
       hash: f22fb5cd1ca4ad387fa84582be591ef70738924b
       body: ''
