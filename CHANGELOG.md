@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.1.55 - 2021-05-04
+
+* patch: Update dependency @balena/jellyfish-types to ^0.5.107 [Renovate Bot]
+
 ## 9.1.54 - 2021-05-04
 
 * patch: Update dependency @balena/jellyfish-client-sdk to ^3.2.162 [Renovate Bot]
