@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.1.60 - 2021-05-05
+
+* patch: Update dependency catch-uncommitted to v2 [Renovate Bot]
+
 ## 9.1.59 - 2021-05-05
 
 * patch: Update non-major [Renovate Bot]
