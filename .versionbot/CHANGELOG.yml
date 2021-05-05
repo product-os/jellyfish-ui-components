@@ -1,4 +1,15 @@
 - commits:
+    - subject: 'patch: Update non-major'
+      hash: bdfdffead882cb90968541bb72c6f132d2a6f68d
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 9.1.58
+  date: 2021-05-05T09:18:14.419Z
+- commits:
     - subject: 'patch: Update dependency styled-components to ^5.3.0'
       hash: 516c11b761787c5846bd961a70aed5d44df50f99
       body: ''
