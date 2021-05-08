@@ -1,4 +1,15 @@
 - commits:
+    - subject: 'patch: Update dependency @balena/jellyfish-client-sdk to ^3.2.172'
+      hash: 9e1846b3505cf1fead4a97a7cd61e1482d977857
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 9.1.66
+  date: 2021-05-08T07:20:24.270Z
+- commits:
     - subject: 'patch: Update non-major'
       hash: b58362f1bb2c0a78e35ba5814188d65ec5795de4
       body: ''
