@@ -82,7 +82,7 @@ const Menu = styled(Box)`
 `;
 
 interface ContextMenuProps extends BoxProps {
-	position: 'top' | 'right' | 'bottom' | 'left';
+	position?: 'top' | 'right' | 'bottom' | 'left';
 	onClose: React.MouseEventHandler<HTMLElement>;
 }
 
