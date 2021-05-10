@@ -1,4 +1,18 @@
 - commits:
+    - subject: Fix TypeScript issues
+      hash: 179606e8282a874fb7b1ff28d999d3cd2ac96aee
+      body: |
+        Various minor fixes to ensure TypeScript types are correct.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+  version: 9.1.67
+  date: 2021-05-10T05:35:32.101Z
+- commits:
     - subject: 'patch: Update dependency @balena/jellyfish-client-sdk to ^3.2.172'
       hash: 9e1846b3505cf1fead4a97a7cd61e1482d977857
       body: ''

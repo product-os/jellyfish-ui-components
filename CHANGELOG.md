@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.1.67 - 2021-05-10
+
+* Fix TypeScript issues [Graham McCulloch]
+
 ## 9.1.66 - 2021-05-08
 
 * patch: Update dependency @balena/jellyfish-client-sdk to ^3.2.172 [Renovate Bot]
