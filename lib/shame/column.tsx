@@ -4,41 +4,29 @@
  * Proprietary and confidential.
  */
 
-import omit from 'lodash/omit';
 import React from 'react';
-import { Flex } from 'rendition';
+import { Flex, FlexProps } from 'rendition';
 import styled from 'styled-components';
 
-const ColumnBase = styled(Flex).attrs({
-	flexDirection: 'column',
-	flex: '1',
-})`
+const ColumnBase = styled(Flex)`
 	height: 100%;
 	min-width: 270px;
 `;
 
-interface ColumnProps {
-	overflowY?: string;
+interface ColumnProps extends FlexProps {
+	overflowY?: boolean;
 }
 
 const Column: React.FunctionComponent<ColumnProps> = (props) => {
-	const { overflowY } = props;
+	const { overflowY, ...rest } = props;
 
-	const rest = omit(props, 'overflowY');
-
-	const style = overflowY
+	const style: React.CSSProperties = overflowY
 		? {
 				overflowY: 'auto',
 		  }
 		: {};
 
-	return (
-		<ColumnBase
-			{...rest}
-			// @ts-ignore
-			style={style}
-		/>
-	);
+	return <ColumnBase flexDirection="column" flex={1} style={style} {...rest} />;
 };
 
 export default Column;

@@ -23,7 +23,7 @@ export const CardLoaderContext = React.createContext<CardLoaderContextValue | nu
 interface CardLoaderProps<TCard extends core.Contract> {
 	id: string;
 	type: string;
-	withLinks: string[];
+	withLinks?: string[];
 	children: (card: TCard) => JSX.Element;
 }
 
