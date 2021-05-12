@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.1.68 - 2021-05-12
+
+* patch: Update non-major [Renovate Bot]
+
 ## 9.1.67 - 2021-05-10
 
 * Fix TypeScript issues [Graham McCulloch]
