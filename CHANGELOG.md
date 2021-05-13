@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.1.73 - 2021-05-13
+
+* patch: Update dependency rendition to ^20.14.0 [Renovate Bot]
+
 ## 9.1.72 - 2021-05-13
 
 * patch: Update dependency query-string to v7 [Renovate Bot]
