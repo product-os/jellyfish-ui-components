@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.1.71 - 2021-05-13
+
+* patch: Update non-major [Renovate Bot]
+
 ## 9.1.70 - 2021-05-12
 
 * patch: Update dependency color-hash to v2 [Renovate Bot]

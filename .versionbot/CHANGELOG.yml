@@ -1,4 +1,15 @@
 - commits:
+    - subject: 'patch: Update non-major'
+      hash: d70f7786fdd8ddde8448fc617c7d2bcfcc067c78
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 9.1.71
+  date: 2021-05-13T08:37:13.006Z
+- commits:
     - subject: 'patch: Update dependency color-hash to v2'
       hash: 41057169b168275b289f08ac461b3ece0e271a80
       body: ''
