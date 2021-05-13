@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.1.70 - 2021-05-12
+
+* patch: Update dependency color-hash to v2 [Renovate Bot]
+
 ## 9.1.69 - 2021-05-12
 
 * patch: Update dependency @balena/jellyfish-client-sdk to ^3.4.0 [Renovate Bot]
