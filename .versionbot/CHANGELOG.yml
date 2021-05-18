@@ -1,4 +1,15 @@
 - commits:
+    - subject: 'patch: Update react-dnd monorepo'
+      hash: 23d0c2d5344cc5d61d3909aa45ed60c5fa76510d
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 9.1.76
+  date: 2021-05-18T19:14:04.337Z
+- commits:
     - subject: 'patch: Update non-major'
       hash: b1d001ac4a7d90d9c187039d027018d3b7ba0131
       body: ''

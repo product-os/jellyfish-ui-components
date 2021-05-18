@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.1.76 - 2021-05-18
+
+* patch: Update react-dnd monorepo [Renovate Bot]
+
 ## 9.1.75 - 2021-05-18
 
 * patch: Update non-major [Renovate Bot]
