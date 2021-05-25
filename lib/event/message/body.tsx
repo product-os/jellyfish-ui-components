@@ -5,6 +5,7 @@
  */
 
 import React from 'react';
+import _ from 'lodash';
 import styled from 'styled-components';
 import { Button, Txt, Img } from 'rendition';
 import { Markdown } from 'rendition/dist/extra/Markdown';
@@ -166,6 +167,8 @@ const Body = (props: any) => {
 
 	const message = parseMessage(helpers.getMessage(card));
 
+	const isJustFile = !message && _.get(card, ['data', 'payload', 'file']);
+
 	const decorators = React.useMemo(() => {
 		return [
 			{
@@ -191,7 +194,7 @@ const Body = (props: any) => {
 				squashTop={squashTop}
 				squashBottom={squashBottom}
 			/>
-			{isMessage && (
+			{isMessage && !isJustFile && (
 				<MessageContainer
 					ref={setMessageElement}
 					card={card}
