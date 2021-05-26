@@ -18,7 +18,7 @@ interface WithCardUpdaterProps {
 }
 
 export default function withCardUpdater<
-	TProps extends Omit<WithCardUpdaterProps, 'onUpdateCard'>
+	TProps extends Omit<WithCardUpdaterProps, 'onUpdateCard'>,
 >(skipNotification = false) {
 	return (
 		BaseComponent: React.ComponentType<TProps & WithCardUpdaterProps>,

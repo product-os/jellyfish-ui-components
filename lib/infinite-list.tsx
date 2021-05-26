@@ -65,12 +65,8 @@ export class InfiniteList extends React.Component<any> {
 	}
 
 	handleScroll() {
-		const {
-			processing,
-			onScrollBeginning,
-			onScrollEnding,
-			triggerOffset,
-		} = this.props;
+		const { processing, onScrollBeginning, onScrollEnding, triggerOffset } =
+			this.props;
 		if (processing) {
 			return;
 		}

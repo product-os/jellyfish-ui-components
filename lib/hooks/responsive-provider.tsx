@@ -18,9 +18,8 @@ interface ResponsiveContextValue {
 	isMobile: boolean;
 }
 
-const responsiveContext = React.createContext<ResponsiveContextValue | null>(
-	null,
-);
+const responsiveContext =
+	React.createContext<ResponsiveContextValue | null>(null);
 
 const ResponsiveProviderInner: React.FunctionComponent<{
 	theme: ThemeType;

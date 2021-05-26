@@ -123,9 +123,8 @@ const MessageInput: React.FunctionComponent<MessageInputProps> = ({
 	const [whisper, setWhisper] = React.useState(!!allowWhispers);
 	const [messageSymbol, setMessageSymbol] = React.useState(false);
 	const [message, setMessage] = React.useState(value);
-	const [innerRef, setInnerRef] = React.useState<HTMLTextAreaElement | null>(
-		null,
-	);
+	const [innerRef, setInnerRef] =
+		React.useState<HTMLTextAreaElement | null>(null);
 
 	const getMessageInputDefaultPlaceholder = React.useCallback(() => {
 		if (!allowWhispers) {

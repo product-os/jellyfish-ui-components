@@ -37,9 +37,8 @@ export default class Header extends React.Component<any> {
 	constructor(props: any) {
 		super(props);
 
-		this.handleDownloadConversation = this.handleDownloadConversation.bind(
-			this,
-		);
+		this.handleDownloadConversation =
+			this.handleDownloadConversation.bind(this);
 	}
 
 	async handleDownloadConversation(events: any[]) {
