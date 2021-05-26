@@ -1,4 +1,26 @@
 - commits:
+    - subject: 'Update lint config, command, and fix lint errors'
+      hash: c67b37e145403d7bed1ca821f1c5b2cdf9371813
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Josh Bowling <josh@balena.io>
+        signed-off-by: Josh Bowling <josh@balena.io>
+      author: Josh Bowling
+      nested: []
+    - subject: 'patch: Update dependency @balena/lint to v6'
+      hash: 092750561204c0fb07aa08f7d798df0a326d90ee
+      body: |
+        Update @balena/lint from 5.4.2 to 6.1.1
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 9.1.84
+  date: 2021-05-26T00:05:04.253Z
+- commits:
     - subject: 'patch: Update internal-patch'
       hash: ad9b7d425d90d3eff066c94b02a30ea24e003241
       body: ''

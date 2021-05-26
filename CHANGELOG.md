@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.1.84 - 2021-05-26
+
+* Update lint config, command, and fix lint errors [Josh Bowling]
+* patch: Update dependency @balena/lint to v6 [Renovate Bot]
+
 ## 9.1.83 - 2021-05-25
 
 * patch: Update internal-patch [Renovate Bot]
