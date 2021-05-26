@@ -16,9 +16,8 @@ interface CardLoaderContextValue {
 	) => (state: any) => TCard;
 }
 
-export const CardLoaderContext = React.createContext<CardLoaderContextValue | null>(
-	null,
-);
+export const CardLoaderContext =
+	React.createContext<CardLoaderContextValue | null>(null);
 
 interface CardLoaderProps<TCard extends core.Contract> {
 	id: string;

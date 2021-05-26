@@ -150,8 +150,10 @@ class Timeline extends React.Component<any, any> {
 	isAtBottomOfTimeline() {
 		if (this.timelineEnd.current) {
 			try {
-				const timelineEndRect = this.timelineEnd.current.getBoundingClientRect();
-				const timelineRect = this.timelineEnd.current.parentElement.getBoundingClientRect();
+				const timelineEndRect =
+					this.timelineEnd.current.getBoundingClientRect();
+				const timelineRect =
+					this.timelineEnd.current.parentElement.getBoundingClientRect();
 
 				// We consider it to be at the bottom if we're within 30 pixels of the bottom
 				return _.inRange(
@@ -308,13 +310,8 @@ class Timeline extends React.Component<any, any> {
 			return;
 		}
 		this.props.setTimelineMessage(this.props.card.id, '');
-		const {
-			mentionsUser,
-			alertsUser,
-			mentionsGroup,
-			alertsGroup,
-			tags,
-		} = helpers.getMessageMetaData(trimmedMessage);
+		const { mentionsUser, alertsUser, mentionsGroup, alertsGroup, tags } =
+			helpers.getMessageMetaData(trimmedMessage);
 		const message = {
 			target: this.props.card,
 			type: whisper ? 'whisper' : 'message',

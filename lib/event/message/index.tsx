@@ -148,13 +148,8 @@ export default class Event extends React.Component<any, EventState> {
 					updating: true,
 				},
 				async () => {
-					const {
-						mentionsUser,
-						alertsUser,
-						mentionsGroup,
-						alertsGroup,
-						tags,
-					} = helpers.getMessageMetaData(this.state.editedMessage!);
+					const { mentionsUser, alertsUser, mentionsGroup, alertsGroup, tags } =
+						helpers.getMessageMetaData(this.state.editedMessage!);
 					const patch = jsonpatch.compare(
 						this.props.card,
 						_.defaultsDeep(

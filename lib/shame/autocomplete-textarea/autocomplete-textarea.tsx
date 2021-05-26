@@ -85,10 +85,8 @@ const SubAuto: React.FunctionComponent<SubAutoProps> = (props) => {
 		'onKeyPress',
 		'placeholder',
 	]);
-	const [
-		textareaRef,
-		setTextareaRef,
-	] = React.useState<HTMLTextAreaElement | null>(null);
+	const [textareaRef, setTextareaRef] =
+		React.useState<HTMLTextAreaElement | null>(null);
 
 	if (autoFocus) {
 		React.useEffect(() => {

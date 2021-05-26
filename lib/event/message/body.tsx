@@ -42,12 +42,16 @@ const StyledMarkdown = styled(Markdown)<any>(
  * This message text is added by Front when syncing whispers. It should be hidden in the message
  * text in Jellyfish.
  */
-export const RE_FRONT_HIDDEN_URL = /https:\/\/www\.balena-cloud\.com\?hidden=whisper.*/;
+export const RE_FRONT_HIDDEN_URL =
+	/https:\/\/www\.balena-cloud\.com\?hidden=whisper.*/;
 
 const DISCOURSE_IMAGE_RE = /!\[(.+?)\|\d*x\d*\]\(upload:\/\/(.+?\..+?)\)/g;
-const DISCOURSE_ATTACHMENT_RE = /\[(.+?)\|attachment\]\(upload:\/\/(.+?\..+?)\)/g;
-const FRONT_MARKDOWN_IMG_RE = /\[\/api\/1\/companies\/resin_io\/attachments\/[a-z0-9]+\?resource_link_id=\d+\]/g;
-const FRONT_HTML_IMG_RE = /\/api\/1\/companies\/resin_io\/attachments\/[a-z0-9]+\?resource_link_id=\d+/g;
+const DISCOURSE_ATTACHMENT_RE =
+	/\[(.+?)\|attachment\]\(upload:\/\/(.+?\..+?)\)/g;
+const FRONT_MARKDOWN_IMG_RE =
+	/\[\/api\/1\/companies\/resin_io\/attachments\/[a-z0-9]+\?resource_link_id=\d+\]/g;
+const FRONT_HTML_IMG_RE =
+	/\/api\/1\/companies\/resin_io\/attachments\/[a-z0-9]+\?resource_link_id=\d+/g;
 const IMAGE_URL_RE = /^https?:\/\/.*\.(?:png|jpg|gif)(?:\?\S*)*$/;
 
 const OverflowButton = styled(Button)<{ expanded?: boolean }>`

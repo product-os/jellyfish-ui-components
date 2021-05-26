@@ -62,26 +62,24 @@ interface ThreadMirrorIconProps extends FlexProps {
 	mirrors: Mirrors;
 }
 
-export const ThreadMirrorIcon: React.FunctionComponent<ThreadMirrorIconProps> = ({
-	mirrors,
-	...rest
-}) => {
-	const handler = getMirrorHandler(mirrors);
-	if (!handler) {
-		return null;
-	}
-	return (
-		<ThreadMirrorIconWrapper
-			{...rest}
-			data-test="thread-mirror-icon"
-			alignItems="center"
-			justifyContent="center"
-			tooltip={`Synced with ${handler.name}`}
-		>
-			{handler.icon}
-		</ThreadMirrorIconWrapper>
-	);
-};
+export const ThreadMirrorIcon: React.FunctionComponent<ThreadMirrorIconProps> =
+	({ mirrors, ...rest }) => {
+		const handler = getMirrorHandler(mirrors);
+		if (!handler) {
+			return null;
+		}
+		return (
+			<ThreadMirrorIconWrapper
+				{...rest}
+				data-test="thread-mirror-icon"
+				alignItems="center"
+				justifyContent="center"
+				tooltip={`Synced with ${handler.name}`}
+			>
+				{handler.icon}
+			</ThreadMirrorIconWrapper>
+		);
+	};
 
 const MirrorIconWrapper = styled(Flex)`
 	margin: 0 0 2px 6px;
