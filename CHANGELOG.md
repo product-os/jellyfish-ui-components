@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.1.86 - 2021-05-27
+
+* patch: Update dependency @balena/jellyfish-types to ^0.5.125 [Renovate Bot]
+
 ## 9.1.85 - 2021-05-27
 
 * Prevent file upload messages displaying extra empty message container [Graham McCulloch]

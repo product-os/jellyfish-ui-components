@@ -1,4 +1,15 @@
 - commits:
+    - subject: 'patch: Update dependency @balena/jellyfish-types to ^0.5.125'
+      hash: 8e04d9bde03ad36aabdc10f4fde400fb29cf17fa
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 9.1.86
+  date: 2021-05-27T03:31:14.170Z
+- commits:
     - subject: Prevent file upload messages displaying extra empty message container
       hash: fc443efca985c5bcaac04e56dea76afe97ca074a
       body: ''
