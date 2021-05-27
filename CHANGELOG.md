@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.1.89 - 2021-05-27
+
+* patch: Update internal-patch [Renovate Bot]
+
 ## 9.1.88 - 2021-05-27
 
 * 🔄 Synced file(s) with product-os/jellyfish-config [jellyfish-bot]
