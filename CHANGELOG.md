@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.1.85 - 2021-05-27
+
+* Prevent file upload messages displaying extra empty message container [Graham McCulloch]
+
 ## 9.1.84 - 2021-05-26
 
 * Update lint config, command, and fix lint errors [Josh Bowling]
