@@ -9,6 +9,7 @@ import format from 'date-fns/format';
 import sub from 'date-fns/sub';
 import add from 'date-fns/add';
 import * as helpers from './helpers';
+import { JSONSchema } from '@balena/jellyfish-types';
 
 const user = {
 	slug: 'user',
@@ -204,6 +205,86 @@ test('.createFullTextSearchFilter() uses regex on properties where the type arra
 	};
 	const filter: any = helpers.createFullTextSearchFilter(schema, searchTerm);
 	expect(filter.anyOf[0].properties.title.regexp.pattern).toBe(searchTerm);
+});
+
+test('.createFullTextSearchFilter() includes ID if the includeIdAndSlugs option is set and search term is a UUID', () => {
+	const searchTerm = '48f776bc-5a32-4187-9623-9dc0b2b27783';
+	const schema: JSONSchema = {
+		properties: {
+			title: {
+				type: 'string',
+			},
+		},
+	};
+	const filter = helpers.createFullTextSearchFilter(schema, searchTerm, {
+		includeIdAndSlug: true,
+	});
+	expect(filter!.anyOf!.length).toBe(2);
+	expect(
+		_.find(filter!.anyOf, {
+			properties: {
+				title: {
+					regexp: {
+						pattern: searchTerm,
+					},
+				},
+			},
+		}),
+	).toBeTruthy();
+	expect(
+		_.find(filter!.anyOf, {
+			properties: {
+				id: {
+					const: searchTerm,
+				},
+			},
+		}),
+	).toBeTruthy();
+	expect(
+		_.find(filter!.anyOf, {
+			properties: {
+				slug: {
+					const: searchTerm,
+				},
+			},
+		}),
+	).toBeUndefined();
+});
+
+test('.createFullTextSearchFilter() only creates one filter for slug if the includeIdAndSlugs option is set', () => {
+	const searchTerm = 'test';
+	const schema: JSONSchema = {
+		properties: {
+			slug: {
+				type: 'string',
+				fullTextSearch: true,
+			},
+		},
+	};
+	const filter = helpers.createFullTextSearchFilter(schema, searchTerm, {
+		includeIdAndSlug: true,
+	});
+	expect(filter!.anyOf!.length).toBe(1);
+	expect(
+		_.find(filter!.anyOf, {
+			properties: {
+				id: {
+					const: searchTerm,
+				},
+			},
+		}),
+	).toBeUndefined();
+	expect(
+		_.find(filter!.anyOf, {
+			properties: {
+				slug: {
+					fullTextSearch: {
+						term: searchTerm,
+					},
+				},
+			},
+		}),
+	).toBeTruthy();
 });
 
 test(".createFullTextSearchFilter() uses fullTextSearch on string properties with the 'fullTextSearch' field set", () => {

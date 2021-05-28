@@ -9,6 +9,7 @@ import emoji from 'node-emoji';
 import clone from 'deep-copy';
 import * as jsonpatch from 'fast-json-patch';
 import jsone from 'json-e';
+import { v4 as isUUID } from 'is-uuid';
 import * as _ from 'lodash';
 import isValid from 'date-fns/isValid';
 import isToday from 'date-fns/isToday';
@@ -547,6 +548,8 @@ const getSearchableFieldQuerySchema = (item: JSONSchema, term: string) => {
  * @param {Object} options - optional options
  * @param {Boolean} options.fullTextSearchFieldsOnly - (default: false) if set, a null object will
  * be returned if no fullTextSearch fields are found.
+ * @param {Boolean} options.includeIdAndSlug - (default: false) if set, the id and slug fields are
+ * automatically included (as regexp searches)
  *
  * @returns {Object | null} - the filter schema, or null if no fullTextSearch fields are found
  * and fullTextSearchFieldsOnly is true.
@@ -554,7 +557,10 @@ const getSearchableFieldQuerySchema = (item: JSONSchema, term: string) => {
 export const createFullTextSearchFilter = (
 	schema: JSONSchema,
 	term: string,
-	options: { fullTextSearchFieldsOnly?: boolean } = {},
+	options: {
+		fullTextSearchFieldsOnly?: boolean;
+		includeIdAndSlug?: boolean;
+	} = {},
 ) => {
 	let hasFullTextSearchField = false;
 	const flatSchema = SchemaSieve.flattenSchema(schema);
@@ -582,7 +588,7 @@ export const createFullTextSearchFilter = (
 	// otherwise we'll fall-back to searching all regexp fields.
 	if (hasFullTextSearchField) {
 		stringKeys = _.filter(stringKeys, 'item.fullTextSearch');
-	} else if (options.fullTextSearchFieldsOnly) {
+	} else if (options.fullTextSearchFieldsOnly && !options.includeIdAndSlug) {
 		return null;
 	}
 
@@ -600,6 +606,27 @@ export const createFullTextSearchFilter = (
 			};
 		}),
 	} as JSONSchema;
+
+	if (options.includeIdAndSlug) {
+		const key = isUUID(term) ? 'id' : 'slug';
+		// Only add this option if it is not already present
+		if (
+			!_.find(filter.anyOf, (anyOfOption) => {
+				return _.has(anyOfOption, ['properties', key]);
+			})
+		) {
+			filter.anyOf!.push({
+				type: 'object',
+				properties: {
+					[key]: {
+						// Note: we are not interested in matching against partial IDs or slugs
+						const: term,
+					},
+				},
+				required: [key],
+			});
+		}
+	}
 
 	return SchemaSieve.unflattenSchema(filter);
 };
