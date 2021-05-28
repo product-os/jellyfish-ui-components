@@ -1,4 +1,19 @@
 - commits:
+    - subject: Add includeIdAndSlug option for createFullTextSearchFilter
+      hash: eb452e91b4dc733fea5fb2643c4ea0b93f97e53c
+      body: >
+        This is a convenience option for those situations where you also want to
+        search the ID or slug of the card (in full).
+      footer:
+        Change-type: minor
+        change-type: minor
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+  version: 9.2.0
+  date: 2021-05-28T01:52:04.083Z
+- commits:
     - subject: 'patch: Update internal-patch'
       hash: e01139325ae311e9e1f536b4f66d59344ba62ca7
       body: ''

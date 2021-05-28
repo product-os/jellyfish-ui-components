@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.2.0 - 2021-05-28
+
+* Add includeIdAndSlug option for createFullTextSearchFilter [Graham McCulloch]
+
 ## 9.1.89 - 2021-05-27
 
 * patch: Update internal-patch [Renovate Bot]
