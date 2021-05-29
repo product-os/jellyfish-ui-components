@@ -1,4 +1,15 @@
 - commits:
+    - subject: 'patch: Update external-non-major'
+      hash: 5995ff12078a90212ae82c2a7b07527be459562f
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 9.2.1
+  date: 2021-05-29T00:47:14.050Z
+- commits:
     - subject: Add includeIdAndSlug option for createFullTextSearchFilter
       hash: eb452e91b4dc733fea5fb2643c4ea0b93f97e53c
       body: >
