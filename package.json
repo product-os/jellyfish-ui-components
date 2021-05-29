@@ -82,7 +82,7 @@
   },
   "devDependencies": {
     "@balena/jellycheck": "^0.1.1",
-    "@balena/jellyfish-types": "^0.5.130",
+    "@balena/jellyfish-types": "^0.5.132",
     "@balena/lint": "^6.1.1",
     "@emotion/cache": "^11.4.0",
     "@emotion/react": "^11.4.0",
