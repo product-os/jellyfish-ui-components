@@ -52,7 +52,7 @@
     "color-hash": "^2.0.1",
     "common-tags": "^1.8.0",
     "copy-to-clipboard": "^3.3.1",
-    "date-fns": "^2.21.3",
+    "date-fns": "^2.22.1",
     "debounce-promise": "^3.1.2",
     "deep-copy": "^1.4.2",
     "detect-ua": "^1.0.2",
@@ -75,7 +75,7 @@
     "react-textarea-autosize": "^8.3.2",
     "react-visibility-sensor": "^5.1.1",
     "redux": "^4.1.0",
-    "rendition": "^20.14.1",
+    "rendition": "^20.15.3",
     "skhema": "^5.3.4",
     "styled-components": "^5.3.0",
     "uuid": "^8.3.2"
@@ -103,7 +103,7 @@
     "@types/react-redux": "^7.1.16",
     "@types/react-router-dom": "^5.1.7",
     "@types/redux-mock-store": "^1.0.2",
-    "@types/sinon": "^10.0.0",
+    "@types/sinon": "^10.0.1",
     "@types/webscopeio__react-textarea-autocomplete": "^4.7.0",
     "browser-env": "^3.3.0",
     "catch-uncommitted": "^2.0.0",
@@ -112,7 +112,7 @@
     "deplint": "^1.1.3",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
-    "gh-pages": "^3.1.0",
+    "gh-pages": "^3.2.0",
     "jest": "^26.6.3",
     "jsdoc-to-markdown": "^7.0.1",
     "lint-staged": "^11.0.0",
@@ -121,7 +121,7 @@
     "simple-git-hooks": "^2.4.1",
     "sinon": "^10.0.0",
     "ts-jest": "^26.5.6",
-    "typescript": "^4.2.4"
+    "typescript": "^4.3.2"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"
