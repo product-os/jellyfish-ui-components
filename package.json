@@ -44,7 +44,7 @@
   "author": "Balena.io. <hello@balena.io>",
   "license": "UNLICENSED",
   "dependencies": {
-    "@balena/jellyfish-client-sdk": "^4.4.11",
+    "@balena/jellyfish-client-sdk": "^4.4.13",
     "@sentry/browser": "^6.4.1",
     "@webscopeio/react-textarea-autocomplete": "^4.7.3",
     "bluebird": "^3.7.2",
@@ -82,7 +82,7 @@
   },
   "devDependencies": {
     "@balena/jellycheck": "^0.1.1",
-    "@balena/jellyfish-types": "^0.5.129",
+    "@balena/jellyfish-types": "^0.5.130",
     "@balena/lint": "^6.1.1",
     "@emotion/cache": "^11.4.0",
     "@emotion/react": "^11.4.0",
