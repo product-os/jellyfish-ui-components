@@ -302,6 +302,10 @@ class Timeline extends React.Component<any, any> {
 			.catch((error: any) => {
 				console.error(error);
 			});
+
+		if (this.props.onCardVisible) {
+			this.props.onCardVisible(card);
+		}
 	}
 
 	addMessage(newMessage: string, whisper: any) {
