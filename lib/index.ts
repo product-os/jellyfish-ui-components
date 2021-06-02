@@ -6,7 +6,7 @@
 
 import * as constants from './constants';
 
-export { JellyfishLink, Link, getLinkProps } from './link';
+export { JellyfishLink, Link, getLinkProps } from './Link';
 export {
 	helpers,
 	timezones,
@@ -30,15 +30,15 @@ export {
 	Icon,
 	MenuPanel,
 } from './shame';
-export { default as AuthenticatedImage } from './authenticated-image';
-export { default as CardChatSummary } from './card-chat-summary';
-export { CardLoaderContext, CardLoader } from './card-loader';
-export { default as Event } from './event';
+export { default as AuthenticatedImage } from './AuthenticatedImage';
+export { default as CardChatSummary } from './CardChatSummary';
+export { CardLoaderContext, CardLoader } from './CardLoader';
+export { default as Event } from './Event';
 export {
 	withCardUpdater,
 	withDefaultGetActorHref,
 	withDefaultProps,
-} from './h-o-c';
+} from './HOC';
 export {
 	DocumentVisibilityProvider,
 	useDocumentVisibility,
@@ -48,36 +48,36 @@ export {
 	withResponsiveContext,
 	useDebounce,
 } from './hooks';
-export { PlainButton } from './plain-button';
-export { Tag, TagList, tagStyle } from './tag';
+export { PlainButton } from './PlainButton';
+export { Tag, TagList, tagStyle } from './Tag';
 export {
 	default as Timeline,
 	MessageInput,
 	FILE_PROXY_MESSAGE,
 	HIDDEN_ANCHOR,
-} from './timeline';
-export { default as Update } from './event/update';
-export { UserAvatar, UserAvatarLive } from './user-avatar';
-export { default as AutoCompleteWidget } from './auto-complete-widget';
-export { default as Collapsible } from './collapsible';
+} from './Timeline';
+export { default as Update } from './Event/Update';
+export { UserAvatar, UserAvatarLive } from './UserAvatar';
+export { default as AutoCompleteWidget } from './AutoCompleteWidget';
+export { default as Collapsible } from './Collapsible';
 export { constants };
-export { default as ContextMenu } from './context-menu';
-export { default as EventsContainer } from './events-container';
-export { FileUploader, FileUploadButton, FilesInput } from './file-uploader';
-export { default as FreeFieldForm } from './free-field-form';
-export { default as GroupUpdate } from './group-update';
-export { InfiniteList } from './infinite-list';
+export { default as ContextMenu } from './ContextMenu';
+export { default as EventsContainer } from './EventsContainer';
+export { FileUploader, FileUploadButton, FilesInput } from './FileUploader';
+export { default as FreeFieldForm } from './FreeFieldForm';
+export { default as GroupUpdate } from './GroupUpdate';
+export { InfiniteList } from './InfiniteList';
 export {
 	LinksProvider,
 	withLink,
 	withLinks,
 	useLink,
 	useLinks,
-} from './links-provider';
-export { default as MentionsCount } from './mentions-count';
-export { ThreadMirrorIcon, MirrorIcon } from './mirror-icon';
-export { SetupProvider, withSetup, useSetup } from './setup-provider';
-export { default as SlideInPanel } from './slide-in-panel';
-export { default as SmartVisibilitySensor } from './smart-visibility-sensor';
-export { default as UserStatusIcon } from './user-status-icon';
+} from './LinksProvider';
+export { default as MentionsCount } from './MentionsCount';
+export { ThreadMirrorIcon, MirrorIcon } from './MirrorIcon';
+export { SetupProvider, withSetup, useSetup } from './SetupProvider';
+export { default as SlideInPanel } from './SlideInPanel';
+export { default as SmartVisibilitySensor } from './SmartVisibilitySensor';
+export { default as UserStatusIcon } from './UserStatusIcon';
 export * as icons from './icons';
