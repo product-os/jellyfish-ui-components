@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.2.8 - 2021-06-02
+
+* Remove unnecessary catch-uncommitted [Josh Bowling]
+
 ## 9.2.7 - 2021-05-31
 
 * patch: Update internal-patch [Renovate Bot]
