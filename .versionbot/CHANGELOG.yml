@@ -1,4 +1,39 @@
 - commits:
+    - subject: Fix casing of HOC and hook files.
+      hash: 3b3498888433952a95086eea322f2541def05fc2
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+    - subject: Revert to PascalCase for React component files and folders.
+      hash: a52a6892df16182ab9d3c3dc013eb0f2bb21ba91
+      body: |
+        This keeps jellyfish-ui-components in line with our conventions.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+    - subject: Add --ui-lib command line option to jellycheck call
+      hash: 2d80baf7362d750df690160ddbe71f9aab0afe6b
+      body: |
+        This essentially tell jellycheck to skip the file name case check.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+  version: 9.2.9
+  date: 2021-06-03T04:06:43.321Z
+- commits:
     - subject: Remove unnecessary catch-uncommitted
       hash: 8a39ba820836bceb74676baed74a2dbc51bcb297
       body: ''

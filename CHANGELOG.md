@@ -5,6 +5,12 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.2.9 - 2021-06-03
+
+* Fix casing of HOC and hook files. [Graham McCulloch]
+* Revert to PascalCase for React component files and folders. [Graham McCulloch]
+* Add --ui-lib command line option to jellycheck call [Graham McCulloch]
+
 ## 9.2.8 - 2021-06-02
 
 * Remove unnecessary catch-uncommitted [Josh Bowling]
