@@ -8,10 +8,10 @@ export {
 	ResponsiveProvider,
 	withResponsiveContext,
 	useResponsiveContext,
-} from './responsive-provider';
-export { default as useDebounce } from './use-debounce';
-export { default as useOnClickOutside } from './use-onclickoutside';
+} from './useResponsiveContext';
+export { default as useDebounce } from './useDebounce';
+export { default as useOnClickOutside } from './useOnClickOutside';
 export {
 	DocumentVisibilityProvider,
 	useDocumentVisibility,
-} from './use-document-visibility';
+} from './useDocumentVisibility';

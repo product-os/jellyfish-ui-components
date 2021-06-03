@@ -4,11 +4,11 @@
  * Proprietary and confidential.
  */
 
-export { default as AutocompleteTextarea } from './autocomplete-textarea';
-export { default as ErrorBoundary } from './error-boundary';
-export { ActionButton, ActionLink, ActionRouterLink } from './action-link';
-export { CloseButton } from './close-button';
-export { default as ColorHashPill } from './color-hash-pill';
-export { default as Column } from './column';
-export { default as Icon } from './icon';
-export { default as MenuPanel } from './menu-panel';
+export { default as AutocompleteTextarea } from './AutocompleteTextarea';
+export { default as ErrorBoundary } from './ErrorBoundary';
+export { ActionButton, ActionLink, ActionRouterLink } from './ActionLink';
+export { CloseButton } from './CloseButton';
+export { default as ColorHashPill } from './ColorHashPill';
+export { default as Column } from './Column';
+export { default as Icon } from './Icon';
+export { default as MenuPanel } from './MenuPanel';

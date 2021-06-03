@@ -9,7 +9,7 @@ import * as timezones from './timezones';
 
 export { helpers, timezones };
 export { default as Analytics } from './analytics';
-export { default as ErrorReporter } from './error-reporter';
+export { default as ErrorReporter } from './ErrorReporter';
 export {
 	formatCurrency,
 	formatDateLocal,

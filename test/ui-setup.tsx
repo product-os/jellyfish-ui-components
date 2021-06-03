@@ -16,7 +16,7 @@ import { MemoryRouter } from 'react-router-dom';
 import configureStore from 'redux-mock-store';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
-import { CardLoaderContext } from '../lib/card-loader';
+import { CardLoaderContext } from '../lib/CardLoader';
 
 import Adapter from 'enzyme-adapter-react-16';
 
