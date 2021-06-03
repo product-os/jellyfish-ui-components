@@ -27,7 +27,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "balena-lint --typescript --fix"
+      "balena-lint --fix"
     ]
   },
   "scripts": {
