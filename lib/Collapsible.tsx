@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import { Box, BoxProps, Flex, Txt } from 'rendition';
 import Icon from './shame/Icon';
 import { px } from './services/helpers';
-import useDebounce from './hooks/use-debounce';
+import useDebounce from './hooks/useDebounce';
 
 const DELAY = 500;
 

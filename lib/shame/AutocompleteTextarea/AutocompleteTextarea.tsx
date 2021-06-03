@@ -17,7 +17,7 @@ import { Link } from '../../Link';
 import * as helpers from '../../services/helpers';
 import Icon from '../Icon';
 import Container from './Container';
-import useOnClickOutside from '../../hooks/use-onclickoutside';
+import useOnClickOutside from '../../hooks/useOnClickOutside';
 import { getTrigger } from './triggers';
 
 const QUICK_SEARCH_RE = /^\s*\?[\w_-]+\s+[\w_-]+/;

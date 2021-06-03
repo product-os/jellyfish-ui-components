@@ -10,7 +10,7 @@ import type { core } from '@balena/jellyfish-types';
 import { parseMessage } from './Message/Body';
 import { CardLoader } from '../CardLoader';
 import * as helpers from '../services/helpers';
-import withCardUpdater from '../HOC/with-card-updater';
+import withCardUpdater from '../HOC/withCardUpdater';
 import { withSetup } from '../SetupProvider';
 import { UPDATE, LINK } from '../constants';
 import Update from './Update';

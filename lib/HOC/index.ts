@@ -4,6 +4,6 @@
  * Proprietary and confidential.
  */
 
-export { default as withCardUpdater } from './with-card-updater';
-export { withDefaultGetActorHref } from './with-default-get-actor-href';
-export { withDefaultProps } from './with-default-props';
+export { default as withCardUpdater } from './withCardUpdater';
+export { withDefaultGetActorHref } from './withDefaultGetActorHref';
+export { withDefaultProps } from './withDefaultProps';

@@ -9,7 +9,7 @@ import styled from 'styled-components';
 import { Flex } from 'rendition';
 import { px, swallowEvent } from './services/helpers';
 import ErrorBoundary from './shame/ErrorBoundary';
-import useDebounce from './hooks/use-debounce';
+import useDebounce from './hooks/useDebounce';
 
 // Slide-in delay in seconds
 const DELAY = 0.6;

@@ -5,7 +5,7 @@
  */
 
 import path from 'path';
-import { withDefaultProps } from './with-default-props';
+import { withDefaultProps } from './withDefaultProps';
 
 const getActorHref = (actor: any) => {
 	return path.join(location.pathname, actor.card.slug);
