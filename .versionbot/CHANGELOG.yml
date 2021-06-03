@@ -1,4 +1,17 @@
 - commits:
+    - subject: Improve lint-staged config
+      hash: ac1d32a608510c2150d04567da18007ae92e37a2
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Josh Bowling <josh@balena.io>
+        signed-off-by: Josh Bowling <josh@balena.io>
+      author: Josh Bowling
+      nested: []
+  version: 9.2.10
+  date: 2021-06-03T23:24:11.276Z
+- commits:
     - subject: Fix casing of HOC and hook files.
       hash: 3b3498888433952a95086eea322f2541def05fc2
       body: ''
