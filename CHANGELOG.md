@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.2.11 - 2021-06-04
+
+* Bump jest deps [Josh Bowling]
+
 ## 9.2.10 - 2021-06-03
 
 * Improve lint-staged config [Josh Bowling]
