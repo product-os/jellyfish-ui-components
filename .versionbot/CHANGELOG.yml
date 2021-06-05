@@ -1,4 +1,15 @@
 - commits:
+    - subject: 'patch: Update external-non-major'
+      hash: 99346697293cef6e4f22d402282a50cc7298e6f5
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 9.2.12
+  date: 2021-06-05T05:31:56.025Z
+- commits:
     - subject: Bump sinon to v11.1.1
       hash: ec63fb0fbbafbb5276df84159e07d13a1992a845
       body: ''
