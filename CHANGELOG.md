@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.2.11 - 2021-06-05
+
+* Bump sinon to v11.1.1 [Josh Bowling]
+
 ## 9.2.10 - 2021-06-03
 
 * Improve lint-staged config [Josh Bowling]
