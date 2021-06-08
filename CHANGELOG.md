@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.2.22 - 2021-06-08
+
+* patch: Update internal-patch [Renovate Bot]
+
 ## 9.2.21 - 2021-06-08
 
 * patch: Update internal-patch [Renovate Bot]
