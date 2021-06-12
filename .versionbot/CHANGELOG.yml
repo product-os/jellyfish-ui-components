@@ -1,4 +1,17 @@
 - commits:
+    - subject: Bump rendition dependency
+      hash: 7ed1a3b77eddb8135661c688e28c734723671d26
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+  version: 9.2.29
+  date: 2021-06-12T04:46:53.926Z
+- commits:
     - subject: 'patch: Update internal-patch'
       hash: 7c9e871a5056d305abbb745d89d3ceca9480be76
       body: ''
