@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.2.27 - 2021-06-12
+
+* Bump jellyfish-client-sdk dependency [Graham McCulloch]
+
 ## 9.2.26 - 2021-06-12
 
 * patch: Update internal-patch [Renovate Bot]

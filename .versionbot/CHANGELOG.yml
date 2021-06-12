@@ -1,4 +1,17 @@
 - commits:
+    - subject: Bump jellyfish-client-sdk dependency
+      hash: 6a8b27e1a7233e00ecf28f7fd3a272ff090842be
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+  version: 9.2.27
+  date: 2021-06-12T02:19:24.901Z
+- commits:
     - subject: 'patch: Update internal-patch'
       hash: 761dbac92096fb5364f31e6428e2ef6ed827937f
       body: ''
