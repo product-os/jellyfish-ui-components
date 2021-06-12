@@ -1,4 +1,15 @@
 - commits:
+    - subject: 'patch: Update internal-patch'
+      hash: 7c9e871a5056d305abbb745d89d3ceca9480be76
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 9.2.28
+  date: 2021-06-12T04:03:24.865Z
+- commits:
     - subject: Bump jellyfish-client-sdk dependency
       hash: 6a8b27e1a7233e00ecf28f7fd3a272ff090842be
       body: ''
