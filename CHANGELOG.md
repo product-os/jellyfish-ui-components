@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.3.0 - 2021-06-17
+
+* Call joinChat/leaveChat when Timeline is mounted/unmounted [Graham McCulloch]
+
 ## 9.2.31 - 2021-06-15
 
 * patch: Update dependency @balena/jellyfish-client-sdk to ^5.0.3 [Renovate Bot]

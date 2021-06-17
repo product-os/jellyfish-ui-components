@@ -1,4 +1,19 @@
 - commits:
+    - subject: Call joinChat/leaveChat when Timeline is mounted/unmounted
+      hash: 15e5f1c76bd0b13de287679c338a7640e02b51ce
+      body: >
+        This is not a breaking change as the component only calls these callback
+        props if they are defined.
+      footer:
+        Change-type: minor
+        change-type: minor
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+  version: 9.3.0
+  date: 2021-06-17T11:39:13.959Z
+- commits:
     - subject: 'patch: Update dependency @balena/jellyfish-client-sdk to ^5.0.3'
       hash: 96d2e9899df6fc68fdd75a5a3d5ae5c3ff4fb4ec
       body: ''
