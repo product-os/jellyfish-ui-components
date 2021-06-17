@@ -95,6 +95,9 @@ class Timeline extends React.Component<any, any> {
 	}
 
 	async componentDidMount() {
+		if (this.props.joinChat) {
+			this.props.joinChat(this.props.card.id);
+		}
 		const { event } = queryString.parse(window.location.search);
 
 		// Timeout required to ensure the timeline has loaded before we scroll to the bottom
@@ -112,6 +115,12 @@ class Timeline extends React.Component<any, any> {
 		this.setState({
 			ready: true,
 		});
+	}
+
+	componentWillUnmount() {
+		if (this.props.leaveChat) {
+			this.props.leaveChat(this.props.card.id);
+		}
 	}
 
 	getSnapshotBeforeUpdate(prevProps: any) {
