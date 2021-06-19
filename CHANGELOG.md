@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.2.35 - 2021-06-19
+
+* Change the Jellyfish SDK to a peer dependency [Lucian Buzzo]
+
 ## 9.2.34 - 2021-06-19
 
 * patch: Update external-non-major [Renovate Bot]

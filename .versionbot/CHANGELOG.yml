@@ -1,4 +1,19 @@
 - commits:
+    - subject: Change the Jellyfish SDK to a peer dependency
+      hash: 20bec34e85762d9e48616e358f573af439be709f
+      body: |
+        This change helps avoid having multiple versions of the SDK installed at
+        different levels, resulting in hard to find bugs.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+        signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+      author: Lucian Buzzo
+      nested: []
+  version: 9.2.35
+  date: 2021-06-19T07:44:20.345Z
+- commits:
     - subject: 'patch: Update external-non-major'
       hash: 17b3ca6b2e2f7a61fa1eeee6a9b85baf155cb64b
       body: ''
