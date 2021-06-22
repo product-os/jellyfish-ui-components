@@ -1,4 +1,17 @@
 - commits:
+    - subject: Fix paragraph spacing in messages
+      hash: a0e038babf589bea47a57ca6b0322a565752b3d4
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+  version: 9.2.38
+  date: 2021-06-22T02:18:53.985Z
+- commits:
     - subject: Bump rendition dependency
       hash: ffdcf0e2dc72cc1841211b6eaad6e0fc8ff5e8f6
       body: ''

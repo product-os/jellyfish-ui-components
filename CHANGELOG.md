@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.2.38 - 2021-06-22
+
+* Fix paragraph spacing in messages [Graham McCulloch]
+
 ## 9.2.37 - 2021-06-22
 
 * Bump rendition dependency [Graham McCulloch]
