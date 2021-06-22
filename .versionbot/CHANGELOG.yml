@@ -1,4 +1,17 @@
 - commits:
+    - subject: Bump rendition dependency
+      hash: ffdcf0e2dc72cc1841211b6eaad6e0fc8ff5e8f6
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+  version: 9.2.37
+  date: 2021-06-22T00:30:14.670Z
+- commits:
     - subject: 'patch: Update dependency @balena/jellyfish-client-sdk to ^5.0.5'
       hash: 22e4e4935b1a663284419f717bd14bf8ee0c9e68
       body: ''

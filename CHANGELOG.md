@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.2.37 - 2021-06-22
+
+* Bump rendition dependency [Graham McCulloch]
+
 ## 9.2.36 - 2021-06-19
 
 * patch: Update dependency @balena/jellyfish-client-sdk to ^5.0.5 [Renovate Bot]
