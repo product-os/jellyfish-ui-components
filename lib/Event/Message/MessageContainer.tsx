@@ -7,7 +7,7 @@
 import styled from 'styled-components';
 import { Box, BoxProps } from 'rendition';
 import { core } from '@balena/jellyfish-types';
-import { px, isPrivateTimelineEvent } from '../../services/helpers';
+import { isPrivateTimelineEvent } from '../../services/helpers';
 
 interface MessageContainerProps extends BoxProps {
 	card: core.Contract;
@@ -24,14 +24,6 @@ const MessageContainer = styled(Box)<MessageContainerProps>`
 	border-radius: 12px;
 	border-top-left-radius: 0;
 	box-shadow: -5px 4.5px 10.5px 0 rgba(152, 173, 227, 0.08);
-	p {
-		padding-bottom: ${(props) => {
-			return px(props.theme.space[2]);
-		}};
-	}
-	p:last-child {
-		padding-bottom: 0;
-	}
 	a {
 		color: inherit;
 		text-decoration: underline;
