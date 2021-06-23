@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.2.39 - 2021-06-23
+
+* patch: Update dependency @balena/jellyfish-client-sdk to ^5.0.7 [Renovate Bot]
+
 ## 9.2.38 - 2021-06-22
 
 * Fix paragraph spacing in messages [Graham McCulloch]

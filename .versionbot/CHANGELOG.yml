@@ -1,4 +1,15 @@
 - commits:
+    - subject: 'patch: Update dependency @balena/jellyfish-client-sdk to ^5.0.7'
+      hash: 575f6ad3da73d613dc117682ac8df9c6b3a68cd1
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 9.2.39
+  date: 2021-06-23T00:32:27.219Z
+- commits:
     - subject: Fix paragraph spacing in messages
       hash: a0e038babf589bea47a57ca6b0322a565752b3d4
       body: ''
