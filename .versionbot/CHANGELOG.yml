@@ -1,4 +1,15 @@
 - commits:
+    - subject: Add notifications support
+      hash: efcd53d1890db57e6fa3009ed10f2aa7ab245cc1
+      body: ''
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Kakhaber
+      nested: []
+  version: 9.3.0
+  date: 2021-06-24T18:30:36.271Z
+- commits:
     - subject: 'patch: Update dependency @balena/jellyfish-types to ^0.7.0'
       hash: ff36a61614b89d66fb1ed8d3a7e8ebafb7c00836
       body: |

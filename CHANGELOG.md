@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.3.0 - 2021-06-24
+
+* Add notifications support [Kakhaber]
+
 ## 9.2.40 - 2021-06-24
 
 * patch: Update dependency @balena/jellyfish-types to ^0.7.0 [Renovate Bot]
