@@ -44,7 +44,7 @@
   "author": "Balena.io. <hello@balena.io>",
   "license": "UNLICENSED",
   "peerDependencies": {
-    "@balena/jellyfish-client-sdk": "^5.1.0"
+    "@balena/jellyfish-client-sdk": "^5.1.1"
   },
   "dependencies": {
     "@sentry/browser": "^6.7.1",
@@ -84,7 +84,7 @@
   },
   "devDependencies": {
     "@balena/jellycheck": "^0.1.1",
-    "@balena/jellyfish-client-sdk": "^5.1.0",
+    "@balena/jellyfish-client-sdk": "^5.1.1",
     "@balena/jellyfish-types": "^0.7.0",
     "@balena/lint": "^6.1.1",
     "@emotion/cache": "^11.4.0",
