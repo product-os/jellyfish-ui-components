@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.3.5 - 2021-06-27
+
+* patch: Update dependency simple-git-hooks to ^2.5.1 [Renovate Bot]
+
 ## 9.3.4 - 2021-06-26
 
 * patch: Update external-non-major [Renovate Bot]
