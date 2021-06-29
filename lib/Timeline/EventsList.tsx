@@ -21,6 +21,7 @@ export default class EventsList extends React.Component<any> {
 			messagesOnly,
 			user,
 			eventMenuOptions,
+			notifications,
 			...eventProps
 		} = this.props;
 
@@ -53,6 +54,9 @@ export default class EventsList extends React.Component<any> {
 							nextEvent={sortedEvents[index + 1]}
 							card={event}
 							user={user}
+							notifications={notifications.filter((notification: any) => {
+								return notification.links['is attached to'][0].id === event.id;
+							})}
 						/>
 					</Box>
 				);
@@ -60,4 +64,8 @@ export default class EventsList extends React.Component<any> {
 		}
 		return null;
 	}
+
+	static defaultProps = {
+		notifications: [],
+	};
 }

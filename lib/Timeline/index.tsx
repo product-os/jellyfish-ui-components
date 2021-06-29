@@ -302,10 +302,6 @@ class Timeline extends React.Component<any, any> {
 			.catch((error: any) => {
 				console.error(error);
 			});
-
-		if (this.props.onCardVisible) {
-			this.props.onCardVisible(card);
-		}
 	}
 
 	addMessage(newMessage: string, whisper: any) {
@@ -429,6 +425,7 @@ class Timeline extends React.Component<any, any> {
 			headerOptions,
 			getActorHref,
 			tail,
+			notifications,
 		} = this.props;
 		const {
 			messagesOnly,
@@ -458,6 +455,7 @@ class Timeline extends React.Component<any, any> {
 			enableAutocomplete,
 			sendCommand,
 			onCardVisible: this.handleCardVisible,
+			notifications,
 			user,
 			threadIsMirrored: isMirrored,
 			menuOptions: eventMenuOptions,
