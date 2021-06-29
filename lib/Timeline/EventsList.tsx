@@ -26,7 +26,7 @@ export default class EventsList extends React.Component<any> {
 		} = this.props;
 
 		if (sortedEvents && sortedEvents.length > 0) {
-			return _.map(sortedEvents, (event, index) => {
+			return _.map(sortedEvents, (event, index: number) => {
 				if (_.includes(uploadingFiles, event.slug)) {
 					return (
 						<Box key={event.slug} p={3}>
@@ -41,22 +41,24 @@ export default class EventsList extends React.Component<any> {
 				if (messagesOnly && !isTimelineEvent(pureType) && !event.name) {
 					return null;
 				}
+
 				if (hideWhispers && pureType === WHISPER) {
 					return null;
 				}
+
+				const eventNotifications = notifications.filter((notification: any) => {
+					return notification.links['is attached to'][0].id === event.id;
+				});
 
 				return (
 					<Box data-test={event.id} key={event.id}>
 						<Event
 							{...eventProps}
-							// @ts-ignore
 							previousEvent={sortedEvents[index - 1]}
 							nextEvent={sortedEvents[index + 1]}
 							card={event}
 							user={user}
-							notifications={notifications.filter((notification: any) => {
-								return notification.links['is attached to'][0].id === event.id;
-							})}
+							notifications={eventNotifications}
 						/>
 					</Box>
 				);
