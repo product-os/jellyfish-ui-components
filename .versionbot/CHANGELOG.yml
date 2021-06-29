@@ -1,4 +1,16 @@
 - commits:
+    - subject: 'patch: Update dependency @balena/jellyfish-client-sdk to ^5.2.2'
+      hash: 395fb641c9aa763356c1d088f51e68c24df29b53
+      body: |
+        Update @balena/jellyfish-client-sdk from 5.1.1 to 5.2.2
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 9.3.7
+  date: 2021-06-29T12:52:27.943Z
+- commits:
     - subject: Bump node engines specification
       hash: fcd2524bb2887c7fff40f038388a15fb4ee92185
       body: ''
