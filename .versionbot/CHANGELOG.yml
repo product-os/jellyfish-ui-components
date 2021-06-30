@@ -1,4 +1,15 @@
 - commits:
+    - subject: Mark event as read
+      hash: 11f570f603b4ceefb8d8d78db1b8ae13bdb7ee6b
+      body: ''
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: Kakhaber
+      nested: []
+  version: 9.4.0
+  date: 2021-06-30T11:30:35.829Z
+- commits:
     - subject: "\U0001F504 Synced file(s) with product-os/jellyfish-config"
       hash: 955ee2014857660c4b53777a8b23c36f6d30ba6f
       body: ''

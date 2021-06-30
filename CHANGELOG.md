@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.4.0 - 2021-06-30
+
+* Mark event as read [Kakhaber]
+
 ## 9.3.10 - 2021-06-30
 
 * 🔄 Synced file(s) with product-os/jellyfish-config [jellyfish-bot]
