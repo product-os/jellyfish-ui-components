@@ -88,6 +88,7 @@ interface EventState {
 	editedMessage: string | null;
 	updating: boolean;
 	messageHeight: number | null;
+	isVisible: boolean;
 }
 
 export default class Event extends React.Component<any, EventState> {
@@ -97,6 +98,7 @@ export default class Event extends React.Component<any, EventState> {
 		editedMessage: null,
 		updating: false,
 		messageHeight: null,
+		isVisible: false,
 	};
 
 	openChannel = () => {
@@ -196,12 +198,38 @@ export default class Event extends React.Component<any, EventState> {
 	handleVisibilityChange = (isVisible: boolean) => {
 		const { card } = this.props;
 
+		this.setState({
+			isVisible,
+		});
+
 		const isMessage = helpers.isTimelineEvent(card.type);
 
 		if (isMessage && isVisible && this.props.onCardVisible) {
 			this.props.onCardVisible(this.props.card);
 		}
 	};
+
+	markNotificationsAsRead() {
+		const { notifications, sdk, user } = this.props;
+
+		notifications.map(async (notification: any) => {
+			await sdk.card.link(user, notification, 'read');
+		});
+	}
+
+	componentDidUpdate(prevProps: any, prevState: EventState) {
+		/*
+		 * Mark notifications as read if visibility changed or received new notifications
+		 */
+		if (
+			this.state.isVisible &&
+			this.props.notifications.length &&
+			(prevProps.notifications.length !== this.props.notifications.length ||
+				!prevState.isVisible)
+		) {
+			this.markNotificationsAsRead();
+		}
+	}
 
 	render() {
 		const {
