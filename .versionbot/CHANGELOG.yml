@@ -1,4 +1,15 @@
 - commits:
+    - subject: "\U0001F504 Synced file(s) with product-os/jellyfish-config"
+      hash: 955ee2014857660c4b53777a8b23c36f6d30ba6f
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: jellyfish-bot
+      nested: []
+  version: 9.3.10
+  date: 2021-06-30T04:50:53.902Z
+- commits:
     - subject: 'patch: Update dependency @balena/jellyfish-client-sdk to ^5.2.3'
       hash: 210a51a4e8096b5e7b397f006b1eca2f8d414eb8
       body: ''

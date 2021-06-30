@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.3.10 - 2021-06-30
+
+* 🔄 Synced file(s) with product-os/jellyfish-config [jellyfish-bot]
+
 ## 9.3.9 - 2021-06-30
 
 * patch: Update dependency @balena/jellyfish-client-sdk to ^5.2.3 [Renovate Bot]
