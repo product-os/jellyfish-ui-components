@@ -223,6 +223,7 @@ export default class Event extends React.Component<any, EventState> {
 		 */
 		if (
 			this.state.isVisible &&
+			this.props.notifications &&
 			this.props.notifications.length &&
 			(prevProps.notifications.length !== this.props.notifications.length ||
 				!prevState.isVisible)
