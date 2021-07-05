@@ -1,4 +1,15 @@
 - commits:
+    - subject: Fix notification read error
+      hash: a0a19aceef14c22eded1f7abe775fa6c7f2acc8b
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Kakhaber
+      nested: []
+  version: 9.4.10
+  date: 2021-07-05T13:48:24.349Z
+- commits:
     - subject: 'patch: Update dependency @balena/jellyfish-client-sdk to ^5.2.10'
       hash: 68e28f661f09502bd3334bb0e9627abe45095bf4
       body: ''
