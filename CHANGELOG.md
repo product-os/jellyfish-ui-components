@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.4.11 - 2021-07-06
+
+* Remove whitesource config [Josh Bowling]
+
 ## 9.4.10 - 2021-07-05
 
 * Fix notification read error [Kakhaber]
