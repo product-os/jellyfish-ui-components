@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.4.12 - 2021-07-06
+
+* Bump rendition dependency [Graham McCulloch]
+
 ## 9.4.11 - 2021-07-06
 
 * Remove whitesource config [Josh Bowling]

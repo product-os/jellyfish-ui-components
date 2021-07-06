@@ -1,4 +1,17 @@
 - commits:
+    - subject: Bump rendition dependency
+      hash: 1ab3d715c9286a6de66c8e4fb4211d25e1a7a706
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+  version: 9.4.12
+  date: 2021-07-06T03:15:29.396Z
+- commits:
     - subject: Remove whitesource config
       hash: fb3944bfc5a481a9e265b2c8bd5bb8f14b1e843b
       body: ''
