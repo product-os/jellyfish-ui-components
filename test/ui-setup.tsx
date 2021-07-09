@@ -58,7 +58,7 @@ export const flushPromises = () => {
 };
 
 export const getPromiseResolver = () => {
-	let resolver = null;
+	let resolver: ((value: unknown) => void) | null = null;
 	const promise = new Promise((resolve) => {
 		resolver = resolve;
 	});

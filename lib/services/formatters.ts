@@ -37,7 +37,7 @@ export const formatSize = (bytes: number, base = 1000) => {
 		order = units.length - 1;
 	}
 	const size = bytes / Math.pow(base, order);
-	let result = null;
+	let result: number | string | null = null;
 	if (order < 0) {
 		result = bytes;
 		order = 0;
