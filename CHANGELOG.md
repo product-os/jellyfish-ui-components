@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 10.0.0 - 2021-07-09
+
+* Smarter handling of view query creation [Graham McCulloch]
+
 ## 9.4.16 - 2021-07-09
 
 * patch: Update dependency @balena/jellyfish-client-sdk to ^5.3.1 [Renovate Bot]

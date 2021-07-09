@@ -1,4 +1,20 @@
 - commits:
+    - subject: Smarter handling of view query creation
+      hash: 57271eed7ee3b8e203aa412d4922b2eef5c778a7
+      body: >
+        Before we can support filtering by fields in linked contracts, we need
+        to handle how we merge $$links. This commit improves the logic of the
+        custom skhema.merge resolver function and adds a unit test to verify it.
+      footer:
+        Change-type: major
+        change-type: major
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+  version: 10.0.0
+  date: 2021-07-09T03:01:44.031Z
+- commits:
     - subject: 'patch: Update dependency @balena/jellyfish-client-sdk to ^5.3.1'
       hash: c6714d80eaecf702fdbe9fd1aeb1bfa53e9ea924
       body: ''
