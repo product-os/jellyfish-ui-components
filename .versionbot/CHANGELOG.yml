@@ -1,4 +1,15 @@
 - commits:
+    - subject: 'patch: Update dependency @balena/jellyfish-types to ^0.8.6'
+      hash: a057e28ed89a3bfaeedc58832a9380c417f20ba7
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 9.4.15
+  date: 2021-07-09T01:51:25.950Z
+- commits:
     - subject: Expose enumNames for view slices
       hash: 9d9220e0b22d77529efd33d4a4a65b343066bf5c
       body: >
