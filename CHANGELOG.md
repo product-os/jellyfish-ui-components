@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 9.4.14 - 2021-07-09
+
+* Expose enumNames for view slices [Graham McCulloch]
+
 ## 9.4.13 - 2021-07-06
 
 * patch: Update dependency @balena/jellyfish-client-sdk to ^5.3.0 [Renovate Bot]
