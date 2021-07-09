@@ -9,7 +9,7 @@ import format from 'date-fns/format';
 import sub from 'date-fns/sub';
 import add from 'date-fns/add';
 import * as helpers from './helpers';
-import { JSONSchema } from '@balena/jellyfish-types';
+import { core, JSONSchema } from '@balena/jellyfish-types';
 
 const user = {
 	slug: 'user',
@@ -83,6 +83,26 @@ const user = {
 				},
 			},
 		},
+	},
+};
+
+const user1: core.UserContract = {
+	id: '2',
+	name: 'Test user',
+	slug: 'user-1',
+	tags: [],
+	type: 'user@1.0.0',
+	active: true,
+	version: '1.0.0',
+	requires: [],
+	linked_at: {},
+	created_at: '2021-07-07T02:01:55.725Z',
+	updated_at: null,
+	markers: [],
+	capabilities: [],
+	data: {
+		hash: '1234',
+		roles: [],
 	},
 };
 
@@ -1444,6 +1464,194 @@ test('getMergedSchemas merges the schemas of two type cards', () => {
 			},
 			category: {
 				type: 'string',
+			},
+		},
+	});
+});
+
+test('getViewSchema merges $$links with the same link verb using an allOf property', () => {
+	// A (made-up) view with a built-in schema that references 'has attached element' links
+	// and also a user-generated filter that also references 'has attached element' links
+	// and another user-generated filter that references 'is attached to' links
+	const view = {
+		id: '1',
+		name: 'My view',
+		slug: 'view-my-view',
+		tags: [],
+		type: 'view@1.0.0',
+		active: true,
+		version: '1.0.0',
+		requires: [],
+		linked_at: {},
+		created_at: '2021-07-07T02:01:55.725Z',
+		updated_at: null,
+		markers: [],
+		capabilities: [],
+		data: {
+			allOf: [
+				{
+					name: 'Built-in schema',
+					schema: {
+						type: 'object',
+						$$links: {
+							'has attached element': {
+								type: 'object',
+								properties: {
+									type: {
+										enum: [
+											'message@1.0.0',
+											'create@1.0.0',
+											'whisper@1.0.0',
+											'update@1.0.0',
+											'rating@1.0.0',
+											'summary@1.0.0',
+										],
+									},
+								},
+								additionalProperties: true,
+							},
+						},
+					} as JSONSchema,
+				},
+				{
+					name: 'User generated filter',
+					schema: {
+						type: 'object',
+						anyOf: [
+							{
+								$$links: {
+									'is attached to': {
+										type: 'object',
+										additionalProperties: true,
+										required: ['slug', 'type'],
+										properties: {
+											slug: {
+												const: 'some-other-slug',
+											},
+											type: {
+												const: 'whisper@1.0.0',
+											},
+										},
+									},
+								},
+							},
+						],
+					} as JSONSchema,
+				},
+				{
+					name: 'User generated filter',
+					schema: {
+						type: 'object',
+						anyOf: [
+							{
+								$$links: {
+									'has attached element': {
+										type: 'object',
+										additionalProperties: true,
+										required: ['data', 'type'],
+										properties: {
+											data: {
+												type: 'object',
+												required: ['payload'],
+												properties: {
+													payload: {
+														type: 'object',
+														required: ['message'],
+														properties: {
+															message: {
+																type: 'string',
+																description: 'test',
+																pattern: 'test',
+																title: 'message',
+															},
+														},
+													},
+												},
+											},
+											type: {
+												const: 'whisper@1.0.0',
+											},
+										},
+									},
+								},
+							},
+						],
+					} as JSONSchema,
+				},
+			],
+		},
+	};
+
+	const schema = helpers.getViewSchema(view, user1);
+
+	console.log('schema', JSON.stringify(schema, null, 2));
+
+	expect(schema).toEqual({
+		type: 'object',
+		additionalProperties: true,
+		$$links: {
+			'is attached to': {
+				type: 'object',
+				additionalProperties: true,
+				required: ['slug', 'type'],
+				properties: {
+					slug: {
+						const: 'some-other-slug',
+					},
+					type: {
+						const: 'whisper@1.0.0',
+					},
+				},
+			},
+			'has attached element': {
+				type: 'object',
+				// Note the two 'has attached element' schemas have been combined using an 'allOf' array
+				allOf: [
+					{
+						type: 'object',
+						properties: {
+							type: {
+								enum: [
+									'message@1.0.0',
+									'create@1.0.0',
+									'whisper@1.0.0',
+									'update@1.0.0',
+									'rating@1.0.0',
+									'summary@1.0.0',
+								],
+							},
+						},
+						additionalProperties: true,
+					},
+					{
+						type: 'object',
+						additionalProperties: true,
+						required: ['data', 'type'],
+						properties: {
+							data: {
+								type: 'object',
+								required: ['payload'],
+								properties: {
+									payload: {
+										type: 'object',
+										required: ['message'],
+										properties: {
+											message: {
+												type: 'string',
+												description: 'test',
+												pattern: 'test',
+												title: 'message',
+											},
+										},
+									},
+								},
+							},
+							type: {
+								const: 'whisper@1.0.0',
+							},
+						},
+					},
+				],
 			},
 		},
 	});

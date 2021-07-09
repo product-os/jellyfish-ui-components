@@ -308,11 +308,48 @@ export const getViewSchema = (
 		});
 	}
 
-	// TS-TODO: accoring to `skhema.merge` types, it receives only 1 argument.
+	// // TS-TODO: according to `skhema.merge` types, it receives only 1 argument.
 	const view = (skhema.merge as any)(conjunctions, {
 		resolvers: {
-			$$links: (values: any) => {
-				return _.merge(values[0], values[1]);
+			$$links: (
+				values: Array<{
+					[key: string]: JSONSchema;
+				}>,
+			): {
+				[key: string]: JSONSchema;
+			} => {
+				// For the $$links items, we need to merge schemas that have the same 'link verb'.
+				const linkVerbs = _.uniq(_.flatMap(values, (value) => _.keys(value)));
+
+				const mergedSchema: {
+					[key: string]: JSONSchema;
+				} = {};
+
+				// For a particular link verb, if there are multiple 'values' which define a schema for that link verb,
+				// we combine them in an 'allOf' array; otherwise just set the schema for that link verb to the only
+				_.forEach(linkVerbs, (linkVerb) => {
+					const linkVerbSchemas: JSONSchema[] = [];
+					_.reduce(
+						values,
+						(schemas, value) => {
+							if (value[linkVerb]) {
+								schemas.push(value[linkVerb]);
+							}
+							return schemas;
+						},
+						linkVerbSchemas,
+					);
+
+					if (linkVerbSchemas.length > 1) {
+						mergedSchema[linkVerb] = {
+							type: 'object',
+							allOf: linkVerbSchemas,
+						};
+					} else if (linkVerbSchemas.length === 1) {
+						mergedSchema[linkVerb] = linkVerbSchemas[0];
+					}
+				});
+				return mergedSchema;
 			},
 		},
 	});
