@@ -477,6 +477,7 @@ export const getViewSlices = (view: core.ViewContract, types: string[]) => {
 				title,
 				path: slice,
 				values: subSchema.enum,
+				names: subSchema.enumNames,
 			};
 		});
 	}
