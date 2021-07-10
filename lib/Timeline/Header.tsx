@@ -44,7 +44,7 @@ export default class Header extends React.Component<any> {
 	async handleDownloadConversation(events: any[]) {
 		const { card, getActor } = this.props;
 		let text = card.name;
-		let activeDate = null;
+		let activeDate: Date | null = null;
 
 		for (const event of events) {
 			const typeBase = event.type.split('@')[0];

@@ -79,7 +79,7 @@ export const cardReference = (card: any) => {
 };
 
 export const appendToChannelPath = (channel: Channel, card: core.Contract) => {
-	const parts = [];
+	const parts: string[] = [];
 	const pieces = window.location.pathname.split('/');
 	const target = _.get(channel, ['data', 'target']);
 
@@ -477,7 +477,7 @@ export const getObjectValues = (input: any): any[] => {
 };
 
 export const getViewSlices = (view: core.ViewContract, types: string[]) => {
-	let slices = null;
+	let slices: any = null;
 	const viewTypeSlug = _.chain(view.data.allOf)
 		.map((def) => {
 			return (
@@ -1038,8 +1038,10 @@ export const getPathsInSchema = (
 	});
 };
 
-export const generateJSONPatchDescription = (payload: JSONPatch[]) => {
-	const items = [];
+export const generateJSONPatchDescription = (
+	payload: JSONPatch[],
+): string[] => {
+	const items: string[] = [];
 	for (const patch of payload) {
 		switch (patch.op) {
 			case 'add':

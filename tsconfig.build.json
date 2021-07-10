@@ -1,5 +1,5 @@
 {
-  "extends": "@balena/jellyfish-config/config/tsconfig.json",
+  "extends": "@balena/jellyfish-config/config/tsconfig.build.json",
   "compilerOptions": {
     "target": "es2018",
     "jsx": "react"
