@@ -1,4 +1,15 @@
 - commits:
+    - subject: 'patch: Update external-non-major'
+      hash: 9a86395b146abdd63bd75e1b37bbdfd4e33a91d2
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 10.0.2
+  date: 2021-07-10T00:16:37.422Z
+- commits:
     - subject: Extend config from jellyfish-config
       hash: e9bc8c99c331e2f5903eea8167d640d0b6769ecb
       body: ''
