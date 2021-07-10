@@ -1,4 +1,17 @@
 - commits:
+    - subject: Extend config from jellyfish-config
+      hash: e9bc8c99c331e2f5903eea8167d640d0b6769ecb
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+  version: 10.0.1
+  date: 2021-07-09T10:22:05.822Z
+- commits:
     - subject: Smarter handling of view query creation
       hash: 57271eed7ee3b8e203aa412d4922b2eef5c778a7
       body: >

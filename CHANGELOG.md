@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 10.0.1 - 2021-07-09
+
+* Extend config from jellyfish-config [Graham McCulloch]
+
 ## 10.0.0 - 2021-07-09
 
 * Smarter handling of view query creation [Graham McCulloch]
