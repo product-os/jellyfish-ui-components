@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 10.0.6 - 2021-07-12
+
+* fix ts config to produce expected directory structure [Martin Rauscher]
+
 ## 10.0.5 - 2021-07-11
 
 * patch: Update dependency @balena/jellyfish-types to ^0.8.8 [Renovate Bot]

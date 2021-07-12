@@ -1,4 +1,17 @@
 - commits:
+    - subject: fix ts config to produce expected directory structure
+      hash: fa48349489a8581fea2284b1eabb11cb802cd6f4
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Martin Rauscher <martin@balena.io>
+        signed-off-by: Martin Rauscher <martin@balena.io>
+      author: Martin Rauscher
+      nested: []
+  version: 10.0.6
+  date: 2021-07-12T15:51:53.963Z
+- commits:
     - subject: 'patch: Update dependency @balena/jellyfish-types to ^0.8.8'
       hash: 92b56e23ff513dc77fd635b8c362212bd497c3a4
       body: ''
