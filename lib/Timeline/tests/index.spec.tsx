@@ -88,7 +88,7 @@ test('Events are ordered by either timestamp or created_at date', async () => {
 	wrapper.update();
 
 	const events = wrapper.find('div[data-test]');
-	const firstEvent = events.get(0).props;
+	const firstEvent = events.get(1).props;
 	expect(firstEvent['data-test']).toBe(link.id);
 });
 
