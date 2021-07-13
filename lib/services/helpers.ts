@@ -476,8 +476,18 @@ export const getObjectValues = (input: any): any[] => {
 	return input;
 };
 
-export const getViewSlices = (view: core.ViewContract, types: string[]) => {
-	let slices: any = null;
+export interface SliceOption {
+	title: string;
+	path: string;
+	values: string[];
+	names?: string[];
+}
+
+export const getViewSlices = (
+	view: core.ViewContract,
+	types: string[],
+): SliceOption[] | null => {
+	let slices: SliceOption[] | null = null;
 	const viewTypeSlug = _.chain(view.data.allOf)
 		.map((def) => {
 			return (
@@ -494,31 +504,33 @@ export const getViewSlices = (view: core.ViewContract, types: string[]) => {
 			slug: viewTypeSlug.split('@')[0],
 		});
 	if (viewType && viewType.data.slices) {
-		slices = _.map(viewType.data.slices, (slice) => {
-			const subSchema = _.get(viewType.data.schema, slice);
-			if (!subSchema) {
-				return null;
-			}
-			const viewParam = _.chain(view.data.allOf)
-				.map((def) => {
-					return _.get(def.schema, slice);
-				})
-				.compact()
-				.first()
-				.value();
-			if (viewParam && viewParam.const) {
-				return null;
-			}
-			const title = subSchema.title || slice.split('.').pop();
-			return {
-				title,
-				path: slice,
-				values: subSchema.enum,
-				names: subSchema.enumNames,
-			};
-		});
+		slices = _.compact(
+			_.map(viewType.data.slices, (slice) => {
+				const subSchema = _.get(viewType.data.schema, slice);
+				if (!subSchema) {
+					return null;
+				}
+				const viewParam = _.chain(view.data.allOf)
+					.map((def) => {
+						return _.get(def.schema, slice);
+					})
+					.compact()
+					.first()
+					.value();
+				if (viewParam && viewParam.const) {
+					return null;
+				}
+				const title = subSchema.title || slice.split('.').pop();
+				return {
+					title,
+					path: slice,
+					values: subSchema.enum,
+					names: subSchema.enumNames,
+				};
+			}),
+		);
 	}
-	return _.compact(slices);
+	return slices;
 };
 
 const matchOperatorsRe = /[|\\{}()[\]^$+*?.]/g;
