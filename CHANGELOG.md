@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 10.0.7 - 2021-07-13
+
+* Fix tsconfig.build.json [Josh Bowling]
+
 ## 10.0.6 - 2021-07-12
 
 * fix ts config to produce expected directory structure [Martin Rauscher]

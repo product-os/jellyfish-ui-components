@@ -1,4 +1,17 @@
 - commits:
+    - subject: Fix tsconfig.build.json
+      hash: 7ce021e254329f29189e4e72b4fac11f639be6c0
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Josh Bowling <josh@balena.io>
+        signed-off-by: Josh Bowling <josh@balena.io>
+      author: Josh Bowling
+      nested: []
+  version: 10.0.7
+  date: 2021-07-13T00:29:04.353Z
+- commits:
     - subject: fix ts config to produce expected directory structure
       hash: fa48349489a8581fea2284b1eabb11cb802cd6f4
       body: ''
