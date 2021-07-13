@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 10.0.8 - 2021-07-13
+
+* Add data-test attribute to infinite list scroll area [Graham McCulloch]
+
 ## 10.0.7 - 2021-07-13
 
 * Explicitly set function return type [Graham McCulloch]
