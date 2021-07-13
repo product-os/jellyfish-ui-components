@@ -95,7 +95,12 @@ export class InfiniteList extends React.Component<any> {
 		const { onScrollEnding, onScrollBeginning, ...rest } = this.props;
 
 		return (
-			<ScrollArea {...rest} ref={this.handleRef} onScroll={this.handleScroll} />
+			<ScrollArea
+				data-test="infinitelist__scrollarea"
+				{...rest}
+				ref={this.handleRef}
+				onScroll={this.handleScroll}
+			/>
 		);
 	}
 }
