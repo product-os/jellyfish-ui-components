@@ -1,4 +1,18 @@
 - commits:
+    - subject: Explicitly set function return type
+      hash: 76f13db483ecf589826cd0ddd71ca2872b700f3f
+      body: |
+        ES2018 can't infer the return type correctly it would seem.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+  version: 10.0.7
+  date: 2021-07-13T04:40:24.210Z
+- commits:
     - subject: fix ts config to produce expected directory structure
       hash: fa48349489a8581fea2284b1eabb11cb802cd6f4
       body: ''
