@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 10.0.9 - 2021-07-14
+
+* patch: Update dependency @balena/jellyfish-config to ^1.4.5 [Renovate Bot]
+
 ## 10.0.8 - 2021-07-13
 
 * Add data-test attribute to infinite list scroll area [Graham McCulloch]
