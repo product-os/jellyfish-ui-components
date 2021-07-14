@@ -1,4 +1,25 @@
 - commits:
+    - subject: Fix jest config
+      hash: 14ddc53042a0d6e9adf5acd83849520372e368f3
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+    - subject: 'patch: Update dependency @balena/jellyfish-client-sdk to ^5.3.3'
+      hash: b54fe823cb0ffbb52946f55cac464bbd24ae4345
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 10.0.11
+  date: 2021-07-14T08:54:50.788Z
+- commits:
     - subject: 'patch: Update dependency @balena/jellyfish-types to ^0.8.10'
       hash: 7fa5296b19be76ca50954eb715be392b7dd0a177
       body: ''
