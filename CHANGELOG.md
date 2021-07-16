@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 10.0.12 - 2021-07-16
+
+* Update to rendition v21.4.0 [Graham McCulloch]
+* patch: Update dependency @balena/jellyfish-client-sdk to ^5.3.4 [Renovate Bot]
+
 ## 10.0.11 - 2021-07-14
 
 * Fix jest config [Graham McCulloch]
