@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 10.0.13 - 2021-07-17
+
+* patch: Update external-non-major [Renovate Bot]
+
 ## 10.0.12 - 2021-07-16
 
 * Update to rendition v21.4.0 [Graham McCulloch]
