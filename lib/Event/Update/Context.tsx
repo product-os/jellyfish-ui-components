@@ -8,15 +8,30 @@ import React from 'react';
 import _ from 'lodash';
 import { circularDeepEqual } from 'fast-equals';
 import { Flex, Txt } from 'rendition';
+import { Markdown } from 'rendition/dist/extra/Markdown';
+import { linkComponentOverride } from '../../Link';
 import Icon from '../../shame/Icon';
 import Space from '../../shame/Space';
 import * as helpers from '../../services/helpers';
 import ActorMessage from '../ActorMessage';
 
+const componentOverrides = {
+	// eslint-disable-next-line id-length
+	a: linkComponentOverride({}),
+};
+
 const UpdateMessage = ({ actor, updateReason, formattedCreatedAt }: any) => {
 	if (updateReason) {
 		const updateMessage = `${updateReason} ${formattedCreatedAt}`;
-		return <Txt ml={2}>{updateMessage}</Txt>;
+		return (
+			<Markdown
+				/*@ts-ignore*/
+				componentOverrides={componentOverrides}
+				ml={2}
+			>
+				{updateMessage}
+			</Markdown>
+		);
 	}
 	return (
 		<Txt ml={2}>

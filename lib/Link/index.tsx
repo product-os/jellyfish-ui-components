@@ -42,7 +42,7 @@ export const JellyfishLink: React.FunctionComponent<JellyfishLinkProps> = ({
 export const linkComponentOverride = ({
 	blacklist,
 }: {
-	blacklist: Array<string | RegExp>;
+	blacklist?: Array<string | RegExp>;
 }) => {
 	return ({ href, ...rest }: React.PropsWithChildren<JellyfishLinkProps>) => {
 		if (
