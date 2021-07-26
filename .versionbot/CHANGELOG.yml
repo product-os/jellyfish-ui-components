@@ -1,4 +1,17 @@
 - commits:
+    - subject: Use markdown for rendering an update message.
+      hash: 97352849d7ee5aeee47cde384602ba4d650691a9
+      body: ''
+      footer:
+        Change-type: minor
+        change-type: minor
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+  version: 10.1.0
+  date: 2021-07-26T03:56:23.711Z
+- commits:
     - subject: 'patch: Update internal-patch'
       hash: a48635c2141e7859afefd7d52377523972be7c3b
       body: ''

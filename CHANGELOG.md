@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 10.1.0 - 2021-07-26
+
+* Use markdown for rendering an update message. [Graham McCulloch]
+
 ## 10.0.14 - 2021-07-17
 
 * patch: Update internal-patch [Renovate Bot]
