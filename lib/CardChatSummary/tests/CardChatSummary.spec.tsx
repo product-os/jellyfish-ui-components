@@ -15,6 +15,7 @@ import card from './fixtures/card.json';
 import inlineImageMsg from './fixtures/msg-inline-image.json';
 import user1 from './fixtures/user-1.json';
 import user2 from './fixtures/user-2.json';
+import { helpers } from '../../services';
 
 const sandbox = sinon.createSandbox();
 
@@ -67,6 +68,36 @@ test('It should render', () => {
 	expect(() => {
 		shallow(<CardChatSummary {...commonProps} />);
 	}).not.toThrow();
+});
+
+test('It should use the lastMessage field on the card, if set', async () => {
+	const { commonProps } = context;
+
+	const lastMessage = _.findLast(commonProps.timeline, (event) => {
+		const typeBase = helpers.getTypeBase(event.type);
+		return typeBase === 'message' || typeBase === 'whisper';
+	});
+
+	const cardWithLastMessage = _.merge({}, commonProps.card, {
+		data: {
+			lastMessage,
+		},
+	});
+
+	const props = {
+		..._.omit(commonProps, 'card', 'timeline'),
+		card: cardWithLastMessage,
+	};
+
+	const component = await mount(<CardChatSummary {...props} />, {
+		wrappingComponent,
+	});
+
+	const messageSummary = component.find(
+		'div[data-test="card-chat-summary__message"]',
+	);
+	const messageSummaryText = messageSummary.text();
+	expect(messageSummaryText.trim()).toBe(lastMessage.data.payload.message);
 });
 
 test('It should change the actor after an update', async () => {
