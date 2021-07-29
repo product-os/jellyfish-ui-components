@@ -1,4 +1,27 @@
 - commits:
+    - subject: Fix test fixture
+      hash: 6cdbcf90284a214877b59d39c7c2c67cfd59ca25
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+    - subject: Do not surface empty updates on the timeline
+      hash: 9a2bfb57b9d02f678fd0799f5fd42b6b4aa39680
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+  version: 10.1.1
+  date: 2021-07-29T01:13:44.359Z
+- commits:
     - subject: Use markdown for rendering an update message.
       hash: 97352849d7ee5aeee47cde384602ba4d650691a9
       body: ''

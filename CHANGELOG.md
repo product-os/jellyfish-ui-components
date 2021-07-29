@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 10.1.1 - 2021-07-29
+
+* Fix test fixture [Graham McCulloch]
+* Do not surface empty updates on the timeline [Graham McCulloch]
+
 ## 10.1.0 - 2021-07-26
 
 * Use markdown for rendering an update message. [Graham McCulloch]
