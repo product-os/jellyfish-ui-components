@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 10.1.2 - 2021-07-29
+
+* patch: Update dependency @balena/jellyfish-config to ^1.4.6 [Renovate Bot]
+
 ## 10.1.1 - 2021-07-29
 
 * Fix test fixture [Graham McCulloch]
