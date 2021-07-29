@@ -38,7 +38,12 @@ export default class EventsList extends React.Component<any> {
 
 				const pureType = getTypeBase(event.type);
 
-				if (messagesOnly && !isTimelineEvent(pureType) && !event.name) {
+				const isSurfacedUpdate =
+					event.type === 'update@1.0.0' &&
+					event.name &&
+					event.data.payload.length > 0;
+
+				if (messagesOnly && !isTimelineEvent(pureType) && !isSurfacedUpdate) {
 					return null;
 				}
 
