@@ -62,10 +62,12 @@ const createTestContext = (_test: any, sandbox: any) => {
 		type: 'update@1.0.0',
 		created_at: timestamp,
 		data: {
-			payload: {
-				op: 'add',
-				path: 'fake-path',
-			},
+			payload: [
+				{
+					op: 'add',
+					path: 'fake-path',
+				},
+			],
 		},
 	};
 
