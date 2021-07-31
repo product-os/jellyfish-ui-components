@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 10.1.6 - 2021-07-31
+
+* patch: Update external-non-major [Renovate Bot]
+
 ## 10.1.5 - 2021-07-30
 
 * patch: Update dependency @balena/jellycheck to ^0.1.3 [Renovate Bot]
