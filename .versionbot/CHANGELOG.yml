@@ -1,4 +1,21 @@
 - commits:
+    - subject: 'CardChatSummary: Add support for last message field in contract'
+      hash: 9eb3ca5371dc467f8de82d7e23e20bd4f775ba34
+      body: >
+        If the lastMessage field is populated, use that for the latest message
+        card. Otherwise fall back to using the provided timeline. In due course
+        the lastMessage field should always be populated and we can remove
+        support for the timeline prop.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Graham McCulloch <graham@balena.io>
+        signed-off-by: Graham McCulloch <graham@balena.io>
+      author: Graham McCulloch
+      nested: []
+  version: 10.1.8
+  date: 2021-08-02T09:53:44.029Z
+- commits:
     - subject: 'patch: Update dependency @balena/jellyfish-config to ^1.4.8'
       hash: cfee901f8231d6971dd5fb9c859ed5a918185e92
       body: ''

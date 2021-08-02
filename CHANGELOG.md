@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 10.1.8 - 2021-08-02
+
+* CardChatSummary: Add support for last message field in contract [Graham McCulloch]
+
 ## 10.1.7 - 2021-08-01
 
 * patch: Update dependency @balena/jellyfish-config to ^1.4.8 [Renovate Bot]
