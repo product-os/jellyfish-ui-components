@@ -112,19 +112,21 @@ export class CardChatSummary extends React.Component<any, any> {
 
 		const { actor } = this.state;
 
-		const latestMessageCard = _.findLast(timeline, (event) => {
-			const typeBase = event.type.split('@')[0];
-			return typeBase === 'message' || typeBase === 'whisper';
-		});
+		const lastMessage = _.get(card, ['data', 'lastMessage']);
+
+		const latestMessageCard =
+			lastMessage && !_.isEmpty(lastMessage)
+				? lastMessage
+				: _.findLast(timeline, (event) => {
+						const typeBase = helpers.getTypeBase(event.type);
+						return typeBase === 'message' || typeBase === 'whisper';
+				  });
 
 		const createdTime = _.get(helpers.getCreateCard(card), [
 			'data',
 			'timestamp',
 		]);
-		const updatedTime = _.get(helpers.getLastUpdate(card), [
-			'data',
-			'timestamp',
-		]);
+		const updatedTime = _.get(latestMessageCard, ['data', 'timestamp']);
 
 		const threadOwner = _.get(card.links, ['is owned by', 0]);
 
