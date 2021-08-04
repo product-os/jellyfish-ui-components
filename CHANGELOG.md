@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 10.1.10 - 2021-08-04
+
+* use balena convention for npm script names [Martin Rauscher]
+
 ## 10.1.9 - 2021-08-04
 
 * Use v4 of socket.io client [Josh Bowling]
