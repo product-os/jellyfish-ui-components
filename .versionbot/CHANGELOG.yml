@@ -1,4 +1,17 @@
 - commits:
+    - subject: Use v4 of socket.io client
+      hash: 25d23cdb219a87aaaa7a2143fc47880c16fd180a
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Josh Bowling <josh@balena.io>
+        signed-off-by: Josh Bowling <josh@balena.io>
+      author: Josh Bowling
+      nested: []
+  version: 10.1.9
+  date: 2021-08-04T00:39:13.671Z
+- commits:
     - subject: 'CardChatSummary: Add support for last message field in contract'
       hash: 9eb3ca5371dc467f8de82d7e23e20bd4f775ba34
       body: >
