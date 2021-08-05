@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 10.1.11 - 2021-08-05
+
+* patch: Update internal-patch [Renovate Bot]
+
 ## 10.1.10 - 2021-08-04
 
 * use balena convention for npm script names [Martin Rauscher]
