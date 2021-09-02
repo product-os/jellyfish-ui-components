@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 10.1.13 - 2021-09-02
+
+* Fix compilation error due to caught error being of unknown type [Lucian Buzzo]
+* Switch to using slugs for permalinks instead of id [Lucian Buzzo]
+
 ## 10.1.12 - 2021-08-05
 
 * patch: Update dependency @balena/jellyfish-client-sdk to ^5.5.0 [Renovate Bot]
