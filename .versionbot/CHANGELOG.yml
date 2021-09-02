@@ -1,4 +1,15 @@
 - commits:
+    - subject: 'patch: Update dependency @balena/jellyfish-client-sdk to ^5.5.2'
+      hash: c0d9facd057c86be4d23d428bc99621ffa9eea6a
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 10.1.14
+  date: 2021-09-02T11:40:45.475Z
+- commits:
     - subject: Fix compilation error due to caught error being of unknown type
       hash: fa0c9e42caf899589860b5def4310b51e7a4cce6
       body: ''
