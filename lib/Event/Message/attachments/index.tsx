@@ -59,7 +59,7 @@ export default class Attachments extends React.Component<any> {
 
 		try {
 			downloadFile(sdk, card.id, attachment);
-		} catch (error) {
+		} catch (error: any) {
 			addNotification('danger', error.message || error);
 		}
 	}
