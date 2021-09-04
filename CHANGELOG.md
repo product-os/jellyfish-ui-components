@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 10.1.16 - 2021-09-04
+
+* patch: Update external-non-major [Renovate Bot]
+
 ## 10.1.15 - 2021-09-02
 
 * patch: Update dependency @balena/jellyfish-types to ^0.9.9 [Renovate Bot]
