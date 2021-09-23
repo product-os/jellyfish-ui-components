@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 11.0.0 - 2021-09-23
+
+* Simplify timeline pagination [Lucian Buzzo]
+
 ## 10.1.19 - 2021-09-23
 
 * Improve Timeline and InfiniteList types [Lucian Buzzo]

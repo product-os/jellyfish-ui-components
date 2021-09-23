@@ -1,4 +1,18 @@
 - commits:
+    - subject: Simplify timeline pagination
+      hash: 86766186528d2a68921f13375bae27af97d9c781
+      body: |
+        The HOC should be in control of paginating data, not the timeline
+      footer:
+        Change-type: major
+        change-type: major
+        Signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+        signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+      author: Lucian Buzzo
+      nested: []
+  version: 11.0.0
+  date: 2021-09-23T14:12:23.619Z
+- commits:
     - subject: Improve Timeline and InfiniteList types
       hash: 17a6973615b8149b99626de44f30648722e7fa34
       body: |
