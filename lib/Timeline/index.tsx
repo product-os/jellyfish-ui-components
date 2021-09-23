@@ -61,11 +61,7 @@ interface TimelineProps extends Setup {
 	getActorHref: (actor: any) => string;
 	groups: { [k: string]: any };
 	headerOptions: any;
-	loadMoreChannelData: (options: {
-		target: string;
-		query: any;
-		queryOptions: any;
-	}) => Promise<Contract[]>;
+	next: () => Promise<Contract[]>;
 	notifications: any;
 	setTimelineMessage: (id: string, message: string) => void;
 	signalTyping: (id: string) => void;
@@ -93,7 +89,6 @@ class Timeline extends React.Component<TimelineProps, any> {
 			pendingMessages: [],
 			showNewCardModal: false,
 			uploadingFiles: [],
-			eventSkip: PAGE_SIZE,
 			reachedBeginningOfTimeline: this.props.tail.length < PAGE_SIZE,
 			loadingMoreEvents: false,
 			ready: false,
@@ -112,7 +107,6 @@ class Timeline extends React.Component<TimelineProps, any> {
 		this.handleEventToggle = this.handleEventToggle.bind(this);
 		this.handleJumpToTop = this.handleJumpToTop.bind(this);
 		this.handleWhisperToggle = this.handleWhisperToggle.bind(this);
-		this.loadMoreEvents = this.loadMoreEvents.bind(this);
 		this.isAtBottomOfTimeline = this.isAtBottomOfTimeline.bind(this);
 
 		this.signalTyping = _.throttle(() => {
@@ -223,28 +217,23 @@ class Timeline extends React.Component<TimelineProps, any> {
 	}
 
 	handleScrollBeginning() {
-		return new Promise<void>((resolve) => {
-			const { eventSkip } = this.state;
-			this.setState(
-				{
-					loadingMoreEvents: true,
-				},
-				() => {
-					return this.loadMoreEvents({
-						limit: PAGE_SIZE,
-						skip: eventSkip,
-					}).then((newEvents: any[]) => {
-						const receivedNewEvents = newEvents.length > 0;
-						this.setState({
-							eventSkip: receivedNewEvents ? eventSkip + PAGE_SIZE : eventSkip,
-							loadingMoreEvents: false,
-							reachedBeginningOfTimeline: !receivedNewEvents,
-						});
-						resolve();
+		if (this.state.loadingMoreEvents) {
+			return;
+		}
+		this.setState(
+			{
+				loadingMoreEvents: true,
+			},
+			() => {
+				return this.props.next().then((newEvents: any[]) => {
+					const receivedNewEvents = newEvents.length > 0;
+					this.setState({
+						loadingMoreEvents: false,
+						reachedBeginningOfTimeline: !receivedNewEvents,
 					});
-				},
-			);
-		});
+				});
+			},
+		);
 	}
 
 	handleJumpToTop() {
@@ -258,7 +247,7 @@ class Timeline extends React.Component<TimelineProps, any> {
 	}
 
 	retrieveFullTimeline(callback: any) {
-		return this.loadMoreEvents().then(() => {
+		return this.props.next().then(() => {
 			this.setState(
 				{
 					reachedBeginningOfTimeline: true,
@@ -407,37 +396,6 @@ class Timeline extends React.Component<TimelineProps, any> {
 		}
 	}
 
-	loadMoreEvents(options = {}) {
-		const { card, loadMoreChannelData } = this.props;
-		return loadMoreChannelData({
-			target: card.slug,
-			query: {
-				type: 'object',
-				properties: {
-					id: {
-						const: card.id,
-					},
-				},
-				$$links: {
-					'has attached element': {
-						type: 'object',
-					},
-				},
-			},
-			queryOptions: {
-				links: {
-					'has attached element': {
-						sortBy: 'created_at',
-						sortDir: 'desc',
-						...options,
-					},
-				},
-			},
-		}).then(([newCard]: any[]) => {
-			return _.get(newCard, ['links', 'has attached element'], []);
-		});
-	}
-
 	render() {
 		const {
 			user,
@@ -514,11 +472,9 @@ class Timeline extends React.Component<TimelineProps, any> {
 						</Box>
 					)}
 					<InfiniteList
-						fillMaxArea
 						onScrollBeginning={
 							!reachedBeginningOfTimeline && ready && this.handleScrollBeginning
 						}
-						processing={loadingMoreEvents}
 					>
 						<div ref={this.timelineStart} />
 						{reachedBeginningOfTimeline && <TimelineStart />}
