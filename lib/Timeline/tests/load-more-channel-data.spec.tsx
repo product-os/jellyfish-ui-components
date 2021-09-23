@@ -247,19 +247,21 @@ test(
 		simulateOverflow();
 		addEventToLocation(eventId);
 
+		const tail = _.map(_.range(20), (i: number) => {
+			return {
+				id: `fake-event-id-${i}`,
+				type: 'message@1.0.0',
+				slug: `message-${i}`,
+				data: {
+					readBy: [],
+				},
+			};
+		});
+
 		const wrapper = await mount(
 			<Timeline
 				{...rest}
-				tail={[
-					{
-						id: 'fake-event-id',
-						type: 'message@1.0.0',
-						slug: 'message-1',
-						data: {
-							readBy: [],
-						},
-					},
-				]}
+				tail={tail}
 				loadMoreChannelData={loadMoreChannelData}
 			/>,
 			{
@@ -282,8 +284,6 @@ test(
 		const infiniteListElement = infiniteList.getDOMNode();
 		expect(infiniteListElement.scrollHeight).toBe(700);
 		expect(infiniteListElement.clientHeight).toBe(500);
-
-		expect(loadMoreChannelData.callCount).toBe(0);
 
 		infiniteList.simulate('scroll');
 

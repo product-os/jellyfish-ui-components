@@ -13,7 +13,15 @@ const ScrollArea = styled(Box)`
 	height: 100%;
 `;
 
-export class InfiniteList extends React.Component<any> {
+interface InfiniteListProps {
+	fillMaxArea: boolean;
+	onScrollBeginning?: () => void;
+	onScrollEnding?: () => void;
+	processing?: boolean;
+	triggerOffset?: number;
+}
+
+export class InfiniteList extends React.Component<InfiniteListProps> {
 	scrollArea: any;
 
 	constructor(props: any, context: any) {
@@ -65,8 +73,13 @@ export class InfiniteList extends React.Component<any> {
 	}
 
 	handleScroll() {
-		const { processing, onScrollBeginning, onScrollEnding, triggerOffset } =
-			this.props;
+		const {
+			processing,
+			onScrollBeginning,
+			onScrollEnding,
+			triggerOffset = 200,
+		} = this.props;
+
 		if (processing) {
 			return;
 		}
@@ -104,7 +117,3 @@ export class InfiniteList extends React.Component<any> {
 		);
 	}
 }
-
-(InfiniteList as any).defaultProps = {
-	triggerOffset: 200,
-};

@@ -14,7 +14,7 @@ import type { core } from '@balena/jellyfish-types';
 import * as helpers from '../services/helpers';
 import Column from '../shame/Column';
 import MessageInput, { messageSymbolRE } from './MessageInput';
-import { withSetup } from '../SetupProvider';
+import { withSetup, Setup } from '../SetupProvider';
 import Header from './Header';
 import Loading from './Loading';
 import TimelineStart from './TimelineStart';
@@ -25,6 +25,11 @@ import { addNotification } from '../services/notifications';
 import { UPDATE, CREATE } from '../constants';
 import EventsContainer from '../EventsContainer';
 import { InfiniteList } from '../InfiniteList';
+import {
+	Contract,
+	TypeContract,
+	UserContract,
+} from '@balena/jellyfish-types/build/core';
 
 const PAGE_SIZE = 20;
 
@@ -47,7 +52,32 @@ const getFreshPendingMessages = (tail: any[], pendingMessages: any[]) => {
 	});
 };
 
-class Timeline extends React.Component<any, any> {
+interface TimelineProps extends Setup {
+	allowWhispers: boolean;
+	card: Contract;
+	enableAutocomplete?: boolean;
+	eventMenuOptions: any;
+	getActor: (idOrSlug: string) => Promise<any>;
+	getActorHref: (actor: any) => string;
+	groups: { [k: string]: any };
+	headerOptions: any;
+	loadMoreChannelData: (options: {
+		target: string;
+		query: any;
+		queryOptions: any;
+	}) => Promise<Contract[]>;
+	notifications: any;
+	setTimelineMessage: (id: string, message: string) => void;
+	signalTyping: (id: string) => void;
+	tail: Contract[];
+	timelineMessage: string;
+	types: TypeContract[];
+	user: UserContract;
+	usersTyping: any;
+	wide: boolean;
+}
+
+class Timeline extends React.Component<TimelineProps, any> {
 	timelineStart: any;
 	timelineEnd: any;
 	retrieveFullTimelime: any;
@@ -64,7 +94,7 @@ class Timeline extends React.Component<any, any> {
 			showNewCardModal: false,
 			uploadingFiles: [],
 			eventSkip: PAGE_SIZE,
-			reachedBeginningOfTimeline: this.props.tail < PAGE_SIZE,
+			reachedBeginningOfTimeline: this.props.tail.length < PAGE_SIZE,
 			loadingMoreEvents: false,
 			ready: false,
 		};
@@ -535,4 +565,4 @@ class Timeline extends React.Component<any, any> {
 	}
 }
 
-export default withSetup(Timeline);
+export default withSetup<TimelineProps>(Timeline);

@@ -51,14 +51,26 @@ test(
 
 test('Events are ordered by either timestamp or created_at date', async () => {
 	const {
-		eventProps: { tail, ...props },
+		eventProps: { ...props },
 	} = context;
 
 	const date = new Date(timestamp);
 	const oldTimestamp = date.getTime() - 1;
 
+	const tail = _.map(_.range(19), (i: number) => {
+		return {
+			id: `fake-event-id-${i}`,
+			type: 'message@1.0.0',
+			slug: `message-${i}`,
+			data: {
+				readBy: [],
+			},
+		};
+	});
+
 	const link = {
 		id: 'fake-link-id',
+		slug: 'fake-link-slug',
 		type: 'link@1.0.0',
 		created_at: new Date(oldTimestamp).toISOString(),
 		data: {
@@ -89,6 +101,7 @@ test('Events are ordered by either timestamp or created_at date', async () => {
 
 	const events = wrapper.find('div[data-test]');
 	const firstEvent = events.get(1).props;
+	console.log(firstEvent['data-test']);
 	expect(firstEvent['data-test']).toBe(link.id);
 });
 
