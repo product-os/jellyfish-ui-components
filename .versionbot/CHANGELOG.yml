@@ -1,4 +1,20 @@
 - commits:
+    - subject: Improve Timeline and InfiniteList types
+      hash: 17a6973615b8149b99626de44f30648722e7fa34
+      body: |
+        This change also fixes a bug when setting the state for the
+        timeline, where the tail length was not checked correctly when setting
+        the initial value of `reachedBeginningOfTimeline`.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+        signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+      author: Lucian Buzzo
+      nested: []
+  version: 10.1.19
+  date: 2021-09-23T07:56:01.723Z
+- commits:
     - subject: 'patch: Update dependency @balena/jellyfish-client-sdk to v6'
       hash: d1f158112639f3066d02a60de803aa9519613929
       body: |

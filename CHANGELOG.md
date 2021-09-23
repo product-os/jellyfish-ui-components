@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 10.1.19 - 2021-09-23
+
+* Improve Timeline and InfiniteList types [Lucian Buzzo]
+
 ## 10.1.18 - 2021-09-09
 
 * patch: Update dependency @balena/jellyfish-client-sdk to v6 [Renovate Bot]
