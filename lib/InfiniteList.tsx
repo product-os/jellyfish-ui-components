@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import { Box } from 'rendition';
+import { Box, BoxProps } from 'rendition';
 import styled from 'styled-components';
 
 const ScrollArea = styled(Box)`
@@ -13,7 +13,7 @@ const ScrollArea = styled(Box)`
 	height: 100%;
 `;
 
-interface InfiniteListProps {
+interface InfiniteListProps extends BoxProps {
 	fillMaxArea: boolean;
 	onScrollBeginning?: () => void;
 	onScrollEnding?: () => void;
