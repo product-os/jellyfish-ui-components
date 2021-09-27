@@ -58,7 +58,7 @@ interface TimelineProps extends Setup {
 	enableAutocomplete?: boolean;
 	eventMenuOptions: any;
 	getActor: (idOrSlug: string) => Promise<any>;
-	getActorHref: (actor: any) => string;
+	getActorHref?: (actor: any) => string;
 	groups: { [k: string]: any };
 	headerOptions: any;
 	next: () => Promise<Contract[]>;
@@ -66,7 +66,7 @@ interface TimelineProps extends Setup {
 	setTimelineMessage: (id: string, message: string) => void;
 	signalTyping: (id: string) => void;
 	tail: Contract[];
-	timelineMessage: string;
+	timelineMessage?: string;
 	types: TypeContract[];
 	user: UserContract;
 	usersTyping: any;

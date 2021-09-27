@@ -89,7 +89,7 @@ interface MessageInputProps extends Omit<BoxProps, 'onChange' | 'onSubmit'> {
 	onSubmit?: (message: string, isWhisper: boolean) => unknown;
 	allowWhispers?: boolean;
 	sendCommand: string;
-	value: string;
+	value?: string;
 	files?: File[];
 	onFileChange: (files: File[], isWhisper: boolean) => unknown;
 	signalTyping?: () => unknown;
@@ -104,7 +104,7 @@ interface MessageInputProps extends Omit<BoxProps, 'onChange' | 'onSubmit'> {
 const MessageInput: React.FunctionComponent<MessageInputProps> = ({
 	allowWhispers,
 	sendCommand,
-	value,
+	value = '',
 	onChange,
 	onSubmit,
 	files = [],
