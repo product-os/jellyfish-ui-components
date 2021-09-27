@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 11.0.4 - 2021-09-27
+
+* Improve timeline property typings [Lucian Buzzo]
+
 ## 11.0.3 - 2021-09-26
 
 * patch: Update dependency @balena/jellyfish-types to ^1.2.2 [Renovate Bot]

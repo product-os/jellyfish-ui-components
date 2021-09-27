@@ -1,4 +1,17 @@
 - commits:
+    - subject: Improve timeline property typings
+      hash: fc99bbdaeb456064ed59b8194dd6f02e54c7c4a4
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+        signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+      author: Lucian Buzzo
+      nested: []
+  version: 11.0.4
+  date: 2021-09-27T13:18:54.954Z
+- commits:
     - subject: 'patch: Update dependency @balena/jellyfish-types to ^1.2.2'
       hash: 8fe53c5d675561e2d60a931d44538050e70fc3c9
       body: ''
