@@ -1,4 +1,15 @@
 - commits:
+    - subject: 'patch: Update external-non-major'
+      hash: 001ad30648141bf148cda054be195aa741c84e0e
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 11.0.5
+  date: 2021-10-02T00:47:22.451Z
+- commits:
     - subject: Improve timeline property typings
       hash: fc99bbdaeb456064ed59b8194dd6f02e54c7c4a4
       body: ''

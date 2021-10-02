@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 11.0.5 - 2021-10-02
+
+* patch: Update external-non-major [Renovate Bot]
+
 ## 11.0.4 - 2021-09-27
 
 * Improve timeline property typings [Lucian Buzzo]
