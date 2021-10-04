@@ -611,7 +611,7 @@ export const createFullTextSearchFilter = (
 		fullTextSearchFieldsOnly?: boolean;
 		includeIdAndSlug?: boolean;
 	} = {},
-) => {
+): JSONSchema | null => {
 	let hasFullTextSearchField = false;
 	const flatSchema = SchemaSieve.flattenSchema(schema);
 	let stringKeys = _.reduce(
