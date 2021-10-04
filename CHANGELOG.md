@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 12.0.0 - 2021-10-04
+
+* Make rendition a peer dependency [Lucian Buzzo]
+
 ## 11.0.6 - 2021-10-04
 
 * patch: Update dependency @balena/jellyfish-config to ^1.5.4 [Renovate Bot]

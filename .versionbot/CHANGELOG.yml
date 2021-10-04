@@ -1,4 +1,19 @@
 - commits:
+    - subject: Make rendition a peer dependency
+      hash: b220e7aadce54ed121ea592accbe69a5d0d9906e
+      body: |
+        This reduces the risk of obscure bgs happening due to msmatched
+        rendition versions, especially in theme providers.
+      footer:
+        Change-type: major
+        change-type: major
+        Signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+        signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+      author: Lucian Buzzo
+      nested: []
+  version: 12.0.0
+  date: 2021-10-04T12:02:02.285Z
+- commits:
     - subject: 'patch: Update dependency @balena/jellyfish-config to ^1.5.4'
       hash: 396eb6eb3963427bb16e63197024aea945cc2185
       body: |
