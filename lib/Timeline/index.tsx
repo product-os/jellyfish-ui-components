@@ -8,7 +8,6 @@ import * as Bluebird from 'bluebird';
 import _ from 'lodash';
 import React from 'react';
 import queryString from 'query-string';
-import { Box } from 'rendition';
 import { v4 as uuid } from 'uuid';
 import type { core } from '@balena/jellyfish-types';
 import * as helpers from '../services/helpers';
@@ -16,15 +15,10 @@ import Column from '../shame/Column';
 import MessageInput, { messageSymbolRE } from './MessageInput';
 import { withSetup, Setup } from '../SetupProvider';
 import Header from './Header';
-import Loading from './Loading';
-import TimelineStart from './TimelineStart';
 import EventsList from './EventsList';
-import PendingMessages from './PendingMessages';
 import TypingNotice from './TypingNotice';
 import { addNotification } from '../services/notifications';
 import { UPDATE, CREATE } from '../constants';
-import EventsContainer from '../EventsContainer';
-import { InfiniteList } from '../InfiniteList';
 import {
 	Contract,
 	TypeContract,
@@ -74,8 +68,7 @@ interface TimelineProps extends Setup {
 }
 
 class Timeline extends React.Component<TimelineProps, any> {
-	timelineStart: any;
-	timelineEnd: any;
+	eventListRef: any;
 	retrieveFullTimelime: any;
 	signalTyping: any;
 	preserveMessage: any;
@@ -94,10 +87,7 @@ class Timeline extends React.Component<TimelineProps, any> {
 			ready: false,
 		};
 
-		this.timelineStart = React.createRef();
-		this.timelineEnd = React.createRef();
-		this.scrollToTop = this.scrollToTop.bind(this);
-		this.scrollToBottom = this.scrollToBottom.bind(this);
+		this.eventListRef = React.createRef();
 		this.scrollToEvent = this.scrollToEvent.bind(this);
 		this.handleScrollBeginning = this.handleScrollBeginning.bind(this);
 		this.retrieveFullTimelime = this.retrieveFullTimeline.bind(this);
@@ -107,7 +97,6 @@ class Timeline extends React.Component<TimelineProps, any> {
 		this.handleEventToggle = this.handleEventToggle.bind(this);
 		this.handleJumpToTop = this.handleJumpToTop.bind(this);
 		this.handleWhisperToggle = this.handleWhisperToggle.bind(this);
-		this.isAtBottomOfTimeline = this.isAtBottomOfTimeline.bind(this);
 
 		this.signalTyping = _.throttle(() => {
 			this.props.signalTyping(this.props.card.id);
@@ -127,7 +116,7 @@ class Timeline extends React.Component<TimelineProps, any> {
 		if (event) {
 			this.scrollToEvent(event);
 		} else {
-			this.scrollToBottom();
+			this.eventListRef.current.scrollToBottom();
 		}
 
 		// Timeout to ensure scroll has finished
@@ -144,7 +133,8 @@ class Timeline extends React.Component<TimelineProps, any> {
 			_.get(this.props, ['tail', 'length'], 0) >
 			_.get(prevProps, ['tail', 'length'], 0)
 		) {
-			snapshot.wasAtBottomOfTimeline = this.isAtBottomOfTimeline();
+			snapshot.wasAtBottomOfTimeline =
+				this.eventListRef.current.isScrolledToBottom();
 		}
 		return snapshot;
 	}
@@ -164,32 +154,11 @@ class Timeline extends React.Component<TimelineProps, any> {
 				},
 				() => {
 					if (snapshot.wasAtBottomOfTimeline) {
-						this.scrollToBottom();
+						this.eventListRef.current.scrollToBottom();
 					}
 				},
 			);
 		}
-	}
-
-	isAtBottomOfTimeline() {
-		if (this.timelineEnd.current) {
-			try {
-				const timelineEndRect =
-					this.timelineEnd.current.getBoundingClientRect();
-				const timelineRect =
-					this.timelineEnd.current.parentElement.getBoundingClientRect();
-
-				// We consider it to be at the bottom if we're within 30 pixels of the bottom
-				return _.inRange(
-					timelineEndRect.bottom,
-					timelineRect.bottom - 1,
-					timelineRect.bottom + 30,
-				);
-			} catch (error) {
-				return true;
-			}
-		}
-		return true;
 	}
 
 	scrollToEvent(eventId: any) {
@@ -217,9 +186,10 @@ class Timeline extends React.Component<TimelineProps, any> {
 	}
 
 	handleScrollBeginning() {
-		if (this.state.loadingMoreEvents) {
+		if (this.state.reachedBeginningOfTimeline) {
 			return;
 		}
+
 		this.setState(
 			{
 				loadingMoreEvents: true,
@@ -237,11 +207,15 @@ class Timeline extends React.Component<TimelineProps, any> {
 	}
 
 	handleJumpToTop() {
+		const options = {
+			behaviour: 'smooth',
+		};
+
 		if (this.state.reachedBeginningOfTimeline) {
-			this.scrollToTop();
+			this.eventListRef.current.scrollToTop(options);
 		} else {
 			this.retrieveFullTimeline(() => {
-				this.scrollToTop();
+				this.eventListRef.current.scrollToTop(options);
 			});
 		}
 	}
@@ -364,7 +338,7 @@ class Timeline extends React.Component<TimelineProps, any> {
 				}),
 			},
 			() => {
-				this.scrollToBottom();
+				this.eventListRef.current.scrollToBottom();
 			},
 		);
 
@@ -380,20 +354,6 @@ class Timeline extends React.Component<TimelineProps, any> {
 			.catch((error: any) => {
 				addNotification('danger', error.message || error);
 			});
-	}
-
-	scrollToTop() {
-		if (this.timelineStart.current) {
-			this.timelineStart.current.scrollIntoView({
-				behaviour: 'smooth',
-			});
-		}
-	}
-
-	scrollToBottom() {
-		if (this.timelineEnd.current) {
-			this.timelineEnd.current.scrollIntoView();
-		}
 	}
 
 	render() {
@@ -465,37 +425,19 @@ class Timeline extends React.Component<TimelineProps, any> {
 					getActor={getActor}
 				/>
 
-				<EventsContainer>
-					{!sortedEvents && (
-						<Box p={3}>
-							<Loading />
-						</Box>
-					)}
-					<InfiniteList
-						onScrollBeginning={
-							!reachedBeginningOfTimeline && ready && this.handleScrollBeginning
-						}
-					>
-						<div ref={this.timelineStart} />
-						{reachedBeginningOfTimeline && <TimelineStart />}
-						{loadingMoreEvents && <Loading />}
-						<EventsList
-							{...eventProps}
-							user={user}
-							hideWhispers={hideWhispers}
-							sortedEvents={sortedEvents}
-							uploadingFiles={uploadingFiles}
-							messagesOnly={messagesOnly}
-						/>
-						{/* @ts-ignore */}
-						<PendingMessages
-							{...eventProps}
-							pendingMessages={pendingMessages}
-							sortedEvents={sortedEvents}
-						/>
-						<div ref={this.timelineEnd} />
-					</InfiniteList>
-				</EventsContainer>
+				<EventsList
+					{...eventProps}
+					ref={this.eventListRef}
+					user={user}
+					hideWhispers={hideWhispers}
+					sortedEvents={sortedEvents}
+					uploadingFiles={uploadingFiles}
+					messagesOnly={messagesOnly}
+					loading={!ready || loadingMoreEvents}
+					onScrollBeginning={this.handleScrollBeginning}
+					pendingMessages={pendingMessages}
+					reachedBeginningOfTimeline={reachedBeginningOfTimeline}
+				/>
 
 				<TypingNotice usersTyping={usersTyping} />
 
