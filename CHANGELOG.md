@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 12.0.3 - 2021-10-05
+
+* patch: Update internal-patch [Renovate Bot]
+
 ## 12.0.2 - 2021-10-05
 
 * Fix timeline not loading older messages [karaxuna]
