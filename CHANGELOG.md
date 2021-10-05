@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 12.0.2 - 2021-10-05
+
+* Fix timeline not loading older messages [karaxuna]
+
 ## 12.0.1 - 2021-10-05
 
 * 🔄 Synced file(s) with product-os/jellyfish-config [joshbwlng]
