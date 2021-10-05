@@ -83,6 +83,12 @@ const createTestContext = (_test: any, sandbox: any) => {
 
 	const tail = [createEvent, messageEvent, whisperEvent, updateEvent];
 
+	const setTimelineMessage = sandbox.stub();
+	setTimelineMessage.resolves();
+
+	const next = sandbox.stub();
+	next.resolves(Promise.resolve([]));
+
 	const eventProps = {
 		card: {
 			id: 'fake-card-id',
@@ -94,6 +100,8 @@ const createTestContext = (_test: any, sandbox: any) => {
 		getActor,
 		tail,
 		loadMoreChannelData,
+		setTimelineMessage,
+		next,
 	};
 
 	return {
