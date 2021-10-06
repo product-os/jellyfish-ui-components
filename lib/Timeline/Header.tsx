@@ -50,7 +50,7 @@ export default class Header extends React.Component<any> {
 			const typeBase = event.type.split('@')[0];
 			const content = getEventContent(typeBase, event);
 			const actorCard = await getActor(event.data.actor);
-			const actorName = actorCard.name || '';
+			const actorName = actorCard?.name || '';
 			const timestamp = new Date(
 				_.get(event, ['data', 'timestamp']) || event.created_at,
 			);
