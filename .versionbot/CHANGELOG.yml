@@ -1,4 +1,15 @@
 - commits:
+    - subject: Fix scroll to top not loading all events
+      hash: 83ab60b4e7b2e41b74d04fead787ac4f5bedeed3
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: karaxuna
+      nested: []
+  version: 12.0.4
+  date: 2021-10-06T13:23:40.788Z
+- commits:
     - subject: 'patch: Update internal-patch'
       hash: a5b1e23ea4c82e6eb55f90b05081ebeda41918c8
       body: ''

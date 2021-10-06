@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 12.0.4 - 2021-10-06
+
+* Fix scroll to top not loading all events [karaxuna]
+
 ## 12.0.3 - 2021-10-05
 
 * patch: Update internal-patch [Renovate Bot]
