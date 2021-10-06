@@ -161,7 +161,7 @@ class Timeline extends React.Component<TimelineProps, any> {
 		}
 	}
 
-	scrollToEvent(eventId: any) {
+	async scrollToEvent(eventId: any) {
 		const { tail } = this.props;
 		const { reachedBeginningOfTimeline } = this.state;
 		const existing = _.find(tail, {
@@ -179,9 +179,8 @@ class Timeline extends React.Component<TimelineProps, any> {
 				});
 			}
 		} else if (!reachedBeginningOfTimeline) {
-			this.retrieveFullTimeline(() => {
-				this.scrollToEvent(eventId);
-			});
+			await this.retrieveFullTimeline();
+			this.scrollToEvent(eventId);
 		}
 	}
 
@@ -206,7 +205,7 @@ class Timeline extends React.Component<TimelineProps, any> {
 		);
 	}
 
-	handleJumpToTop() {
+	async handleJumpToTop() {
 		const options = {
 			behaviour: 'smooth',
 		};
@@ -214,21 +213,28 @@ class Timeline extends React.Component<TimelineProps, any> {
 		if (this.state.reachedBeginningOfTimeline) {
 			this.eventListRef.current.scrollToTop(options);
 		} else {
-			this.retrieveFullTimeline(() => {
-				this.eventListRef.current.scrollToTop(options);
-			});
+			await this.retrieveFullTimeline();
+			this.eventListRef.current.scrollToTop(options);
 		}
 	}
 
-	retrieveFullTimeline(callback: any) {
-		return this.props.next().then(() => {
-			this.setState(
-				{
-					reachedBeginningOfTimeline: true,
-				},
-				callback,
-			);
-		});
+	async retrieveFullTimeline() {
+		while (true) {
+			const newEvents = await this.props.next();
+
+			if (newEvents.length) {
+				continue;
+			}
+
+			return new Promise<void>((resolve) => {
+				this.setState(
+					{
+						reachedBeginningOfTimeline: true,
+					},
+					resolve,
+				);
+			});
+		}
 	}
 
 	handleEventToggle() {
