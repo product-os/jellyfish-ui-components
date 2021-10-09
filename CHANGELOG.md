@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 12.0.6 - 2021-10-09
+
+* patch: Update external-non-major [Renovate Bot]
+
 ## 12.0.5 - 2021-10-06
 
 * Fix conversation download [karaxuna]
