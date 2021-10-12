@@ -184,7 +184,6 @@ const MessageInput: React.FunctionComponent<MessageInputProps> = ({
 
 	const onInputChange = React.useCallback(
 		(event) => {
-			event.preventDefault();
 			const messageText = event.target.value;
 			setMessage(messageText);
 			if (onChange) {
