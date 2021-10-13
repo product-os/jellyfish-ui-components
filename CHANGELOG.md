@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 12.0.11 - 2021-10-13
+
+* Lock autocomplete textarea version [karaxuna]
+
 ## 12.0.10 - 2021-10-12
 
 * Fix Illegal Invocation error [karaxuna]
