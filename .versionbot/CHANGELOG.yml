@@ -1,4 +1,15 @@
 - commits:
+    - subject: Fix Illegal Invocation error
+      hash: 98547ff819fa06f0385d0bdc1997cd168d25fb78
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: karaxuna
+      nested: []
+  version: 12.0.10
+  date: 2021-10-12T23:38:30.425Z
+- commits:
     - subject: 'patch: Update dependency lint-staged to ^11.2.3'
       hash: 2a9792abe18206be14bfd1c226d16d1866470c3b
       body: ''

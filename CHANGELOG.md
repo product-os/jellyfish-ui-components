@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 12.0.10 - 2021-10-12
+
+* Fix Illegal Invocation error [karaxuna]
+
 ## 12.0.9 - 2021-10-10
 
 * patch: Update dependency lint-staged to ^11.2.3 [Renovate Bot]
