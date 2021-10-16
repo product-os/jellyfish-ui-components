@@ -1,4 +1,15 @@
 - commits:
+    - subject: 'patch: Update external-non-major'
+      hash: 9c0ee54756a322ac971d06bd31f20ae94fae7062
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 12.0.12
+  date: 2021-10-16T01:50:20.876Z
+- commits:
     - subject: Lock autocomplete textarea version
       hash: 463df8c8d228e09a4105bd9da1cdc0a8947497f1
       body: ''

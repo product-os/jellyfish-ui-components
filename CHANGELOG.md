@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 12.0.12 - 2021-10-16
+
+* patch: Update external-non-major [Renovate Bot]
+
 ## 12.0.11 - 2021-10-13
 
 * Lock autocomplete textarea version [karaxuna]
