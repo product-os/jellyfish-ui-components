@@ -1,4 +1,19 @@
 - commits:
+    - subject: Make full text search filters work with oneOf and anyOf
+      hash: 6bbc81bd498abc72c1f5adbea959f259747888b1
+      body: |
+        This change makes full text search filter generation work when the type
+        schema has searchable fields nested inside anyOf and oneOf fields.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+        signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+      author: Lucian Buzzo
+      nested: []
+  version: 12.0.20
+  date: 2021-10-28T09:35:32.777Z
+- commits:
     - subject: 'patch: Update internal-patch'
       hash: 09f9fce17cb13934445f1df471a113afe973196c
       body: ''

@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 12.0.20 - 2021-10-28
+
+* Make full text search filters work with oneOf and anyOf [Lucian Buzzo]
+
 ## 12.0.19 - 2021-10-28
 
 * patch: Update internal-patch [Renovate Bot]
