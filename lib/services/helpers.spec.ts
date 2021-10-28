@@ -393,6 +393,60 @@ test(".createFullTextSearchFilter() works on arrays of strings with the 'fullTex
 	);
 });
 
+test(".createFullTextSearchFilter() works on arrays of strings with the 'fullTextSearch' field set on the array inside oneOf", () => {
+	const searchTerm = 'test';
+	const schema: any = {
+		properties: {
+			folders: {
+				oneOf: [
+					{
+						type: 'array',
+						fullTextSearch: true,
+						items: {
+							type: 'string',
+						},
+					},
+					{
+						type: 'string',
+					},
+				],
+			},
+		},
+	};
+	const filter: any = helpers.createFullTextSearchFilter(schema, searchTerm);
+	expect(filter.anyOf.length).toBeGreaterThan(0);
+	expect(filter.anyOf[0].properties.folders.contains.fullTextSearch.term).toBe(
+		searchTerm,
+	);
+});
+
+test(".createFullTextSearchFilter() works on arrays of strings with the 'fullTextSearch' field set on the array inside anyOf", () => {
+	const searchTerm = 'test';
+	const schema: any = {
+		properties: {
+			folders: {
+				anyOf: [
+					{
+						type: 'array',
+						fullTextSearch: true,
+						items: {
+							type: 'string',
+						},
+					},
+					{
+						type: 'string',
+					},
+				],
+			},
+		},
+	};
+	const filter: any = helpers.createFullTextSearchFilter(schema, searchTerm);
+	expect(filter.anyOf.length).toBeGreaterThan(0);
+	expect(filter.anyOf[0].properties.folders.contains.fullTextSearch.term).toBe(
+		searchTerm,
+	);
+});
+
 test('.createFullTextSearchFilter() works on arrays of strings', () => {
 	const searchTerm = 'test';
 	const schema: any = {
@@ -1583,8 +1637,6 @@ test('getViewSchema merges $$links with the same link verb using an allOf proper
 	};
 
 	const schema = helpers.getViewSchema(view, user1);
-
-	console.log('schema', JSON.stringify(schema, null, 2));
 
 	expect(schema).toEqual({
 		type: 'object',
