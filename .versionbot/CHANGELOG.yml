@@ -1,4 +1,15 @@
 - commits:
+    - subject: 'patch: Update dependency @balena/jellyfish-types to ^1.2.9'
+      hash: 853df8a736af3cb98afeafa3bb4ec3b43732e626
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 12.0.21
+  date: 2021-10-28T11:53:08.195Z
+- commits:
     - subject: Make full text search filters work with oneOf and anyOf
       hash: 6bbc81bd498abc72c1f5adbea959f259747888b1
       body: |
