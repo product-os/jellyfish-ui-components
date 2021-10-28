@@ -554,10 +554,6 @@ const isArrayOfStringsItem = (item: JSONSchema) => {
 	);
 };
 
-const isFullTextSearchableField = (item: JSONSchema) => {
-	return isStringItem(item) || isArrayOfStringsItem(item);
-};
-
 const getItemSearchQuery = (term: string, fullTextSearch: boolean) => {
 	return fullTextSearch
 		? {
@@ -618,16 +614,29 @@ export const createFullTextSearchFilter = (
 		flatSchema.properties,
 		(
 			carry: Array<{ key: keyof JSONSchema; item: JSONSchema }>,
-			item: any,
+			subSchema: any,
 			key: any,
 		) => {
-			if (isFullTextSearchableField(item)) {
-				hasFullTextSearchField =
-					hasFullTextSearchField || Boolean(item.fullTextSearch);
-				carry.push({
-					key,
-					item,
-				});
+			const items: any[] = [];
+			if (subSchema.oneOf || subSchema.anyOf) {
+				for (const value of subSchema.oneOf || subSchema.anyOf) {
+					items.push({
+						type: subSchema.type,
+						...value,
+					});
+				}
+			} else {
+				items.push(subSchema);
+			}
+			for (const item of items) {
+				if (isStringItem(item) || isArrayOfStringsItem(item)) {
+					hasFullTextSearchField =
+						hasFullTextSearchField || Boolean(item.fullTextSearch);
+					carry.push({
+						key,
+						item,
+					});
+				}
 			}
 			return carry;
 		},
