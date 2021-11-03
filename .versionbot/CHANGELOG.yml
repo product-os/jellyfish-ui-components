@@ -1,4 +1,21 @@
 - commits:
+    - subject: Remove redundant `getTypeFromViewCard` helper function
+      hash: 9b2ae7bd5f4b83f9b55aed92441625215279fc7e
+      body: |
+        This function is nearly identical to `getTypesFromViewCard` but only
+        returns a single type and doesn't handle enums very well. Any
+        implementation that uses the removed function should use the pluralized
+        version instead.
+      footer:
+        Change-type: major
+        change-type: major
+        Signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+        signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+      author: Lucian Buzzo
+      nested: []
+  version: 13.0.0
+  date: 2021-11-01T12:19:09.704Z
+- commits:
     - subject: 'patch: Update dependency @balena/jellyfish-client-sdk to v7'
       hash: ef46871fb180cc21e6a22bacab5dc448c29dd870
       body: |

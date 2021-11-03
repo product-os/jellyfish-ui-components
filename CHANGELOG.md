@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 13.0.0 - 2021-11-01
+
+* Remove redundant `getTypeFromViewCard` helper function [Lucian Buzzo]
+
 ## 12.0.25 - 2021-10-31
 
 * patch: Update dependency @balena/jellyfish-client-sdk to v7 [Renovate Bot]
