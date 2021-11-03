@@ -154,53 +154,6 @@ export const getTypesFromViewCard = (card: core.ViewContract) => {
 	return value.length > 0 ? _.uniq(value) : ['card'];
 };
 
-export const getTypeFromViewCard = (card: core.ViewContract) => {
-	// Default to the `card` type, which will give a sensible schema
-	let value = 'card';
-
-	// First check if the view has explicitly declared a type
-	if (!_.isEmpty(card.data.types)) {
-		return _.first(card.data.types);
-	}
-	if (card.data.allOf) {
-		for (const item of card.data.allOf) {
-			let found =
-				_.get(item.schema, ['properties', 'type', 'const']) ||
-				_.get(item.schema, ['properties', 'type', 'enum', 0]);
-			if (found) {
-				value = found;
-				break;
-			}
-			if (item.schema.anyOf) {
-				for (const subschema of item.schema.anyOf) {
-					found =
-						_.get(subschema, ['properties', 'type', 'const']) ||
-						_.get(subschema, ['properties', 'type', 'enum', 0]);
-					if (found) {
-						break;
-					}
-				}
-			}
-			if (found) {
-				value = found;
-				break;
-			}
-		}
-	}
-	if (!value && card.data.oneOf) {
-		for (const item of card.data.oneOf) {
-			const found =
-				_.get(item.schema, ['properties', 'type', 'const']) ||
-				_.get(item.schema, ['properties', 'type', 'enum', 0]);
-			if (found) {
-				value = found;
-				break;
-			}
-		}
-	}
-	return value;
-};
-
 export const formatTimestamp = (stamp: number | string, prefix = false) => {
 	const timestamp = new Date(stamp);
 	const today = isToday(timestamp);
