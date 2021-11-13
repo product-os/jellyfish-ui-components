@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 13.0.7 - 2021-11-13
+
+* patch: Update external-non-major [Renovate Bot]
+
 ## 13.0.6 - 2021-11-11
 
 * patch: Update dependency @balena/jellyfish-types to ^1.2.13 [Renovate Bot]
