@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 13.0.10 - 2021-11-15
+
+* Set license [Josh Bowling]
+
 ## 13.0.9 - 2021-11-14
 
 * patch: Update external-non-major to ^11.6.0 [Renovate Bot]

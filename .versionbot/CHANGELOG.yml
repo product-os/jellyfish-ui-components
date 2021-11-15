@@ -1,4 +1,17 @@
 - commits:
+    - subject: Set license
+      hash: 4251572fce19b0955520bc2cf25512e78ad9a27a
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Josh Bowling <josh@balena.io>
+        signed-off-by: Josh Bowling <josh@balena.io>
+      author: Josh Bowling
+      nested: []
+  version: 13.0.10
+  date: 2021-11-15T04:00:44.625Z
+- commits:
     - subject: 'patch: Update external-non-major to ^11.6.0'
       hash: 40e2153c55564496c31e732f430ba3bf6ba24398
       body: ''
