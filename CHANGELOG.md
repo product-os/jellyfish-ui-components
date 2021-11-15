@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 13.0.11 - 2021-11-15
+
+* patch: Update internal-patch [Renovate Bot]
+
 ## 13.0.10 - 2021-11-15
 
 * Set license [Josh Bowling]
