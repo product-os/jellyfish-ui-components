@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 13.0.13 - 2021-11-16
+
+* 🔄 Synced file(s) with product-os/jellyfish-config [joshbwlng]
+
 ## 13.0.12 - 2021-11-16
 
 * patch: Update internal-patch [Renovate Bot]
