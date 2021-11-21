@@ -1,9 +1,3 @@
-/*
- * Copyright (C) Balena.io - All Rights Reserved
- * Unauthorized copying of this file, via any medium is strictly prohibited.
- * Proprietary and confidential.
- */
-
 import * as formatters from './formatters';
 
 test('.formatCurrency() defaults to USD, no unnecessary decimal places', () => {

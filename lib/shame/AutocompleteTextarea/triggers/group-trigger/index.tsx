@@ -1,9 +1,3 @@
-/*
- * Copyright (C) Balena.io - All Rights Reserved
- * Unauthorized copying of this file, via any medium is strictly prohibited.
- * Proprietary and confidential.
- */
-
 import React from 'react';
 import type { JellyfishSDK } from '@balena/jellyfish-client-sdk';
 import type { SettingType } from '@webscopeio/react-textarea-autocomplete';
