@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 13.0.15 - 2021-11-21
+
+* Remove license headers [Josh Bowling]
+
 ## 13.0.14 - 2021-11-21
 
 * patch: Update dependency @balena/jellycheck to v1 [Renovate Bot]
