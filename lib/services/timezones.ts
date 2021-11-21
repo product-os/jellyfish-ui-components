@@ -1,9 +1,3 @@
-/*
- * Copyright (C) Balena.io - All Rights Reserved
- * Unauthorized copying of this file, via any medium is strictly prohibited.
- * Proprietary and confidential.
- */
-
 // TODO: find a lightweight third-party (maintained) list of
 // these IANA timezone names that we can depend on instead of
 // listing them here.

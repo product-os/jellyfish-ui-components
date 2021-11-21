@@ -1,9 +1,3 @@
-/*
- * Copyright (C) Balena.io - All Rights Reserved
- * Unauthorized copying of this file, via any medium is strictly prohibited.
- * Proprietary and confidential.
- */
-
 import { notifications } from 'rendition';
 // TS-TODO: export `NotificationOptions` from rendition main file
 import { NotificationOptions } from 'rendition/dist/components/Notifications';
