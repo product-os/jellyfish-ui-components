@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 13.0.20 - 2021-11-22
+
+* patch: Update dependency typescript to ^4.5.2 [Renovate Bot]
+
 ## 13.0.19 - 2021-11-22
 
 * Bump external deps [Josh Bowling]
