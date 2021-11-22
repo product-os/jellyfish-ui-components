@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 13.0.19 - 2021-11-22
+
+* Bump external deps [Josh Bowling]
+
 ## 13.0.18 - 2021-11-22
 
 * patch: Update internal-patch [Renovate Bot]
