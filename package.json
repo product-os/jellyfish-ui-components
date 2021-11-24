@@ -85,8 +85,8 @@
   "devDependencies": {
     "@balena/jellycheck": "^1.0.0",
     "@balena/jellyfish-client-sdk": "^7.0.15",
-    "@balena/jellyfish-config": "^1.5.14",
-    "@balena/jellyfish-types": "^1.2.26",
+    "@balena/jellyfish-config": "^1.5.15",
+    "@balena/jellyfish-types": "^1.2.28",
     "@balena/lint": "^6.1.1",
     "@emotion/cache": "^11.6.0",
     "@emotion/react": "^11.6.0",
