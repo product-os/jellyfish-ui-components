@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 13.0.25 - 2021-11-25
+
+* Remove jellycheck [Josh Bowling]
+
 ## 13.0.24 - 2021-11-24
 
 * 🔄 Synced file(s) with product-os/jellyfish-config [joshbwlng]
