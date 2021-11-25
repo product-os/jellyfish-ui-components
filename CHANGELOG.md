@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 13.0.26 - 2021-11-25
+
+* patch: Update internal-patch [Renovate Bot]
+
 ## 13.0.25 - 2021-11-25
 
 * Remove jellycheck [Josh Bowling]
