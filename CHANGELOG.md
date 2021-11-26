@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 13.0.27 - 2021-11-26
+
+* Format files with balena-lint [Josh Bowling]
+* Use product-os/renovate-config [Josh Bowling]
+
 ## 13.0.26 - 2021-11-25
 
 * patch: Update internal-patch [Renovate Bot]

@@ -1,4 +1,27 @@
 - commits:
+    - subject: Format files with balena-lint
+      hash: eafe07f3129422e8cca236a191ae8ee0f122e48f
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Josh Bowling <josh@balena.io>
+        signed-off-by: Josh Bowling <josh@balena.io>
+      author: Josh Bowling
+      nested: []
+    - subject: Use product-os/renovate-config
+      hash: 45d71f01738279786f23d4695b23698331b800b0
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Josh Bowling <josh@balena.io>
+        signed-off-by: Josh Bowling <josh@balena.io>
+      author: Josh Bowling
+      nested: []
+  version: 13.0.27
+  date: 2021-11-26T04:38:50.569Z
+- commits:
     - subject: 'patch: Update internal-patch'
       hash: e6aa63261366b9f07651b5ccfd1030344e2d6808
       body: ''
