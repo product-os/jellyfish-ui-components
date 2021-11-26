@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 13.0.29 - 2021-11-26
+
+* patch: Update dependency @balena/lint to ^6.2.0 [Renovate Bot]
+
 ## 13.0.28 - 2021-11-26
 
 * patch: Update internal-patch [Renovate Bot]
