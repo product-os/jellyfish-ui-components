@@ -52,18 +52,17 @@ export interface FileUploadButtonProps
 	extends Omit<ButtonProps, 'onChange'>,
 		Pick<FileUploaderProps, 'onChange' | 'multiple'> {}
 
-export const FileUploadButton: React.FunctionComponent<FileUploadButtonProps> =
-	({ onChange, ...rest }) => {
-		return (
-			<FileUploader onChange={onChange}>
-				{(startUpload) => {
-					return (
-						<PlainButton onClick={startUpload} fontSize="18px" {...rest} />
-					);
-				}}
-			</FileUploader>
-		);
-	};
+export const FileUploadButton: React.FunctionComponent<
+	FileUploadButtonProps
+> = ({ onChange, ...rest }) => {
+	return (
+		<FileUploader onChange={onChange}>
+			{(startUpload) => {
+				return <PlainButton onClick={startUpload} fontSize="18px" {...rest} />;
+			}}
+		</FileUploader>
+	);
+};
 
 export interface FileTagProps extends TagProps {
 	file: File;
