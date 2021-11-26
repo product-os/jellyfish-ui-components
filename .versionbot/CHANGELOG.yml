@@ -1,4 +1,15 @@
 - commits:
+    - subject: 'patch: Update internal-patch'
+      hash: edabf887c215c178712cbd63992532d881a5499a
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 13.0.28
+  date: 2021-11-26T11:22:16.432Z
+- commits:
     - subject: Format files with balena-lint
       hash: eafe07f3129422e8cca236a191ae8ee0f122e48f
       body: ''
