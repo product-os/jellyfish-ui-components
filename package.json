@@ -85,7 +85,7 @@
     "@balena/jellyfish-client-sdk": "^7.0.19",
     "@balena/jellyfish-config": "^1.5.17",
     "@balena/jellyfish-types": "^1.2.33",
-    "@balena/lint": "^6.1.1",
+    "@balena/lint": "^6.2.0",
     "@emotion/cache": "^11.6.0",
     "@emotion/react": "^11.6.0",
     "@storybook/react": "^6.3.12",
