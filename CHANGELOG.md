@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 13.0.34 - 2021-11-29
+
+* patch: Update internal-patch [Renovate Bot]
+
 ## 13.0.33 - 2021-11-27
 
 * patch: Update dependency @balena/jellyfish-config to v2 [Renovate Bot]
