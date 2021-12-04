@@ -1,4 +1,17 @@
 - commits:
+    - subject: >-
+        patch: Update dependency @webscopeio/react-textarea-autocomplete to
+        v4.9.0
+      hash: 1716cfe422dda17c6aca090b74a9ab801ed8a2d3
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 13.0.38
+  date: 2021-12-04T18:31:08.218Z
+- commits:
     - subject: 'patch: Update dependency @balena/jellyfish-client-sdk to ^7.0.22'
       hash: 54dc552217fb2baee0238ce7c68bef88530085e2
       body: ''

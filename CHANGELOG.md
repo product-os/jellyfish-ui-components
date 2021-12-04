@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 13.0.38 - 2021-12-04
+
+* patch: Update dependency @webscopeio/react-textarea-autocomplete to v4.9.0 [Renovate Bot]
+
 ## 13.0.37 - 2021-12-04
 
 * patch: Update dependency @balena/jellyfish-client-sdk to ^7.0.22 [Renovate Bot]
