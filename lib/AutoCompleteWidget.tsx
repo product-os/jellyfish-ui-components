@@ -15,6 +15,7 @@ const generateKeyPathQuerySchema = (
 	keyPath: any,
 	resource: any,
 	value: any,
+	isArray: boolean,
 ) => {
 	// If the type isn't versioned, default to 1.0.0
 	const type = resource.match('@') ? resource : `${resource}@1.0.0`;
@@ -38,12 +39,22 @@ const generateKeyPathQuerySchema = (
 	// Set a case insensitive pattern match schema at the location specified in
 	// the keypath
 	const schemaKeyPath = `properties.${keyPathParts.join('.properties.')}`;
-	_.set(schema, schemaKeyPath, {
+
+	const patternSchema = {
 		regexp: {
 			pattern: value,
 			flags: 'i',
 		},
-	});
+	};
+
+	if (isArray) {
+		_.set(schema, schemaKeyPath, {
+			type: 'array',
+			items: patternSchema,
+		});
+	} else {
+		_.set(schema, schemaKeyPath, patternSchema);
+	}
 
 	// Ensure that each subfield in the schema is marked as required
 	let node = schema;
@@ -77,20 +88,32 @@ class AutoCompleteWidget extends React.Component<any> {
 	async getTargets(value: any) {
 		const { props } = this;
 
+		// If the keypath ends in a dash, this indicates that the keypath should be searched as an array
+		const isArray = props.options.keypath.slice(-2) === '.-';
+
+		const keyPath = isArray
+			? props.options.keypath.slice(0, -2)
+			: props.options.keypath;
+
 		const schema = generateKeyPathQuerySchema(
-			props.options.keyPath,
+			keyPath,
 			props.options.resource,
 			value,
+			isArray,
 		);
 
 		const results = await props.sdk.query(schema);
 
-		return _.uniq(_.map(results, props.options.keyPath)).map((repo) => {
-			return {
-				value: repo,
-				label: repo,
-			};
-		});
+		return _.uniq(_.flatMap(results, props.options.keyPath))
+			.filter((res: any) => {
+				return res.includes(value);
+			})
+			.map((repo) => {
+				return {
+					value: repo,
+					label: repo,
+				};
+			});
 	}
 
 	render() {
