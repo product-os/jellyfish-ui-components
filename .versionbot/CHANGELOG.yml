@@ -1,4 +1,33 @@
 - commits:
+    - subject: 'AutoCompleteWidget: Fix bug in query logic'
+      hash: c2b93b42035cea6c6bf441e0b79bff97dd974b44
+      body: |
+        This change also tightens up some of the simpler typings on the
+        component.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+        signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+      author: Lucian Buzzo
+      nested: []
+    - subject: 'AutoCompleteWidget: Log an error to the console if async selection fails'
+      hash: 750dc725a3ba18c43f0133157beda31c688e3df6
+      body: |
+        If the async selection in AutoCompleteWidget fails for any reason,
+        previsouly the error would just be swallowed, making it quite hard to
+        debug. This change simply logs the error to the console, make it much
+        easier to debug.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+        signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+      author: Lucian Buzzo
+      nested: []
+  version: 13.1.1
+  date: 2021-12-06T17:11:40.747Z
+- commits:
     - subject: Give the AutoCompleteWidget the ability to search arrays
       hash: 81e3f20e7eca6b223cedb465c72a6af374b4fe5c
       body: |

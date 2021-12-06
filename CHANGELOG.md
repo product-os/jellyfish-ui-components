@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 13.1.1 - 2021-12-06
+
+* AutoCompleteWidget: Fix bug in query logic [Lucian Buzzo]
+* AutoCompleteWidget: Log an error to the console if async selection fails [Lucian Buzzo]
+
 ## 13.1.0 - 2021-12-06
 
 * Give the AutoCompleteWidget the ability to search arrays [Lucian Buzzo]
