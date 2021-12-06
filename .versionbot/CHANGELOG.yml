@@ -1,4 +1,21 @@
 - commits:
+    - subject: Give the AutoCompleteWidget the ability to search arrays
+      hash: 81e3f20e7eca6b223cedb465c72a6af374b4fe5c
+      body: |
+        If the keypath provided to the AutoCompleteWidget ends in `.-` the query
+        will be processed as an array. This change also now does normalisation
+        to make sure array results that don't match the search value are
+        rejected from the final results list.
+      footer:
+        Change-type: minor
+        change-type: minor
+        Signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+        signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+      author: Lucian Buzzo
+      nested: []
+  version: 13.1.0
+  date: 2021-12-06T12:33:38.827Z
+- commits:
     - subject: 'patch: Update internal-patch'
       hash: 3ec79b35281e2c6bf15de784286d30a70506de66
       body: ''

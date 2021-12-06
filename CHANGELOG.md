@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 13.1.0 - 2021-12-06
+
+* Give the AutoCompleteWidget the ability to search arrays [Lucian Buzzo]
+
 ## 13.0.40 - 2021-12-05
 
 * patch: Update internal-patch [Renovate Bot]
