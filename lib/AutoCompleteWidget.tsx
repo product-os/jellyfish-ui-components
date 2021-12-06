@@ -86,34 +86,39 @@ class AutoCompleteWidget extends React.Component<any> {
 	}
 
 	async getTargets(value: any) {
-		const { props } = this;
+		try {
+			const { props } = this;
 
-		// If the keypath ends in a dash, this indicates that the keypath should be searched as an array
-		const isArray = props.options.keypath.slice(-2) === '.-';
+			// If the keypath ends in a dash, this indicates that the keypath should be searched as an array
+			const isArray = props.options.keypath.slice(-2) === '.-';
 
-		const keyPath = isArray
-			? props.options.keypath.slice(0, -2)
-			: props.options.keypath;
+			const keyPath = isArray
+				? props.options.keypath.slice(0, -2)
+				: props.options.keypath;
 
-		const schema = generateKeyPathQuerySchema(
-			keyPath,
-			props.options.resource,
-			value,
-			isArray,
-		);
+			const schema = generateKeyPathQuerySchema(
+				keyPath,
+				props.options.resource,
+				value,
+				isArray,
+			);
 
-		const results = await props.sdk.query(schema);
+			const results = await props.sdk.query(schema);
 
-		return _.uniq(_.flatMap(results, props.options.keyPath))
-			.filter((res: any) => {
-				return res.includes(value);
-			})
-			.map((repo) => {
-				return {
-					value: repo,
-					label: repo,
-				};
-			});
+			return _.uniq(_.flatMap(results, props.options.keyPath))
+				.filter((res: any) => {
+					return res.includes(value);
+				})
+				.map((repo) => {
+					return {
+						value: repo,
+						label: repo,
+					};
+				});
+		} catch (err) {
+			console.error(err);
+			return [];
+		}
 	}
 
 	render() {
