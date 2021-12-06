@@ -4,6 +4,7 @@ import React from 'react';
 import AsyncCreatableSelect from 'react-select/async-creatable';
 import debounce from 'debounce-promise';
 import { withSetup } from './SetupProvider';
+import { FormWidgetProps } from 'rendition';
 
 const formatCreateLabel = (value: string) => {
 	return `Use "${value}"`;
@@ -73,8 +74,15 @@ const generateKeyPathQuerySchema = (
 	return schema;
 };
 
-class AutoCompleteWidget extends React.Component<any> {
-	constructor(props: any) {
+interface AutoCompleteWidgetProps extends FormWidgetProps {
+	options: {
+		resource: string;
+		keyPath: string;
+	};
+}
+
+class AutoCompleteWidget extends React.Component<AutoCompleteWidgetProps> {
+	constructor(props: AutoCompleteWidgetProps) {
 		super(props);
 
 		this.getTargets = debounce(this.getTargets.bind(this), 500);
@@ -85,16 +93,16 @@ class AutoCompleteWidget extends React.Component<any> {
 		this.props.onChange(option === null ? null : option.value);
 	}
 
-	async getTargets(value: any) {
+	async getTargets(value: string) {
 		try {
 			const { props } = this;
 
 			// If the keypath ends in a dash, this indicates that the keypath should be searched as an array
-			const isArray = props.options.keypath.slice(-2) === '.-';
+			const isArray = props.options.keyPath.slice(-2) === '.-';
 
 			const keyPath = isArray
-				? props.options.keypath.slice(0, -2)
-				: props.options.keypath;
+				? props.options.keyPath.slice(0, -2)
+				: props.options.keyPath;
 
 			const schema = generateKeyPathQuerySchema(
 				keyPath,
@@ -103,9 +111,11 @@ class AutoCompleteWidget extends React.Component<any> {
 				isArray,
 			);
 
-			const results = await props.sdk.query(schema);
+			// TS-TODO: Find a better way to do this SDK prop, as it is provided by `withSetup` and not required
+			// in the values passed to this component by the call site.
+			const results = await (props as any).sdk.query(schema);
 
-			return _.uniq(_.flatMap(results, props.options.keyPath))
+			return _.uniq(_.flatMap(results, keyPath))
 				.filter((res: any) => {
 					return res.includes(value);
 				})
@@ -145,4 +155,5 @@ class AutoCompleteWidget extends React.Component<any> {
 	}
 }
 
-export default withSetup(AutoCompleteWidget);
+// TS-TODO: Remove this any casting
+export default withSetup(AutoCompleteWidget as any);
