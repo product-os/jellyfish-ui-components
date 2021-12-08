@@ -1,4 +1,17 @@
 - commits:
+    - subject: fix perma-links for non-1.0.0 versions
+      hash: 58da4fa2a5260f957bf9344ddbfaffb1fc2cf204
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Martin Rauscher <martin@balena.io>
+        signed-off-by: Martin Rauscher <martin@balena.io>
+      author: Martin Rauscher
+      nested: []
+  version: 13.1.2
+  date: 2021-12-08T17:23:14.297Z
+- commits:
     - subject: 'AutoCompleteWidget: Fix bug in query logic'
       hash: c2b93b42035cea6c6bf441e0b79bff97dd974b44
       body: |

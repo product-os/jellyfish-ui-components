@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 13.1.2 - 2021-12-08
+
+* fix perma-links for non-1.0.0 versions [Martin Rauscher]
+
 ## 13.1.1 - 2021-12-06
 
 * AutoCompleteWidget: Fix bug in query logic [Lucian Buzzo]
