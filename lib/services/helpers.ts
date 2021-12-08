@@ -20,7 +20,8 @@ import { Channel, JSONPatch } from '../types';
 import { JSONSchema } from '@balena/jellyfish-types';
 
 export const createPermaLink = (card: core.Contract) => {
-	return `${window.location.origin}/${card.slug}`;
+	const versionSuffix = card.version !== '1.0.0' ? `@${card.version}` : '';
+	return `${window.location.origin}/${card.slug}${versionSuffix}`;
 };
 
 export const slugify = (value: string) => {
