@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 13.1.3 - 2021-12-09
+
+* patch: Update dependency typescript to ^4.5.3 [Renovate Bot]
+
 ## 13.1.2 - 2021-12-08
 
 * fix perma-links for non-1.0.0 versions [Martin Rauscher]

@@ -1,4 +1,16 @@
 - commits:
+    - subject: 'patch: Update dependency typescript to ^4.5.3'
+      hash: 0067916d7de3198ca658c8f3a0e5109be6b89931
+      body: |
+        Update typescript from 4.5.2 to 4.5.3
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 13.1.3
+  date: 2021-12-09T23:36:17.078Z
+- commits:
     - subject: fix perma-links for non-1.0.0 versions
       hash: 58da4fa2a5260f957bf9344ddbfaffb1fc2cf204
       body: ''
