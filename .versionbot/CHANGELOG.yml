@@ -1,4 +1,15 @@
 - commits:
+    - subject: 'patch: Update internal-patch'
+      hash: 7f09028220dfbdbcff478e8a69c240681e39ce57
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 13.1.4
+  date: 2021-12-12T13:44:11.682Z
+- commits:
     - subject: 'patch: Update dependency typescript to ^4.5.3'
       hash: 0067916d7de3198ca658c8f3a0e5109be6b89931
       body: |

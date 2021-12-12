@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 13.1.4 - 2021-12-12
+
+* patch: Update internal-patch [Renovate Bot]
+
 ## 13.1.3 - 2021-12-09
 
 * patch: Update dependency typescript to ^4.5.3 [Renovate Bot]
