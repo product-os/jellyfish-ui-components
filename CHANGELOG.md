@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 13.1.8 - 2021-12-14
+
+* patch: Update internal-patch [Renovate Bot]
+
 ## 13.1.7 - 2021-12-14
 
 * Drop depcheck, bump typescript [Josh Bowling]
