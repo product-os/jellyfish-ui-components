@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 13.1.10 - 2021-12-18
+
+* patch: Update internal-patch [Renovate Bot]
+
 ## 13.1.9 - 2021-12-18
 
 * patch: Update dependency @webscopeio/react-textarea-autocomplete to v4.9.1 [Renovate Bot]

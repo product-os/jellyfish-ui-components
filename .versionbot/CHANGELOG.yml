@@ -1,4 +1,15 @@
 - commits:
+    - subject: 'patch: Update internal-patch'
+      hash: 042986a4a0302c5263be0711a45c30d65c946320
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 13.1.10
+  date: 2021-12-18T18:48:42.759Z
+- commits:
     - subject: >-
         patch: Update dependency @webscopeio/react-textarea-autocomplete to
         v4.9.1
