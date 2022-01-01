@@ -94,7 +94,7 @@
     "@types/color-hash": "^1.0.2",
     "@types/common-tags": "^1.8.1",
     "@types/debounce-promise": "^3.1.4",
-    "@types/enzyme": "^3.10.10",
+    "@types/enzyme": "^3.10.11",
     "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/file-saver": "^2.0.4",
     "@types/is-uuid": "^1.0.0",
