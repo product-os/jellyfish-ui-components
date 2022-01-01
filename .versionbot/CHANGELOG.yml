@@ -1,4 +1,15 @@
 - commits:
+    - subject: 'patch: Update dependency @types/enzyme to ^3.10.11'
+      hash: ebcc4739f810fb505122e81af55c997a416ff6e4
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 13.1.15
+  date: 2022-01-01T00:32:09.970Z
+- commits:
     - subject: 'patch: Update external-non-major'
       hash: 05ce54d980d21a10478a7afb47fdd3c0cfe6a171
       body: ''

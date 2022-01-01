@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 13.1.15 - 2022-01-01
+
+* patch: Update dependency @types/enzyme to ^3.10.11 [Renovate Bot]
+
 ## 13.1.14 - 2021-12-28
 
 * patch: Update external-non-major [Renovate Bot]
