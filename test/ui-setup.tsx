@@ -41,12 +41,13 @@ class Location {}
 // @ts-ignore
 global.location = Location;
 
-// eslint-disable-next-line no-undef
+// @ts-ignore
+global.fetch = jest.fn(() => Promise.resolve());
+
 window.HTMLElement.prototype.scrollIntoView = _.noop;
 
 export const flushPromises = () => {
 	return new Promise((resolve) => {
-		// eslint-disable-next-line no-undef
 		return setImmediate(resolve);
 	});
 };
