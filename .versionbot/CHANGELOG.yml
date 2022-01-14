@@ -1,4 +1,22 @@
 - commits:
+    - subject: Update rendition from v21.x to v25.x
+      hash: e379245bafc7c50946c0ce38e3533af03ca271ba
+      body: |
+        The breaking changes in rendition apply only to the `AutoUI` and
+        `DropDownButton` components, which aren't part of the components
+        exported by this module. However, because the peer dependency has now
+        increased, this new version will no longer be compatible with a number
+        of implementing projects, so this is a breaking change.
+      footer:
+        Change-type: major
+        change-type: major
+        Signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+        signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+      author: Lucian Buzzo
+      nested: []
+  version: 14.0.0
+  date: 2022-01-14T13:48:01.297Z
+- commits:
     - subject: 'patch: Update dependency @balena/jellyfish-client-sdk to ^7.0.36'
       hash: 32ce26bb4d13580bf8826dd9986a3e3581c3c17f
       body: ''
