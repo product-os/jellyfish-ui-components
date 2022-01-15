@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 14.0.1 - 2022-01-15
+
+* patch: Update external-non-major [Renovate Bot]
+
 ## 14.0.0 - 2022-01-14
 
 * Update rendition from v21.x to v25.x [Lucian Buzzo]

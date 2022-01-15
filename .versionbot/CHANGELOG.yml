@@ -1,4 +1,15 @@
 - commits:
+    - subject: 'patch: Update external-non-major'
+      hash: 3c7557a1b82213d4be39dcfeab40fbf0346cf03f
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 14.0.1
+  date: 2022-01-15T05:32:36.711Z
+- commits:
     - subject: Update rendition from v21.x to v25.x
       hash: e379245bafc7c50946c0ce38e3533af03ca271ba
       body: |
