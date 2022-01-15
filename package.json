@@ -44,7 +44,7 @@
   "license": "Apache-2.0",
   "peerDependencies": {
     "@balena/jellyfish-client-sdk": "^7.0.36",
-    "rendition": "^25.4.9"
+    "rendition": "^25.4.10"
   },
   "dependencies": {
     "@sentry/browser": "^6.16.1",
@@ -88,7 +88,7 @@
     "@balena/lint": "^6.2.0",
     "@emotion/cache": "^11.7.1",
     "@emotion/react": "^11.7.1",
-    "@storybook/react": "^6.4.9",
+    "@storybook/react": "^6.4.13",
     "@types/bluebird": "^3.5.36",
     "@types/classnames": "^2.3.0",
     "@types/color-hash": "^1.0.2",
@@ -96,13 +96,13 @@
     "@types/debounce-promise": "^3.1.4",
     "@types/enzyme": "^3.10.11",
     "@types/enzyme-adapter-react-16": "^1.0.6",
-    "@types/file-saver": "^2.0.4",
+    "@types/file-saver": "^2.0.5",
     "@types/is-uuid": "^1.0.0",
     "@types/jest": "^26.0.24",
     "@types/mixpanel-browser": "^2.36.0",
     "@types/node-emoji": "^1.8.1",
     "@types/react-dom": "^17.0.11",
-    "@types/react-redux": "^7.1.21",
+    "@types/react-redux": "^7.1.22",
     "@types/react-router-dom": "^5.3.2",
     "@types/redux-mock-store": "^1.0.3",
     "@types/sinon": "^10.0.6",
