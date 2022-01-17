@@ -3,7 +3,9 @@ import { Button, Link } from 'rendition';
 import styled from 'styled-components';
 import { Link as RouterLink } from '../Link';
 
-const action = <TProps extends {}>(Component: React.ComponentType<TProps>) => {
+const action = <TProps extends {}>(
+	Component: React.ComponentType<Partial<TProps>>,
+) => {
 	return styled(Component)`
 		&:hover {
 			background-color: ${({ theme }) => {
