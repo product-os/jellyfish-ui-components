@@ -1,4 +1,17 @@
 - commits:
+    - subject: Bump skhema to v6
+      hash: c3473d6b0cd741dfc9baa105df4f8461e5b0f311
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Josh Bowling <josh@balena.io>
+        signed-off-by: Josh Bowling <josh@balena.io>
+      author: Josh Bowling
+      nested: []
+  version: 14.0.5
+  date: 2022-01-17T01:51:48.445Z
+- commits:
     - subject: Bump sinon to v12
       hash: 75313c9d86f06afcc3c8e9bd1b3ed0ed300cf99f
       body: ''

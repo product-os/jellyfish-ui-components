@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 14.0.5 - 2022-01-17
+
+* Bump skhema to v6 [Josh Bowling]
+
 ## 14.0.4 - 2022-01-17
 
 * Bump sinon to v12 [Josh Bowling]
