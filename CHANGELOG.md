@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 14.0.4 - 2022-01-17
+
+* Bump sinon to v12 [Josh Bowling]
+
 ## 14.0.3 - 2022-01-17
 
 * Bump lint-staged to v12 [Josh Bowling]
