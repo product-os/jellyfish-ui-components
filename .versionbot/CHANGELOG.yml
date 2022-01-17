@@ -1,4 +1,17 @@
 - commits:
+    - subject: Bump lint-staged to v12
+      hash: 478fb8674b923330c0681cd40d6fd8cf4c8b1ad0
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Josh Bowling <josh@balena.io>
+        signed-off-by: Josh Bowling <josh@balena.io>
+      author: Josh Bowling
+      nested: []
+  version: 14.0.3
+  date: 2022-01-17T00:14:31.343Z
+- commits:
     - subject: 'patch: Update dependency @balena/jellyfish-client-sdk to ^7.0.37'
       hash: 04dfede18cb7625bdd61c59c6dabbc91034dd4bb
       body: ''
