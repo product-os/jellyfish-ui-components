@@ -1,4 +1,17 @@
 - commits:
+    - subject: 'ActionLink: Make action props optional'
+      hash: 4c6f6404332f24ac6fc8f2e25490cbd598c216ac
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+        signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+      author: Lucian Buzzo
+      nested: []
+  version: 14.0.6
+  date: 2022-01-17T11:04:58.648Z
+- commits:
     - subject: Bump skhema to v6
       hash: c3473d6b0cd741dfc9baa105df4f8461e5b0f311
       body: ''
