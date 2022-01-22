@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 14.0.6 - 2022-01-22
+
+* patch: Update external-non-major [Renovate Bot]
+* patch: Update dependency @balena/jellyfish-client-sdk to ^7.0.39 [Renovate Bot]
+
 ## 14.0.5 - 2022-01-17
 
 * Bump skhema to v6 [Josh Bowling]

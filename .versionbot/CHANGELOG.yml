@@ -1,4 +1,23 @@
 - commits:
+    - subject: 'patch: Update external-non-major'
+      hash: b9ecebc81660f05bf94e1843cf61d9e325f1e322
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+    - subject: 'patch: Update dependency @balena/jellyfish-client-sdk to ^7.0.39'
+      hash: 06e0f7a1f1cab6601fe35fc89f93ed5bcc4fdf87
+      body: ''
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 14.0.6
+  date: 2022-01-22T02:06:07.153Z
+- commits:
     - subject: Bump skhema to v6
       hash: c3473d6b0cd741dfc9baa105df4f8461e5b0f311
       body: ''
