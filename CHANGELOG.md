@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 14.0.7 - 2022-01-23
+
+* patch: Update dependency lint-staged to ^12.3.0 [Renovate Bot]
+
 ## 14.0.6 - 2022-01-22
 
 * patch: Update external-non-major [Renovate Bot]
