@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 14.0.9 - 2022-01-29
+
+* Update external-non-major [Renovate Bot]
+
 ## 14.0.8 - 2022-01-24
 
 * patch: Update external-non-major [Renovate Bot]
