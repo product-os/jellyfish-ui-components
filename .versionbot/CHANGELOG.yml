@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update dependencies (internal patch bumps)
+      hash: 026e342f8fb791a694c408c34f8d0e354a84fcf2
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 14.0.12
+  title: "'Update dependencies (internal patch bumps)'"
+  date: 2022-02-04T18:23:56.946Z
+- commits:
     - subject: Update to latest version of SDK as a peer dependency
       hash: bfe2422373024640537d1c1fa697c50f4b0b6110
       body: |
