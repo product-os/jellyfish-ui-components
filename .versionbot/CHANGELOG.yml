@@ -1,4 +1,19 @@
 - commits:
+    - subject: Update to latest version of SDK as a peer dependency
+      hash: bfe2422373024640537d1c1fa697c50f4b0b6110
+      body: |
+        This version of the SDK uses distinct endpoints for auth related methods
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+        signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+      author: Lucian Buzzo
+      nested: []
+  version: 14.0.11
+  title: "'Update to latest version of SDK as a peer dependency'"
+  date: 2022-02-04T11:59:13.474Z
+- commits:
     - subject: Update dependencies (external non-major bumps)
       hash: 12d6a66edfcd0c3f03362ad21e49f8b305629415
       body: ""

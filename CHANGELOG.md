@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 14.0.11 - 2022-02-04
+
+* Update to latest version of SDK as a peer dependency [Lucian Buzzo]
+
 ## 14.0.10 - 2022-01-29
 
 * Update dependencies (external non-major bumps) [Renovate Bot]
