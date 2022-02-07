@@ -310,7 +310,12 @@ const MessageInput: React.FunctionComponent<MessageInputProps> = ({
 						gridRow: 2,
 					}}
 				>
-					<Txt fontSize={11} italic color="#859CB0">
+					<Txt
+						fontSize={11}
+						italic
+						color="#859CB0"
+						data-test-send-command={sendCommand}
+					>
 						Press {sendCommand} to send
 					</Txt>
 				</Box>
