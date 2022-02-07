@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 14.1.0 - 2022-02-07
+
+* Add attribute to test send command [karaxuna]
+
 ## 14.0.13 - 2022-02-05
 
 * Update external-non-major [Renovate Bot]

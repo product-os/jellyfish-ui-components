@@ -1,4 +1,16 @@
 - commits:
+    - subject: Add attribute to test send command
+      hash: a7a0d2fe9323fb379add24b9c34be82137def01a
+      body: ""
+      footer:
+        Change-type: minor
+        change-type: minor
+      author: karaxuna
+      nested: []
+  version: 14.1.0
+  title: "'Add attribute to test send command'"
+  date: 2022-02-07T17:21:14.241Z
+- commits:
     - subject: Update external-non-major
       hash: a9f35bb385b0f86f3d488d9d2866c961992e85c3
       body: ""
