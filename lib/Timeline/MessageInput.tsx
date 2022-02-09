@@ -211,6 +211,7 @@ const MessageInput: React.FunctionComponent<MessageInputProps> = ({
 
 	const textInput = (
 		<InputWrapper
+			data-test-send-command={sendCommand}
 			bubble={whisper}
 			py={2}
 			px={3}
@@ -310,12 +311,7 @@ const MessageInput: React.FunctionComponent<MessageInputProps> = ({
 						gridRow: 2,
 					}}
 				>
-					<Txt
-						fontSize={11}
-						italic
-						color="#859CB0"
-						data-test-send-command={sendCommand}
-					>
+					<Txt fontSize={11} italic color="#859CB0">
 						Press {sendCommand} to send
 					</Txt>
 				</Box>
