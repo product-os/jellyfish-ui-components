@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 14.1.1 - 2022-02-09
+
+* Fix send command attribute [karaxuna]
+
 ## 14.1.0 - 2022-02-07
 
 * Add attribute to test send command [karaxuna]

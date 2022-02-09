@@ -1,4 +1,16 @@
 - commits:
+    - subject: Fix send command attribute
+      hash: 1a7d62cc29153352ad944574822a17755e70c02f
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: karaxuna
+      nested: []
+  version: 14.1.1
+  title: "'Fix send command attribute'"
+  date: 2022-02-09T12:39:05.147Z
+- commits:
     - subject: Add attribute to test send command
       hash: a7a0d2fe9323fb379add24b9c34be82137def01a
       body: ""
