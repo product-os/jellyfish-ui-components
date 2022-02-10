@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 14.1.3 - 2022-02-10
+
+* Update @balena/jellyfish-types from 1.2.42 to 2.0.4 [Renovate Bot]
+
 ## 14.1.2 - 2022-02-10
 
 * analytics: Don't post a warning message when in a test environment [Lucian Buzzo]
