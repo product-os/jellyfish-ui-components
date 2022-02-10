@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 14.1.2 - 2022-02-10
+
+* analytics: Don't post a warning message when in a test environment [Lucian Buzzo]
+
 ## 14.1.1 - 2022-02-09
 
 * Fix send command attribute [karaxuna]

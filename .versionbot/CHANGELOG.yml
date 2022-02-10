@@ -1,4 +1,20 @@
 - commits:
+    - subject: "analytics: Don't post a warning message when in a test environment"
+      hash: f55dbcb1cbe8738541327c6324469ff5ec9f3d2d
+      body: |
+        This change should reduce the amount of noise when testing UI
+        components.
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+        signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+      author: Lucian Buzzo
+      nested: []
+  version: 14.1.2
+  title: "'analytics: Don't post a warning message when in a test environment'"
+  date: 2022-02-10T13:00:16.547Z
+- commits:
     - subject: Fix send command attribute
       hash: 1a7d62cc29153352ad944574822a17755e70c02f
       body: ""
