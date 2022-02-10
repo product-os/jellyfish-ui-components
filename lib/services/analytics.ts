@@ -12,7 +12,10 @@ export default class Analytics {
 		if (token) {
 			mixpanel.init(token, omit(config, 'token'));
 		} else {
-			console.warn('No token provided, skipping analytics setup');
+			// Don't post a warning if this code is running in a test environment.
+			if (!(process && process.env.NODE_ENV === 'test')) {
+				console.warn('No token provided, skipping analytics setup');
+			}
 			this.skip = true;
 		}
 		this.isInitialized = true;
