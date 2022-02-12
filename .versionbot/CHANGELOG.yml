@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update external-non-major
+      hash: 7f513c394bfdb4f1e80799d93787f78da24be81f
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 14.1.3
+  title: "'Update external-non-major'"
+  date: 2022-02-12T08:00:18.215Z
+- commits:
     - subject: "analytics: Don't post a warning message when in a test environment"
       hash: f55dbcb1cbe8738541327c6324469ff5ec9f3d2d
       body: |
