@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update @balena/jellyfish-client-sdk from 7.0.39 to 8.3.9
+      hash: 3ebf38a3c110f4df96323bf884a7590614540873
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 14.1.5
+  title: "'Update @balena/jellyfish-client-sdk from 7.0.39 to 8.3.9'"
+  date: 2022-02-18T01:07:51.706Z
+- commits:
     - subject: Update external-non-major
       hash: dfd3c5eecafe3ddc40c97a8b38e6ff87a4edadb1
       body: ""
