@@ -1,6 +1,6 @@
 import React from 'react';
 import { compose } from 'redux';
-import type { core } from '@balena/jellyfish-types';
+import type { UserContract } from '@balena/jellyfish-types/build/core';
 import { parseMessage } from './Message/Body';
 import { CardLoader } from '../CardLoader';
 import * as helpers from '../services/helpers';
@@ -17,7 +17,7 @@ const EventWithActor: React.FunctionComponent<any> = (props) => {
 	const { card, user, onCardVisible, targetCard } = props;
 	const typeBase = props.card.type.split('@')[0];
 	return (
-		<CardLoader<core.UserContract>
+		<CardLoader<UserContract>
 			id={helpers.getActorIdFromCard(props.card)}
 			type="user"
 			withLinks={['is member of']}

@@ -5,8 +5,12 @@ import TextareaAutosize from 'react-textarea-autosize';
 import * as reactDnD from 'react-dnd';
 import { BoxProps, Card, Txt } from 'rendition';
 import styled from 'styled-components';
-import { core } from '@balena/jellyfish-types';
-import { JellyfishSDK } from '@balena/jellyfish-client-sdk';
+import type {
+	Contract,
+	TypeContract,
+	UserContract,
+} from '@balena/jellyfish-types/build/core';
+import type { JellyfishSDK } from '@balena/jellyfish-client-sdk';
 import { Link } from '../../Link';
 import * as helpers from '../../services/helpers';
 import Icon from '../Icon';
@@ -47,9 +51,9 @@ interface SubAutoProps extends Omit<BoxProps, 'onChange' | 'onKeyPress'> {
 	innerRef?: (ref: HTMLTextAreaElement) => unknown;
 	enableAutocomplete?: boolean;
 	autoFocus?: boolean;
-	types: core.TypeContract[];
+	types: TypeContract[];
 	sdk: JellyfishSDK;
-	user: core.UserContract;
+	user: UserContract;
 	value?: string | number | string[];
 	onChange: React.ChangeEventHandler<HTMLTextAreaElement> | undefined;
 	onKeyPress: React.KeyboardEventHandler<HTMLTextAreaElement> | undefined;
@@ -152,8 +156,8 @@ const collect: reactDnD.DragSourceCollector<
 };
 
 interface QuickSearchItemProps {
-	card: core.Contract;
-	onClick: (card: core.Contract) => unknown;
+	card: Contract;
+	onClick: (card: Contract) => unknown;
 	connectDragSource: reactDnD.ConnectDragSource;
 }
 
@@ -195,14 +199,14 @@ interface AutoCompleteAreaProps
 	sdk: JellyfishSDK;
 	onChange: (event: any) => unknown;
 	onSubmit: (event: React.KeyboardEvent) => unknown;
-	types: core.TypeContract[];
+	types: TypeContract[];
 	sendCommand: string;
 }
 
 interface AutoCompleteAreaState {
 	value: string;
 	showQuickSearchPanel: boolean;
-	results: core.Contract[] | null;
+	results: Contract[] | null;
 }
 
 class AutoCompleteArea extends React.Component<
@@ -226,8 +230,8 @@ class AutoCompleteArea extends React.Component<
 		this.openQuickSearchItem = this.openQuickSearchItem.bind(this);
 	}
 
-	loadResults(typeCard: core.TypeContract, value: string) {
-		const filter = helpers.createFullTextSearchFilter(
+	loadResults(typeCard: TypeContract, value: string) {
+		let filter = helpers.createFullTextSearchFilter(
 			typeCard.data.schema,
 			value,
 			{
@@ -239,6 +243,9 @@ class AutoCompleteArea extends React.Component<
 				results: [],
 			});
 			return;
+		}
+		if (filter === true) {
+			filter = {};
 		}
 		_.set(filter, ['properties', 'type'], {
 			type: 'string',

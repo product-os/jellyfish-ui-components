@@ -1,6 +1,6 @@
-import { core } from '@balena/jellyfish-types';
+import type { Contract } from '@balena/jellyfish-types/build/core';
 
-export type Channel = core.Contract<{
+export type Channel = Contract<{
 	target: string;
 }>;
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { core } from '@balena/jellyfish-types';
+import type { Contract } from '@balena/jellyfish-types/build/core';
 
 interface CardLoaderContextValue {
 	getCard: any;
-	selectCard: <TCard extends core.Contract>(
+	selectCard: <TCard extends Contract>(
 		id: string,
 		type: string,
 	) => (state: any) => TCard;
@@ -13,14 +13,14 @@ interface CardLoaderContextValue {
 export const CardLoaderContext =
 	React.createContext<CardLoaderContextValue | null>(null);
 
-interface CardLoaderProps<TCard extends core.Contract> {
+interface CardLoaderProps<TCard extends Contract> {
 	id: string;
 	type: string;
 	withLinks?: string[];
 	children: (card: TCard) => JSX.Element;
 }
 
-export const CardLoader = <TCard extends core.Contract = core.Contract>({
+export const CardLoader = <TCard extends Contract = Contract>({
 	id,
 	type,
 	withLinks,

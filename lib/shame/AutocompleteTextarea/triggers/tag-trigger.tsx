@@ -2,10 +2,10 @@ import React from 'react';
 import _ from 'lodash';
 import { Flex, Txt } from 'rendition';
 import type { SettingType } from '@webscopeio/react-textarea-autocomplete';
-import type { core } from '@balena/jellyfish-types';
+import type { Contract } from '@balena/jellyfish-types/build/core';
 import type { JellyfishSDK } from '@balena/jellyfish-client-sdk';
 
-const tagTrigger = (sdk: JellyfishSDK): SettingType<core.Contract> => {
+const tagTrigger = (sdk: JellyfishSDK): SettingType<Contract> => {
 	return {
 		dataProvider: async (token) => {
 			if (!token) {

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import _ from 'lodash';
 import { Flex, FlexProps } from 'rendition';
-import { core } from '@balena/jellyfish-types';
+import type { UserContract } from '@balena/jellyfish-types/build/core';
 import Icon from './shame/Icon';
 
 const statusSize = (props: { small?: boolean }) => {
@@ -54,7 +54,7 @@ const StatusIconNames = {
 };
 
 interface UserStatusIconProps extends FlexProps {
-	userStatus: core.UserContract['data']['status'];
+	userStatus: UserContract['data']['status'];
 	className: string;
 	small?: boolean;
 }

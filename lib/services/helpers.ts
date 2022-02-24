@@ -14,12 +14,19 @@ import path from 'path';
 import { SchemaSieve } from 'rendition';
 import skhema from 'skhema';
 import { DetectUA } from 'detect-ua';
-import { core } from '@balena/jellyfish-types';
 import { MESSAGE, WHISPER, SUMMARY, RATING } from '../constants';
 import { Channel, JSONPatch } from '../types';
-import { JSONSchema } from '@balena/jellyfish-types';
+import type { JsonSchema } from '@balena/jellyfish-types';
+import type {
+	Contract,
+	ContractData,
+	LinkContract,
+	TypeContract,
+	UserContract,
+	ViewContract,
+} from '@balena/jellyfish-types/build/core';
 
-export const createPermaLink = (card: core.Contract) => {
+export const createPermaLink = (card: Contract) => {
 	const versionSuffix = card.version !== '1.0.0' ? `@${card.version}` : '';
 	return `${window.location.origin}/${card.slug}${versionSuffix}`;
 };
@@ -32,7 +39,7 @@ export const slugify = (value: string) => {
 		.replace(/-{1,}/g, '-');
 };
 
-export const isCustomView = (view: core.ViewContract, userSlug: string) => {
+export const isCustomView = (view: ViewContract, userSlug: string) => {
 	return (
 		view.slug.startsWith('view-user-created-view') &&
 		view.markers.length === 1 &&
@@ -73,7 +80,7 @@ export const cardReference = (card: any) => {
 	return card.slug || card.id;
 };
 
-export const appendToChannelPath = (channel: Channel, card: core.Contract) => {
+export const appendToChannelPath = (channel: Channel, card: Contract) => {
 	const parts: string[] = [];
 	const pieces = window.location.pathname.split('/');
 	const target = _.get(channel, ['data', 'target']);
@@ -92,7 +99,7 @@ export const appendToChannelPath = (channel: Channel, card: core.Contract) => {
 	return `/${route}`;
 };
 
-const getTypesFromSchema = (schema: JSONSchema): string[] => {
+const getTypesFromSchema = (schema: JsonSchema): string[] => {
 	const types =
 		_.get(schema, ['properties', 'type', 'const']) ||
 		_.get(schema, ['properties', 'type', 'enum']);
@@ -106,7 +113,7 @@ const getTypesFromSchema = (schema: JSONSchema): string[] => {
  *
  * @returns {String[]} - an array of types that are defined in the view card's filter
  */
-export const getTypesFromViewCard = (card: core.ViewContract) => {
+export const getTypesFromViewCard = (card: ViewContract) => {
 	let value: string[] = [];
 
 	// First check if the view has explicitly declared types
@@ -121,7 +128,7 @@ export const getTypesFromViewCard = (card: core.ViewContract) => {
 				value = found;
 				break;
 			}
-			if (item.schema.anyOf) {
+			if (typeof item.schema === 'object' && item.schema.anyOf) {
 				for (const subschema of item.schema.anyOf) {
 					found = getTypesFromSchema(subschema);
 					if (found) {
@@ -215,9 +222,7 @@ export const evalSchema = (object: { [key: string]: any }, context: any) => {
  *
  * @returns {Object} - the merged schemas
  */
-export const getMergedSchema = (
-	...typeCards: core.TypeContract[]
-): JSONSchema => {
+export const getMergedSchema = (...typeCards: TypeContract[]): JsonSchema => {
 	const schemas = _.map(typeCards || {}, (typeCard) => {
 		return _.get(typeCard, ['data', 'schema'], {});
 	});
@@ -238,10 +243,7 @@ export const getMergedSchema = (
  * const schema = permissionFilter.getViewSchema(card)
  * console.log(schema)
  */
-export const getViewSchema = (
-	card: core.ViewContract,
-	user: core.UserContract,
-) => {
+export const getViewSchema = (card: ViewContract, user: UserContract) => {
 	if (!card) {
 		return null;
 	}
@@ -261,22 +263,22 @@ export const getViewSchema = (
 		resolvers: {
 			$$links: (
 				values: Array<{
-					[key: string]: JSONSchema;
+					[key: string]: JsonSchema;
 				}>,
 			): {
-				[key: string]: JSONSchema;
+				[key: string]: JsonSchema;
 			} => {
 				// For the $$links items, we need to merge schemas that have the same 'link verb'.
 				const linkVerbs = _.uniq(_.flatMap(values, (value) => _.keys(value)));
 
 				const mergedSchema: {
-					[key: string]: JSONSchema;
+					[key: string]: JsonSchema;
 				} = {};
 
 				// For a particular link verb, if there are multiple 'values' which define a schema for that link verb,
 				// we combine them in an 'allOf' array; otherwise just set the schema for that link verb to the only
 				_.forEach(linkVerbs, (linkVerb) => {
-					const linkVerbSchemas: JSONSchema[] = [];
+					const linkVerbSchemas: JsonSchema[] = [];
 					_.reduce(
 						values,
 						(schemas, value) => {
@@ -329,13 +331,25 @@ export const getViewSchema = (
  * const update = getUpdateObjectFromSchema(schema)
  * console.log(update) //--> { number: 1 }
  */
-export const getUpdateObjectFromSchema = (schema: JSONSchema) => {
+export const getUpdateObjectFromSchema = (schema: JsonSchema) => {
+	if (typeof schema === 'boolean') {
+		return {};
+	}
+
 	const update: { [key: string]: any } = {};
-	_.forEach(schema.properties, (value: JSONSchema, key) => {
+	_.forEach(schema.properties, (value: JsonSchema, key) => {
+		if (typeof value === 'boolean') {
+			return;
+		}
+
 		if (value.const) {
 			update[key] = value.const;
 		}
-		if (value.contains && value.contains.const) {
+		if (
+			value.contains &&
+			typeof value.contains === 'object' &&
+			value.contains.const
+		) {
 			update[key] = [value.contains.const];
 		}
 		if (value.type === 'object') {
@@ -352,7 +366,7 @@ export const getUpdateObjectFromSchema = (schema: JSONSchema) => {
  * @param {Object} card - A card object
  * @returns {Object} A JSON schema
  */
-export const getLocalSchema = (card: JSONSchema) => {
+export const getLocalSchema = (card: JsonSchema) => {
 	return (
 		_.get(card, ['data', '$$localSchema']) || {
 			type: 'object',
@@ -432,7 +446,7 @@ export interface SliceOption {
 }
 
 export const getViewSlices = (
-	view: core.ViewContract,
+	view: ViewContract,
 	types: string[],
 ): SliceOption[] | null => {
 	let slices: SliceOption[] | null = null;
@@ -487,18 +501,22 @@ export const regexEscape = (str: string) => {
 	return str.replace(matchOperatorsRe, '\\$&');
 };
 
-const isStringItem = (item: JSONSchema) => {
+const isStringItem = (item: JsonSchema) => {
 	return (
-		item.type === 'string' ||
-		(_.isArray(item.type) && _.includes(item.type, 'string'))
+		item === true ||
+		(typeof item === 'object' &&
+			(item.type === 'string' ||
+				(_.isArray(item.type) && _.includes(item.type, 'string'))))
 	);
 };
 
-const isArrayOfStringsItem = (item: JSONSchema) => {
+const isArrayOfStringsItem = (item: JsonSchema) => {
 	return (
-		item.type === 'array' &&
-		item.items &&
-		isStringItem(item.items as JSONSchema)
+		item === true ||
+		(typeof item === 'object' &&
+			item.type === 'array' &&
+			item.items &&
+			isStringItem(item.items as JsonSchema))
 	);
 };
 
@@ -517,7 +535,7 @@ const getItemSearchQuery = (term: string, fullTextSearch: boolean) => {
 		  };
 };
 
-const getSearchableFieldQuerySchema = (item: JSONSchema, term: string) => {
+const getSearchableFieldQuerySchema = (item: any, term: string) => {
 	return isStringItem(item)
 		? {
 				type: 'string',
@@ -549,19 +567,19 @@ const getSearchableFieldQuerySchema = (item: JSONSchema, term: string) => {
  * and fullTextSearchFieldsOnly is true.
  */
 export const createFullTextSearchFilter = (
-	schema: JSONSchema,
+	schema: JsonSchema,
 	term: string,
 	options: {
 		fullTextSearchFieldsOnly?: boolean;
 		includeIdAndSlug?: boolean;
 	} = {},
-): JSONSchema | null => {
+): JsonSchema | null => {
 	let hasFullTextSearchField = false;
-	const flatSchema = SchemaSieve.flattenSchema(schema);
+	const flatSchema = SchemaSieve.flattenSchema(schema as any);
 	let stringKeys = _.reduce(
 		flatSchema.properties,
 		(
-			carry: Array<{ key: keyof JSONSchema; item: JSONSchema }>,
+			carry: Array<{ key: keyof JsonSchema; item: JsonSchema }>,
 			subSchema: any,
 			key: any,
 		) => {
@@ -612,12 +630,13 @@ export const createFullTextSearchFilter = (
 				required: [key],
 			};
 		}),
-	} as JSONSchema;
+	} as JsonSchema;
 
 	if (options.includeIdAndSlug) {
 		const key = isUUID(term) ? 'id' : 'slug';
 		// Only add this option if it is not already present
 		if (
+			typeof filter === 'object' &&
 			!_.find(filter.anyOf, (anyOfOption) => {
 				return _.has(anyOfOption, ['properties', key]);
 			})
@@ -635,7 +654,7 @@ export const createFullTextSearchFilter = (
 		}
 	}
 
-	return SchemaSieve.unflattenSchema(filter);
+	return SchemaSieve.unflattenSchema(filter as any);
 };
 
 export const removeUndefinedArrayItems = (input: any): any => {
@@ -674,11 +693,11 @@ export const stringToNumber = function (input: string, max: number) {
 // Get the actor from the create event if it is available, otherwise use the
 // first message creator
 export const getCreator = async (
-	getActorFn: (actor: string) => core.UserContract,
-	card: core.Contract<
-		core.ContractData,
+	getActorFn: (actor: string) => UserContract,
+	card: Contract<
+		ContractData,
 		{
-			[key: string]: core.Contract<{ actor: string }>;
+			[key: string]: Contract<{ actor: string }>;
 		}
 	>,
 ) => {
@@ -708,16 +727,14 @@ export const getCreator = async (
 	return getActorFn(_.get(createCard, ['data', 'actor']));
 };
 
-export const getCreateCard = (
-	card: core.Contract,
-): core.Contract | undefined => {
+export const getCreateCard = (card: Contract): Contract | undefined => {
 	const attachedCards = _.get(card.links, ['has attached element'], []);
 	return _.find(attachedCards, (attachedCard) => {
 		return attachedCard.type.split('@')[0] === 'create';
 	});
 };
 
-export const getLastUpdate = (card: core.Contract) => {
+export const getLastUpdate = (card: Contract) => {
 	const sorted = _.sortBy(
 		_.get(card.links, ['has attached element'], []),
 		'data.timestamp',
@@ -726,7 +743,7 @@ export const getLastUpdate = (card: core.Contract) => {
 };
 
 export const patchPath = (
-	card: core.Contract,
+	card: Contract,
 	keyPath: _.PropertyPath,
 	value: any,
 ) => {
@@ -769,7 +786,7 @@ export const getUserStatuses = _.memoize((userType) => {
 	);
 });
 
-export const getMessage = (card: core.Contract): string => {
+export const getMessage = (card: Contract): string => {
 	return _.get(card, ['data', 'payload', 'message'], '');
 };
 
@@ -792,7 +809,7 @@ export const getActorIdFromCard = _.memoize(
 	},
 );
 
-export const generateActorFromUserCard = (card: core.UserContract) => {
+export const generateActorFromUserCard = (card: UserContract) => {
 	if (!card) {
 		return null;
 	}
@@ -849,7 +866,7 @@ export const username = (slug: string) => {
 };
 
 export const getUserTooltipText = (
-	user: core.UserContract,
+	user: UserContract,
 	options: {
 		hideName?: boolean;
 		hideEmail?: boolean;
@@ -885,7 +902,7 @@ export const getType = _.memoize((typeSlug, types) => {
 	});
 });
 
-export const userDisplayName = (user: core.UserContract) => {
+export const userDisplayName = (user: UserContract) => {
 	return user.name || username(user.slug);
 };
 
@@ -932,10 +949,10 @@ export const isiOS = () => {
  * const fieldShouldBeOmitted= checkFieldAgainstOmissions({ format: 'markdown', [{ key: 'format', value: 'markdown' }]})
  */
 export const checkFieldAgainstOmissions = (
-	schema: JSONSchema,
+	schema: JsonSchema,
 	fieldName: string,
 	omissions: Array<{
-		key: keyof JSONSchema;
+		key: keyof JsonSchema;
 		value: string;
 		field: string;
 	}>,
@@ -968,9 +985,9 @@ export const checkFieldAgainstOmissions = (
  * const fieldpaths = getPathsInSchema(schema)
  */
 export const getPathsInSchema = (
-	schema: JSONSchema,
+	schema: any,
 	omissions: Array<{
-		key: keyof JSONSchema;
+		key: keyof JsonSchema;
 		value: string;
 		field: string;
 	}>,
@@ -979,7 +996,7 @@ export const getPathsInSchema = (
 	let newSchema: Array<{ path: string[]; title: string }> = [];
 	const topLevelFields = _.keys(schema.properties);
 	for (const field of topLevelFields) {
-		const fieldSchema: JSONSchema = schema.properties![field];
+		const fieldSchema = schema.properties![field];
 		const updatedPathToField = _.concat(pathToField, field);
 		if (fieldSchema.type === 'object') {
 			newSchema = _.concat(
@@ -1030,10 +1047,7 @@ export const generateJSONPatchDescription = (
 	return items;
 };
 
-export const getLinkedCardInfo = (
-	link: core.LinkContract,
-	card: core.Contract,
-) => {
+export const getLinkedCardInfo = (link: LinkContract, card: Contract) => {
 	const fromCard = _.get(link, ['data', 'from']);
 	const toCard = _.get(link, ['data', 'to']);
 	return toCard.id === card.id ? fromCard : toCard;
@@ -1045,7 +1059,7 @@ export const formatCardType = (type: string) => {
 	return _.startCase(withoutDash);
 };
 
-export const formatCreatedAt = (card: core.Contract<{ timestamp: number }>) => {
+export const formatCreatedAt = (card: Contract<{ timestamp: number }>) => {
 	const timestamp = _.get(card, ['data', 'timestamp']) || card.created_at;
 	return formatTimestamp(timestamp, true);
 };

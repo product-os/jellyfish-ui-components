@@ -1,16 +1,16 @@
-import { JellyfishSDK } from '@balena/jellyfish-client-sdk';
-import { core } from '@balena/jellyfish-types';
+import type { JellyfishSDK } from '@balena/jellyfish-client-sdk';
+import type { UserContract } from '@balena/jellyfish-types/build/core';
 import _ from 'lodash';
 
 const getUsers = async (
-	user: core.UserContract,
+	user: UserContract,
 	sdk: JellyfishSDK,
 	value: string,
 ) => {
 	// @ts-ignore
 	const orgsOfCurrentUser = _.map(user.links['is member of'], 'slug');
 
-	const matchingUsersInOrg = await sdk.query<core.UserContract>(
+	const matchingUsersInOrg = await sdk.query<UserContract>(
 		{
 			$$links: {
 				'is member of': {

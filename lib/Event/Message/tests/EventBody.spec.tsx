@@ -3,7 +3,7 @@ import _ from 'lodash';
 import sinon from 'sinon';
 import { mount } from 'enzyme';
 import React from 'react';
-import { JellyfishSDK } from '@balena/jellyfish-client-sdk';
+import type { JellyfishSDK } from '@balena/jellyfish-client-sdk';
 import { SetupProvider } from '../../../SetupProvider';
 import { Analytics } from '../../../services';
 import { card } from './fixtures';

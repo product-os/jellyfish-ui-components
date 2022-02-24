@@ -1,4 +1,4 @@
-import { JellyfishSDK } from '@balena/jellyfish-client-sdk';
+import type { JellyfishSDK } from '@balena/jellyfish-client-sdk';
 
 const getGroups = async (sdk: JellyfishSDK, value: string) => {
 	// TODO: limit this by organisation

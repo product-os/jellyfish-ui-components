@@ -3,7 +3,6 @@ import _ from 'lodash';
 import React from 'react';
 import queryString from 'query-string';
 import { v4 as uuid } from 'uuid';
-import type { core } from '@balena/jellyfish-types';
 import * as helpers from '../services/helpers';
 import Column from '../shame/Column';
 import MessageInput, { messageSymbolRE } from './MessageInput';
@@ -13,7 +12,7 @@ import EventsList from './EventsList';
 import TypingNotice from './TypingNotice';
 import { addNotification } from '../services/notifications';
 import { UPDATE, CREATE } from '../constants';
-import {
+import type {
 	Contract,
 	TypeContract,
 	UserContract,
@@ -30,7 +29,7 @@ export { MessageInput };
 export const HIDDEN_ANCHOR = '#jellyfish-hidden';
 export const FILE_PROXY_MESSAGE = `[](${HIDDEN_ANCHOR})A file has been uploaded using Jellyfish:`;
 
-const getSendCommand = (user: core.UserContract) => {
+const getSendCommand = (user: UserContract) => {
 	return _.get(user.data, ['profile', 'sendCommand'], 'shift+enter');
 };
 

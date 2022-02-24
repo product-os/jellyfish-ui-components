@@ -3,7 +3,8 @@ import format from 'date-fns/format';
 import sub from 'date-fns/sub';
 import add from 'date-fns/add';
 import * as helpers from './helpers';
-import { core, JSONSchema } from '@balena/jellyfish-types';
+import type { JsonSchema } from '@balena/jellyfish-types';
+import type { UserContract } from '@balena/jellyfish-types/build/core';
 
 const user = {
 	slug: 'user',
@@ -80,7 +81,7 @@ const user = {
 	},
 };
 
-const user1: core.UserContract = {
+const user1: UserContract = {
 	id: '2',
 	name: 'Test user',
 	slug: 'user-1',
@@ -223,7 +224,7 @@ test('.createFullTextSearchFilter() uses regex on properties where the type arra
 
 test('.createFullTextSearchFilter() includes ID if the includeIdAndSlugs option is set and search term is a UUID', () => {
 	const searchTerm = '48f776bc-5a32-4187-9623-9dc0b2b27783';
-	const schema: JSONSchema = {
+	const schema: JsonSchema = {
 		properties: {
 			title: {
 				type: 'string',
@@ -233,6 +234,9 @@ test('.createFullTextSearchFilter() includes ID if the includeIdAndSlugs option 
 	const filter = helpers.createFullTextSearchFilter(schema, searchTerm, {
 		includeIdAndSlug: true,
 	});
+	if (typeof filter !== 'object') {
+		throw new Error();
+	}
 	expect(filter!.anyOf!.length).toBe(2);
 	expect(
 		_.find(filter!.anyOf, {
@@ -267,7 +271,7 @@ test('.createFullTextSearchFilter() includes ID if the includeIdAndSlugs option 
 
 test('.createFullTextSearchFilter() only creates one filter for slug if the includeIdAndSlugs option is set', () => {
 	const searchTerm = 'test';
-	const schema: JSONSchema = {
+	const schema: JsonSchema = {
 		properties: {
 			slug: {
 				type: 'string',
@@ -278,6 +282,9 @@ test('.createFullTextSearchFilter() only creates one filter for slug if the incl
 	const filter = helpers.createFullTextSearchFilter(schema, searchTerm, {
 		includeIdAndSlug: true,
 	});
+	if (typeof filter !== 'object') {
+		throw new Error();
+	}
 	expect(filter!.anyOf!.length).toBe(1);
 	expect(
 		_.find(filter!.anyOf, {
@@ -1559,7 +1566,7 @@ test('getViewSchema merges $$links with the same link verb using an allOf proper
 								additionalProperties: true,
 							},
 						},
-					} as JSONSchema,
+					} as JsonSchema,
 				},
 				{
 					name: 'User generated filter',
@@ -1584,7 +1591,7 @@ test('getViewSchema merges $$links with the same link verb using an allOf proper
 								},
 							},
 						],
-					} as JSONSchema,
+					} as JsonSchema,
 				},
 				{
 					name: 'User generated filter',
@@ -1624,7 +1631,7 @@ test('getViewSchema merges $$links with the same link verb using an allOf proper
 								},
 							},
 						],
-					} as JSONSchema,
+					} as JsonSchema,
 				},
 			],
 		},

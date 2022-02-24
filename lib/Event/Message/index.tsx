@@ -6,7 +6,7 @@ import * as jsonpatch from 'fast-json-patch';
 import React from 'react';
 import { Box } from 'rendition';
 import styled from 'styled-components';
-import type { core } from '@balena/jellyfish-types';
+import type { Contract } from '@balena/jellyfish-types/build/core';
 import SmartVisibilitySensor from '../../SmartVisibilitySensor';
 import * as helpers from '../../services/helpers';
 import { UserAvatarLive } from '../../UserAvatar';
@@ -51,7 +51,7 @@ const MessageIconWrapper = styled(Box)`
 	}
 `;
 
-const getTargetId = (card: core.Contract<{ target: string }>) => {
+const getTargetId = (card: Contract<{ target: string }>) => {
 	return _.get(card, ['data', 'target']) || card.id;
 };
 

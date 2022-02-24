@@ -1,11 +1,11 @@
 import React from 'react';
 import type { SettingType } from '@webscopeio/react-textarea-autocomplete';
-import type { core } from '@balena/jellyfish-types';
+import type { UserContract } from '@balena/jellyfish-types/build/core';
 import type { JellyfishSDK } from '@balena/jellyfish-client-sdk';
 import findMatchingUsers from './find-matching-users';
 
 const userTrigger = (
-	user: core.UserContract,
+	user: UserContract,
 	sdk: JellyfishSDK,
 	tag: string,
 ): SettingType<{
