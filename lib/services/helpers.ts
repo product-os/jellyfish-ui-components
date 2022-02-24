@@ -576,38 +576,44 @@ export const createFullTextSearchFilter = (
 ): JsonSchema | null => {
 	let hasFullTextSearchField = false;
 	const flatSchema = SchemaSieve.flattenSchema(schema as any);
-	let stringKeys = _.reduce(
-		flatSchema.properties,
-		(
-			carry: Array<{ key: keyof JsonSchema; item: JsonSchema }>,
-			subSchema: any,
-			key: any,
-		) => {
-			const items: any[] = [];
-			if (subSchema.oneOf || subSchema.anyOf) {
-				for (const value of subSchema.oneOf || subSchema.anyOf) {
-					items.push({
-						type: subSchema.type,
-						...value,
-					});
-				}
-			} else {
-				items.push(subSchema);
-			}
-			for (const item of items) {
-				if (isStringItem(item) || isArrayOfStringsItem(item)) {
-					hasFullTextSearchField =
-						hasFullTextSearchField || Boolean(item.fullTextSearch);
-					carry.push({
-						key,
-						item,
-					});
-				}
-			}
-			return carry;
-		},
-		[],
-	);
+	let stringKeys = flatSchema
+		? _.reduce(
+				flatSchema.properties,
+				(
+					carry: Array<{ key: keyof typeof flatSchema; item: JsonSchema }>,
+					subSchema: JsonSchema,
+					key: any,
+				) => {
+					const items: JsonSchema[] = [];
+					if (
+						typeof subSchema === 'object' &&
+						(subSchema.oneOf || subSchema.anyOf)
+					) {
+						for (const value of (subSchema.oneOf || subSchema.anyOf)!) {
+							items.push({
+								type: subSchema.type,
+								...(typeof value === 'object' ? value : {}),
+							});
+						}
+					} else {
+						items.push(subSchema);
+					}
+					for (const item of items) {
+						if (isStringItem(item) || isArrayOfStringsItem(item)) {
+							hasFullTextSearchField =
+								hasFullTextSearchField ||
+								(typeof item === 'object' && Boolean(item.fullTextSearch));
+							carry.push({
+								key,
+								item,
+							});
+						}
+					}
+					return carry;
+				},
+				[],
+		  )
+		: [];
 
 	// If any fullTextSearch field is found, we will only search these fields,
 	// otherwise we'll fall-back to searching all regexp fields.
