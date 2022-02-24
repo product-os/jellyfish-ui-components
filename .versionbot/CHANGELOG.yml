@@ -1,4 +1,19 @@
 - commits:
+    - subject: Upgrade dependencies
+      hash: af3bcd64e2a2654cc2fbd231112e19fca89543b2
+      body: |
+        Some types had to be relaxed due to assumptions in the code.
+      footer:
+        Change-type: major
+        change-type: major
+        Signed-off-by: Carol Schulze <carol@ereski.org>
+        signed-off-by: Carol Schulze <carol@ereski.org>
+      author: Carol Schulze
+      nested: []
+  version: 15.0.0
+  title: "'Upgrade dependencies'"
+  date: 2022-02-24T15:51:22.882Z
+- commits:
     - subject: Update external-non-major
       hash: cd10f0fb88925778438af6cd8b69de4c81a2135e
       body: ""
