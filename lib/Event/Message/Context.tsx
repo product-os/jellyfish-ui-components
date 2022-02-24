@@ -4,7 +4,7 @@ import queryString from 'query-string';
 import copy from 'copy-to-clipboard';
 import styled from 'styled-components';
 import { Theme, Txt, Flex, Button, FlexProps } from 'rendition';
-import { core } from '@balena/jellyfish-types';
+import type { Contract } from '@balena/jellyfish-types/build/core';
 import { formatTimestamp } from '../../services/helpers';
 import Icon from '../../shame/Icon';
 import { ActionLink } from '../../shame/ActionLink';
@@ -15,7 +15,7 @@ interface ContextWrapperProps extends FlexProps {
 	updating?: boolean;
 	editing?: boolean;
 	// TS-TODO
-	card: core.Contract<{ payload: { message: string }; target: string }> & {
+	card: Contract<{ payload: { message: string }; target: string }> & {
 		pending?: boolean;
 	};
 }
@@ -41,7 +41,7 @@ const ContextWrapper = styled(Flex)<ContextWrapperProps>`
 
 export interface EventContextProps {
 	// TS-TODO
-	card: core.Contract<{ payload: { message: string }; target: string }> & {
+	card: Contract<{ payload: { message: string }; target: string }> & {
 		pending?: boolean;
 	};
 	menuOptions: React.ReactElement | false;

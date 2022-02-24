@@ -23,7 +23,7 @@ test('Renders a link to the Linked card', async () => {
 	const content = shallow(<Body card={CARD} />);
 	const link = content.find(Link);
 	const props = link.props();
-	expect(props.to).toBe(`https://jel.ly.fish/${CARD.id}`);
+	expect((props as any).to).toBe(`https://jel.ly.fish/${CARD.id}`);
 });
 
 test('Renders the name of the linked card when its present', async () => {

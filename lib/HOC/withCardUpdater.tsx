@@ -1,10 +1,10 @@
 import React from 'react';
-import type { core } from '@balena/jellyfish-types';
+import type { Contract } from '@balena/jellyfish-types/build/core';
 import type { Operation } from 'fast-json-patch';
 import { useSetup } from '../SetupProvider';
 import { addNotification } from '../services/notifications';
 
-type UpdateCardHandler = (card: core.Contract, patch: Operation[]) => unknown;
+type UpdateCardHandler = (card: Contract, patch: Operation[]) => unknown;
 
 interface WithCardUpdaterProps {
 	actions: any;

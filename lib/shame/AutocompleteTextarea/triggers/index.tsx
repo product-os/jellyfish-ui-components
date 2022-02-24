@@ -10,7 +10,10 @@ import type {
 	TriggerType,
 } from '@webscopeio/react-textarea-autocomplete';
 import type { JellyfishSDK } from '@balena/jellyfish-client-sdk';
-import type { core } from '@balena/jellyfish-types';
+import type {
+	TypeContract,
+	UserContract,
+} from '@balena/jellyfish-types/build/core';
 
 const AUTOCOMPLETE_DEBOUNCE = 250;
 
@@ -31,9 +34,9 @@ const debounceTrigger = <TItem extends {}>(trigger: SettingType<TItem>) => {
 // 3 - output: takes the user's selected entity and determines how it is outputted to the text area
 export const getTrigger = _.memoize(
 	(
-		allTypes: core.TypeContract[],
+		allTypes: TypeContract[],
 		sdk: JellyfishSDK,
-		user: core.UserContract,
+		user: UserContract,
 	): TriggerType<any> => {
 		return {
 			':': emojiTrigger(),

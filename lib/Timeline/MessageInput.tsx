@@ -1,8 +1,11 @@
 import React from 'react';
 import { Box, BoxProps, Flex, Txt, useTheme } from 'rendition';
 import styled from 'styled-components';
-import { core } from '@balena/jellyfish-types';
-import { JellyfishSDK } from '@balena/jellyfish-client-sdk';
+import type {
+	TypeContract,
+	UserContract,
+} from '@balena/jellyfish-types/build/core';
+import type { JellyfishSDK } from '@balena/jellyfish-client-sdk';
 import { PlainButton } from '../PlainButton';
 import AutocompleteTextarea from '../shame/AutocompleteTextarea';
 import Icon from '../shame/Icon';
@@ -90,8 +93,8 @@ interface MessageInputProps extends Omit<BoxProps, 'onChange' | 'onSubmit'> {
 	preserveMessage?: (message: string) => unknown;
 	wide?: boolean;
 	enableAutocomplete?: boolean;
-	types: core.TypeContract[];
-	user: core.UserContract;
+	types: TypeContract[];
+	user: UserContract;
 	sdk: JellyfishSDK;
 }
 

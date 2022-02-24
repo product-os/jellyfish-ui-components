@@ -9,7 +9,10 @@ import { RE_FRONT_HIDDEN_URL } from '../Event/Message/Body';
 import { HIDDEN_ANCHOR } from '../Timeline';
 import { linkComponentOverride } from '../Link';
 import { getMessage, generateActorFromUserCard } from '../services/helpers';
-import { core } from '@balena/jellyfish-types';
+import type {
+	Contract,
+	UserContract,
+} from '@balena/jellyfish-types/build/core';
 
 const componentOverrides = {
 	// TS-TODO
@@ -23,7 +26,7 @@ const componentOverrides = {
 };
 
 interface MessageSnippetProps extends FlexProps {
-	messageCard: core.Contract<{ actor: string }>;
+	messageCard: Contract<{ actor: string }>;
 }
 
 export const MessageSnippet = React.memo<MessageSnippetProps>(
@@ -45,7 +48,7 @@ export const MessageSnippet = React.memo<MessageSnippetProps>(
 		const userId = _.get(messageCard, ['data', 'actor']);
 
 		return (
-			<CardLoader<core.UserContract>
+			<CardLoader<UserContract>
 				id={userId}
 				type="user"
 				withLinks={['is member of']}

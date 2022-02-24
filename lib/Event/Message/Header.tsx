@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import styled from 'styled-components';
 import { Theme, Flex, Txt } from 'rendition';
-import { core } from '@balena/jellyfish-types';
+import type { UserContract } from '@balena/jellyfish-types/build/core';
 import { Link } from '../../Link';
 import Context, { EventContextProps } from './Context';
 import { username, getUserTooltipText } from '../../services/helpers';
@@ -23,7 +23,7 @@ const ActorPlaceholder = styled.span`
 interface EventHeaderProps extends Omit<EventContextProps, 'isOwnMessage'> {
 	// TS-TODO: add actor type
 	actor: any;
-	user: core.UserContract;
+	user: UserContract;
 	squashTop?: boolean;
 	// TS-TODO
 	getActorHref: (actor: any) => string;
