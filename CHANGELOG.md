@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 15.0.1 - 2022-02-26
+
+* Update external-non-major [Renovate Bot]
+
 ## 15.0.0 - 2022-02-24
 
 * Upgrade dependencies [Carol Schulze]
