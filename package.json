@@ -1,6 +1,6 @@
 {
   "name": "@balena/jellyfish-ui-components",
-  "version": "15.0.1",
+  "version": "15.0.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/product-os/jellyfish-ui-components.git"
@@ -126,6 +126,6 @@
     "pre-commit": "npx lint-staged"
   },
   "versionist": {
-    "publishedAt": "2022-02-26T00:36:51.422Z"
+    "publishedAt": "2022-03-05T02:03:16.009Z"
   }
 }
