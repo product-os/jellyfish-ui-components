@@ -46,7 +46,7 @@
     "rendition": "^25.13.1"
   },
   "dependencies": {
-    "@sentry/browser": "^6.18.0",
+    "@sentry/browser": "^6.18.1",
     "@webscopeio/react-textarea-autocomplete": "4.9.1",
     "bluebird": "^3.7.2",
     "classnames": "^2.3.1",
@@ -76,7 +76,7 @@
     "react-textarea-autosize": "^8.3.3",
     "react-visibility-sensor": "^5.1.1",
     "redux": "^4.1.2",
-    "skhema": "^6.0.3",
+    "skhema": "^6.0.6",
     "styled-components": "^5.3.3",
     "uuid": "^8.3.2"
   },
@@ -100,8 +100,8 @@
     "@types/jest": "^26.0.24",
     "@types/mixpanel-browser": "^2.38.0",
     "@types/node-emoji": "^1.8.1",
-    "@types/react-dom": "^17.0.11",
-    "@types/react-redux": "^7.1.22",
+    "@types/react-dom": "^17.0.13",
+    "@types/react-redux": "^7.1.23",
     "@types/react-router-dom": "^5.3.3",
     "@types/redux-mock-store": "^1.0.3",
     "@types/sinon": "^10.0.11",
@@ -120,7 +120,7 @@
     "simple-git-hooks": "^2.7.0",
     "sinon": "^12.0.1",
     "ts-jest": "^26.5.6",
-    "typescript": "^4.5.5"
+    "typescript": "^4.6.2"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged"
