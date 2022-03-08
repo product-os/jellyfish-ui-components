@@ -4,7 +4,7 @@ import type { Operation } from 'fast-json-patch';
 import { useSetup } from '../SetupProvider';
 import { addNotification } from '../services/notifications';
 
-type UpdateCardHandler = (card: Contract, patch: Operation[]) => unknown;
+type UpdateCardHandler = (card: Contract, patch: Operation[]) => Promise<any>;
 
 interface WithCardUpdaterProps {
 	actions: any;
@@ -19,7 +19,7 @@ export default function withCardUpdater<
 	) => {
 		return (props: React.PropsWithChildren<TProps>) => {
 			const { sdk, analytics } = useSetup()!;
-			const onUpdateCard: UpdateCardHandler = (card, patch) => {
+			const onUpdateCard: UpdateCardHandler = async (card, patch) => {
 				if (patch.length) {
 					return sdk.card
 						.update(card.id, card.type, patch)

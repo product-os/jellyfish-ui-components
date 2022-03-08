@@ -113,13 +113,13 @@ afterEach(() => {
 
 test('It should render', () => {
 	expect(() => {
-		shallow(<Message {...commonProps} card={card} />);
+		shallow(<Message {...(commonProps as any)} card={card} />);
 	}).not.toThrow();
 });
 
 test.skip("The event is marked as 'focused' if the card's ID matches the 'event' url param", () => {
 	window.location.search = `?event=${card.id}`;
-	const event = mount(<Message {...commonProps} card={card} />, {
+	const event = mount(<Message {...(commonProps as any)} card={card} />, {
 		wrappingComponent,
 	});
 	const eventWrapper = event.find(`div#event-${card.id}`);
@@ -127,7 +127,7 @@ test.skip("The event is marked as 'focused' if the card's ID matches the 'event'
 });
 
 test("It should display the actor's details", () => {
-	const event = mount(<Message {...commonProps} card={card} />, {
+	const event = mount(<Message {...(commonProps as any)} card={card} />, {
 		wrappingComponent,
 	});
 	const avatar: any = event.find('BaseAvatar');
@@ -148,9 +148,12 @@ test('A markdown message is displayed when the card is a message', async () => {
 			},
 		},
 	};
-	const event = mount(<Message {...commonProps} card={messageCard} />, {
-		wrappingComponent,
-	});
+	const event = mount(
+		<Message {...(commonProps as any)} card={messageCard} />,
+		{
+			wrappingComponent,
+		},
+	);
 	const message = event.find(Markdown);
 	expect(message.text().trim()).toBe(messageText);
 });
@@ -202,9 +205,9 @@ test('Editing a message will update the mentions, alerts, tags and message', asy
 
 	const event = await mount(
 		<Message
-			{...commonProps}
+			{...(commonProps as any)}
 			onUpdateCard={onUpdateCard}
-			user={author}
+			user={author as any}
 			card={card}
 		/>,
 		{
@@ -245,9 +248,9 @@ test('You can delete the whole content of a message when editing it', async () =
 
 	const event = await mount(
 		<Message
-			{...commonProps}
+			{...(commonProps as any)}
 			onUpdateCard={onUpdateCard}
-			user={author}
+			user={author as any}
 			card={card}
 		/>,
 		{

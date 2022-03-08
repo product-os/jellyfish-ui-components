@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Box, BoxProps } from 'rendition';
-import { Contract } from '@balena/jellyfish-types/build/core';
+import type { Contract } from '@balena/jellyfish-types/build/core';
 import { isPrivateTimelineEvent } from '../../services/helpers';
 
 interface MessageContainerProps extends BoxProps {
