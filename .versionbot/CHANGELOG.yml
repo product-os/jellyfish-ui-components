@@ -1,4 +1,18 @@
 - commits:
+    - subject: "Event: Improve property typings"
+      hash: 9520ed8998ce33ea8cdb812b7c1423cf5a42e051
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+        signed-off-by: Lucian Buzzo <lucian.buzzo@gmail.com>
+      author: Lucian Buzzo
+      nested: []
+  version: 15.0.3
+  title: "'Event: Improve property typings'"
+  date: 2022-03-08T12:29:54.917Z
+- commits:
     - subject: Update external-non-major
       hash: cd6809e676d6fc8f8e79bf0e2616221e8c886692
       body: ""
