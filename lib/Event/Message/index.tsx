@@ -6,7 +6,12 @@ import * as jsonpatch from 'fast-json-patch';
 import React from 'react';
 import { Box } from 'rendition';
 import styled from 'styled-components';
-import type { Contract } from '@balena/jellyfish-types/build/core';
+import type { JellyfishSDK } from '@balena/jellyfish-client-sdk';
+import type {
+	Contract,
+	TypeContract,
+	UserContract,
+} from '@balena/jellyfish-types/build/core';
 import SmartVisibilitySensor from '../../SmartVisibilitySensor';
 import * as helpers from '../../services/helpers';
 import { UserAvatarLive } from '../../UserAvatar';
@@ -78,14 +83,45 @@ const MessageIcon: React.FunctionComponent<MessageIconProps> = ({
 	);
 };
 
-interface EventState {
+interface State {
 	editedMessage: string | null;
 	updating: boolean;
 	messageHeight: number | null;
 	isVisible: boolean;
 }
 
-export default class Event extends React.Component<any, EventState> {
+interface Props {
+	card: Contract<{
+		target: string;
+		actor: string;
+		payload: { message: string };
+	}>;
+	openChannel?: (targetId: string) => any;
+	sdk: JellyfishSDK;
+	user: UserContract;
+	onUpdateCard: (
+		contract: Contract,
+		patch: jsonpatch.Operation[],
+	) => Promise<any>;
+	onCardVisible: (contract: Contract) => any;
+	notifications: Contract[];
+	types: TypeContract[];
+	enableAutocomplete?: boolean;
+	sendCommand: string;
+	groups: any;
+	actor: {
+		card: UserContract;
+	};
+	firstInThread?: boolean;
+	menuOptions: any;
+	threadIsMirrored: boolean;
+	actions: any;
+	previousEvent: Contract;
+	nextEvent: Contract;
+	getActorHref: (actor: UserContract) => string;
+}
+
+export default class Event extends React.Component<Props, State> {
 	messageElement: HTMLElement | null = null;
 
 	state = {
@@ -95,7 +131,7 @@ export default class Event extends React.Component<any, EventState> {
 		isVisible: false,
 	};
 
-	openChannel = () => {
+	handleOpenChannel = () => {
 		const { card, openChannel } = this.props;
 		if (!openChannel) {
 			return;
@@ -104,7 +140,7 @@ export default class Event extends React.Component<any, EventState> {
 		openChannel(targetId);
 	};
 
-	setMessageElement = (element: HTMLElement) => {
+	setMessageElement = (element: HTMLElement | null) => {
 		if (element) {
 			this.messageElement = element;
 			this.setState({
@@ -170,7 +206,9 @@ export default class Event extends React.Component<any, EventState> {
 							// If the edit happens to add a mention of the current user,
 							// we need to mark this message as read!
 							const updatedCard = await sdk.card.get(card.id);
-							sdk.card.markAsRead(user.slug, updatedCard);
+							if (updatedCard) {
+								sdk.card.markAsRead(user.slug, updatedCard as any);
+							}
 						})
 						.catch(() => {
 							this.setState({
@@ -182,7 +220,7 @@ export default class Event extends React.Component<any, EventState> {
 		}
 	};
 
-	shouldComponentUpdate(nextProps: any, nextState: EventState) {
+	shouldComponentUpdate(nextProps: any, nextState: State) {
 		return (
 			!circularDeepEqual(nextState, this.state) ||
 			!circularDeepEqual(nextProps, this.props)
@@ -211,7 +249,7 @@ export default class Event extends React.Component<any, EventState> {
 		});
 	}
 
-	componentDidUpdate(prevProps: any, prevState: EventState) {
+	componentDidUpdate(prevProps: any, prevState: State) {
 		/*
 		 * Mark notifications as read if visibility changed or received new notifications
 		 */
@@ -290,8 +328,8 @@ export default class Event extends React.Component<any, EventState> {
 					id={`event-${card.id}`}
 				>
 					<EventButton
-						openChannel={openChannel}
-						onClick={this.openChannel}
+						openChannel={!!openChannel}
+						onClick={this.handleOpenChannel}
 						style={{
 							borderLeftColor: threadColor,
 						}}
@@ -339,24 +377,24 @@ export default class Event extends React.Component<any, EventState> {
 							getActorHref={getActorHref}
 						/>
 						<Body
-							squashTop={squashTop}
-							squashBottom={squashBottom}
-							card={card}
-							sdk={sdk}
 							actor={actor}
-							isMessage={isMessage}
-							messageOverflows={messageOverflows}
-							setMessageElement={this.setMessageElement}
-							messageCollapsedHeight={MESSAGE_COLLAPSED_HEIGHT}
-							enableAutocomplete={enableAutocomplete}
-							sendCommand={sendCommand}
-							types={types}
-							user={user}
-							groups={groups}
+							card={card}
 							editedMessage={editedMessage}
-							updating={updating}
-							onUpdateDraft={this.updateEditedMessage}
+							enableAutocomplete={enableAutocomplete}
+							groups={groups}
+							isMessage={isMessage}
+							messageCollapsedHeight={MESSAGE_COLLAPSED_HEIGHT}
+							messageOverflows={messageOverflows}
 							onSaveEditedMessage={this.saveEditedMessage}
+							onUpdateDraft={this.updateEditedMessage}
+							sdk={sdk}
+							sendCommand={sendCommand}
+							setMessageElement={this.setMessageElement}
+							squashBottom={squashBottom}
+							squashTop={squashTop}
+							types={types}
+							updating={updating}
+							user={user}
 						/>
 					</Box>
 				</Wrapper>

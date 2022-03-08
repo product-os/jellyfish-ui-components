@@ -3,6 +3,12 @@ import _ from 'lodash';
 import styled from 'styled-components';
 import { Button, Txt, Img } from 'rendition';
 import { Markdown } from 'rendition/dist/extra/Markdown';
+import type {
+	Contract,
+	TypeContract,
+	UserContract,
+} from '@balena/jellyfish-types/build/core';
+import type { JellyfishSDK } from '@balena/jellyfish-client-sdk';
 import { HIDDEN_ANCHOR } from '../../Timeline';
 import Icon from '../../shame/Icon';
 import MessageContainer from './MessageContainer';
@@ -131,7 +137,31 @@ const componentOverrides = {
 	},
 };
 
-const Body = (props: any) => {
+interface Props {
+	actor: {
+		card: Contract;
+		proxy?: boolean;
+	};
+	card: Contract & { pending?: boolean };
+	editedMessage: string | null;
+	enableAutocomplete?: boolean;
+	groups: any;
+	isMessage: boolean;
+	messageCollapsedHeight: number;
+	messageOverflows: boolean;
+	onSaveEditedMessage: () => any;
+	onUpdateDraft: (event: any) => void;
+	sdk: JellyfishSDK;
+	sendCommand: string;
+	setMessageElement: (element: HTMLElement | null) => void;
+	squashBottom?: boolean;
+	squashTop?: boolean;
+	types: TypeContract[];
+	updating: boolean;
+	user: UserContract;
+}
+
+const Body = (props: Props) => {
 	const {
 		squashTop,
 		squashBottom,
