@@ -1,4 +1,16 @@
 - commits:
+    - subject: Update external-non-major
+      hash: f76a7699bba42ef5a00c3172fa91afafce67881a
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+      author: Renovate Bot
+      nested: []
+  version: 15.0.4
+  title: "'Update external-non-major'"
+  date: 2022-03-12T02:22:18.909Z
+- commits:
     - subject: "Event: Improve property typings"
       hash: 9520ed8998ce33ea8cdb812b7c1423cf5a42e051
       body: ""

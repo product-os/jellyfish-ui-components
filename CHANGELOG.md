@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 15.0.4 - 2022-03-12
+
+* Update external-non-major [Renovate Bot]
+
 ## 15.0.3 - 2022-03-08
 
 * Event: Improve property typings [Lucian Buzzo]
