@@ -1,4 +1,18 @@
 - commits:
+    - subject: Update jest deps
+      hash: 50e47be46aac477eadc95ee0001590e193fd091e
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Josh Bowling <josh@balena.io>
+        signed-off-by: Josh Bowling <josh@balena.io>
+      author: Josh Bowling
+      nested: []
+  version: 15.0.8
+  title: "'Update jest deps'"
+  date: 2022-03-20T02:53:26.625Z
+- commits:
     - subject: Update sinon from 12.0.1 to 13.0.1
       hash: de29fe35047e3001c06732eb3ac9997ae3b20314
       body: ""
