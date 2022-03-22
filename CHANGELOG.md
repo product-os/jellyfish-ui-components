@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 15.0.8 - 2022-03-22
+
+* Update repo.yml formatting [Josh Bowling]
+
 ## 15.0.7 - 2022-03-19
 
 * Update sinon from 12.0.1 to 13.0.1 [Josh Bowling]
