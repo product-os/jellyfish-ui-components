@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 15.0.9 - 2022-03-23
+
+* Update internal-patch [Renovate Bot]
+
 ## 15.0.8 - 2022-03-22
 
 * Update repo.yml formatting [Josh Bowling]
