@@ -5,6 +5,11 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 15.0.10 - 2022-03-27
+
+* Update @balena/jellyfish-client-sdk from 10.1.14 to 10.2.3 [Renovate Bot]
+* Update typescript from 4.6.2 to 4.6.3 [Renovate Bot]
+
 ## 15.0.9 - 2022-03-23
 
 * Update internal-patch [Renovate Bot]
