@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 15.0.12 - 2022-03-27
+
+* Update fast-equals from 2.0.4 to 3.0.0 [Josh Bowling]
+
 ## 15.0.11 - 2022-03-27
 
 * Update external-non-major [Renovate Bot]

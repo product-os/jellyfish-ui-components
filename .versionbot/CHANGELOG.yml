@@ -1,4 +1,18 @@
 - commits:
+    - subject: Update fast-equals from 2.0.4 to 3.0.0
+      hash: da45a80c67d8a3cfbe4da12d3a2c421e4b813565
+      body: ""
+      footer:
+        Change-type: patch
+        change-type: patch
+        Signed-off-by: Josh Bowling <josh@balena.io>
+        signed-off-by: Josh Bowling <josh@balena.io>
+      author: Josh Bowling
+      nested: []
+  version: 15.0.12
+  title: "'Update fast-equals from 2.0.4 to 3.0.0'"
+  date: 2022-03-27T08:54:04.087Z
+- commits:
     - subject: Update external-non-major
       hash: d5ab47198bd120add3715cc7cc163a044052de12
       body: ""
