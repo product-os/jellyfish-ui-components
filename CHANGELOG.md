@@ -5,6 +5,10 @@
 * Fix readme [Josh Bowling]
 * Copy over lib code [Josh Bowling]
 
+## 15.0.12 - 2022-03-29
+
+* Add deprecation notice [Josh Bowling]
+
 ## 15.0.11 - 2022-03-27
 
 * Update external-non-major [Renovate Bot]
